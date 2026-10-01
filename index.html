@@ -101,18 +101,18 @@
 .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .info-card,.dept,.person,.system-row{border:1px solid rgba(255,255,255,.65);background:rgba(248,253,255,.48);backdrop-filter:blur(10px);box-shadow:0 11px 36px rgba(29,83,103,.09)}
 .info-card{min-height:190px;padding:23px;border-radius:13px}.info-num{font:10px monospace;color:#3388a4}.info-card h3{margin:17px 0 8px;font-size:18px;color:#173e4e}.info-card p{margin:0;font-size:12px;line-height:1.75;color:#4e707d;word-break:keep-all}
-
-.service-note{margin-top:18px;padding:17px 20px;border:1px solid rgba(255,255,255,.58);border-radius:12px;background:rgba(255,255,255,.30);backdrop-filter:blur(9px);color:#446d7b;font-size:11px;line-height:1.7}
-.service-note strong{color:#1d5063}
+.service-note{margin-top:18px;padding:17px 20px;border:1px solid rgba(255,255,255,.58);border-radius:12px;background:rgba(255,255,255,.30);backdrop-filter:blur(9px);color:#446d7b;font-size:11px;line-height:1.7}.service-note strong{color:#1d5063}
 
 .dept-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.dept{padding:21px 17px;border-radius:12px;transition:.2s}.dept:hover{transform:translateY(-3px);background:rgba(255,255,255,.67);box-shadow:0 16px 34px rgba(30,100,125,.12)}
 .dept-icon{display:grid;place-items:center;width:34px;height:34px;margin-bottom:18px;border-radius:9px;background:rgba(73,161,190,.11);font-size:16px;color:#347e98}.dept b{display:block;font-size:14px;color:#1d4859}.dept p{margin:12px 0 0;font-size:11px;line-height:1.7;color:#50727f}
 
-.person-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.person{position:relative;overflow:hidden;min-height:270px;padding:23px;border-radius:14px}.person::after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-50px;top:-50px;background:rgba(111,209,239,.12)}
-.person-index{font:9px monospace;color:#378ba6}.person h3{margin:25px 0 6px;font-size:24px;color:#153b4a}
-.person-field{display:inline-block;padding:5px 8px;border-radius:6px;background:rgba(67,143,171,.11);font-size:10px;font-weight:700;color:#327893}
-.person-work{display:block;margin-top:9px;font-size:10px;line-height:1.55;color:#597b88}
-.person p{margin:17px 0 0;font-size:11px;line-height:1.7;color:#4c6e7b}
+.person-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.person{position:relative;overflow:hidden;min-height:270px;padding:25px 23px;border-radius:14px}
+.person::after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-50px;top:-50px;background:rgba(111,209,239,.12)}
+.person-field{position:relative;z-index:1;display:inline-block;padding:5px 8px;border-radius:6px;background:rgba(67,143,171,.11);font-size:10px;font-weight:700;color:#327893}
+.person h3{position:relative;z-index:1;margin:17px 0 8px;font-size:26px;color:#153b4a}
+.person-work{position:relative;z-index:1;display:block;font-size:10px;line-height:1.55;color:#597b88}
+.person p{position:relative;z-index:1;margin:18px 0 0;font-size:11px;line-height:1.7;color:#4c6e7b}
 
 .system-list{display:grid;gap:10px}.system-row{display:grid;grid-template-columns:180px 1fr auto;gap:20px;align-items:center;padding:18px 20px;border-radius:11px}.system-row b{font-size:12px;color:#214b5b}.system-row p{margin:0;font-size:11px;color:#4f707c}.system-state{padding:5px 8px;border-radius:20px;background:rgba(218,247,241,.8);color:#297768;font-size:9px;white-space:nowrap}
 
@@ -154,6 +154,7 @@
 <button id="node-citizen" class="map-node flip" data-title="시민 생활 구역" data-desc="주거, 음식, 쇼핑, 이벤트 등 시민들의 일상을 둘러볼 수 있습니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">시민 생활 구역</span><span class="node-sub">생활 · 상업</span></span></button>
 <button id="node-gate" class="map-node" data-title="구형 월드 게이트" data-desc="오래된 연결 게이트입니다. 버려진 월드와 NULL 관련 기록으로 이어집니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">구형 월드 게이트</span><span class="node-sub">구형 구역</span></span></button>
 </div>
+
 <div id="district-preview"><div class="preview-top"><div><div id="preview-title" class="preview-title"></div><div id="preview-desc" class="preview-desc"></div></div><button id="preview-close">×</button></div></div>
 </section>
 
@@ -172,13 +173,14 @@
 <h1>관리국</h1>
 <p class="admin-lead">생활 행정부터 안전, 복구, 월드 관리까지. 시민들이 파라다이스에서 안심하고 생활할 수 있도록 다양한 공공 업무를 맡고 있습니다.</p>
 </div>
+
 <div class="admin-status">
 <div class="status-label">CURRENT SERVICE STATUS</div>
 <div class="status-main"><span class="status-dot"></span>관리국 주요 서비스 정상 운영 중</div>
 <div class="status-grid">
 <div class="status-cell"><b>117년차</b><span>파라다이스 운영</span></div>
 <div class="status-cell"><b>5개</b><span>주요 업무 분야</span></div>
-<div class="status-cell"><b>4명</b><span>주요 인물</span></div>
+<div class="status-cell"><b>상시</b><span>시민 지원</span></div>
 <div class="status-cell"><b>6명</b><span>현역 가디언</span></div>
 </div>
 </div>
@@ -187,7 +189,7 @@
 <nav class="admin-nav">
 <button class="admin-tab active" data-panel="overview">개요</button>
 <button class="admin-tab" data-panel="departments">업무 안내</button>
-<button class="admin-tab" data-panel="people">주요 인물</button>
+<button class="admin-tab" data-panel="people">직원 안내</button>
 <button class="admin-tab" data-panel="systems">시스템 안내</button>
 </nav>
 
@@ -262,33 +264,29 @@
 <div class="person-grid">
 
 <article class="person">
-<span class="person-index">STAFF 01</span>
-<h3>다나</h3>
 <span class="person-field">가디언 · 스타터 룸 관리</span>
+<h3>다나</h3>
 <span class="person-work">후보 평가 · 생활관리 · 상담</span>
 <p>스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다.</p>
 </article>
 
 <article class="person">
-<span class="person-index">STAFF 02</span>
-<h3>세린</h3>
 <span class="person-field">의료 · 복구 · 안정화</span>
+<h3>세린</h3>
 <span class="person-work">데이터 손상 · 정신 안정 · 초기 오버플로 대응</span>
 <p>오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다.</p>
 </article>
 
 <article class="person">
-<span class="person-index">STAFF 03</span>
-<h3>렌</h3>
 <span class="person-field">치안 · 보안</span>
+<h3>렌</h3>
 <span class="person-work">현장 출동 · 불법 월드 · NULL 관련 사건</span>
 <p>문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다.</p>
 </article>
 
 <article class="person">
-<span class="person-index">STAFF 04</span>
-<h3>시아</h3>
 <span class="person-field">시스템 · 기술 감사</span>
+<h3>시아</h3>
 <span class="person-work">월드 인증 · 오류 조사 · 레거시 코드 감사</span>
 <p>시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다.</p>
 </article>
