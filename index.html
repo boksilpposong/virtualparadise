@@ -2,393 +2,216 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>VIRTUAL PARADISE — 입주 절차</title>
 <style>
 :root{--white:#f7f6f1;--accent:#e7d7b2;--system:#b7d9ef;--dark:#050607}
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;background:var(--dark)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:var(--dark)}
 body{overflow:hidden;color:var(--white);font-family:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif}
-button,input{font:inherit}
-.screen{position:fixed;inset:0;width:100vw;height:100dvh}
-.hidden{display:none!important}
+button,input{font:inherit}.screen{position:fixed;inset:0;width:100vw;height:100dvh}.hidden{display:none!important}
 
 /* 현실 */
 #cinematic{overflow:hidden;background:#050607}
-#scene-image{position:absolute;inset:-2%;background-position:center;background-size:cover;background-repeat:no-repeat;opacity:1;transform:scale(1.015);filter:blur(0) brightness(1) saturate(.96) contrast(1.01);transition:opacity .9s ease,transform 8s ease-out}
-#scene-image.changing{opacity:0}
-#scene-image.move{transform:scale(1.045)}
+#scene-image{position:absolute;inset:-2%;background:center/cover no-repeat;opacity:1;transform:scale(1.015);filter:blur(0) brightness(1) saturate(.96);transition:opacity .9s ease,transform 8s ease-out}
+#scene-image.changing{opacity:0}#scene-image.move{transform:scale(1.045)}
 #scene-image.closing{animation:vision-close 3.4s cubic-bezier(.45,0,.25,1) forwards}
-@keyframes vision-close{
-0%{filter:blur(0) brightness(1) saturate(.96);transform:scale(1.045)}
-15%{filter:blur(.7px) brightness(.97) saturate(.95);transform:scale(1.05)}
-30%{filter:blur(2px) brightness(.91) saturate(.92);transform:scale(1.055)}
-48%{filter:blur(4px) brightness(.80) saturate(.88);transform:scale(1.06)}
-66%{filter:blur(7px) brightness(.65) saturate(.82);transform:scale(1.067)}
-84%{filter:blur(11px) brightness(.44) saturate(.76);transform:scale(1.074)}
-100%{filter:blur(16px) brightness(.20) saturate(.70);transform:scale(1.08)}
-}
+@keyframes vision-close{0%{filter:blur(0) brightness(1);transform:scale(1.045)}30%{filter:blur(2px) brightness(.91);transform:scale(1.055)}48%{filter:blur(4px) brightness(.8);transform:scale(1.06)}66%{filter:blur(7px) brightness(.65);transform:scale(1.067)}84%{filter:blur(11px) brightness(.44);transform:scale(1.074)}100%{filter:blur(16px) brightness(.2);transform:scale(1.08)}}
 .vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.1) 34%,transparent 67%),radial-gradient(circle at center,transparent 55%,rgba(0,0,0,.14))}
 .brand{position:absolute;top:34px;right:45px;text-align:right;opacity:.72;text-shadow:0 2px 14px rgba(0,0,0,.55)}
-.brand strong{display:block;font-size:13px;letter-spacing:.22em}
-.brand span{display:block;margin-top:6px;font-size:8px;letter-spacing:.17em;color:rgba(255,255,255,.58)}
+.brand strong{display:block;font-size:13px;letter-spacing:.22em}.brand span{display:block;margin-top:6px;font-size:8px;letter-spacing:.17em;color:rgba(255,255,255,.58)}
 
 /* 시작 */
-#start-button{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);width:min(520px,calc(100vw - 40px));padding:20px 28px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(8,10,12,.48);backdrop-filter:blur(14px);color:#fff;cursor:pointer;text-align:left;box-shadow:0 18px 60px rgba(0,0,0,.22);transition:opacity .55s ease,transform .55s ease,background .25s,border-color .25s}
+#start-button{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);width:min(520px,calc(100vw - 40px));padding:20px 28px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(8,10,12,.48);backdrop-filter:blur(14px);color:#fff;cursor:pointer;text-align:left;box-shadow:0 18px 60px rgba(0,0,0,.22);transition:.55s ease}
 #start-button:hover{background:rgba(8,10,12,.64);border-color:rgba(255,255,255,.48);transform:translateX(-50%) translateY(-2px)}
 #start-button.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(10px)}
-.start-small{display:block;font-size:11px;color:rgba(255,255,255,.58)}
-.start-main{display:block;margin:5px 0 7px;font-size:clamp(20px,2.3vw,29px);font-weight:550}
-.start-help{display:block;font-size:11px;color:rgba(255,255,255,.42)}
+.start-small{display:block;font-size:11px;color:rgba(255,255,255,.58)}.start-main{display:block;margin:5px 0 7px;font-size:clamp(20px,2.3vw,29px);font-weight:550}.start-help{display:block;font-size:11px;color:rgba(255,255,255,.42)}
 
 /* 대사 */
-#dialogue{position:absolute;left:clamp(24px,5vw,78px);bottom:clamp(28px,7vh,70px);width:min(720px,calc(100vw - 48px));padding:14px 20px 17px;border-top:1px solid rgba(255,255,255,.34);background:linear-gradient(90deg,rgba(3,5,7,.59),rgba(3,5,7,.30) 72%,transparent);backdrop-filter:blur(8px);text-shadow:0 2px 10px rgba(0,0,0,.88);opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
-#dialogue.show{opacity:1;transform:translateY(0)}
-.dialogue-info{display:flex;align-items:center;gap:11px;margin-bottom:7px;font-size:11px;letter-spacing:.07em;color:rgba(255,255,255,.52)}
-#speaker{color:var(--accent);font-weight:bold}
-#scene-label::before{content:"·";margin-right:11px;color:rgba(255,255,255,.3)}
+#dialogue{position:absolute;left:clamp(24px,5vw,78px);bottom:clamp(28px,7vh,70px);width:min(720px,calc(100vw - 48px));padding:14px 20px 17px;border-top:1px solid rgba(255,255,255,.34);background:linear-gradient(90deg,rgba(3,5,7,.59),rgba(3,5,7,.3) 72%,transparent);backdrop-filter:blur(8px);text-shadow:0 2px 10px rgba(0,0,0,.88);opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+#dialogue.show{opacity:1;transform:translateY(0)}.dialogue-info{display:flex;gap:11px;margin-bottom:7px;font-size:11px;letter-spacing:.07em;color:rgba(255,255,255,.52)}
+#speaker{color:var(--accent);font-weight:bold}#scene-label::before{content:"·";margin-right:11px;color:rgba(255,255,255,.3)}
 #dialogue-text{margin:0;max-width:650px;font-size:clamp(17px,1.65vw,23px);line-height:1.65;word-break:keep-all}
-.dialogue-next{margin-top:10px;font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.31)}
-.dialogue-next span{display:inline-block;margin-left:5px;animation:arrow 1.3s infinite ease-in-out}
+.dialogue-next{margin-top:10px;font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.31)}.dialogue-next span{display:inline-block;margin-left:5px;animation:arrow 1.3s infinite ease-in-out}
 @keyframes arrow{50%{transform:translateX(4px)}}
 
-/* 눈 감기 */
+/* 눈 */
 #eye-close{position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none}
-#eye-close::before,#eye-close::after{content:"";position:absolute;left:-4%;width:108%;height:57%;filter:blur(2px);transition:transform 3.2s cubic-bezier(.60,0,.25,1)}
-#eye-close::before{top:-4%;background:linear-gradient(to bottom,#000 0%,#000 65%,rgba(0,0,0,.98) 80%,rgba(0,0,0,.84) 92%,rgba(0,0,0,.60));transform:translateY(-106%)}
-#eye-close::after{bottom:-4%;background:linear-gradient(to top,#000 0%,#000 65%,rgba(0,0,0,.98) 80%,rgba(0,0,0,.84) 92%,rgba(0,0,0,.60));transform:translateY(106%)}
+#eye-close::before,#eye-close::after{content:"";position:absolute;left:-4%;width:108%;height:57%;filter:blur(2px);transition:transform 3.2s cubic-bezier(.6,0,.25,1)}
+#eye-close::before{top:-4%;background:linear-gradient(to bottom,#000 65%,rgba(0,0,0,.6));transform:translateY(-106%)}
+#eye-close::after{bottom:-4%;background:linear-gradient(to top,#000 65%,rgba(0,0,0,.6));transform:translateY(106%)}
 #eye-close.close::before,#eye-close.close::after{transform:translateY(0)}
 
 /* 동기화 */
 #transfer{display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 45%,rgba(40,78,104,.14),transparent 45%),#04070a}
-.transfer-panel{width:min(760px,92vw)}
-.system-brand{font-size:13px;letter-spacing:.28em;color:rgba(255,255,255,.8)}
-.system-sub{margin:8px 0 46px;font-family:monospace;font-size:10px;letter-spacing:.16em;color:rgba(183,217,239,.48)}
-#transfer h1{margin:0 0 10px;font-size:clamp(27px,4vw,46px);font-weight:500}
-.transfer-description{margin:0 0 34px;color:rgba(255,255,255,.52);line-height:1.7;font-size:14px}
-#process-list{display:grid;margin-bottom:34px;border-top:1px solid rgba(255,255,255,.1)}
-.process-item{display:grid;grid-template-columns:34px 1fr auto;align-items:center;min-height:48px;padding:0 4px;border-bottom:1px solid rgba(255,255,255,.075);color:rgba(255,255,255,.23);transition:color .5s}
-.process-number,.process-status{font-family:monospace}
-.process-number{font-size:10px}.process-label{font-size:13px}.process-status{font-size:9px;letter-spacing:.1em}
-.process-item.active{color:rgba(255,255,255,.94)}.process-item.complete{color:rgba(183,217,239,.68)}
-.progress-track{height:1px;overflow:hidden;background:rgba(255,255,255,.12)}
-#progress-bar{width:0;height:100%;background:var(--system);box-shadow:0 0 12px rgba(183,217,239,.55);transition:width .8s ease}
-.progress-info{display:flex;justify-content:space-between;margin-top:9px;font-family:monospace;font-size:9px;letter-spacing:.08em;color:rgba(255,255,255,.34)}
+.transfer-panel{width:min(760px,92vw)}.system-brand{font-size:13px;letter-spacing:.28em;color:rgba(255,255,255,.8)}.system-sub{margin:8px 0 46px;font-family:monospace;font-size:10px;letter-spacing:.16em;color:rgba(183,217,239,.48)}
+#transfer h1{margin:0 0 10px;font-size:clamp(27px,4vw,46px);font-weight:500}.transfer-description{margin:0 0 34px;color:rgba(255,255,255,.52);line-height:1.7;font-size:14px}
+#process-list{display:grid;margin-bottom:34px;border-top:1px solid rgba(255,255,255,.1)}.process-item{display:grid;grid-template-columns:34px 1fr auto;align-items:center;min-height:48px;padding:0 4px;border-bottom:1px solid rgba(255,255,255,.075);color:rgba(255,255,255,.23);transition:color .5s}
+.process-number,.process-status{font-family:monospace}.process-number{font-size:10px}.process-label{font-size:13px}.process-status{font-size:9px}.process-item.active{color:#fff}.process-item.complete{color:rgba(183,217,239,.68)}
+.progress-track{height:1px;overflow:hidden;background:rgba(255,255,255,.12)}#progress-bar{width:0;height:100%;background:var(--system);transition:width .8s ease}.progress-info{display:flex;justify-content:space-between;margin-top:9px;font-family:monospace;font-size:9px;color:rgba(255,255,255,.34)}
 
-/* 이름 입력 */
-#identity{display:grid;place-items:center;padding:24px;opacity:1;background:radial-gradient(circle at 50% 40%,rgba(223,234,239,.08),transparent 40%),#06090b;transition:opacity .8s ease}
-#identity.fade-out{opacity:0}
-.identity-card{width:min(520px,94vw);text-align:center}
-.identity-check{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 22px;border:1px solid rgba(183,217,239,.46);border-radius:50%;color:var(--system);font-size:20px}
-.identity-small{margin:0 0 11px;font-family:monospace;font-size:10px;letter-spacing:.18em;color:rgba(183,217,239,.52)}
-.identity-card h1{margin:0 0 15px;font-size:clamp(28px,5vw,44px);font-weight:500}
-.identity-card>p{margin:0 0 38px;color:rgba(255,255,255,.56);line-height:1.75;font-size:14px}
-.identity-card label{display:block;margin-bottom:9px;text-align:left;color:rgba(255,255,255,.52);font-size:12px}
-#resident-name{width:100%;height:58px;padding:0 16px;border:0;border-bottom:1px solid rgba(255,255,255,.38);border-radius:2px 2px 0 0;outline:none;background:rgba(255,255,255,.035);color:#fff;font-size:18px}
-#resident-name:focus{border-color:var(--system);background:rgba(183,217,239,.06)}
-#resident-name::placeholder{color:rgba(255,255,255,.22)}
-.identity-button{width:100%;height:54px;margin-top:18px;border:1px solid rgba(183,217,239,.5);border-radius:3px;background:rgba(183,217,239,.08);color:rgba(235,247,255,.94);cursor:pointer}
-.identity-button:hover{background:rgba(183,217,239,.16);border-color:rgba(183,217,239,.8)}
+/* 이름 */
+#identity{display:grid;place-items:center;padding:24px;background:#06090b;transition:opacity .8s}.fade-out{opacity:0}
+.identity-card{width:min(520px,94vw);text-align:center}.identity-check{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 22px;border:1px solid rgba(183,217,239,.46);border-radius:50%;color:var(--system);font-size:20px}
+.identity-small{font:10px monospace;letter-spacing:.18em;color:rgba(183,217,239,.52)}.identity-card h1{font-size:clamp(28px,5vw,44px);font-weight:500}.identity-card>p{margin-bottom:38px;color:rgba(255,255,255,.56);line-height:1.75;font-size:14px}
+.identity-card label{display:block;margin-bottom:9px;text-align:left;color:rgba(255,255,255,.52);font-size:12px}#resident-name{width:100%;height:58px;padding:0 16px;border:0;border-bottom:1px solid rgba(255,255,255,.38);outline:none;background:rgba(255,255,255,.035);color:#fff;font-size:18px}
+.identity-button{width:100%;height:54px;margin-top:18px;border:1px solid rgba(183,217,239,.5);border-radius:3px;background:rgba(183,217,239,.08);color:#fff;cursor:pointer}
 
 /* 파라다이스 */
 #paradise{overflow:hidden;background:#02070a}
-#plaza-image{position:absolute;inset:-2%;background:url("paradise-plaza.png") center/cover no-repeat;opacity:.25;transform:scale(1.10);filter:blur(22px) brightness(.22) saturate(.60);transition:opacity 4.8s ease,transform 6s ease-out,filter 5.2s cubic-bezier(.35,0,.25,1)}
-#paradise.awake #plaza-image{opacity:1;transform:scale(1.02);filter:blur(0) brightness(1) saturate(1)}
+.plaza-layer{position:absolute;inset:-2%;background:url("paradise-plaza.png") center/cover no-repeat}
 
-/* 검은 시야가 천천히 걷힘 */
-#arrival-dark{position:absolute;inset:0;z-index:20;background:#000;opacity:1;pointer-events:none;transition:opacity 5s cubic-bezier(.35,0,.25,1)}
+/* 전체 도시는 처음엔 희미한 데이터처럼 */
+#plaza-base{opacity:.3;transform:scale(1.06);filter:blur(18px) brightness(.28) saturate(.65);transition:filter 2s,opacity 2s,transform 5s}
+#paradise.awake #plaza-base{opacity:.72;filter:blur(5px) brightness(.7) saturate(.85);transform:scale(1.025)}
+#paradise.assembled #plaza-base{opacity:1;filter:blur(0) brightness(1) saturate(1)}
+
+/* 조립용 이미지 파츠 */
+.assembly-piece{opacity:0;filter:blur(14px) brightness(1.25);transition:opacity 1.15s ease,filter 1.4s ease,transform 1.4s cubic-bezier(.25,.8,.25,1)}
+.assembly-piece.in{opacity:1;filter:blur(0) brightness(1);transform:translate(0,0) scale(1)}
+#piece-admin{clip-path:polygon(41% 5%,59% 5%,64% 65%,36% 65%);transform:translateY(-35px) scale(.98)}
+#piece-guardian{clip-path:polygon(13% 23%,41% 18%,43% 69%,8% 72%);transform:translateX(-32px)}
+#piece-starter{clip-path:polygon(59% 20%,88% 24%,94% 70%,57% 68%);transform:translateX(32px)}
+#piece-news{clip-path:polygon(0 43%,30% 40%,36% 90%,0 94%);transform:translateX(-30px) translateY(12px)}
+#piece-citizen{clip-path:polygon(70% 43%,100% 40%,100% 96%,65% 92%);transform:translateX(30px) translateY(12px)}
+#piece-gate{clip-path:polygon(0 57%,18% 52%,22% 98%,0 100%);transform:translateX(-24px)}
+
+/* 조립이 끝나면 중복 파츠는 사라지고 전체 이미지가 담당 */
+#paradise.assembled .assembly-piece{opacity:0;transition:opacity 1.2s ease}
+
+/* 첫 검은 시야 */
+#arrival-dark{position:absolute;inset:0;z-index:20;background:#000;opacity:1;pointer-events:none;transition:opacity 5s ease}
 #paradise.awake #arrival-dark{opacity:0}
 
-/* 환영 문구 */
-#arrival-message{position:absolute;z-index:30;left:50%;top:50%;width:min(700px,calc(100vw - 40px));padding:34px 42px 36px;text-align:center;color:#fff;background:rgba(8,23,31,.58);border:1px solid rgba(255,255,255,.45);border-radius:10px;backdrop-filter:blur(16px) saturate(1.1);box-shadow:0 20px 70px rgba(0,0,0,.28),inset 0 0 35px rgba(255,255,255,.04);text-shadow:0 2px 14px rgba(0,0,0,.85);opacity:0;transform:translate(-50%,-43%);pointer-events:none;transition:opacity 1.8s ease,transform 1.8s ease}
-#arrival-message.show{opacity:1;transform:translate(-50%,-50%)}
-#arrival-message.fade-away{opacity:0;transform:translate(-50%,-56%)}
-.arrival-small{display:block;margin-bottom:12px;font-size:11px;letter-spacing:.32em;color:rgba(211,239,255,.76)}
-#arrival-message h1{margin:0;font-size:clamp(38px,6vw,72px);font-weight:600;letter-spacing:.05em;color:#fff}
-.arrival-line{width:70px;height:1px;margin:24px auto;background:rgba(205,235,250,.55)}
-#welcome-name{display:block;font-size:clamp(17px,2vw,24px);font-weight:600;color:#fff}
-.arrival-description{display:block;margin-top:9px;font-size:13px;color:rgba(232,245,252,.78)}
+/* 호버용 구역 하이라이트 */
+.district-glow{z-index:4;opacity:0;pointer-events:none;filter:brightness(1.14) saturate(1.16) drop-shadow(0 0 12px rgba(160,230,255,.8));transition:opacity .28s ease,filter .28s ease}
+.district-glow.active{opacity:.92;filter:brightness(1.2) saturate(1.2) drop-shadow(0 0 18px rgba(170,235,255,.95))}
+#glow-admin{clip-path:polygon(42% 8%,58% 8%,63% 64%,37% 64%)}
+#glow-guardian{clip-path:polygon(15% 25%,39% 20%,42% 67%,10% 70%)}
+#glow-starter{clip-path:polygon(61% 22%,86% 26%,92% 68%,59% 66%)}
+#glow-news{clip-path:polygon(2% 45%,29% 42%,34% 87%,2% 91%)}
+#glow-citizen{clip-path:polygon(71% 45%,98% 42%,98% 92%,67% 89%)}
+#glow-gate{clip-path:polygon(1% 59%,17% 55%,20% 94%,1% 98%)}
 
-/* 시민 표시 */
-#resident-indicator{position:absolute;z-index:10;top:28px;left:30px;padding:10px 13px;border:1px solid rgba(255,255,255,.35);border-radius:4px;background:rgba(15,30,38,.38);backdrop-filter:blur(10px);color:rgba(255,255,255,.9);font-size:10px;letter-spacing:.08em;text-shadow:0 1px 8px rgba(0,0,0,.35);opacity:0;transform:translateY(-8px);transition:opacity 1.2s,transform 1.2s}
-#resident-indicator.show{opacity:1;transform:translateY(0)}
-#resident-indicator strong{font-size:12px;font-weight:600;letter-spacing:0}
+/* 환영 */
+#arrival-message{position:absolute;z-index:30;left:50%;top:50%;width:min(700px,calc(100vw - 40px));padding:34px 42px;text-align:center;color:#fff;background:rgba(8,23,31,.58);border:1px solid rgba(255,255,255,.45);border-radius:10px;backdrop-filter:blur(16px);box-shadow:0 20px 70px rgba(0,0,0,.28);text-shadow:0 2px 14px rgba(0,0,0,.85);opacity:0;transform:translate(-50%,-43%);pointer-events:none;transition:opacity 1.8s,transform 1.8s}
+#arrival-message.show{opacity:1;transform:translate(-50%,-50%)}#arrival-message.fade-away{opacity:0;transform:translate(-50%,-56%)}
+.arrival-small{font-size:11px;letter-spacing:.32em;color:rgba(211,239,255,.76)}#arrival-message h1{margin:10px 0 0;font-size:clamp(38px,6vw,72px)}.arrival-line{width:70px;height:1px;margin:24px auto;background:rgba(205,235,250,.55)}
+#welcome-name{display:block;font-size:clamp(17px,2vw,24px)}.arrival-description{display:block;margin-top:9px;font-size:13px;color:rgba(232,245,252,.78)}
 
+/* 좌상 시민명 */
+#resident-indicator{position:absolute;z-index:10;top:26px;left:28px;padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(10,28,36,.33);backdrop-filter:blur(10px);font-size:10px;opacity:0;transform:translateY(-8px);transition:.8s}
+#resident-indicator.show{opacity:1;transform:translateY(0)}#resident-indicator strong{font-size:12px}
+
+/* 아이콘 메뉴 */
+#map-ui{position:absolute;inset:0;z-index:12;pointer-events:none}
+.map-node{--x:50%;--y:50%;--i:0;position:absolute;left:var(--x);top:var(--y);display:flex;align-items:center;gap:8px;padding:0;border:0;background:none;color:#fff;cursor:pointer;pointer-events:none;opacity:0;transform:translate(-50%,-50%) translateY(8px);transition:opacity .65s ease calc(var(--i)*.11s),transform .65s ease calc(var(--i)*.11s)}
+#map-ui.ready .map-node{pointer-events:auto;opacity:1;transform:translate(-50%,-50%)}
+.node-icon{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.66);background:rgba(14,42,54,.42);backdrop-filter:blur(9px);box-shadow:0 3px 18px rgba(0,0,0,.22);transition:.25s}
+.node-icon svg{width:19px;height:19px;fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.node-label{max-width:0;overflow:hidden;white-space:nowrap;opacity:0;padding:7px 0;border-radius:4px;background:rgba(8,28,38,.6);backdrop-filter:blur(8px);font-size:11px;font-weight:600;text-shadow:0 1px 7px #000;transition:max-width .32s ease,opacity .2s,padding .32s}
+.map-node:hover .node-icon,.map-node:focus-visible .node-icon{transform:scale(1.1);border-color:#d9f6ff;background:rgba(29,91,112,.68);box-shadow:0 0 0 3px rgba(173,237,255,.12),0 0 18px rgba(139,223,255,.65)}
+.map-node:hover .node-label,.map-node:focus-visible .node-label{max-width:180px;opacity:1;padding:7px 11px}
+.map-node:focus-visible{outline:none}
+#node-admin{--x:50%;--y:28%;--i:0}#node-guardian{--x:28%;--y:39%;--i:1}#node-starter{--x:72%;--y:40%;--i:2}
+#node-news{--x:16%;--y:62%;--i:3}#node-citizen{--x:83%;--y:67%;--i:4}#node-gate{--x:8%;--y:78%;--i:5}
+
+/* 모바일에서는 위치가 너무 달라질 수 있어 일단 단순 표시 */
 @media(max-width:700px){
-.brand{display:none}
-#dialogue{left:16px;bottom:24px;width:calc(100vw - 32px);padding:13px 14px 15px}
-#dialogue-text{font-size:16px}
-.process-item{grid-template-columns:28px 1fr auto}
+.brand{display:none}#dialogue{left:16px;bottom:24px;width:calc(100vw - 32px)}#dialogue-text{font-size:16px}
 #arrival-message{width:calc(100vw - 28px);padding:28px 18px}
-#arrival-message h1{font-size:clamp(32px,10vw,52px)}
-#resident-indicator{top:16px;left:16px}
+.node-icon{width:32px;height:32px}.node-label{display:none}
+#node-admin{--x:50%;--y:29%}#node-guardian{--x:24%;--y:43%}#node-starter{--x:76%;--y:43%}
+#node-news{--x:18%;--y:64%}#node-citizen{--x:82%;--y:66%}#node-gate{--x:10%;--y:78%}
 }
 </style>
 </head>
-
 <body>
 
 <section id="cinematic" class="screen">
-<div id="scene-image"></div>
-<div class="vignette"></div>
+<div id="scene-image"></div><div class="vignette"></div>
 <div class="brand"><strong>VIRTUAL PARADISE</strong><span>RESIDENCY PROCEDURE</span></div>
-
-<button id="start-button">
-<span class="start-small">신규 시민 입주 안내</span>
-<strong class="start-main">입주 절차 시작</strong>
-<span class="start-help">화면을 클릭하거나 Enter 키를 눌러 진행합니다</span>
-</button>
-
-<div id="dialogue" class="hidden">
-<div class="dialogue-info"><span id="speaker">상담 직원</span><span id="scene-label">입주 상담센터</span></div>
-<p id="dialogue-text"></p>
-<div class="dialogue-next">CLICK / SPACE <span>›</span></div>
-</div>
-
+<button id="start-button"><span class="start-small">신규 시민 입주 안내</span><strong class="start-main">입주 절차 시작</strong><span class="start-help">화면을 클릭하거나 Enter 키를 눌러 진행합니다</span></button>
+<div id="dialogue" class="hidden"><div class="dialogue-info"><span id="speaker">상담 직원</span><span id="scene-label">입주 상담센터</span></div><p id="dialogue-text"></p><div class="dialogue-next">CLICK / SPACE <span>›</span></div></div>
 <div id="eye-close"></div>
 </section>
 
 <section id="transfer" class="screen hidden">
-<div class="transfer-panel">
-<div class="system-brand">VIRTUAL PARADISE</div>
-<div class="system-sub">RESIDENCY SYNCHRONIZATION</div>
-<h1>입주 동기화 진행 중</h1>
-<p class="transfer-description">안전한 시민 데이터 전환을 진행하고 있습니다. 잠시만 기다려 주세요.</p>
-<div id="process-list"></div>
-<div class="progress-track"><div id="progress-bar"></div></div>
-<div class="progress-info"><span id="progress-state">준비 중</span><span id="progress-percent">0%</span></div>
-</div>
+<div class="transfer-panel"><div class="system-brand">VIRTUAL PARADISE</div><div class="system-sub">RESIDENCY SYNCHRONIZATION</div><h1>입주 동기화 진행 중</h1><p class="transfer-description">안전한 시민 데이터 전환을 진행하고 있습니다. 잠시만 기다려 주세요.</p><div id="process-list"></div><div class="progress-track"><div id="progress-bar"></div></div><div class="progress-info"><span id="progress-state">준비 중</span><span id="progress-percent">0%</span></div></div>
 </section>
 
 <section id="identity" class="screen hidden">
-<form id="identity-form" class="identity-card">
-<div class="identity-check">✓</div>
-<p class="identity-small">FINAL SYNCHRONIZATION</p>
-<h1>최종 동기화 확인</h1>
-<p>시민 데이터 무결성 검증이 완료되었습니다.<br>마지막으로 입주자 본인 확인을 진행해 주세요.</p>
-<label for="resident-name">입주자 확인명</label>
-<input id="resident-name" type="text" maxlength="24" autocomplete="off" placeholder="이름을 입력하세요" required>
-<button class="identity-button" type="submit">확인하고 입주하기</button>
-</form>
+<form id="identity-form" class="identity-card"><div class="identity-check">✓</div><p class="identity-small">FINAL SYNCHRONIZATION</p><h1>최종 동기화 확인</h1><p>시민 데이터 무결성 검증이 완료되었습니다.<br>마지막으로 입주자 본인 확인을 진행해 주세요.</p><label for="resident-name">입주자 확인명</label><input id="resident-name" type="text" maxlength="24" autocomplete="off" placeholder="이름을 입력하세요" required><button class="identity-button" type="submit">확인하고 입주하기</button></form>
 </section>
 
 <section id="paradise" class="screen hidden">
-<div id="plaza-image"></div>
+<div id="plaza-base" class="plaza-layer"></div>
+<div id="piece-admin" class="plaza-layer assembly-piece"></div><div id="piece-guardian" class="plaza-layer assembly-piece"></div><div id="piece-starter" class="plaza-layer assembly-piece"></div><div id="piece-news" class="plaza-layer assembly-piece"></div><div id="piece-citizen" class="plaza-layer assembly-piece"></div><div id="piece-gate" class="plaza-layer assembly-piece"></div>
+<div id="glow-admin" class="plaza-layer district-glow"></div><div id="glow-guardian" class="plaza-layer district-glow"></div><div id="glow-starter" class="plaza-layer district-glow"></div><div id="glow-news" class="plaza-layer district-glow"></div><div id="glow-citizen" class="plaza-layer district-glow"></div><div id="glow-gate" class="plaza-layer district-glow"></div>
 <div id="arrival-dark"></div>
 
-<div id="arrival-message">
-<span class="arrival-small">WELCOME TO</span>
-<h1>VIRTUAL PARADISE</h1>
-<div class="arrival-line"></div>
-<strong id="welcome-name">새로운 시민님, 환영합니다.</strong>
-<span class="arrival-description">당신의 새로운 일상이 지금 시작됩니다.</span>
-</div>
-
+<div id="arrival-message"><span class="arrival-small">WELCOME TO</span><h1>VIRTUAL PARADISE</h1><div class="arrival-line"></div><strong id="welcome-name">새로운 시민님, 환영합니다.</strong><span class="arrival-description">당신의 새로운 일상이 지금 시작됩니다.</span></div>
 <div id="resident-indicator">시민 등록 완료 · <strong id="resident-indicator-name">신규 시민</strong></div>
+
+<div id="map-ui">
+<button id="node-admin" class="map-node" data-target="admin"><span class="node-icon"><svg viewBox="0 0 24 24"><path d="M5 20V8l7-4 7 4v12M9 20v-7h6v7M8 9h.01M12 9h.01M16 9h.01"/></svg></span><span class="node-label">관리국</span></button>
+<button id="node-guardian" class="map-node" data-target="guardian"><span class="node-icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.7-2.7 8-7 10-4.3-2-7-5.3-7-10V6l7-3zM9 12l2 2 4-4"/></svg></span><span class="node-label">가디언 본부</span></button>
+<button id="node-starter" class="map-node" data-target="starter"><span class="node-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3z"/></svg></span><span class="node-label">스타터 룸</span></button>
+<button id="node-news" class="map-node" data-target="news"><span class="node-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v12H8l-4 3V5zM8 9h8M8 13h6"/></svg></span><span class="node-label">커뮤니티 · 뉴스</span></button>
+<button id="node-citizen" class="map-node" data-target="citizen"><span class="node-icon"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-6v-6h-4v6H4v-9z"/></svg></span><span class="node-label">시민 생활 구역</span></button>
+<button id="node-gate" class="map-node" data-target="gate"><span class="node-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 4v3M20 12h-3M12 20v-3M4 12h3"/></svg></span><span class="node-label">구형 월드 게이트</span></button>
+</div>
 </section>
 
 <script>
-const entryImage="scene-entry.png";
 const scenes=[
-{image:"scene-consultation.png",position:"center center",label:"입주 상담센터",dialogue:["신청하신 입주 절차와 계약 내용은 모두 확인됐어요.","긴장하지 않으셔도 돼요. 천천히 하나씩 안내해드릴게요."]},
-{image:"scene-hallway.png",position:"center center",label:"입주 동기화실 이동 중",dialogue:["이쪽이 입주 동기화실이에요. 금방 도착해요.","파라다이스에 들어가시면 전력 제한 시간도, 주거 배정도 신경 쓰실 필요 없어요.","…저도 입주 순번이 아직 멀어서. 조금 부럽네요."]},
-{image:"scene-sync-room.png",position:"center center",label:"입주 동기화실",dialogue:["여기까지예요. 이제 편하게 기대시면 됩니다.","눈을 감으셔도 괜찮아요. 다음에 눈을 뜨시면 파라다이스일 거예요."]}
+{image:"scene-consultation.png",label:"입주 상담센터",dialogue:["신청하신 입주 절차와 계약 내용은 모두 확인됐어요.","긴장하지 않으셔도 돼요. 천천히 하나씩 안내해드릴게요."]},
+{image:"scene-hallway.png",label:"입주 동기화실 이동 중",dialogue:["이쪽이 입주 동기화실이에요. 금방 도착해요.","파라다이스에 들어가시면 전력 제한 시간도, 주거 배정도 신경 쓰실 필요 없어요.","…저도 입주 순번이 아직 멀어서. 조금 부럽네요."]},
+{image:"scene-sync-room.png",label:"입주 동기화실",dialogue:["여기까지예요. 이제 편하게 기대시면 됩니다.","눈을 감으셔도 괜찮아요. 다음에 눈을 뜨시면 파라다이스일 거예요."]}
 ];
-
 const processSteps=["의식 이식 준비","시민 데이터 변환","감각 인터페이스 연결","파라다이스 환경 동기화","신원 데이터 정합성 확인","입주 무결성 확인"];
-
-const cinematic=document.getElementById("cinematic"),sceneImage=document.getElementById("scene-image"),startButton=document.getElementById("start-button"),dialogue=document.getElementById("dialogue"),dialogueText=document.getElementById("dialogue-text"),sceneLabel=document.getElementById("scene-label"),eyeClose=document.getElementById("eye-close");
-const transfer=document.getElementById("transfer"),processList=document.getElementById("process-list"),progressBar=document.getElementById("progress-bar"),progressState=document.getElementById("progress-state"),progressPercent=document.getElementById("progress-percent");
-const identity=document.getElementById("identity"),identityForm=document.getElementById("identity-form"),residentName=document.getElementById("resident-name");
-const paradise=document.getElementById("paradise"),arrivalMessage=document.getElementById("arrival-message"),welcomeName=document.getElementById("welcome-name"),residentIndicator=document.getElementById("resident-indicator"),residentIndicatorName=document.getElementById("resident-indicator-name");
-
+const $=id=>document.getElementById(id),sceneImage=$("scene-image"),startButton=$("start-button"),dialogue=$("dialogue"),dialogueText=$("dialogue-text"),sceneLabel=$("scene-label"),eyeClose=$("eye-close"),cinematic=$("cinematic"),transfer=$("transfer"),processList=$("process-list"),progressBar=$("progress-bar"),progressState=$("progress-state"),progressPercent=$("progress-percent"),identity=$("identity"),identityForm=$("identity-form"),residentName=$("resident-name"),paradise=$("paradise"),arrivalMessage=$("arrival-message"),welcomeName=$("welcome-name"),residentIndicator=$("resident-indicator"),residentIndicatorName=$("resident-indicator-name"),mapUI=$("map-ui");
 let currentScene=0,currentDialogue=0,started=false,locked=false;
+const wait=ms=>new Promise(r=>setTimeout(r,ms)),nextFrame=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
 
-const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-const nextFrame=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+["scene-entry.png","paradise-plaza.png",...scenes.map(s=>s.image)].forEach(src=>{const i=new Image();i.src=src});
+sceneImage.style.backgroundImage='url("scene-entry.png")';sceneImage.classList.add("move");
 
-function preloadImages(){
-[entryImage,"paradise-plaza.png",...scenes.map(s=>s.image)].forEach(src=>{const img=new Image();img.src=src});
-}
-preloadImages();
+async function switchScene(i){const s=scenes[i];sceneImage.classList.add("changing");await wait(900);sceneImage.style.backgroundImage=`url("${s.image}")`;sceneLabel.textContent=s.label;sceneImage.classList.remove("move","closing");await nextFrame();sceneImage.classList.remove("changing");await nextFrame();sceneImage.classList.add("move");await wait(700)}
+async function showDialogue(t){dialogue.classList.remove("show");await wait(260);dialogueText.textContent=t;await nextFrame();dialogue.classList.add("show")}
+async function beginStory(){if(started)return;started=locked=true;startButton.classList.add("hide");await wait(500);await switchScene(0);dialogue.classList.remove("hidden");await nextFrame();await showDialogue(scenes[0].dialogue[0]);locked=false}
+async function advanceStory(){if(!started){beginStory();return}if(locked)return;const s=scenes[currentScene];if(currentDialogue<s.dialogue.length-1){currentDialogue++;await showDialogue(s.dialogue[currentDialogue]);return}if(currentScene<scenes.length-1){locked=true;dialogue.classList.remove("show");await wait(400);currentScene++;currentDialogue=0;await switchScene(currentScene);await showDialogue(scenes[currentScene].dialogue[0]);locked=false;return}closeEyes()}
+async function closeEyes(){if(locked)return;locked=true;dialogue.classList.remove("show");await wait(500);sceneImage.classList.add("closing");await wait(100);eyeClose.classList.add("close");await wait(3500);cinematic.classList.add("hidden");transfer.classList.remove("hidden");runTransfer()}
+function renderProcess(){processList.innerHTML=processSteps.map((s,i)=>`<div class="process-item"><span class="process-number">${String(i+1).padStart(2,"0")}</span><span class="process-label">${s}</span><span class="process-status">대기</span></div>`).join("")}
+async function runTransfer(){renderProcess();const items=[...processList.querySelectorAll(".process-item")];for(let i=0;i<items.length;i++){const item=items[i];item.classList.add("active");item.querySelector(".process-status").textContent="진행 중";progressState.textContent=processSteps[i];progressBar.style.width=`${Math.round(i/processSteps.length*100)}%`;progressPercent.textContent=`${Math.round(i/processSteps.length*100)}%`;await wait(i?1100:900);item.classList.remove("active");item.classList.add("complete");item.querySelector(".process-status").textContent="완료";const n=Math.round((i+1)/processSteps.length*100);progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`}progressState.textContent="모든 검증 완료";await wait(1000);transfer.classList.add("hidden");identity.classList.remove("hidden");residentName.focus()}
 
-function showEntryScreen(){
-sceneImage.style.backgroundImage=`url("${entryImage}")`;
-sceneImage.style.backgroundPosition="center";
-sceneImage.classList.add("move");
-}
-showEntryScreen();
-
-async function switchScene(index){
-const scene=scenes[index];
-if(!scene)return;
-sceneImage.classList.add("changing");
-await wait(900);
-sceneImage.style.backgroundImage=`url("${scene.image}")`;
-sceneImage.style.backgroundPosition=scene.position;
-sceneLabel.textContent=scene.label;
-sceneImage.classList.remove("move","closing");
-await nextFrame();
-sceneImage.classList.remove("changing");
-await nextFrame();
-sceneImage.classList.add("move");
-await wait(700);
-}
-
-async function showDialogue(text){
-dialogue.classList.remove("show");
-await wait(260);
-dialogueText.textContent=text;
-await nextFrame();
-dialogue.classList.add("show");
-}
-
-async function beginStory(){
-if(started)return;
-started=true;locked=true;
-startButton.classList.add("hide");
-await wait(500);
-currentScene=0;currentDialogue=0;
-await switchScene(0);
-dialogue.classList.remove("hidden");
-await nextFrame();
-await showDialogue(scenes[0].dialogue[0]);
-locked=false;
-}
-
-async function advanceStory(){
-if(!started){beginStory();return}
-if(locked)return;
-const scene=scenes[currentScene];
-
-if(currentDialogue<scene.dialogue.length-1){
-currentDialogue++;
-await showDialogue(scene.dialogue[currentDialogue]);
-return;
-}
-
-if(currentScene<scenes.length-1){
-locked=true;
-dialogue.classList.remove("show");
-await wait(400);
-currentScene++;currentDialogue=0;
-await switchScene(currentScene);
-await showDialogue(scenes[currentScene].dialogue[0]);
-locked=false;
-return;
-}
-
-closeEyes();
-}
-
-async function closeEyes(){
-if(locked)return;
-locked=true;
-dialogue.classList.remove("show");
-await wait(500);
-sceneImage.classList.add("closing");
-await wait(100);
-eyeClose.classList.add("close");
-await wait(3500);
-cinematic.classList.add("hidden");
-transfer.classList.remove("hidden");
-runTransfer();
-}
-
-function renderProcess(){
-processList.innerHTML=processSteps.map((step,index)=>`
-<div class="process-item">
-<span class="process-number">${String(index+1).padStart(2,"0")}</span>
-<span class="process-label">${step}</span>
-<span class="process-status">대기</span>
-</div>`).join("");
-}
-
-async function runTransfer(){
-renderProcess();
-const items=[...processList.querySelectorAll(".process-item")];
-
-for(let i=0;i<items.length;i++){
-const item=items[i];
-item.classList.add("active");
-item.querySelector(".process-status").textContent="진행 중";
-progressState.textContent=processSteps[i];
-
-const before=Math.round((i/processSteps.length)*100);
-progressBar.style.width=`${before}%`;
-progressPercent.textContent=`${before}%`;
-
-await wait(i===0?900:1100);
-
-item.classList.remove("active");
-item.classList.add("complete");
-item.querySelector(".process-status").textContent="완료";
-
-const complete=Math.round(((i+1)/processSteps.length)*100);
-progressBar.style.width=`${complete}%`;
-progressPercent.textContent=`${complete}%`;
-}
-
-progressState.textContent="모든 검증 완료";
-await wait(1000);
-transfer.classList.add("hidden");
-identity.classList.remove("hidden");
-residentName.focus();
+async function assembleParadise(){
+const order=["piece-admin","piece-guardian","piece-starter","piece-news","piece-citizen","piece-gate"];
+await wait(850);
+for(const id of order){$(id).classList.add("in");await wait(430)}
+await wait(500);paradise.classList.add("assembled");await wait(1400);
 }
 
 async function enterParadise(name){
-identity.classList.add("fade-out");
-await wait(850);
-identity.classList.add("hidden");
-
-welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;
-residentIndicatorName.textContent=name;
-
-paradise.classList.remove("hidden");
-await nextFrame();
-
-/* 검은 시야에서 천천히 밝아지고 초점이 맞음 */
-paradise.classList.add("awake");
-
-await wait(2600);
-
-/* 도시가 어느 정도 보이기 시작한 뒤 환영 문구 */
-arrivalMessage.classList.remove("fade-away");
-arrivalMessage.classList.add("show");
-
-await wait(3800);
-
-arrivalMessage.classList.remove("show");
-arrivalMessage.classList.add("fade-away");
-
-await wait(1900);
-residentIndicator.classList.add("show");
+identity.classList.add("fade-out");await wait(850);identity.classList.add("hidden");
+welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;
+paradise.classList.remove("hidden");await nextFrame();paradise.classList.add("awake");
+await assembleParadise();
+arrivalMessage.classList.add("show");await wait(3800);arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");await wait(1900);
+residentIndicator.classList.add("show");mapUI.classList.add("ready");
 }
 
-identityForm.addEventListener("submit",event=>{
-event.preventDefault();
-const name=residentName.value.trim();
-if(!name)return;
-enterParadise(name);
-});
+identityForm.addEventListener("submit",e=>{e.preventDefault();const name=residentName.value.trim();if(name)enterParadise(name)});
+startButton.addEventListener("click",e=>{e.stopPropagation();beginStory()});
+cinematic.addEventListener("click",e=>{if(!e.target.closest("button"))advanceStory()});
+document.addEventListener("keydown",e=>{if(!identity.classList.contains("hidden")||!paradise.classList.contains("hidden"))return;if(e.key==="Enter"||e.code==="Space"){e.preventDefault();advanceStory()}});
 
-startButton.addEventListener("click",event=>{
-event.stopPropagation();
-beginStory();
-});
-
-cinematic.addEventListener("click",event=>{
-if(event.target.closest("button"))return;
-advanceStory();
-});
-
-document.addEventListener("keydown",event=>{
-if(!identity.classList.contains("hidden"))return;
-if(!paradise.classList.contains("hidden"))return;
-if(event.key==="Enter"||event.code==="Space"){
-event.preventDefault();
-advanceStory();
-}
+/* 아이콘 호버 → 해당 구역의 같은 이미지 조각이 밝아짐 */
+document.querySelectorAll(".map-node").forEach(node=>{
+const glow=$(`glow-${node.dataset.target}`);
+node.addEventListener("mouseenter",()=>glow.classList.add("active"));
+node.addEventListener("mouseleave",()=>glow.classList.remove("active"));
+node.addEventListener("focus",()=>glow.classList.add("active"));
+node.addEventListener("blur",()=>glow.classList.remove("active"));
 });
 </script>
 </body>
