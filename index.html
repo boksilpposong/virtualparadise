@@ -1,2813 +1,395 @@
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
 <meta charset="UTF-8">
-
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VIRTUAL PARADISE — 입주 절차</title>
-
 <style>
-
-/* =========================================================
-   기본
-   ========================================================= */
-
-:root {
-    --white: #f7f6f1;
-    --accent: #e7d7b2;
-    --system: #b7d9ef;
-    --dark: #050607;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--dark);
-}
-
-body {
-    overflow: hidden;
-    color: var(--white);
-
-    font-family:
-        Pretendard,
-        "Noto Sans KR",
-        "Malgun Gothic",
-        Arial,
-        sans-serif;
-}
-
-button,
-input {
-    font: inherit;
-}
-
-.screen {
-    position: fixed;
-    inset: 0;
-
-    width: 100vw;
-    height: 100dvh;
-}
-
-.hidden {
-    display: none !important;
-}
-
-
-/* =========================================================
-   현실 시네마틱
-   ========================================================= */
-
-#cinematic {
-    overflow: hidden;
-    background: #050607;
-}
-
-
-/* =========================================================
-   현실 배경 이미지
-   ========================================================= */
-
-#scene-image {
-    position: absolute;
-
-    inset: -2%;
-
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-
-    opacity: 1;
-
-    transform:
-        scale(1.015);
-
-    filter:
-        blur(0px)
-        brightness(1)
-        saturate(0.96)
-        contrast(1.01);
-
-    transition:
-        opacity 0.9s ease,
-        transform 8s ease-out;
-}
-
-
-/* 장면이 사라질 때 */
-
-#scene-image.changing {
-    opacity: 0;
-}
-
-
-/* 장면 등장 후 느린 줌 */
-
-#scene-image.move {
-    transform:
-        scale(1.045);
-}
-
-
-/* =========================================================
-   마지막 눈 감기
-   ========================================================= */
-
-#scene-image.closing {
-    animation:
-        vision-close
-        3.4s
-        cubic-bezier(
-            0.45,
-            0,
-            0.25,
-            1
-        )
-        forwards;
-}
-
-
-@keyframes vision-close {
-
-    0% {
-        filter:
-            blur(0px)
-            brightness(1)
-            saturate(0.96)
-            contrast(1.01);
-
-        transform:
-            scale(1.045);
-    }
-
-    15% {
-        filter:
-            blur(0.7px)
-            brightness(0.97)
-            saturate(0.95);
-
-        transform:
-            scale(1.05);
-    }
-
-    30% {
-        filter:
-            blur(2px)
-            brightness(0.91)
-            saturate(0.92);
-
-        transform:
-            scale(1.055);
-    }
-
-    48% {
-        filter:
-            blur(4px)
-            brightness(0.80)
-            saturate(0.88);
-
-        transform:
-            scale(1.06);
-    }
-
-    66% {
-        filter:
-            blur(7px)
-            brightness(0.65)
-            saturate(0.82);
-
-        transform:
-            scale(1.067);
-    }
-
-    84% {
-        filter:
-            blur(11px)
-            brightness(0.44)
-            saturate(0.76);
-
-        transform:
-            scale(1.074);
-    }
-
-    100% {
-        filter:
-            blur(16px)
-            brightness(0.20)
-            saturate(0.70);
-
-        transform:
-            scale(1.08);
-    }
-
-}
-
-
-/* =========================================================
-   현실 화면 비네트
-   ========================================================= */
-
-.vignette {
-    position: absolute;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(0,0,0,0.50) 0%,
-            rgba(0,0,0,0.10) 34%,
-            transparent 67%
-        ),
-        radial-gradient(
-            circle at center,
-            transparent 55%,
-            rgba(0,0,0,0.14) 100%
-        );
-}
-
-
-/* =========================================================
-   오른쪽 위 작은 브랜드
-   ========================================================= */
-
-.brand {
-    position: absolute;
-
-    top: 34px;
-    right: 45px;
-
-    text-align: right;
-
-    opacity: 0.72;
-
-    text-shadow:
-        0 2px 14px
-        rgba(0,0,0,0.55);
-}
-
-.brand strong {
-    display: block;
-
-    font-size: 13px;
-
-    letter-spacing: 0.22em;
-}
-
-.brand span {
-    display: block;
-
-    margin-top: 6px;
-
-    font-size: 8px;
-
-    letter-spacing: 0.17em;
-
-    color:
-        rgba(255,255,255,0.58);
-}
-
-
-/* =========================================================
-   첫 시작 버튼
-   ========================================================= */
-
-#start-button {
-    position: absolute;
-
-    left: 50%;
-    bottom: 9vh;
-
-    transform:
-        translateX(-50%);
-
-    width:
-        min(
-            520px,
-            calc(100vw - 40px)
-        );
-
-    padding:
-        20px 28px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.28);
-
-    border-radius: 5px;
-
-    background:
-        rgba(8,10,12,0.48);
-
-    backdrop-filter:
-        blur(14px);
-
-    color: white;
-
-    cursor: pointer;
-
-    text-align: left;
-
-    box-shadow:
-        0 18px 60px
-        rgba(0,0,0,0.22);
-
-    transition:
-        opacity 0.55s ease,
-        transform 0.55s ease,
-        background 0.25s ease,
-        border-color 0.25s ease;
-}
-
-#start-button:hover {
-    background:
-        rgba(8,10,12,0.64);
-
-    border-color:
-        rgba(255,255,255,0.48);
-
-    transform:
-        translateX(-50%)
-        translateY(-2px);
-}
-
-#start-button.hide {
-    opacity: 0;
-
-    pointer-events: none;
-
-    transform:
-        translateX(-50%)
-        translateY(10px);
-}
-
-.start-small {
-    display: block;
-
-    font-size: 11px;
-
-    color:
-        rgba(255,255,255,0.58);
-}
-
-.start-main {
-    display: block;
-
-    margin:
-        5px 0 7px;
-
-    font-size:
-        clamp(
-            20px,
-            2.3vw,
-            29px
-        );
-
-    font-weight: 550;
-}
-
-.start-help {
-    display: block;
-
-    font-size: 11px;
-
-    color:
-        rgba(255,255,255,0.42);
-}
-
-
-/* =========================================================
-   대사
-   ========================================================= */
-
-#dialogue {
-    position: absolute;
-
-    left:
-        clamp(
-            24px,
-            5vw,
-            78px
-        );
-
-    bottom:
-        clamp(
-            28px,
-            7vh,
-            70px
-        );
-
-    width:
-        min(
-            720px,
-            calc(100vw - 48px)
-        );
-
-    padding:
-        14px
-        20px
-        17px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,0.34);
-
-    background:
-        linear-gradient(
-            90deg,
-            rgba(3,5,7,0.59),
-            rgba(3,5,7,0.30) 72%,
-            transparent
-        );
-
-    backdrop-filter:
-        blur(8px);
-
-    text-shadow:
-        0 2px 10px
-        rgba(0,0,0,0.88);
-
-    opacity: 0;
-
-    transform:
-        translateY(12px);
-
-    transition:
-        opacity 0.5s ease,
-        transform 0.5s ease;
-}
-
-#dialogue.show {
-    opacity: 1;
-
-    transform:
-        translateY(0);
-}
-
-.dialogue-info {
-    display: flex;
-
-    align-items: center;
-
-    gap: 11px;
-
-    margin-bottom: 7px;
-
-    font-size: 11px;
-
-    letter-spacing: 0.07em;
-
-    color:
-        rgba(255,255,255,0.52);
-}
-
-#speaker {
-    color:
-        var(--accent);
-
-    font-weight: bold;
-}
-
-#scene-label::before {
-    content: "·";
-
-    margin-right: 11px;
-
-    color:
-        rgba(255,255,255,0.30);
-}
-
-#dialogue-text {
-    margin: 0;
-
-    max-width: 650px;
-
-    font-size:
-        clamp(
-            17px,
-            1.65vw,
-            23px
-        );
-
-    line-height: 1.65;
-
-    word-break: keep-all;
-}
-
-.dialogue-next {
-    margin-top: 10px;
-
-    font-size: 9px;
-
-    letter-spacing: 0.14em;
-
-    color:
-        rgba(255,255,255,0.31);
-}
-
-.dialogue-next span {
-    display: inline-block;
-
-    margin-left: 5px;
-
-    animation:
-        arrow
-        1.3s
-        infinite
-        ease-in-out;
-}
-
-@keyframes arrow {
-
-    50% {
-        transform:
-            translateX(4px);
-    }
-
-}
-
-
-/* =========================================================
-   눈꺼풀
-   ========================================================= */
-
-#eye-close {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 50;
-
-    overflow: hidden;
-
-    pointer-events: none;
-}
-
-
-/* 위 */
-
-#eye-close::before {
-    content: "";
-
-    position: absolute;
-
-    left: -4%;
-    top: -4%;
-
-    width: 108%;
-    height: 57%;
-
-    background:
-        linear-gradient(
-            to bottom,
-            #000 0%,
-            #000 65%,
-            rgba(0,0,0,0.98) 80%,
-            rgba(0,0,0,0.84) 92%,
-            rgba(0,0,0,0.60) 100%
-        );
-
-    transform:
-        translateY(-106%);
-
-    filter:
-        blur(2px);
-
-    transition:
-        transform
-        3.2s
-        cubic-bezier(
-            0.60,
-            0,
-            0.25,
-            1
-        );
-}
-
-
-/* 아래 */
-
-#eye-close::after {
-    content: "";
-
-    position: absolute;
-
-    left: -4%;
-    bottom: -4%;
-
-    width: 108%;
-    height: 57%;
-
-    background:
-        linear-gradient(
-            to top,
-            #000 0%,
-            #000 65%,
-            rgba(0,0,0,0.98) 80%,
-            rgba(0,0,0,0.84) 92%,
-            rgba(0,0,0,0.60) 100%
-        );
-
-    transform:
-        translateY(106%);
-
-    filter:
-        blur(2px);
-
-    transition:
-        transform
-        3.2s
-        cubic-bezier(
-            0.60,
-            0,
-            0.25,
-            1
-        );
-}
-
-#eye-close.close::before,
-#eye-close.close::after {
-    transform:
-        translateY(0);
-}
-
-
-/* =========================================================
-   동기화
-   ========================================================= */
-
-#transfer {
-    display: grid;
-
-    place-items: center;
-
-    padding: 24px;
-
-    background:
-        radial-gradient(
-            circle at 50% 45%,
-            rgba(40,78,104,0.14),
-            transparent 45%
-        ),
-        #04070a;
-}
-
-.transfer-panel {
-    width:
-        min(
-            760px,
-            92vw
-        );
-}
-
-.system-brand {
-    font-size: 13px;
-
-    letter-spacing: 0.28em;
-
-    color:
-        rgba(255,255,255,0.80);
-}
-
-.system-sub {
-    margin:
-        8px 0 46px;
-
-    font-family:
-        monospace;
-
-    font-size: 10px;
-
-    letter-spacing: 0.16em;
-
-    color:
-        rgba(183,217,239,0.48);
-}
-
-#transfer h1 {
-    margin:
-        0 0 10px;
-
-    font-size:
-        clamp(
-            27px,
-            4vw,
-            46px
-        );
-
-    font-weight: 500;
-}
-
-.transfer-description {
-    margin:
-        0 0 34px;
-
-    color:
-        rgba(255,255,255,0.52);
-
-    line-height: 1.7;
-
-    font-size: 14px;
-}
-
-
-/* =========================================================
-   동기화 항목
-   ========================================================= */
-
-#process-list {
-    display: grid;
-
-    margin-bottom: 34px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,0.10);
+:root{--white:#f7f6f1;--accent:#e7d7b2;--system:#b7d9ef;--dark:#050607}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;background:var(--dark)}
+body{overflow:hidden;color:var(--white);font-family:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif}
+button,input{font:inherit}
+.screen{position:fixed;inset:0;width:100vw;height:100dvh}
+.hidden{display:none!important}
+
+/* 현실 */
+#cinematic{overflow:hidden;background:#050607}
+#scene-image{position:absolute;inset:-2%;background-position:center;background-size:cover;background-repeat:no-repeat;opacity:1;transform:scale(1.015);filter:blur(0) brightness(1) saturate(.96) contrast(1.01);transition:opacity .9s ease,transform 8s ease-out}
+#scene-image.changing{opacity:0}
+#scene-image.move{transform:scale(1.045)}
+#scene-image.closing{animation:vision-close 3.4s cubic-bezier(.45,0,.25,1) forwards}
+@keyframes vision-close{
+0%{filter:blur(0) brightness(1) saturate(.96);transform:scale(1.045)}
+15%{filter:blur(.7px) brightness(.97) saturate(.95);transform:scale(1.05)}
+30%{filter:blur(2px) brightness(.91) saturate(.92);transform:scale(1.055)}
+48%{filter:blur(4px) brightness(.80) saturate(.88);transform:scale(1.06)}
+66%{filter:blur(7px) brightness(.65) saturate(.82);transform:scale(1.067)}
+84%{filter:blur(11px) brightness(.44) saturate(.76);transform:scale(1.074)}
+100%{filter:blur(16px) brightness(.20) saturate(.70);transform:scale(1.08)}
+}
+.vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.1) 34%,transparent 67%),radial-gradient(circle at center,transparent 55%,rgba(0,0,0,.14))}
+.brand{position:absolute;top:34px;right:45px;text-align:right;opacity:.72;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.brand strong{display:block;font-size:13px;letter-spacing:.22em}
+.brand span{display:block;margin-top:6px;font-size:8px;letter-spacing:.17em;color:rgba(255,255,255,.58)}
+
+/* 시작 */
+#start-button{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);width:min(520px,calc(100vw - 40px));padding:20px 28px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(8,10,12,.48);backdrop-filter:blur(14px);color:#fff;cursor:pointer;text-align:left;box-shadow:0 18px 60px rgba(0,0,0,.22);transition:opacity .55s ease,transform .55s ease,background .25s,border-color .25s}
+#start-button:hover{background:rgba(8,10,12,.64);border-color:rgba(255,255,255,.48);transform:translateX(-50%) translateY(-2px)}
+#start-button.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(10px)}
+.start-small{display:block;font-size:11px;color:rgba(255,255,255,.58)}
+.start-main{display:block;margin:5px 0 7px;font-size:clamp(20px,2.3vw,29px);font-weight:550}
+.start-help{display:block;font-size:11px;color:rgba(255,255,255,.42)}
+
+/* 대사 */
+#dialogue{position:absolute;left:clamp(24px,5vw,78px);bottom:clamp(28px,7vh,70px);width:min(720px,calc(100vw - 48px));padding:14px 20px 17px;border-top:1px solid rgba(255,255,255,.34);background:linear-gradient(90deg,rgba(3,5,7,.59),rgba(3,5,7,.30) 72%,transparent);backdrop-filter:blur(8px);text-shadow:0 2px 10px rgba(0,0,0,.88);opacity:0;transform:translateY(12px);transition:opacity .5s ease,transform .5s ease}
+#dialogue.show{opacity:1;transform:translateY(0)}
+.dialogue-info{display:flex;align-items:center;gap:11px;margin-bottom:7px;font-size:11px;letter-spacing:.07em;color:rgba(255,255,255,.52)}
+#speaker{color:var(--accent);font-weight:bold}
+#scene-label::before{content:"·";margin-right:11px;color:rgba(255,255,255,.3)}
+#dialogue-text{margin:0;max-width:650px;font-size:clamp(17px,1.65vw,23px);line-height:1.65;word-break:keep-all}
+.dialogue-next{margin-top:10px;font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.31)}
+.dialogue-next span{display:inline-block;margin-left:5px;animation:arrow 1.3s infinite ease-in-out}
+@keyframes arrow{50%{transform:translateX(4px)}}
+
+/* 눈 감기 */
+#eye-close{position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none}
+#eye-close::before,#eye-close::after{content:"";position:absolute;left:-4%;width:108%;height:57%;filter:blur(2px);transition:transform 3.2s cubic-bezier(.60,0,.25,1)}
+#eye-close::before{top:-4%;background:linear-gradient(to bottom,#000 0%,#000 65%,rgba(0,0,0,.98) 80%,rgba(0,0,0,.84) 92%,rgba(0,0,0,.60));transform:translateY(-106%)}
+#eye-close::after{bottom:-4%;background:linear-gradient(to top,#000 0%,#000 65%,rgba(0,0,0,.98) 80%,rgba(0,0,0,.84) 92%,rgba(0,0,0,.60));transform:translateY(106%)}
+#eye-close.close::before,#eye-close.close::after{transform:translateY(0)}
+
+/* 동기화 */
+#transfer{display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 45%,rgba(40,78,104,.14),transparent 45%),#04070a}
+.transfer-panel{width:min(760px,92vw)}
+.system-brand{font-size:13px;letter-spacing:.28em;color:rgba(255,255,255,.8)}
+.system-sub{margin:8px 0 46px;font-family:monospace;font-size:10px;letter-spacing:.16em;color:rgba(183,217,239,.48)}
+#transfer h1{margin:0 0 10px;font-size:clamp(27px,4vw,46px);font-weight:500}
+.transfer-description{margin:0 0 34px;color:rgba(255,255,255,.52);line-height:1.7;font-size:14px}
+#process-list{display:grid;margin-bottom:34px;border-top:1px solid rgba(255,255,255,.1)}
+.process-item{display:grid;grid-template-columns:34px 1fr auto;align-items:center;min-height:48px;padding:0 4px;border-bottom:1px solid rgba(255,255,255,.075);color:rgba(255,255,255,.23);transition:color .5s}
+.process-number,.process-status{font-family:monospace}
+.process-number{font-size:10px}.process-label{font-size:13px}.process-status{font-size:9px;letter-spacing:.1em}
+.process-item.active{color:rgba(255,255,255,.94)}.process-item.complete{color:rgba(183,217,239,.68)}
+.progress-track{height:1px;overflow:hidden;background:rgba(255,255,255,.12)}
+#progress-bar{width:0;height:100%;background:var(--system);box-shadow:0 0 12px rgba(183,217,239,.55);transition:width .8s ease}
+.progress-info{display:flex;justify-content:space-between;margin-top:9px;font-family:monospace;font-size:9px;letter-spacing:.08em;color:rgba(255,255,255,.34)}
+
+/* 이름 입력 */
+#identity{display:grid;place-items:center;padding:24px;opacity:1;background:radial-gradient(circle at 50% 40%,rgba(223,234,239,.08),transparent 40%),#06090b;transition:opacity .8s ease}
+#identity.fade-out{opacity:0}
+.identity-card{width:min(520px,94vw);text-align:center}
+.identity-check{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 22px;border:1px solid rgba(183,217,239,.46);border-radius:50%;color:var(--system);font-size:20px}
+.identity-small{margin:0 0 11px;font-family:monospace;font-size:10px;letter-spacing:.18em;color:rgba(183,217,239,.52)}
+.identity-card h1{margin:0 0 15px;font-size:clamp(28px,5vw,44px);font-weight:500}
+.identity-card>p{margin:0 0 38px;color:rgba(255,255,255,.56);line-height:1.75;font-size:14px}
+.identity-card label{display:block;margin-bottom:9px;text-align:left;color:rgba(255,255,255,.52);font-size:12px}
+#resident-name{width:100%;height:58px;padding:0 16px;border:0;border-bottom:1px solid rgba(255,255,255,.38);border-radius:2px 2px 0 0;outline:none;background:rgba(255,255,255,.035);color:#fff;font-size:18px}
+#resident-name:focus{border-color:var(--system);background:rgba(183,217,239,.06)}
+#resident-name::placeholder{color:rgba(255,255,255,.22)}
+.identity-button{width:100%;height:54px;margin-top:18px;border:1px solid rgba(183,217,239,.5);border-radius:3px;background:rgba(183,217,239,.08);color:rgba(235,247,255,.94);cursor:pointer}
+.identity-button:hover{background:rgba(183,217,239,.16);border-color:rgba(183,217,239,.8)}
+
+/* 파라다이스 */
+#paradise{overflow:hidden;background:#02070a}
+#plaza-image{position:absolute;inset:-2%;background:url("paradise-plaza.png") center/cover no-repeat;opacity:.25;transform:scale(1.10);filter:blur(22px) brightness(.22) saturate(.60);transition:opacity 4.8s ease,transform 6s ease-out,filter 5.2s cubic-bezier(.35,0,.25,1)}
+#paradise.awake #plaza-image{opacity:1;transform:scale(1.02);filter:blur(0) brightness(1) saturate(1)}
+
+/* 검은 시야가 천천히 걷힘 */
+#arrival-dark{position:absolute;inset:0;z-index:20;background:#000;opacity:1;pointer-events:none;transition:opacity 5s cubic-bezier(.35,0,.25,1)}
+#paradise.awake #arrival-dark{opacity:0}
+
+/* 환영 문구 */
+#arrival-message{position:absolute;z-index:30;left:50%;top:50%;width:min(700px,calc(100vw - 40px));padding:34px 42px 36px;text-align:center;color:#fff;background:rgba(8,23,31,.58);border:1px solid rgba(255,255,255,.45);border-radius:10px;backdrop-filter:blur(16px) saturate(1.1);box-shadow:0 20px 70px rgba(0,0,0,.28),inset 0 0 35px rgba(255,255,255,.04);text-shadow:0 2px 14px rgba(0,0,0,.85);opacity:0;transform:translate(-50%,-43%);pointer-events:none;transition:opacity 1.8s ease,transform 1.8s ease}
+#arrival-message.show{opacity:1;transform:translate(-50%,-50%)}
+#arrival-message.fade-away{opacity:0;transform:translate(-50%,-56%)}
+.arrival-small{display:block;margin-bottom:12px;font-size:11px;letter-spacing:.32em;color:rgba(211,239,255,.76)}
+#arrival-message h1{margin:0;font-size:clamp(38px,6vw,72px);font-weight:600;letter-spacing:.05em;color:#fff}
+.arrival-line{width:70px;height:1px;margin:24px auto;background:rgba(205,235,250,.55)}
+#welcome-name{display:block;font-size:clamp(17px,2vw,24px);font-weight:600;color:#fff}
+.arrival-description{display:block;margin-top:9px;font-size:13px;color:rgba(232,245,252,.78)}
+
+/* 시민 표시 */
+#resident-indicator{position:absolute;z-index:10;top:28px;left:30px;padding:10px 13px;border:1px solid rgba(255,255,255,.35);border-radius:4px;background:rgba(15,30,38,.38);backdrop-filter:blur(10px);color:rgba(255,255,255,.9);font-size:10px;letter-spacing:.08em;text-shadow:0 1px 8px rgba(0,0,0,.35);opacity:0;transform:translateY(-8px);transition:opacity 1.2s,transform 1.2s}
+#resident-indicator.show{opacity:1;transform:translateY(0)}
+#resident-indicator strong{font-size:12px;font-weight:600;letter-spacing:0}
+
+@media(max-width:700px){
+.brand{display:none}
+#dialogue{left:16px;bottom:24px;width:calc(100vw - 32px);padding:13px 14px 15px}
+#dialogue-text{font-size:16px}
+.process-item{grid-template-columns:28px 1fr auto}
+#arrival-message{width:calc(100vw - 28px);padding:28px 18px}
+#arrival-message h1{font-size:clamp(32px,10vw,52px)}
+#resident-indicator{top:16px;left:16px}
 }
-
-.process-item {
-    display: grid;
-
-    grid-template-columns:
-        34px
-        1fr
-        auto;
-
-    align-items: center;
-
-    min-height: 48px;
-
-    padding:
-        0 4px;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.075);
-
-    color:
-        rgba(255,255,255,0.23);
-
-    transition:
-        color 0.5s ease;
-}
-
-.process-number,
-.process-status {
-    font-family:
-        monospace;
-}
-
-.process-number {
-    font-size: 10px;
-}
-
-.process-label {
-    font-size: 13px;
-}
-
-.process-status {
-    font-size: 9px;
-
-    letter-spacing: 0.1em;
-}
-
-.process-item.active {
-    color:
-        rgba(255,255,255,0.94);
-}
-
-.process-item.complete {
-    color:
-        rgba(183,217,239,0.68);
-}
-
-
-/* =========================================================
-   진행바
-   ========================================================= */
-
-.progress-track {
-    height: 1px;
-
-    overflow: hidden;
-
-    background:
-        rgba(255,255,255,0.12);
-}
-
-#progress-bar {
-    width: 0%;
-    height: 100%;
-
-    background:
-        var(--system);
-
-    box-shadow:
-        0 0 12px
-        rgba(183,217,239,0.55);
-
-    transition:
-        width 0.8s ease;
-}
-
-.progress-info {
-    display: flex;
-
-    justify-content: space-between;
-
-    margin-top: 9px;
-
-    font-family:
-        monospace;
-
-    font-size: 9px;
-
-    letter-spacing: 0.08em;
-
-    color:
-        rgba(255,255,255,0.34);
-}
-
-
-/* =========================================================
-   이름 입력
-   ========================================================= */
-
-#identity {
-    display: grid;
-
-    place-items: center;
-
-    padding: 24px;
-
-    opacity: 1;
-
-    background:
-        radial-gradient(
-            circle at 50% 40%,
-            rgba(223,234,239,0.08),
-            transparent 40%
-        ),
-        #06090b;
-
-    transition:
-        opacity 0.8s ease;
-}
-
-#identity.fade-out {
-    opacity: 0;
-}
-
-.identity-card {
-    width:
-        min(
-            520px,
-            94vw
-        );
-
-    text-align: center;
-}
-
-.identity-check {
-    display: grid;
-
-    place-items: center;
-
-    width: 46px;
-    height: 46px;
-
-    margin:
-        0 auto 22px;
-
-    border:
-        1px solid
-        rgba(183,217,239,0.46);
-
-    border-radius: 50%;
-
-    color:
-        var(--system);
-
-    font-size: 20px;
-}
-
-.identity-small {
-    margin:
-        0 0 11px;
-
-    font-family:
-        monospace;
-
-    font-size: 10px;
-
-    letter-spacing: 0.18em;
-
-    color:
-        rgba(183,217,239,0.52);
-}
-
-.identity-card h1 {
-    margin:
-        0 0 15px;
-
-    font-size:
-        clamp(
-            28px,
-            5vw,
-            44px
-        );
-
-    font-weight: 500;
-}
-
-.identity-card > p {
-    margin:
-        0 0 38px;
-
-    color:
-        rgba(255,255,255,0.56);
-
-    line-height: 1.75;
-
-    font-size: 14px;
-}
-
-.identity-card label {
-    display: block;
-
-    margin-bottom: 9px;
-
-    text-align: left;
-
-    color:
-        rgba(255,255,255,0.52);
-
-    font-size: 12px;
-}
-
-#resident-name {
-    width: 100%;
-    height: 58px;
-
-    padding:
-        0 16px;
-
-    border: 0;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.38);
-
-    border-radius:
-        2px 2px 0 0;
-
-    outline: none;
-
-    background:
-        rgba(255,255,255,0.035);
-
-    color: white;
-
-    font-size: 18px;
-
-    transition:
-        border-color 0.25s ease,
-        background 0.25s ease;
-}
-
-#resident-name:focus {
-    border-color:
-        var(--system);
-
-    background:
-        rgba(183,217,239,0.06);
-}
-
-#resident-name::placeholder {
-    color:
-        rgba(255,255,255,0.22);
-}
-
-.identity-button {
-    width: 100%;
-    height: 54px;
-
-    margin-top: 18px;
-
-    border:
-        1px solid
-        rgba(183,217,239,0.50);
-
-    border-radius: 3px;
-
-    background:
-        rgba(183,217,239,0.08);
-
-    color:
-        rgba(235,247,255,0.94);
-
-    cursor: pointer;
-
-    transition:
-        background 0.25s ease,
-        border-color 0.25s ease;
-}
-
-.identity-button:hover {
-    background:
-        rgba(183,217,239,0.16);
-
-    border-color:
-        rgba(183,217,239,0.80);
-}
-
-
-/* =========================================================
-   파라다이스
-   ========================================================= */
-
-#paradise {
-    overflow: hidden;
-
-    background: white;
-}
-
-
-/* =========================================================
-   중앙광장 이미지
-   ========================================================= */
-
-#plaza-image {
-    position: absolute;
-
-    inset: -2%;
-
-    background-image:
-        url("paradise-plaza.png");
-
-    background-position:
-        center center;
-
-    background-size:
-        cover;
-
-    background-repeat:
-        no-repeat;
-
-    opacity: 0;
-
-    transform:
-        scale(1.10);
-
-    filter:
-        blur(22px)
-        brightness(2.3)
-        saturate(0.75);
-
-    transition:
-        opacity 2.6s ease,
-        transform 5.5s ease-out,
-        filter 4.5s ease;
-}
-
-
-/* 천천히 눈이 초점 맞는 느낌 */
-
-#paradise.awake #plaza-image {
-    opacity: 1;
-
-    transform:
-        scale(1.02);
-
-    filter:
-        blur(0px)
-        brightness(1)
-        saturate(1);
-}
-
-
-/* =========================================================
-   눈부신 흰빛
-   ========================================================= */
-
-#arrival-white {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 20;
-
-    background: white;
-
-    opacity: 1;
-
-    pointer-events: none;
-
-    transition:
-        opacity
-        4s
-        cubic-bezier(
-            0.35,
-            0,
-            0.25,
-            1
-        );
-}
-
-#paradise.awake #arrival-white {
-    opacity: 0;
-}
-
-
-/* =========================================================
-   환영 문구
-   ========================================================= */
-
-#arrival-message {
-    position: absolute;
-
-    z-index: 30;
-
-    left: 50%;
-    top: 50%;
-
-    width:
-        min(
-            850px,
-            calc(100vw - 40px)
-        );
-
-    text-align: center;
-
-    color:
-        #203845;
-
-    opacity: 0;
-
-    transform:
-        translate(
-            -50%,
-            -44%
-        );
-
-    pointer-events: none;
-
-    text-shadow:
-        0 2px 20px
-        rgba(255,255,255,0.92);
-
-    transition:
-        opacity 1.8s ease,
-        transform 1.8s ease;
-}
-
-
-/* 등장 */
-
-#arrival-message.show {
-    opacity: 1;
-
-    transform:
-        translate(
-            -50%,
-            -50%
-        );
-}
-
-
-/* 퇴장 */
-
-#arrival-message.fade-away {
-    opacity: 0;
-
-    transform:
-        translate(
-            -50%,
-            -56%
-        );
-}
-
-
-.arrival-small {
-    display: block;
-
-    margin-bottom: 12px;
-
-    font-size: 11px;
-
-    letter-spacing: 0.32em;
-
-    color:
-        rgba(32,56,69,0.62);
-}
-
-
-#arrival-message h1 {
-    margin: 0;
-
-    font-size:
-        clamp(
-            38px,
-            6vw,
-            76px
-        );
-
-    font-weight: 570;
-
-    letter-spacing: 0.05em;
-}
-
-
-.arrival-line {
-    width: 70px;
-    height: 1px;
-
-    margin:
-        26px auto;
-
-    background:
-        rgba(32,56,69,0.34);
-}
-
-
-#welcome-name {
-    display: block;
-
-    font-size:
-        clamp(
-            17px,
-            2vw,
-            24px
-        );
-
-    font-weight: 550;
-}
-
-
-.arrival-description {
-    display: block;
-
-    margin-top: 9px;
-
-    font-size: 13px;
-
-    color:
-        rgba(32,56,69,0.65);
-}
-
-
-/* =========================================================
-   시민명 표시
-   ========================================================= */
-
-#resident-indicator {
-    position: absolute;
-
-    z-index: 10;
-
-    top: 28px;
-    left: 30px;
-
-    padding:
-        10px 13px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.35);
-
-    border-radius: 4px;
-
-    background:
-        rgba(15,30,38,0.20);
-
-    backdrop-filter:
-        blur(10px);
-
-    color:
-        rgba(255,255,255,0.90);
-
-    font-size: 10px;
-
-    letter-spacing: 0.08em;
-
-    text-shadow:
-        0 1px 8px
-        rgba(0,0,0,0.35);
-
-    opacity: 0;
-
-    transform:
-        translateY(-8px);
-
-    transition:
-        opacity 1.2s ease,
-        transform 1.2s ease;
-}
-
-#resident-indicator.show {
-    opacity: 1;
-
-    transform:
-        translateY(0);
-}
-
-#resident-indicator strong {
-    font-size: 12px;
-
-    font-weight: 600;
-
-    letter-spacing: 0;
-}
-
-
-/* =========================================================
-   모바일
-   ========================================================= */
-
-@media
-(max-width: 700px) {
-
-    .brand {
-        display: none;
-    }
-
-    #dialogue {
-        left: 16px;
-        bottom: 24px;
-
-        width:
-            calc(
-                100vw - 32px
-            );
-
-        padding:
-            13px 14px 15px;
-    }
-
-    #dialogue-text {
-        font-size: 16px;
-    }
-
-    .process-item {
-        grid-template-columns:
-            28px
-            1fr
-            auto;
-    }
-
-    #arrival-message h1 {
-        font-size:
-            clamp(
-                34px,
-                11vw,
-                58px
-            );
-    }
-
-    #resident-indicator {
-        top: 16px;
-        left: 16px;
-    }
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
+<section id="cinematic" class="screen">
+<div id="scene-image"></div>
+<div class="vignette"></div>
+<div class="brand"><strong>VIRTUAL PARADISE</strong><span>RESIDENCY PROCEDURE</span></div>
 
-<!-- ======================================================
-     현실
-     ====================================================== -->
+<button id="start-button">
+<span class="start-small">신규 시민 입주 안내</span>
+<strong class="start-main">입주 절차 시작</strong>
+<span class="start-help">화면을 클릭하거나 Enter 키를 눌러 진행합니다</span>
+</button>
 
-<section
-    id="cinematic"
-    class="screen"
->
+<div id="dialogue" class="hidden">
+<div class="dialogue-info"><span id="speaker">상담 직원</span><span id="scene-label">입주 상담센터</span></div>
+<p id="dialogue-text"></p>
+<div class="dialogue-next">CLICK / SPACE <span>›</span></div>
+</div>
 
-    <div
-        id="scene-image"
-    ></div>
-
-    <div
-        class="vignette"
-    ></div>
-
-
-    <div
-        class="brand"
-    >
-
-        <strong>
-            VIRTUAL PARADISE
-        </strong>
-
-        <span>
-            RESIDENCY PROCEDURE
-        </span>
-
-    </div>
-
-
-    <button
-        id="start-button"
-    >
-
-        <span
-            class="start-small"
-        >
-            신규 시민 입주 안내
-        </span>
-
-        <strong
-            class="start-main"
-        >
-            입주 절차 시작
-        </strong>
-
-        <span
-            class="start-help"
-        >
-            화면을 클릭하거나 Enter 키를 눌러 진행합니다
-        </span>
-
-    </button>
-
-
-    <div
-        id="dialogue"
-        class="hidden"
-    >
-
-        <div
-            class="dialogue-info"
-        >
-
-            <span
-                id="speaker"
-            >
-                상담 직원
-            </span>
-
-            <span
-                id="scene-label"
-            >
-                입주 상담센터
-            </span>
-
-        </div>
-
-
-        <p
-            id="dialogue-text"
-        ></p>
-
-
-        <div
-            class="dialogue-next"
-        >
-
-            CLICK / SPACE
-
-            <span>
-                ›
-            </span>
-
-        </div>
-
-    </div>
-
-
-    <div
-        id="eye-close"
-    ></div>
-
+<div id="eye-close"></div>
 </section>
 
-
-
-<!-- ======================================================
-     동기화
-     ====================================================== -->
-
-<section
-    id="transfer"
-    class="screen hidden"
->
-
-    <div
-        class="transfer-panel"
-    >
-
-        <div
-            class="system-brand"
-        >
-            VIRTUAL PARADISE
-        </div>
-
-        <div
-            class="system-sub"
-        >
-            RESIDENCY SYNCHRONIZATION
-        </div>
-
-        <h1>
-            입주 동기화 진행 중
-        </h1>
-
-        <p
-            class="transfer-description"
-        >
-            안전한 시민 데이터 전환을 진행하고 있습니다.
-            잠시만 기다려 주세요.
-        </p>
-
-
-        <div
-            id="process-list"
-        ></div>
-
-
-        <div
-            class="progress-track"
-        >
-
-            <div
-                id="progress-bar"
-            ></div>
-
-        </div>
-
-
-        <div
-            class="progress-info"
-        >
-
-            <span
-                id="progress-state"
-            >
-                준비 중
-            </span>
-
-            <span
-                id="progress-percent"
-            >
-                0%
-            </span>
-
-        </div>
-
-    </div>
-
+<section id="transfer" class="screen hidden">
+<div class="transfer-panel">
+<div class="system-brand">VIRTUAL PARADISE</div>
+<div class="system-sub">RESIDENCY SYNCHRONIZATION</div>
+<h1>입주 동기화 진행 중</h1>
+<p class="transfer-description">안전한 시민 데이터 전환을 진행하고 있습니다. 잠시만 기다려 주세요.</p>
+<div id="process-list"></div>
+<div class="progress-track"><div id="progress-bar"></div></div>
+<div class="progress-info"><span id="progress-state">준비 중</span><span id="progress-percent">0%</span></div>
+</div>
 </section>
 
-
-
-<!-- ======================================================
-     이름 입력
-     ====================================================== -->
-
-<section
-    id="identity"
-    class="screen hidden"
->
-
-    <form
-        id="identity-form"
-        class="identity-card"
-    >
-
-        <div
-            class="identity-check"
-        >
-            ✓
-        </div>
-
-
-        <p
-            class="identity-small"
-        >
-            FINAL SYNCHRONIZATION
-        </p>
-
-
-        <h1>
-            최종 동기화 확인
-        </h1>
-
-
-        <p>
-            시민 데이터 무결성 검증이 완료되었습니다.
-
-            <br>
-
-            마지막으로 입주자 본인 확인을 진행해 주세요.
-        </p>
-
-
-        <label
-            for="resident-name"
-        >
-            입주자 확인명
-        </label>
-
-
-        <input
-            id="resident-name"
-            type="text"
-            maxlength="24"
-            autocomplete="off"
-            placeholder="이름을 입력하세요"
-            required
-        >
-
-
-        <button
-            class="identity-button"
-            type="submit"
-        >
-            확인하고 입주하기
-        </button>
-
-    </form>
-
+<section id="identity" class="screen hidden">
+<form id="identity-form" class="identity-card">
+<div class="identity-check">✓</div>
+<p class="identity-small">FINAL SYNCHRONIZATION</p>
+<h1>최종 동기화 확인</h1>
+<p>시민 데이터 무결성 검증이 완료되었습니다.<br>마지막으로 입주자 본인 확인을 진행해 주세요.</p>
+<label for="resident-name">입주자 확인명</label>
+<input id="resident-name" type="text" maxlength="24" autocomplete="off" placeholder="이름을 입력하세요" required>
+<button class="identity-button" type="submit">확인하고 입주하기</button>
+</form>
 </section>
 
+<section id="paradise" class="screen hidden">
+<div id="plaza-image"></div>
+<div id="arrival-dark"></div>
 
+<div id="arrival-message">
+<span class="arrival-small">WELCOME TO</span>
+<h1>VIRTUAL PARADISE</h1>
+<div class="arrival-line"></div>
+<strong id="welcome-name">새로운 시민님, 환영합니다.</strong>
+<span class="arrival-description">당신의 새로운 일상이 지금 시작됩니다.</span>
+</div>
 
-<!-- ======================================================
-     파라다이스
-     ====================================================== -->
-
-<section
-    id="paradise"
-    class="screen hidden"
->
-
-    <div
-        id="plaza-image"
-    ></div>
-
-
-    <div
-        id="arrival-white"
-    ></div>
-
-
-    <div
-        id="arrival-message"
-    >
-
-        <span
-            class="arrival-small"
-        >
-            WELCOME TO
-        </span>
-
-
-        <h1>
-            VIRTUAL PARADISE
-        </h1>
-
-
-        <div
-            class="arrival-line"
-        ></div>
-
-
-        <strong
-            id="welcome-name"
-        >
-            새로운 시민님, 환영합니다.
-        </strong>
-
-
-        <span
-            class="arrival-description"
-        >
-            당신의 새로운 일상이 지금 시작됩니다.
-        </span>
-
-    </div>
-
-
-    <div
-        id="resident-indicator"
-    >
-
-        시민 등록 완료 ·
-
-        <strong
-            id="resident-indicator-name"
-        >
-            신규 시민
-        </strong>
-
-    </div>
-
+<div id="resident-indicator">시민 등록 완료 · <strong id="resident-indicator-name">신규 시민</strong></div>
 </section>
-
-
 
 <script>
-
-/* =========================================================
-   파일
-   ========================================================= */
-
-const entryImage =
-    "scene-entry.png";
-
-const paradiseImage =
-    "paradise-plaza.png";
-
-
-/* =========================================================
-   현실 장면
-   ========================================================= */
-
-const scenes = [
-
-    {
-        image:
-            "scene-consultation.png",
-
-        position:
-            "center center",
-
-        label:
-            "입주 상담센터",
-
-        dialogue: [
-            "신청하신 입주 절차와 계약 내용은 모두 확인됐어요.",
-            "긴장하지 않으셔도 돼요. 천천히 하나씩 안내해드릴게요."
-        ]
-    },
-
-
-    {
-        image:
-            "scene-hallway.png",
-
-        position:
-            "center center",
-
-        label:
-            "입주 동기화실 이동 중",
-
-        dialogue: [
-            "이쪽이 입주 동기화실이에요. 금방 도착해요.",
-            "파라다이스에 들어가시면 전력 제한 시간도, 주거 배정도 신경 쓰실 필요 없어요.",
-            "…저도 입주 순번이 아직 멀어서. 조금 부럽네요."
-        ]
-    },
-
-
-    {
-        image:
-            "scene-sync-room.png",
-
-        position:
-            "center center",
-
-        label:
-            "입주 동기화실",
-
-        dialogue: [
-            "여기까지예요. 이제 편하게 기대시면 됩니다.",
-            "눈을 감으셔도 괜찮아요. 다음에 눈을 뜨시면 파라다이스일 거예요."
-        ]
-    }
-
+const entryImage="scene-entry.png";
+const scenes=[
+{image:"scene-consultation.png",position:"center center",label:"입주 상담센터",dialogue:["신청하신 입주 절차와 계약 내용은 모두 확인됐어요.","긴장하지 않으셔도 돼요. 천천히 하나씩 안내해드릴게요."]},
+{image:"scene-hallway.png",position:"center center",label:"입주 동기화실 이동 중",dialogue:["이쪽이 입주 동기화실이에요. 금방 도착해요.","파라다이스에 들어가시면 전력 제한 시간도, 주거 배정도 신경 쓰실 필요 없어요.","…저도 입주 순번이 아직 멀어서. 조금 부럽네요."]},
+{image:"scene-sync-room.png",position:"center center",label:"입주 동기화실",dialogue:["여기까지예요. 이제 편하게 기대시면 됩니다.","눈을 감으셔도 괜찮아요. 다음에 눈을 뜨시면 파라다이스일 거예요."]}
 ];
 
+const processSteps=["의식 이식 준비","시민 데이터 변환","감각 인터페이스 연결","파라다이스 환경 동기화","신원 데이터 정합성 확인","입주 무결성 확인"];
 
-/* =========================================================
-   동기화
-   ========================================================= */
+const cinematic=document.getElementById("cinematic"),sceneImage=document.getElementById("scene-image"),startButton=document.getElementById("start-button"),dialogue=document.getElementById("dialogue"),dialogueText=document.getElementById("dialogue-text"),sceneLabel=document.getElementById("scene-label"),eyeClose=document.getElementById("eye-close");
+const transfer=document.getElementById("transfer"),processList=document.getElementById("process-list"),progressBar=document.getElementById("progress-bar"),progressState=document.getElementById("progress-state"),progressPercent=document.getElementById("progress-percent");
+const identity=document.getElementById("identity"),identityForm=document.getElementById("identity-form"),residentName=document.getElementById("resident-name");
+const paradise=document.getElementById("paradise"),arrivalMessage=document.getElementById("arrival-message"),welcomeName=document.getElementById("welcome-name"),residentIndicator=document.getElementById("resident-indicator"),residentIndicatorName=document.getElementById("resident-indicator-name");
 
-const processSteps = [
+let currentScene=0,currentDialogue=0,started=false,locked=false;
 
-    "의식 이식 준비",
-    "시민 데이터 변환",
-    "감각 인터페이스 연결",
-    "파라다이스 환경 동기화",
-    "신원 데이터 정합성 확인",
-    "입주 무결성 확인"
+const wait=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+const nextFrame=()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
 
-];
-
-
-/* =========================================================
-   요소
-   ========================================================= */
-
-const cinematic =
-    document.getElementById(
-        "cinematic"
-    );
-
-const sceneImage =
-    document.getElementById(
-        "scene-image"
-    );
-
-const startButton =
-    document.getElementById(
-        "start-button"
-    );
-
-const dialogue =
-    document.getElementById(
-        "dialogue"
-    );
-
-const dialogueText =
-    document.getElementById(
-        "dialogue-text"
-    );
-
-const sceneLabel =
-    document.getElementById(
-        "scene-label"
-    );
-
-const eyeClose =
-    document.getElementById(
-        "eye-close"
-    );
-
-
-const transfer =
-    document.getElementById(
-        "transfer"
-    );
-
-const processList =
-    document.getElementById(
-        "process-list"
-    );
-
-const progressBar =
-    document.getElementById(
-        "progress-bar"
-    );
-
-const progressState =
-    document.getElementById(
-        "progress-state"
-    );
-
-const progressPercent =
-    document.getElementById(
-        "progress-percent"
-    );
-
-
-const identity =
-    document.getElementById(
-        "identity"
-    );
-
-const identityForm =
-    document.getElementById(
-        "identity-form"
-    );
-
-const residentName =
-    document.getElementById(
-        "resident-name"
-    );
-
-
-const paradise =
-    document.getElementById(
-        "paradise"
-    );
-
-const arrivalMessage =
-    document.getElementById(
-        "arrival-message"
-    );
-
-const welcomeName =
-    document.getElementById(
-        "welcome-name"
-    );
-
-const residentIndicator =
-    document.getElementById(
-        "resident-indicator"
-    );
-
-const residentIndicatorName =
-    document.getElementById(
-        "resident-indicator-name"
-    );
-
-
-/* =========================================================
-   상태
-   ========================================================= */
-
-let currentScene = 0;
-let currentDialogue = 0;
-
-let started = false;
-let locked = false;
-
-
-/* =========================================================
-   대기
-   ========================================================= */
-
-function wait(ms) {
-
-    return new Promise(
-        resolve =>
-            setTimeout(
-                resolve,
-                ms
-            )
-    );
-
+function preloadImages(){
+[entryImage,"paradise-plaza.png",...scenes.map(s=>s.image)].forEach(src=>{const img=new Image();img.src=src});
 }
-
-
-/* =========================================================
-   애니메이션 강제 한 프레임 대기
-   ========================================================= */
-
-function nextFrame() {
-
-    return new Promise(
-        resolve =>
-
-            requestAnimationFrame(
-                () =>
-                    requestAnimationFrame(
-                        resolve
-                    )
-            )
-    );
-
-}
-
-
-/* =========================================================
-   이미지 미리 로드
-   ========================================================= */
-
-function preloadImages() {
-
-    const imageSources = [
-
-        entryImage,
-        paradiseImage,
-
-        ...scenes.map(
-            scene =>
-                scene.image
-        )
-
-    ];
-
-
-    imageSources.forEach(
-
-        source => {
-
-            const image =
-                new Image();
-
-            image.src =
-                source;
-
-        }
-
-    );
-
-}
-
 preloadImages();
 
-
-/* =========================================================
-   첫 화면
-   ========================================================= */
-
-function showEntryScreen() {
-
-    sceneImage.style.backgroundImage =
-        `url("${entryImage}")`;
-
-    sceneImage.style.backgroundPosition =
-        "center";
-
-    sceneImage.classList.add(
-        "move"
-    );
-
+function showEntryScreen(){
+sceneImage.style.backgroundImage=`url("${entryImage}")`;
+sceneImage.style.backgroundPosition="center";
+sceneImage.classList.add("move");
 }
-
 showEntryScreen();
 
-
-/* =========================================================
-   장면 전환
-   ========================================================= */
-
-async function switchScene(index) {
-
-    const scene =
-        scenes[index];
-
-    if (!scene) {
-        return;
-    }
-
-
-    /*
-        기존 장면 천천히 사라짐
-    */
-
-    sceneImage.classList.add(
-        "changing"
-    );
-
-
-    await wait(
-        900
-    );
-
-
-    /*
-        완전히 사라진 상태에서 이미지 교체
-    */
-
-    sceneImage.style.backgroundImage =
-        `url("${scene.image}")`;
-
-    sceneImage.style.backgroundPosition =
-        scene.position;
-
-    sceneLabel.textContent =
-        scene.label;
-
-
-    sceneImage.classList.remove(
-        "move",
-        "closing"
-    );
-
-
-    /*
-        새 이미지가 opacity 0인 상태로
-        브라우저에 한번 그려지게 함
-    */
-
-    await nextFrame();
-
-
-    /*
-        새 장면 천천히 등장
-    */
-
-    sceneImage.classList.remove(
-        "changing"
-    );
-
-
-    await nextFrame();
-
-
-    sceneImage.classList.add(
-        "move"
-    );
-
-
-    await wait(
-        700
-    );
-
+async function switchScene(index){
+const scene=scenes[index];
+if(!scene)return;
+sceneImage.classList.add("changing");
+await wait(900);
+sceneImage.style.backgroundImage=`url("${scene.image}")`;
+sceneImage.style.backgroundPosition=scene.position;
+sceneLabel.textContent=scene.label;
+sceneImage.classList.remove("move","closing");
+await nextFrame();
+sceneImage.classList.remove("changing");
+await nextFrame();
+sceneImage.classList.add("move");
+await wait(700);
 }
 
-
-/* =========================================================
-   대사
-   ========================================================= */
-
-async function showDialogue(text) {
-
-    dialogue.classList.remove(
-        "show"
-    );
-
-
-    await wait(
-        260
-    );
-
-
-    dialogueText.textContent =
-        text;
-
-
-    await nextFrame();
-
-
-    dialogue.classList.add(
-        "show"
-    );
-
+async function showDialogue(text){
+dialogue.classList.remove("show");
+await wait(260);
+dialogueText.textContent=text;
+await nextFrame();
+dialogue.classList.add("show");
 }
 
-
-/* =========================================================
-   시작
-   ========================================================= */
-
-async function beginStory() {
-
-    if (started) {
-        return;
-    }
-
-    started = true;
-    locked = true;
-
-
-    startButton.classList.add(
-        "hide"
-    );
-
-
-    await wait(
-        500
-    );
-
-
-    currentScene = 0;
-    currentDialogue = 0;
-
-
-    await switchScene(
-        0
-    );
-
-
-    dialogue.classList.remove(
-        "hidden"
-    );
-
-
-    await nextFrame();
-
-
-    await showDialogue(
-        scenes[0].dialogue[0]
-    );
-
-
-    locked = false;
-
+async function beginStory(){
+if(started)return;
+started=true;locked=true;
+startButton.classList.add("hide");
+await wait(500);
+currentScene=0;currentDialogue=0;
+await switchScene(0);
+dialogue.classList.remove("hidden");
+await nextFrame();
+await showDialogue(scenes[0].dialogue[0]);
+locked=false;
 }
 
+async function advanceStory(){
+if(!started){beginStory();return}
+if(locked)return;
+const scene=scenes[currentScene];
 
-/* =========================================================
-   진행
-   ========================================================= */
-
-async function advanceStory() {
-
-    if (!started) {
-
-        beginStory();
-
-        return;
-    }
-
-
-    if (locked) {
-        return;
-    }
-
-
-    const scene =
-        scenes[currentScene];
-
-
-    /*
-        같은 이미지 안 다음 대사
-    */
-
-    if (
-        currentDialogue
-        <
-        scene.dialogue.length - 1
-    ) {
-
-        currentDialogue++;
-
-
-        await showDialogue(
-            scene.dialogue[
-                currentDialogue
-            ]
-        );
-
-
-        return;
-    }
-
-
-    /*
-        다음 이미지
-    */
-
-    if (
-        currentScene
-        <
-        scenes.length - 1
-    ) {
-
-        locked = true;
-
-
-        dialogue.classList.remove(
-            "show"
-        );
-
-
-        await wait(
-            400
-        );
-
-
-        currentScene++;
-        currentDialogue = 0;
-
-
-        await switchScene(
-            currentScene
-        );
-
-
-        await showDialogue(
-            scenes[
-                currentScene
-            ].dialogue[0]
-        );
-
-
-        locked = false;
-
-
-        return;
-    }
-
-
-    /*
-        현실 마지막
-    */
-
-    closeEyes();
-
+if(currentDialogue<scene.dialogue.length-1){
+currentDialogue++;
+await showDialogue(scene.dialogue[currentDialogue]);
+return;
 }
 
-
-/* =========================================================
-   눈 감기
-   ========================================================= */
-
-async function closeEyes() {
-
-    if (locked) {
-        return;
-    }
-
-    locked = true;
-
-
-    /*
-        먼저 대사가 천천히 사라짐
-    */
-
-    dialogue.classList.remove(
-        "show"
-    );
-
-
-    await wait(
-        500
-    );
-
-
-    /*
-        시야 흐려짐 시작
-    */
-
-    sceneImage.classList.add(
-        "closing"
-    );
-
-
-    /*
-        위아래 눈꺼풀도 거의 동시에 닫힘
-    */
-
-    await wait(
-        100
-    );
-
-
-    eyeClose.classList.add(
-        "close"
-    );
-
-
-    /*
-        완전히 눈 감을 때까지
-    */
-
-    await wait(
-        3500
-    );
-
-
-    cinematic.classList.add(
-        "hidden"
-    );
-
-
-    transfer.classList.remove(
-        "hidden"
-    );
-
-
-    runTransfer();
-
+if(currentScene<scenes.length-1){
+locked=true;
+dialogue.classList.remove("show");
+await wait(400);
+currentScene++;currentDialogue=0;
+await switchScene(currentScene);
+await showDialogue(scenes[currentScene].dialogue[0]);
+locked=false;
+return;
 }
 
-
-/* =========================================================
-   프로세스 렌더링
-   ========================================================= */
-
-function renderProcess() {
-
-    processList.innerHTML =
-
-        processSteps
-
-        .map(
-
-            (
-                step,
-                index
-            ) => `
-
-                <div
-                    class="process-item"
-                >
-
-                    <span
-                        class="process-number"
-                    >
-                        ${String(
-                            index + 1
-                        ).padStart(
-                            2,
-                            "0"
-                        )}
-                    </span>
-
-
-                    <span
-                        class="process-label"
-                    >
-                        ${step}
-                    </span>
-
-
-                    <span
-                        class="process-status"
-                    >
-                        대기
-                    </span>
-
-                </div>
-
-            `
-
-        )
-
-        .join("");
-
+closeEyes();
 }
 
-
-/* =========================================================
-   동기화 진행
-   ========================================================= */
-
-async function runTransfer() {
-
-    renderProcess();
-
-
-    const items = [
-
-        ...processList.querySelectorAll(
-            ".process-item"
-        )
-
-    ];
-
-
-    for (
-        let i = 0;
-        i < items.length;
-        i++
-    ) {
-
-        const item =
-            items[i];
-
-
-        item.classList.add(
-            "active"
-        );
-
-
-        item.querySelector(
-            ".process-status"
-        ).textContent =
-            "진행 중";
-
-
-        progressState.textContent =
-            processSteps[i];
-
-
-        const before =
-            Math.round(
-                (
-                    i /
-                    processSteps.length
-                ) * 100
-            );
-
-
-        progressBar.style.width =
-            `${before}%`;
-
-
-        progressPercent.textContent =
-            `${before}%`;
-
-
-        await wait(
-            i === 0
-            ? 900
-            : 1100
-        );
-
-
-        item.classList.remove(
-            "active"
-        );
-
-
-        item.classList.add(
-            "complete"
-        );
-
-
-        item.querySelector(
-            ".process-status"
-        ).textContent =
-            "완료";
-
-
-        const complete =
-            Math.round(
-                (
-                    (
-                        i + 1
-                    )
-                    /
-                    processSteps.length
-                )
-                * 100
-            );
-
-
-        progressBar.style.width =
-            `${complete}%`;
-
-
-        progressPercent.textContent =
-            `${complete}%`;
-
-    }
-
-
-    progressState.textContent =
-        "모든 검증 완료";
-
-
-    await wait(
-        1000
-    );
-
-
-    transfer.classList.add(
-        "hidden"
-    );
-
-
-    identity.classList.remove(
-        "hidden"
-    );
-
-
-    residentName.focus();
-
+async function closeEyes(){
+if(locked)return;
+locked=true;
+dialogue.classList.remove("show");
+await wait(500);
+sceneImage.classList.add("closing");
+await wait(100);
+eyeClose.classList.add("close");
+await wait(3500);
+cinematic.classList.add("hidden");
+transfer.classList.remove("hidden");
+runTransfer();
 }
 
-
-/* =========================================================
-   파라다이스 입장
-   ========================================================= */
-
-async function enterParadise(name) {
-
-    /*
-        이름 화면부터 페이드 아웃
-    */
-
-    identity.classList.add(
-        "fade-out"
-    );
-
-
-    await wait(
-        850
-    );
-
-
-    identity.classList.add(
-        "hidden"
-    );
-
-
-    /*
-        이름 적용
-    */
-
-    welcomeName.textContent =
-        `${name}님, 파라다이스에 오신 것을 환영합니다.`;
-
-
-    residentIndicatorName.textContent =
-        name;
-
-
-    /*
-        파라다이스 화면 표시
-        이때는 흰 화면
-    */
-
-    paradise.classList.remove(
-        "hidden"
-    );
-
-
-    /*
-        시작 상태를 확실히 브라우저에 그림
-    */
-
-    await nextFrame();
-
-
-    /*
-        눈부신 흰색이 천천히 걷히고
-        도시 초점이 맞기 시작
-    */
-
-    paradise.classList.add(
-        "awake"
-    );
-
-
-    /*
-        아직 눈이 완전히 적응하기 전에
-        환영 문구 등장
-    */
-
-    await wait(
-        1900
-    );
-
-
-    arrivalMessage.classList.remove(
-        "fade-away"
-    );
-
-
-    arrivalMessage.classList.add(
-        "show"
-    );
-
-
-    /*
-        충분히 읽는 시간
-    */
-
-    await wait(
-        3600
-    );
-
-
-    /*
-        환영 문구 페이드 아웃
-    */
-
-    arrivalMessage.classList.remove(
-        "show"
-    );
-
-
-    arrivalMessage.classList.add(
-        "fade-away"
-    );
-
-
-    await wait(
-        1900
-    );
-
-
-    /*
-        이제 작은 시민 표시만 등장
-    */
-
-    residentIndicator.classList.add(
-        "show"
-    );
-
+function renderProcess(){
+processList.innerHTML=processSteps.map((step,index)=>`
+<div class="process-item">
+<span class="process-number">${String(index+1).padStart(2,"0")}</span>
+<span class="process-label">${step}</span>
+<span class="process-status">대기</span>
+</div>`).join("");
 }
 
+async function runTransfer(){
+renderProcess();
+const items=[...processList.querySelectorAll(".process-item")];
 
-/* =========================================================
-   이름 입력
-   ========================================================= */
+for(let i=0;i<items.length;i++){
+const item=items[i];
+item.classList.add("active");
+item.querySelector(".process-status").textContent="진행 중";
+progressState.textContent=processSteps[i];
 
-identityForm.addEventListener(
+const before=Math.round((i/processSteps.length)*100);
+progressBar.style.width=`${before}%`;
+progressPercent.textContent=`${before}%`;
 
-    "submit",
+await wait(i===0?900:1100);
 
-    event => {
+item.classList.remove("active");
+item.classList.add("complete");
+item.querySelector(".process-status").textContent="완료";
 
-        event.preventDefault();
+const complete=Math.round(((i+1)/processSteps.length)*100);
+progressBar.style.width=`${complete}%`;
+progressPercent.textContent=`${complete}%`;
+}
 
+progressState.textContent="모든 검증 완료";
+await wait(1000);
+transfer.classList.add("hidden");
+identity.classList.remove("hidden");
+residentName.focus();
+}
 
-        const name =
-            residentName.value.trim();
+async function enterParadise(name){
+identity.classList.add("fade-out");
+await wait(850);
+identity.classList.add("hidden");
 
+welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;
+residentIndicatorName.textContent=name;
 
-        if (!name) {
-            return;
-        }
+paradise.classList.remove("hidden");
+await nextFrame();
 
+/* 검은 시야에서 천천히 밝아지고 초점이 맞음 */
+paradise.classList.add("awake");
 
-        enterParadise(
-            name
-        );
+await wait(2600);
 
-    }
+/* 도시가 어느 정도 보이기 시작한 뒤 환영 문구 */
+arrivalMessage.classList.remove("fade-away");
+arrivalMessage.classList.add("show");
 
-);
+await wait(3800);
 
+arrivalMessage.classList.remove("show");
+arrivalMessage.classList.add("fade-away");
 
-/* =========================================================
-   시작 버튼
-   ========================================================= */
+await wait(1900);
+residentIndicator.classList.add("show");
+}
 
-startButton.addEventListener(
+identityForm.addEventListener("submit",event=>{
+event.preventDefault();
+const name=residentName.value.trim();
+if(!name)return;
+enterParadise(name);
+});
 
-    "click",
+startButton.addEventListener("click",event=>{
+event.stopPropagation();
+beginStory();
+});
 
-    event => {
+cinematic.addEventListener("click",event=>{
+if(event.target.closest("button"))return;
+advanceStory();
+});
 
-        event.stopPropagation();
-
-        beginStory();
-
-    }
-
-);
-
-
-/* =========================================================
-   화면 클릭
-   ========================================================= */
-
-cinematic.addEventListener(
-
-    "click",
-
-    event => {
-
-        if (
-            event.target.closest(
-                "button"
-            )
-        ) {
-            return;
-        }
-
-
-        advanceStory();
-
-    }
-
-);
-
-
-/* =========================================================
-   키보드
-   ========================================================= */
-
-document.addEventListener(
-
-    "keydown",
-
-    event => {
-
-        /*
-            이름 입력 중이면
-            엔터는 폼 제출에 사용
-        */
-
-        if (
-            !identity.classList.contains(
-                "hidden"
-            )
-        ) {
-            return;
-        }
-
-
-        /*
-            파라다이스 도착 후에는
-            진행키 사용 안 함
-        */
-
-        if (
-            !paradise.classList.contains(
-                "hidden"
-            )
-        ) {
-            return;
-        }
-
-
-        if (
-            event.key === "Enter"
-            ||
-            event.code === "Space"
-        ) {
-
-            event.preventDefault();
-
-            advanceStory();
-
-        }
-
-    }
-
-);
-
+document.addEventListener("keydown",event=>{
+if(!identity.classList.contains("hidden"))return;
+if(!paradise.classList.contains("hidden"))return;
+if(event.key==="Enter"||event.code==="Space"){
+event.preventDefault();
+advanceStory();
+}
+});
 </script>
-
 </body>
 </html>
