@@ -2,7 +2,6 @@
 <html lang="ko">
 
 <head>
-
 <meta charset="UTF-8">
 
 <meta
@@ -10,15 +9,12 @@
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>
-    VIRTUAL PARADISE — 입주 절차
-</title>
-
+<title>VIRTUAL PARADISE — 입주 절차</title>
 
 <style>
 
 /* =========================================================
-   기본 설정
+   기본
    ========================================================= */
 
 :root {
@@ -28,25 +24,20 @@
     --dark: #050607;
 }
 
-
 * {
     box-sizing: border-box;
 }
-
 
 html,
 body {
     margin: 0;
     width: 100%;
     height: 100%;
-
     background: var(--dark);
 }
 
-
 body {
     overflow: hidden;
-
     color: var(--white);
 
     font-family:
@@ -57,38 +48,32 @@ body {
         sans-serif;
 }
 
-
 button,
 input {
     font: inherit;
 }
 
-
 .screen {
     position: fixed;
-
     inset: 0;
 
     width: 100vw;
     height: 100dvh;
 }
 
-
 .hidden {
     display: none !important;
 }
 
 
-
 /* =========================================================
-   현실 파트
+   현실 시네마틱
    ========================================================= */
 
 #cinematic {
-    background: #050607;
     overflow: hidden;
+    background: #050607;
 }
-
 
 
 /* =========================================================
@@ -98,48 +83,58 @@ input {
 #scene-image {
     position: absolute;
 
-    inset: -1.5%;
+    inset: -2%;
 
-    background-position: center center;
-    background-repeat: no-repeat;
+    background-position: center;
     background-size: cover;
-
-    transform: scale(1.015);
-
-    filter:
-        saturate(0.96)
-        contrast(1.01)
-        blur(0px)
-        brightness(1);
+    background-repeat: no-repeat;
 
     opacity: 1;
 
+    transform:
+        scale(1.015);
+
+    filter:
+        blur(0px)
+        brightness(1)
+        saturate(0.96)
+        contrast(1.01);
+
     transition:
-        opacity 0.75s ease,
+        opacity 0.9s ease,
         transform 8s ease-out;
 }
 
+
+/* 장면이 사라질 때 */
 
 #scene-image.changing {
     opacity: 0;
 }
 
 
+/* 장면 등장 후 느린 줌 */
+
 #scene-image.move {
-    transform: scale(1.045);
+    transform:
+        scale(1.045);
 }
 
 
-
 /* =========================================================
-   마지막 시야 흐려짐
+   마지막 눈 감기
    ========================================================= */
 
 #scene-image.closing {
     animation:
         vision-close
-        3.25s
-        ease-in
+        3.4s
+        cubic-bezier(
+            0.45,
+            0,
+            0.25,
+            1
+        )
         forwards;
 }
 
@@ -148,70 +143,70 @@ input {
 
     0% {
         filter:
-            saturate(0.96)
-            contrast(1.01)
             blur(0px)
-            brightness(1);
+            brightness(1)
+            saturate(0.96)
+            contrast(1.01);
 
         transform:
             scale(1.045);
     }
 
-
-    18% {
+    15% {
         filter:
-            saturate(0.94)
-            contrast(1)
-            blur(1px)
-            brightness(0.96);
+            blur(0.7px)
+            brightness(0.97)
+            saturate(0.95);
 
         transform:
             scale(1.05);
     }
 
-
-    38% {
+    30% {
         filter:
-            saturate(0.90)
-            contrast(0.98)
-            blur(3px)
-            brightness(0.86);
+            blur(2px)
+            brightness(0.91)
+            saturate(0.92);
 
         transform:
-            scale(1.058);
+            scale(1.055);
     }
 
-
-    62% {
+    48% {
         filter:
-            saturate(0.84)
-            contrast(0.95)
-            blur(6px)
-            brightness(0.68);
+            blur(4px)
+            brightness(0.80)
+            saturate(0.88);
+
+        transform:
+            scale(1.06);
+    }
+
+    66% {
+        filter:
+            blur(7px)
+            brightness(0.65)
+            saturate(0.82);
 
         transform:
             scale(1.067);
     }
 
-
-    82% {
+    84% {
         filter:
-            saturate(0.78)
-            contrast(0.92)
-            blur(10px)
-            brightness(0.48);
+            blur(11px)
+            brightness(0.44)
+            saturate(0.76);
 
         transform:
             scale(1.074);
     }
 
-
     100% {
         filter:
-            saturate(0.72)
-            contrast(0.90)
-            blur(14px)
-            brightness(0.28);
+            blur(16px)
+            brightness(0.20)
+            saturate(0.70);
 
         transform:
             scale(1.08);
@@ -220,9 +215,8 @@ input {
 }
 
 
-
 /* =========================================================
-   현실 화면 가독성
+   현실 화면 비네트
    ========================================================= */
 
 .vignette {
@@ -239,18 +233,16 @@ input {
             rgba(0,0,0,0.10) 34%,
             transparent 67%
         ),
-
         radial-gradient(
             circle at center,
-            transparent 53%,
+            transparent 55%,
             rgba(0,0,0,0.14) 100%
         );
 }
 
 
-
 /* =========================================================
-   우측 상단 작은 로고
+   오른쪽 위 작은 브랜드
    ========================================================= */
 
 .brand {
@@ -261,13 +253,12 @@ input {
 
     text-align: right;
 
-    opacity: 0.74;
+    opacity: 0.72;
 
     text-shadow:
-        0 2px 16px
+        0 2px 14px
         rgba(0,0,0,0.55);
 }
-
 
 .brand strong {
     display: block;
@@ -276,7 +267,6 @@ input {
 
     letter-spacing: 0.22em;
 }
-
 
 .brand span {
     display: block;
@@ -292,9 +282,8 @@ input {
 }
 
 
-
 /* =========================================================
-   시작 버튼
+   첫 시작 버튼
    ========================================================= */
 
 #start-button {
@@ -338,12 +327,11 @@ input {
         rgba(0,0,0,0.22);
 
     transition:
-        background 0.2s ease,
-        border-color 0.2s ease,
-        transform 0.2s ease,
-        opacity 0.45s ease;
+        opacity 0.55s ease,
+        transform 0.55s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
 }
-
 
 #start-button:hover {
     background:
@@ -357,7 +345,6 @@ input {
         translateY(-2px);
 }
 
-
 #start-button.hide {
     opacity: 0;
 
@@ -365,19 +352,17 @@ input {
 
     transform:
         translateX(-50%)
-        translateY(8px);
+        translateY(10px);
 }
-
 
 .start-small {
     display: block;
 
+    font-size: 11px;
+
     color:
         rgba(255,255,255,0.58);
-
-    font-size: 11px;
 }
-
 
 .start-main {
     display: block;
@@ -395,7 +380,6 @@ input {
     font-weight: 550;
 }
 
-
 .start-help {
     display: block;
 
@@ -406,9 +390,8 @@ input {
 }
 
 
-
 /* =========================================================
-   대사 UI
+   대사
    ========================================================= */
 
 #dialogue {
@@ -461,13 +444,12 @@ input {
     opacity: 0;
 
     transform:
-        translateY(8px);
+        translateY(12px);
 
     transition:
-        opacity 0.3s ease,
-        transform 0.3s ease;
+        opacity 0.5s ease,
+        transform 0.5s ease;
 }
-
 
 #dialogue.show {
     opacity: 1;
@@ -475,7 +457,6 @@ input {
     transform:
         translateY(0);
 }
-
 
 .dialogue-info {
     display: flex;
@@ -494,13 +475,12 @@ input {
         rgba(255,255,255,0.52);
 }
 
-
 #speaker {
-    color: var(--accent);
+    color:
+        var(--accent);
 
     font-weight: bold;
 }
-
 
 #scene-label::before {
     content: "·";
@@ -510,7 +490,6 @@ input {
     color:
         rgba(255,255,255,0.30);
 }
-
 
 #dialogue-text {
     margin: 0;
@@ -526,11 +505,8 @@ input {
 
     line-height: 1.65;
 
-    font-weight: 430;
-
     word-break: keep-all;
 }
-
 
 .dialogue-next {
     margin-top: 10px;
@@ -542,7 +518,6 @@ input {
     color:
         rgba(255,255,255,0.31);
 }
-
 
 .dialogue-next span {
     display: inline-block;
@@ -556,7 +531,6 @@ input {
         ease-in-out;
 }
 
-
 @keyframes arrow {
 
     50% {
@@ -567,9 +541,8 @@ input {
 }
 
 
-
 /* =========================================================
-   눈 감기
+   눈꺼풀
    ========================================================= */
 
 #eye-close {
@@ -585,105 +558,96 @@ input {
 }
 
 
-
-/* 위쪽 눈꺼풀 */
+/* 위 */
 
 #eye-close::before {
     content: "";
 
     position: absolute;
 
-    left: -3%;
-    top: -3%;
+    left: -4%;
+    top: -4%;
 
-    width: 106%;
-    height: 56%;
+    width: 108%;
+    height: 57%;
 
     background:
         linear-gradient(
             to bottom,
-
-            rgba(0,0,0,1) 0%,
-            rgba(0,0,0,1) 68%,
-            rgba(0,0,0,0.95) 82%,
-            rgba(0,0,0,0.72) 100%
+            #000 0%,
+            #000 65%,
+            rgba(0,0,0,0.98) 80%,
+            rgba(0,0,0,0.84) 92%,
+            rgba(0,0,0,0.60) 100%
         );
 
     transform:
-        translateY(-105%);
+        translateY(-106%);
 
     filter:
-        blur(1.5px);
+        blur(2px);
 
     transition:
         transform
-        3.05s
+        3.2s
         cubic-bezier(
-            0.62,
+            0.60,
             0,
-            0.26,
+            0.25,
             1
         );
 }
 
 
-
-/* 아래쪽 눈꺼풀 */
+/* 아래 */
 
 #eye-close::after {
     content: "";
 
     position: absolute;
 
-    left: -3%;
-    bottom: -3%;
+    left: -4%;
+    bottom: -4%;
 
-    width: 106%;
-    height: 56%;
+    width: 108%;
+    height: 57%;
 
     background:
         linear-gradient(
             to top,
-
-            rgba(0,0,0,1) 0%,
-            rgba(0,0,0,1) 68%,
-            rgba(0,0,0,0.95) 82%,
-            rgba(0,0,0,0.72) 100%
+            #000 0%,
+            #000 65%,
+            rgba(0,0,0,0.98) 80%,
+            rgba(0,0,0,0.84) 92%,
+            rgba(0,0,0,0.60) 100%
         );
 
     transform:
-        translateY(105%);
+        translateY(106%);
 
     filter:
-        blur(1.5px);
+        blur(2px);
 
     transition:
         transform
-        3.05s
+        3.2s
         cubic-bezier(
-            0.62,
+            0.60,
             0,
-            0.26,
+            0.25,
             1
         );
 }
 
-
-#eye-close.close::before {
-    transform:
-        translateY(0);
-}
-
-
+#eye-close.close::before,
 #eye-close.close::after {
     transform:
         translateY(0);
 }
 
 
-
 /* =========================================================
-   동기화 프로세스
+   동기화
    ========================================================= */
 
 #transfer {
@@ -702,7 +666,6 @@ input {
         #04070a;
 }
 
-
 .transfer-panel {
     width:
         min(
@@ -710,7 +673,6 @@ input {
             92vw
         );
 }
-
 
 .system-brand {
     font-size: 13px;
@@ -720,7 +682,6 @@ input {
     color:
         rgba(255,255,255,0.80);
 }
-
 
 .system-sub {
     margin:
@@ -737,7 +698,6 @@ input {
         rgba(183,217,239,0.48);
 }
 
-
 #transfer h1 {
     margin:
         0 0 10px;
@@ -752,7 +712,6 @@ input {
     font-weight: 500;
 }
 
-
 .transfer-description {
     margin:
         0 0 34px;
@@ -766,15 +725,12 @@ input {
 }
 
 
-
 /* =========================================================
-   프로세스 목록
+   동기화 항목
    ========================================================= */
 
 #process-list {
     display: grid;
-
-    gap: 1px;
 
     margin-bottom: 34px;
 
@@ -782,7 +738,6 @@ input {
         1px solid
         rgba(255,255,255,0.10);
 }
-
 
 .process-item {
     display: grid;
@@ -807,9 +762,8 @@ input {
         rgba(255,255,255,0.23);
 
     transition:
-        color 0.4s ease;
+        color 0.5s ease;
 }
-
 
 .process-number,
 .process-status {
@@ -817,16 +771,13 @@ input {
         monospace;
 }
 
-
 .process-number {
     font-size: 10px;
 }
 
-
 .process-label {
     font-size: 13px;
 }
-
 
 .process-status {
     font-size: 9px;
@@ -834,12 +785,10 @@ input {
     letter-spacing: 0.1em;
 }
 
-
 .process-item.active {
     color:
-        rgba(255,255,255,0.92);
+        rgba(255,255,255,0.94);
 }
-
 
 .process-item.complete {
     color:
@@ -847,9 +796,8 @@ input {
 }
 
 
-
 /* =========================================================
-   진행률
+   진행바
    ========================================================= */
 
 .progress-track {
@@ -860,7 +808,6 @@ input {
     background:
         rgba(255,255,255,0.12);
 }
-
 
 #progress-bar {
     width: 0%;
@@ -874,9 +821,8 @@ input {
         rgba(183,217,239,0.55);
 
     transition:
-        width 0.75s ease;
+        width 0.8s ease;
 }
-
 
 .progress-info {
     display: flex;
@@ -897,9 +843,8 @@ input {
 }
 
 
-
 /* =========================================================
-   이름 확인
+   이름 입력
    ========================================================= */
 
 #identity {
@@ -909,6 +854,8 @@ input {
 
     padding: 24px;
 
+    opacity: 1;
+
     background:
         radial-gradient(
             circle at 50% 40%,
@@ -916,8 +863,14 @@ input {
             transparent 40%
         ),
         #06090b;
+
+    transition:
+        opacity 0.8s ease;
 }
 
+#identity.fade-out {
+    opacity: 0;
+}
 
 .identity-card {
     width:
@@ -928,7 +881,6 @@ input {
 
     text-align: center;
 }
-
 
 .identity-check {
     display: grid;
@@ -953,7 +905,6 @@ input {
     font-size: 20px;
 }
 
-
 .identity-small {
     margin:
         0 0 11px;
@@ -969,7 +920,6 @@ input {
         rgba(183,217,239,0.52);
 }
 
-
 .identity-card h1 {
     margin:
         0 0 15px;
@@ -984,7 +934,6 @@ input {
     font-weight: 500;
 }
 
-
 .identity-card > p {
     margin:
         0 0 38px;
@@ -996,7 +945,6 @@ input {
 
     font-size: 14px;
 }
-
 
 .identity-card label {
     display: block;
@@ -1010,7 +958,6 @@ input {
 
     font-size: 12px;
 }
-
 
 #resident-name {
     width: 100%;
@@ -1038,10 +985,9 @@ input {
     font-size: 18px;
 
     transition:
-        border-color 0.2s ease,
-        background 0.2s ease;
+        border-color 0.25s ease,
+        background 0.25s ease;
 }
-
 
 #resident-name:focus {
     border-color:
@@ -1051,12 +997,10 @@ input {
         rgba(183,217,239,0.06);
 }
 
-
 #resident-name::placeholder {
     color:
         rgba(255,255,255,0.22);
 }
-
 
 .identity-button {
     width: 100%;
@@ -1079,10 +1023,9 @@ input {
     cursor: pointer;
 
     transition:
-        background 0.2s ease,
-        border-color 0.2s ease;
+        background 0.25s ease,
+        border-color 0.25s ease;
 }
-
 
 .identity-button:hover {
     background:
@@ -1093,21 +1036,20 @@ input {
 }
 
 
-
 /* =========================================================
-   파라다이스 중앙광장
+   파라다이스
    ========================================================= */
 
 #paradise {
     overflow: hidden;
 
-    background:
-        white;
+    background: white;
 }
 
 
-
-/* 실제 광장 이미지 */
+/* =========================================================
+   중앙광장 이미지
+   ========================================================= */
 
 #plaza-image {
     position: absolute;
@@ -1120,11 +1062,11 @@ input {
     background-position:
         center center;
 
-    background-repeat:
-        no-repeat;
-
     background-size:
         cover;
+
+    background-repeat:
+        no-repeat;
 
     opacity: 0;
 
@@ -1132,22 +1074,18 @@ input {
         scale(1.10);
 
     filter:
-        blur(18px)
-        brightness(2.25)
-        saturate(0.82);
+        blur(22px)
+        brightness(2.3)
+        saturate(0.75);
 
     transition:
-        opacity 2s ease,
-        transform 5s ease-out,
-        filter 4.2s ease;
+        opacity 2.6s ease,
+        transform 5.5s ease-out,
+        filter 4.5s ease;
 }
 
 
-
-/*
-    깨어난 뒤
-    점점 선명한 파라다이스로 변화
-*/
+/* 천천히 눈이 초점 맞는 느낌 */
 
 #paradise.awake #plaza-image {
     opacity: 1;
@@ -1162,9 +1100,8 @@ input {
 }
 
 
-
 /* =========================================================
-   처음 눈을 떴을 때 덮고 있는 흰빛
+   눈부신 흰빛
    ========================================================= */
 
 #arrival-white {
@@ -1174,8 +1111,7 @@ input {
 
     z-index: 20;
 
-    background:
-        white;
+    background: white;
 
     opacity: 1;
 
@@ -1183,38 +1119,18 @@ input {
 
     transition:
         opacity
-        3.3s
-        ease;
+        4s
+        cubic-bezier(
+            0.35,
+            0,
+            0.25,
+            1
+        );
 }
-
 
 #paradise.awake #arrival-white {
     opacity: 0;
 }
-
-
-
-/* =========================================================
-   파라다이스 화면 약한 보정
-   ========================================================= */
-
-.paradise-vignette {
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 3;
-
-    pointer-events: none;
-
-    background:
-        linear-gradient(
-            to top,
-            rgba(255,255,255,0.10),
-            transparent 20%
-        );
-}
-
 
 
 /* =========================================================
@@ -1235,30 +1151,32 @@ input {
             calc(100vw - 40px)
         );
 
-    transform:
-        translate(
-            -50%,
-            -50%
-        );
-
     text-align: center;
 
     color:
         #203845;
 
-    text-shadow:
-        0 2px 20px
-        rgba(255,255,255,0.80);
-
     opacity: 0;
+
+    transform:
+        translate(
+            -50%,
+            -44%
+        );
 
     pointer-events: none;
 
+    text-shadow:
+        0 2px 20px
+        rgba(255,255,255,0.92);
+
     transition:
-        opacity 1.4s ease,
-        transform 1.4s ease;
+        opacity 1.8s ease,
+        transform 1.8s ease;
 }
 
+
+/* 등장 */
 
 #arrival-message.show {
     opacity: 1;
@@ -1266,18 +1184,20 @@ input {
     transform:
         translate(
             -50%,
-            -52%
+            -50%
         );
 }
 
 
-#arrival-message.hide-message {
+/* 퇴장 */
+
+#arrival-message.fade-away {
     opacity: 0;
 
     transform:
         translate(
             -50%,
-            -55%
+            -56%
         );
 }
 
@@ -1350,10 +1270,8 @@ input {
 }
 
 
-
 /* =========================================================
-   중앙광장이 완전히 열린 뒤
-   아주 작은 이름 표시
+   시민명 표시
    ========================================================= */
 
 #resident-indicator {
@@ -1392,15 +1310,20 @@ input {
 
     opacity: 0;
 
-    transition:
-        opacity 1s ease;
-}
+    transform:
+        translateY(-8px);
 
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s ease;
+}
 
 #resident-indicator.show {
     opacity: 1;
-}
 
+    transform:
+        translateY(0);
+}
 
 #resident-indicator strong {
     font-size: 12px;
@@ -1409,7 +1332,6 @@ input {
 
     letter-spacing: 0;
 }
-
 
 
 /* =========================================================
@@ -1423,7 +1345,6 @@ input {
         display: none;
     }
 
-
     #dialogue {
         left: 16px;
         bottom: 24px;
@@ -1434,18 +1355,12 @@ input {
             );
 
         padding:
-            13px
-            14px
-            15px;
+            13px 14px 15px;
     }
-
 
     #dialogue-text {
         font-size: 16px;
-
-        line-height: 1.58;
     }
-
 
     .process-item {
         grid-template-columns:
@@ -1453,13 +1368,6 @@ input {
             1fr
             auto;
     }
-
-
-    #plaza-image {
-        background-position:
-            center center;
-    }
-
 
     #arrival-message h1 {
         font-size:
@@ -1470,31 +1378,9 @@ input {
             );
     }
 
-
     #resident-indicator {
         top: 16px;
         left: 16px;
-    }
-
-}
-
-
-
-/* =========================================================
-   움직임 최소화 설정 대응
-   ========================================================= */
-
-@media
-(prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration:
-            0.01ms !important;
-
-        transition-duration:
-            0.01ms !important;
     }
 
 }
@@ -1504,12 +1390,11 @@ input {
 </head>
 
 
-
 <body>
 
 
 <!-- ======================================================
-     현실 파트
+     현실
      ====================================================== -->
 
 <section
@@ -1520,7 +1405,6 @@ input {
     <div
         id="scene-image"
     ></div>
-
 
     <div
         class="vignette"
@@ -1542,9 +1426,6 @@ input {
     </div>
 
 
-
-    <!-- 시작 버튼 -->
-
     <button
         id="start-button"
     >
@@ -1555,13 +1436,11 @@ input {
             신규 시민 입주 안내
         </span>
 
-
         <strong
             class="start-main"
         >
             입주 절차 시작
         </strong>
-
 
         <span
             class="start-help"
@@ -1571,9 +1450,6 @@ input {
 
     </button>
 
-
-
-    <!-- 대사 -->
 
     <div
         id="dialogue"
@@ -1589,7 +1465,6 @@ input {
             >
                 상담 직원
             </span>
-
 
             <span
                 id="scene-label"
@@ -1620,20 +1495,16 @@ input {
     </div>
 
 
-
-    <!-- 눈 감기 -->
-
     <div
         id="eye-close"
     ></div>
-
 
 </section>
 
 
 
 <!-- ======================================================
-     동기화 프로세스
+     동기화
      ====================================================== -->
 
 <section
@@ -1651,18 +1522,15 @@ input {
             VIRTUAL PARADISE
         </div>
 
-
         <div
             class="system-sub"
         >
             RESIDENCY SYNCHRONIZATION
         </div>
 
-
         <h1>
             입주 동기화 진행 중
         </h1>
-
 
         <p
             class="transfer-description"
@@ -1697,7 +1565,6 @@ input {
             >
                 준비 중
             </span>
-
 
             <span
                 id="progress-percent"
@@ -1786,7 +1653,7 @@ input {
 
 
 <!-- ======================================================
-     파라다이스 중앙광장
+     파라다이스
      ====================================================== -->
 
 <section
@@ -1794,28 +1661,15 @@ input {
     class="screen hidden"
 >
 
-    <!-- 중앙광장 이미지 -->
-
     <div
         id="plaza-image"
     ></div>
 
 
-    <!-- 약한 화면 보정 -->
-
-    <div
-        class="paradise-vignette"
-    ></div>
-
-
-    <!-- 처음 눈을 뜰 때 흰빛 -->
-
     <div
         id="arrival-white"
     ></div>
 
-
-    <!-- 환영 문구 -->
 
     <div
         id="arrival-message"
@@ -1854,9 +1708,6 @@ input {
     </div>
 
 
-
-    <!-- 이후 작게 남는 시민 표시 -->
-
     <div
         id="resident-indicator"
     >
@@ -1871,7 +1722,6 @@ input {
 
     </div>
 
-
 </section>
 
 
@@ -1879,16 +1729,14 @@ input {
 <script>
 
 /* =========================================================
-   이미지 이름
+   파일
    ========================================================= */
 
 const entryImage =
     "scene-entry.png";
 
-
 const paradiseImage =
     "paradise-plaza.png";
-
 
 
 /* =========================================================
@@ -1908,11 +1756,8 @@ const scenes = [
             "입주 상담센터",
 
         dialogue: [
-
             "신청하신 입주 절차와 계약 내용은 모두 확인됐어요.",
-
             "긴장하지 않으셔도 돼요. 천천히 하나씩 안내해드릴게요."
-
         ]
     },
 
@@ -1928,13 +1773,9 @@ const scenes = [
             "입주 동기화실 이동 중",
 
         dialogue: [
-
             "이쪽이 입주 동기화실이에요. 금방 도착해요.",
-
             "파라다이스에 들어가시면 전력 제한 시간도, 주거 배정도 신경 쓰실 필요 없어요.",
-
             "…저도 입주 순번이 아직 멀어서. 조금 부럽네요."
-
         ]
     },
 
@@ -1950,42 +1791,32 @@ const scenes = [
             "입주 동기화실",
 
         dialogue: [
-
             "여기까지예요. 이제 편하게 기대시면 됩니다.",
-
             "눈을 감으셔도 괜찮아요. 다음에 눈을 뜨시면 파라다이스일 거예요."
-
         ]
     }
 
 ];
 
 
-
 /* =========================================================
-   동기화 단계
+   동기화
    ========================================================= */
 
 const processSteps = [
 
     "의식 이식 준비",
-
     "시민 데이터 변환",
-
     "감각 인터페이스 연결",
-
     "파라다이스 환경 동기화",
-
     "신원 데이터 정합성 확인",
-
     "입주 무결성 확인"
 
 ];
 
 
-
 /* =========================================================
-   HTML 요소
+   요소
    ========================================================= */
 
 const cinematic =
@@ -1993,36 +1824,30 @@ const cinematic =
         "cinematic"
     );
 
-
 const sceneImage =
     document.getElementById(
         "scene-image"
     );
-
 
 const startButton =
     document.getElementById(
         "start-button"
     );
 
-
 const dialogue =
     document.getElementById(
         "dialogue"
     );
-
 
 const dialogueText =
     document.getElementById(
         "dialogue-text"
     );
 
-
 const sceneLabel =
     document.getElementById(
         "scene-label"
     );
-
 
 const eyeClose =
     document.getElementById(
@@ -2030,30 +1855,25 @@ const eyeClose =
     );
 
 
-
 const transfer =
     document.getElementById(
         "transfer"
     );
-
 
 const processList =
     document.getElementById(
         "process-list"
     );
 
-
 const progressBar =
     document.getElementById(
         "progress-bar"
     );
 
-
 const progressState =
     document.getElementById(
         "progress-state"
     );
-
 
 const progressPercent =
     document.getElementById(
@@ -2061,18 +1881,15 @@ const progressPercent =
     );
 
 
-
 const identity =
     document.getElementById(
         "identity"
     );
 
-
 const identityForm =
     document.getElementById(
         "identity-form"
     );
-
 
 const residentName =
     document.getElementById(
@@ -2080,30 +1897,25 @@ const residentName =
     );
 
 
-
 const paradise =
     document.getElementById(
         "paradise"
     );
-
 
 const arrivalMessage =
     document.getElementById(
         "arrival-message"
     );
 
-
 const welcomeName =
     document.getElementById(
         "welcome-name"
     );
 
-
 const residentIndicator =
     document.getElementById(
         "resident-indicator"
     );
-
 
 const residentIndicatorName =
     document.getElementById(
@@ -2111,47 +1923,52 @@ const residentIndicatorName =
     );
 
 
-
 /* =========================================================
-   현재 진행 상태
+   상태
    ========================================================= */
 
-let currentScene =
-    0;
+let currentScene = 0;
+let currentDialogue = 0;
 
-
-let currentDialogue =
-    0;
-
-
-let started =
-    false;
-
-
-let locked =
-    false;
-
+let started = false;
+let locked = false;
 
 
 /* =========================================================
-   기다리기
+   대기
    ========================================================= */
 
 function wait(ms) {
 
     return new Promise(
-
         resolve =>
-
             setTimeout(
                 resolve,
                 ms
             )
-
     );
 
 }
 
+
+/* =========================================================
+   애니메이션 강제 한 프레임 대기
+   ========================================================= */
+
+function nextFrame() {
+
+    return new Promise(
+        resolve =>
+
+            requestAnimationFrame(
+                () =>
+                    requestAnimationFrame(
+                        resolve
+                    )
+            )
+    );
+
+}
 
 
 /* =========================================================
@@ -2163,7 +1980,6 @@ function preloadImages() {
     const imageSources = [
 
         entryImage,
-
         paradiseImage,
 
         ...scenes.map(
@@ -2190,13 +2006,11 @@ function preloadImages() {
 
 }
 
-
 preloadImages();
 
 
-
 /* =========================================================
-   최초 화면
+   첫 화면
    ========================================================= */
 
 function showEntryScreen() {
@@ -2204,16 +2018,8 @@ function showEntryScreen() {
     sceneImage.style.backgroundImage =
         `url("${entryImage}")`;
 
-
     sceneImage.style.backgroundPosition =
-        "center center";
-
-
-    sceneImage.classList.remove(
-        "changing",
-        "closing"
-    );
-
+        "center";
 
     sceneImage.classList.add(
         "move"
@@ -2221,122 +2027,121 @@ function showEntryScreen() {
 
 }
 
-
 showEntryScreen();
 
 
-
 /* =========================================================
-   현실 장면 표시
+   장면 전환
    ========================================================= */
 
-function showScene(
-    index,
-    immediate = false
-) {
+async function switchScene(index) {
 
     const scene =
         scenes[index];
-
 
     if (!scene) {
         return;
     }
 
 
-    function applyScene() {
-
-        sceneImage.style.backgroundImage =
-            `url("${scene.image}")`;
-
-
-        sceneImage.style.backgroundPosition =
-            scene.position;
-
-
-        sceneLabel.textContent =
-            scene.label;
-
-
-        sceneImage.classList.remove(
-            "changing",
-            "move",
-            "closing"
-        );
-
-
-        requestAnimationFrame(
-
-            () => {
-
-                sceneImage.classList.add(
-                    "move"
-                );
-
-            }
-
-        );
-
-    }
-
-
-    if (immediate) {
-
-        applyScene();
-
-        return;
-    }
-
+    /*
+        기존 장면 천천히 사라짐
+    */
 
     sceneImage.classList.add(
         "changing"
     );
 
 
-    setTimeout(
-        applyScene,
-        520
+    await wait(
+        900
+    );
+
+
+    /*
+        완전히 사라진 상태에서 이미지 교체
+    */
+
+    sceneImage.style.backgroundImage =
+        `url("${scene.image}")`;
+
+    sceneImage.style.backgroundPosition =
+        scene.position;
+
+    sceneLabel.textContent =
+        scene.label;
+
+
+    sceneImage.classList.remove(
+        "move",
+        "closing"
+    );
+
+
+    /*
+        새 이미지가 opacity 0인 상태로
+        브라우저에 한번 그려지게 함
+    */
+
+    await nextFrame();
+
+
+    /*
+        새 장면 천천히 등장
+    */
+
+    sceneImage.classList.remove(
+        "changing"
+    );
+
+
+    await nextFrame();
+
+
+    sceneImage.classList.add(
+        "move"
+    );
+
+
+    await wait(
+        700
     );
 
 }
 
 
-
 /* =========================================================
-   대사 표시
+   대사
    ========================================================= */
 
-function showDialogue(text) {
+async function showDialogue(text) {
 
     dialogue.classList.remove(
         "show"
     );
 
 
-    setTimeout(
-
-        () => {
-
-            dialogueText.textContent =
-                text;
+    await wait(
+        260
+    );
 
 
-            dialogue.classList.add(
-                "show"
-            );
+    dialogueText.textContent =
+        text;
 
-        },
 
-        150
+    await nextFrame();
 
+
+    dialogue.classList.add(
+        "show"
     );
 
 }
 
 
-
 /* =========================================================
-   입주 시작
+   시작
    ========================================================= */
 
 async function beginStory() {
@@ -2345,13 +2150,8 @@ async function beginStory() {
         return;
     }
 
-
-    started =
-        true;
-
-
-    locked =
-        true;
+    started = true;
+    locked = true;
 
 
     startButton.classList.add(
@@ -2360,66 +2160,16 @@ async function beginStory() {
 
 
     await wait(
-        400
+        500
     );
 
 
-    sceneImage.classList.add(
-        "changing"
-    );
+    currentScene = 0;
+    currentDialogue = 0;
 
 
-    await wait(
-        650
-    );
-
-
-    currentScene =
-        0;
-
-
-    currentDialogue =
-        0;
-
-
-    const firstScene =
-        scenes[0];
-
-
-    sceneImage.style.backgroundImage =
-        `url("${firstScene.image}")`;
-
-
-    sceneImage.style.backgroundPosition =
-        firstScene.position;
-
-
-    sceneLabel.textContent =
-        firstScene.label;
-
-
-    sceneImage.classList.remove(
-        "changing",
-        "move",
-        "closing"
-    );
-
-
-    requestAnimationFrame(
-
-        () => {
-
-            sceneImage.classList.add(
-                "move"
-            );
-
-        }
-
-    );
-
-
-    await wait(
-        650
+    await switchScene(
+        0
     );
 
 
@@ -2428,20 +2178,21 @@ async function beginStory() {
     );
 
 
-    showDialogue(
+    await nextFrame();
+
+
+    await showDialogue(
         scenes[0].dialogue[0]
     );
 
 
-    locked =
-        false;
+    locked = false;
 
 }
 
 
-
 /* =========================================================
-   현실 이야기 진행
+   진행
    ========================================================= */
 
 async function advanceStory() {
@@ -2463,7 +2214,9 @@ async function advanceStory() {
         scenes[currentScene];
 
 
-    /* 같은 장면 다음 대사 */
+    /*
+        같은 이미지 안 다음 대사
+    */
 
     if (
         currentDialogue
@@ -2474,7 +2227,7 @@ async function advanceStory() {
         currentDialogue++;
 
 
-        showDialogue(
+        await showDialogue(
             scene.dialogue[
                 currentDialogue
             ]
@@ -2485,7 +2238,9 @@ async function advanceStory() {
     }
 
 
-    /* 다음 장면 */
+    /*
+        다음 이미지
+    */
 
     if (
         currentScene
@@ -2493,8 +2248,7 @@ async function advanceStory() {
         scenes.length - 1
     ) {
 
-        locked =
-            true;
+        locked = true;
 
 
         dialogue.classList.remove(
@@ -2502,44 +2256,41 @@ async function advanceStory() {
         );
 
 
+        await wait(
+            400
+        );
+
+
         currentScene++;
+        currentDialogue = 0;
 
 
-        currentDialogue =
-            0;
-
-
-        showScene(
+        await switchScene(
             currentScene
         );
 
 
-        await wait(
-            850
-        );
-
-
-        showDialogue(
+        await showDialogue(
             scenes[
                 currentScene
             ].dialogue[0]
         );
 
 
-        locked =
-            false;
+        locked = false;
 
 
         return;
     }
 
 
-    /* 마지막 현실 장면 */
+    /*
+        현실 마지막
+    */
 
     closeEyes();
 
 }
-
 
 
 /* =========================================================
@@ -2552,10 +2303,12 @@ async function closeEyes() {
         return;
     }
 
+    locked = true;
 
-    locked =
-        true;
 
+    /*
+        먼저 대사가 천천히 사라짐
+    */
 
     dialogue.classList.remove(
         "show"
@@ -2563,17 +2316,25 @@ async function closeEyes() {
 
 
     await wait(
-        280
+        500
     );
 
 
     /*
-        위아래 시야가 닫히면서
-        이미지 자체도 점점 흐려짐
+        시야 흐려짐 시작
     */
 
     sceneImage.classList.add(
         "closing"
+    );
+
+
+    /*
+        위아래 눈꺼풀도 거의 동시에 닫힘
+    */
+
+    await wait(
+        100
     );
 
 
@@ -2582,8 +2343,12 @@ async function closeEyes() {
     );
 
 
+    /*
+        완전히 눈 감을 때까지
+    */
+
     await wait(
-        3250
+        3500
     );
 
 
@@ -2602,9 +2367,8 @@ async function closeEyes() {
 }
 
 
-
 /* =========================================================
-   동기화 목록 만들기
+   프로세스 렌더링
    ========================================================= */
 
 function renderProcess() {
@@ -2622,7 +2386,6 @@ function renderProcess() {
 
                 <div
                     class="process-item"
-                    data-step="${index}"
                 >
 
                     <span
@@ -2659,7 +2422,6 @@ function renderProcess() {
         .join("");
 
 }
-
 
 
 /* =========================================================
@@ -2708,11 +2470,9 @@ async function runTransfer() {
         const before =
             Math.round(
                 (
-                    i
-                    /
+                    i /
                     processSteps.length
-                )
-                * 100
+                ) * 100
             );
 
 
@@ -2726,8 +2486,8 @@ async function runTransfer() {
 
         await wait(
             i === 0
-            ? 850
-            : 1050
+            ? 900
+            : 1100
         );
 
 
@@ -2775,7 +2535,7 @@ async function runTransfer() {
 
 
     await wait(
-        950
+        1000
     );
 
 
@@ -2789,31 +2549,30 @@ async function runTransfer() {
     );
 
 
-    setTimeout(
-
-        () => {
-
-            residentName.focus();
-
-        },
-
-        250
-
-    );
+    residentName.focus();
 
 }
 
 
-
 /* =========================================================
-   파라다이스 진입
+   파라다이스 입장
    ========================================================= */
 
 async function enterParadise(name) {
 
     /*
-        이름 입력 화면 제거
+        이름 화면부터 페이드 아웃
     */
+
+    identity.classList.add(
+        "fade-out"
+    );
+
+
+    await wait(
+        850
+    );
+
 
     identity.classList.add(
         "hidden"
@@ -2821,7 +2580,7 @@ async function enterParadise(name) {
 
 
     /*
-        이름 반영
+        이름 적용
     */
 
     welcomeName.textContent =
@@ -2833,8 +2592,8 @@ async function enterParadise(name) {
 
 
     /*
-        파라다이스 화면 등장
-        이 순간 화면은 아직 완전히 하얀 상태
+        파라다이스 화면 표시
+        이때는 흰 화면
     */
 
     paradise.classList.remove(
@@ -2843,15 +2602,16 @@ async function enterParadise(name) {
 
 
     /*
-        브라우저가 한 프레임 그린 뒤
-        awake 클래스를 붙여야
-        페이드 애니메이션이 정상 동작함
+        시작 상태를 확실히 브라우저에 그림
     */
 
-    await wait(
-        100
-    );
+    await nextFrame();
 
+
+    /*
+        눈부신 흰색이 천천히 걷히고
+        도시 초점이 맞기 시작
+    */
 
     paradise.classList.add(
         "awake"
@@ -2859,11 +2619,17 @@ async function enterParadise(name) {
 
 
     /*
-        흰빛이 조금 걷힌 뒤 환영 문구 등장
+        아직 눈이 완전히 적응하기 전에
+        환영 문구 등장
     */
 
     await wait(
-        1650
+        1900
+    );
+
+
+    arrivalMessage.classList.remove(
+        "fade-away"
     );
 
 
@@ -2873,16 +2639,16 @@ async function enterParadise(name) {
 
 
     /*
-        잠시 보여줌
+        충분히 읽는 시간
     */
 
     await wait(
-        3400
+        3600
     );
 
 
     /*
-        환영 문구 천천히 사라짐
+        환영 문구 페이드 아웃
     */
 
     arrivalMessage.classList.remove(
@@ -2891,17 +2657,17 @@ async function enterParadise(name) {
 
 
     arrivalMessage.classList.add(
-        "hide-message"
+        "fade-away"
     );
 
 
     await wait(
-        1300
+        1900
     );
 
 
     /*
-        왼쪽 위에 아주 작은 시민 표시만 남김
+        이제 작은 시민 표시만 등장
     */
 
     residentIndicator.classList.add(
@@ -2911,9 +2677,8 @@ async function enterParadise(name) {
 }
 
 
-
 /* =========================================================
-   이름 입력 완료
+   이름 입력
    ========================================================= */
 
 identityForm.addEventListener(
@@ -2943,7 +2708,6 @@ identityForm.addEventListener(
 );
 
 
-
 /* =========================================================
    시작 버튼
    ========================================================= */
@@ -2961,7 +2725,6 @@ startButton.addEventListener(
     }
 
 );
-
 
 
 /* =========================================================
@@ -2990,7 +2753,6 @@ cinematic.addEventListener(
 );
 
 
-
 /* =========================================================
    키보드
    ========================================================= */
@@ -3002,8 +2764,8 @@ document.addEventListener(
     event => {
 
         /*
-            이름 입력 화면에서는
-            Enter가 폼 제출용
+            이름 입력 중이면
+            엔터는 폼 제출에 사용
         */
 
         if (
@@ -3016,8 +2778,8 @@ document.addEventListener(
 
 
         /*
-            파라다이스에 도착한 뒤에는
-            더 이상 스페이스/엔터로 진행하지 않음
+            파라다이스 도착 후에는
+            진행키 사용 안 함
         */
 
         if (
@@ -3037,7 +2799,6 @@ document.addEventListener(
 
             event.preventDefault();
 
-
             advanceStory();
 
         }
@@ -3046,10 +2807,7 @@ document.addEventListener(
 
 );
 
-
 </script>
 
-
 </body>
-
 </html>
