@@ -17,7 +17,7 @@
 .brand{position:absolute;top:34px;right:45px;text-align:right;opacity:.72;text-shadow:0 2px 14px rgba(0,0,0,.55)}.brand strong{display:block;font-size:13px;letter-spacing:.22em}.brand span{display:block;margin-top:6px;font-size:8px;letter-spacing:.17em;color:rgba(255,255,255,.58)}
 
 /* 시작 */
-#start-button{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);width:min(520px,calc(100vw - 40px));padding:20px 28px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(8,10,12,.48);backdrop-filter:blur(14px);color:#fff;cursor:pointer;text-align:left;box-shadow:0 18px 60px rgba(0,0,0,.22);transition:.55s ease}
+#start-button{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);width:min(520px,calc(100vw - 40px));padding:20px 28px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(8,10,12,.48);backdrop-filter:blur(14px);color:#fff;cursor:pointer;text-align:left;box-shadow:0 18px 60px rgba(0,0,0,.22);transition:.55s}
 #start-button:hover{background:rgba(8,10,12,.64);border-color:rgba(255,255,255,.48);transform:translateX(-50%) translateY(-2px)}#start-button.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(10px)}
 .start-small{display:block;font-size:11px;color:rgba(255,255,255,.58)}.start-main{display:block;margin:5px 0 7px;font-size:clamp(20px,2.3vw,29px);font-weight:550}.start-help{display:block;font-size:11px;color:rgba(255,255,255,.42)}
 
@@ -106,20 +106,26 @@
 .dept-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.dept{padding:21px 17px;border-radius:12px;transition:.2s}.dept:hover{transform:translateY(-3px);background:rgba(255,255,255,.67);box-shadow:0 16px 34px rgba(30,100,125,.12)}
 .dept-icon{display:grid;place-items:center;width:34px;height:34px;margin-bottom:18px;border-radius:9px;background:rgba(73,161,190,.11);font-size:16px;color:#347e98}.dept b{display:block;font-size:14px;color:#1d4859}.dept p{margin:12px 0 0;font-size:11px;line-height:1.7;color:#50727f}
 
+/* 직원 카드 */
 .person-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
 .person{position:relative;overflow:hidden;min-height:270px;padding:25px 23px;border-radius:14px}
-.person::after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-50px;top:-50px;background:rgba(111,209,239,.12)}
-.person-field{position:relative;z-index:1;display:inline-block;padding:5px 8px;border-radius:6px;background:rgba(67,143,171,.11);font-size:10px;font-weight:700;color:#327893}
-.person h3{position:relative;z-index:1;margin:17px 0 8px;font-size:26px;color:#153b4a}
-.person-work{position:relative;z-index:1;display:block;font-size:10px;line-height:1.55;color:#597b88}
+.person::after{content:"";position:absolute;width:145px;height:145px;border-radius:50%;right:-52px;top:-52px;background:rgba(111,209,239,.10);pointer-events:none}
+.person-photo{position:absolute;z-index:3;top:19px;right:18px;width:104px;height:104px;border-radius:16px;overflow:hidden;background:rgba(255,255,255,.38);border:1px solid rgba(255,255,255,.86);box-shadow:0 9px 25px rgba(36,91,111,.12)}
+.person-photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:center center}
+.person-field{position:relative;z-index:1;display:inline-block;max-width:calc(100% - 118px);padding:5px 8px;border-radius:6px;background:rgba(67,143,171,.11);font-size:10px;font-weight:700;color:#327893}
+.person h3{position:relative;z-index:1;margin:17px 118px 8px 0;font-size:26px;color:#153b4a}
+.person-work{position:relative;z-index:1;display:block;min-height:32px;margin-right:112px;font-size:10px;line-height:1.55;color:#597b88}
 .person p{position:relative;z-index:1;margin:18px 0 0;font-size:11px;line-height:1.7;color:#4c6e7b}
 
+/* 시스템 */
 .system-list{display:grid;gap:10px}.system-row{display:grid;grid-template-columns:180px 1fr auto;gap:20px;align-items:center;padding:18px 20px;border-radius:11px}.system-row b{font-size:12px;color:#214b5b}.system-row p{margin:0;font-size:11px;color:#4f707c}.system-state{padding:5px 8px;border-radius:20px;background:rgba(218,247,241,.8);color:#297768;font-size:9px;white-space:nowrap}
 
 @media(max-width:800px){
 .brand{display:none}#dialogue{left:16px;bottom:24px;width:calc(100vw - 32px)}#arrival-message{width:calc(100vw - 28px);padding:28px 18px}
 .node-card{padding:8px 10px}.node-title{font-size:10px}.node-sub{display:none}
-.admin-shell{width:calc(100% - 28px)}.admin-topbar{margin-bottom:24px}.admin-hero{grid-template-columns:1fr;gap:20px;padding:23px}.admin-hero h1{font-size:48px}.info-grid,.person-grid{grid-template-columns:1fr}.dept-grid{grid-template-columns:1fr 1fr}.system-row{grid-template-columns:1fr}.status-grid{grid-template-columns:1fr 1fr}
+.admin-shell{width:calc(100% - 28px)}.admin-topbar{margin-bottom:24px}.admin-hero{grid-template-columns:1fr;gap:20px;padding:23px}.admin-hero h1{font-size:48px}
+.info-grid,.person-grid{grid-template-columns:1fr}.dept-grid{grid-template-columns:1fr 1fr}.system-row{grid-template-columns:1fr}.status-grid{grid-template-columns:1fr 1fr}
+.person-photo{width:96px;height:96px}.person-field{max-width:calc(100% - 110px)}.person h3{margin-right:108px}.person-work{margin-right:105px}
 }
 </style>
 </head>
@@ -134,11 +140,27 @@
 </section>
 
 <section id="transfer" class="screen hidden">
-<div class="transfer-panel"><div class="system-brand">VIRTUAL PARADISE</div><div class="system-sub">RESIDENCY SYNCHRONIZATION</div><h1>입주 동기화 진행 중</h1><p class="transfer-description">안전한 시민 데이터 전환을 진행하고 있습니다. 잠시만 기다려 주세요.</p><div id="process-list"></div><div class="progress-track"><div id="progress-bar"></div></div><div class="progress-info"><span id="progress-state">준비 중</span><span id="progress-percent">0%</span></div></div>
+<div class="transfer-panel">
+<div class="system-brand">VIRTUAL PARADISE</div>
+<div class="system-sub">RESIDENCY SYNCHRONIZATION</div>
+<h1>입주 동기화 진행 중</h1>
+<p class="transfer-description">안전한 시민 데이터 전환을 진행하고 있습니다. 잠시만 기다려 주세요.</p>
+<div id="process-list"></div>
+<div class="progress-track"><div id="progress-bar"></div></div>
+<div class="progress-info"><span id="progress-state">준비 중</span><span id="progress-percent">0%</span></div>
+</div>
 </section>
 
 <section id="identity" class="screen hidden">
-<form id="identity-form" class="identity-card"><div class="identity-check">✓</div><p class="identity-small">FINAL SYNCHRONIZATION</p><h1>최종 동기화 확인</h1><p>시민 데이터 무결성 검증이 완료되었습니다.<br>마지막으로 입주자 본인 확인을 진행해 주세요.</p><label for="resident-name">입주자 확인명</label><input id="resident-name" type="text" maxlength="24" autocomplete="off" placeholder="이름을 입력하세요" required><button class="identity-button" type="submit">확인하고 입주하기</button></form>
+<form id="identity-form" class="identity-card">
+<div class="identity-check">✓</div>
+<p class="identity-small">FINAL SYNCHRONIZATION</p>
+<h1>최종 동기화 확인</h1>
+<p>시민 데이터 무결성 검증이 완료되었습니다.<br>마지막으로 입주자 본인 확인을 진행해 주세요.</p>
+<label for="resident-name">입주자 확인명</label>
+<input id="resident-name" type="text" maxlength="24" autocomplete="off" placeholder="이름을 입력하세요" required>
+<button class="identity-button" type="submit">확인하고 입주하기</button>
+</form>
 </section>
 
 <section id="paradise" class="screen hidden">
@@ -160,8 +182,8 @@
 
 <section id="admin-page" class="screen hidden">
 <div id="admin-bg"></div>
-<div class="admin-shell">
 
+<div class="admin-shell">
 <header class="admin-topbar">
 <div class="admin-brand"><strong>PARADISE ADMINISTRATION</strong><span>파라다이스 내부 관리국</span></div>
 <button id="admin-back" class="admin-back">← 중앙광장으로</button>
@@ -197,66 +219,20 @@
 
 <section id="panel-overview" class="admin-panel active">
 <div class="info-grid">
-
-<article class="info-card">
-<span class="info-num">01</span>
-<h3>시민 생활 지원</h3>
-<p>입주 이후 필요한 시민 정보, 주거, 계약 기록과 각종 생활 행정을 지원합니다. 일상생활 중 행정적인 도움이 필요할 때 가장 먼저 찾게 되는 곳입니다.</p>
-</article>
-
-<article class="info-card">
-<span class="info-num">02</span>
-<h3>안전과 복구</h3>
-<p>범죄나 위험 월드부터 데이터 손상, 사고와 초기 오버플로까지 시민의 안전과 관련된 문제에 대응합니다. 상황에 따라 치안과 의료·복구 인력이 함께 움직입니다.</p>
-</article>
-
-<article class="info-card">
-<span class="info-num">03</span>
-<h3>파라다이스 운영 지원</h3>
-<p>가디언과 스타터 룸 운영, 월드 인증, 시스템 오류 조사 등 파라다이스의 다양한 시설과 서비스가 안정적으로 유지되도록 지원합니다.</p>
-</article>
-
+<article class="info-card"><span class="info-num">01</span><h3>시민 생활 지원</h3><p>입주 이후 필요한 시민 정보, 주거, 계약 기록과 각종 생활 행정을 지원합니다. 일상생활 중 행정적인 도움이 필요할 때 가장 먼저 찾게 되는 곳입니다.</p></article>
+<article class="info-card"><span class="info-num">02</span><h3>안전과 복구</h3><p>범죄나 위험 월드부터 데이터 손상, 사고와 초기 오버플로까지 시민의 안전과 관련된 문제에 대응합니다. 상황에 따라 치안과 의료·복구 인력이 함께 움직입니다.</p></article>
+<article class="info-card"><span class="info-num">03</span><h3>파라다이스 운영 지원</h3><p>가디언과 스타터 룸 운영, 월드 인증, 시스템 오류 조사 등 파라다이스의 다양한 시설과 서비스가 안정적으로 유지되도록 지원합니다.</p></article>
 </div>
-
-<div class="service-note">
-<strong>처음 방문하셨나요?</strong><br>
-일반적인 생활 행정은 시민행정 업무를 이용하면 됩니다. 사고나 안전 문제가 발생한 경우에는 상황에 따라 치안·보안 또는 의료·복구 업무로 연결됩니다.
-</div>
+<div class="service-note"><strong>처음 방문하셨나요?</strong><br>일반적인 생활 행정은 시민행정 업무를 이용하면 됩니다. 사고나 안전 문제가 발생한 경우에는 상황에 따라 치안·보안 또는 의료·복구 업무로 연결됩니다.</div>
 </section>
 
 <section id="panel-departments" class="admin-panel">
 <div class="dept-grid">
-
-<article class="dept">
-<div class="dept-icon">◫</div>
-<b>시민행정</b>
-<p>시민 정보, 주거, 계약 기록과 생활에 필요한 각종 행정 업무를 지원합니다.</p>
-</article>
-
-<article class="dept">
-<div class="dept-icon">◇</div>
-<b>치안 · 보안</b>
-<p>범죄, 위험 방송, 불법 월드, 무단 침입과 각종 현장 안전 문제에 대응합니다.</p>
-</article>
-
-<article class="dept">
-<div class="dept-icon">＋</div>
-<b>의료 · 복구 · 안정화</b>
-<p>데이터 손상, 사고 후 복구, 정신 안정과 초기 오버플로 증상에 대응합니다.</p>
-</article>
-
-<article class="dept">
-<div class="dept-icon">☆</div>
-<b>가디언 · 스타터 룸</b>
-<p>가디언 활동 지원과 스타터 룸 후보의 평가, 일정, 훈련 및 생활관리를 맡습니다.</p>
-</article>
-
-<article class="dept">
-<div class="dept-icon">⌁</div>
-<b>시스템 · 기술 감사</b>
-<p>월드 인증, 시스템 오류와 오래된 코드에서 발생하는 이상 징후를 조사합니다.</p>
-</article>
-
+<article class="dept"><div class="dept-icon">◫</div><b>시민행정</b><p>시민 정보, 주거, 계약 기록과 생활에 필요한 각종 행정 업무를 지원합니다.</p></article>
+<article class="dept"><div class="dept-icon">◇</div><b>치안 · 보안</b><p>범죄, 위험 방송, 불법 월드, 무단 침입과 각종 현장 안전 문제에 대응합니다.</p></article>
+<article class="dept"><div class="dept-icon">＋</div><b>의료 · 복구 · 안정화</b><p>데이터 손상, 사고 후 복구, 정신 안정과 초기 오버플로 증상에 대응합니다.</p></article>
+<article class="dept"><div class="dept-icon">☆</div><b>가디언 · 스타터 룸</b><p>가디언 활동 지원과 스타터 룸 후보의 평가, 일정, 훈련 및 생활관리를 맡습니다.</p></article>
+<article class="dept"><div class="dept-icon">⌁</div><b>시스템 · 기술 감사</b><p>월드 인증, 시스템 오류와 오래된 코드에서 발생하는 이상 징후를 조사합니다.</p></article>
 </div>
 </section>
 
@@ -264,6 +240,7 @@
 <div class="person-grid">
 
 <article class="person">
+<div class="person-photo"><img src="admin-dana.png" alt="다나" onerror="this.parentElement.style.display='none'"></div>
 <span class="person-field">가디언 · 스타터 룸 관리</span>
 <h3>다나</h3>
 <span class="person-work">후보 평가 · 생활관리 · 상담</span>
@@ -271,6 +248,7 @@
 </article>
 
 <article class="person">
+<div class="person-photo"><img src="admin-serin.png" alt="세린" onerror="this.parentElement.style.display='none'"></div>
 <span class="person-field">의료 · 복구 · 안정화</span>
 <h3>세린</h3>
 <span class="person-work">데이터 손상 · 정신 안정 · 초기 오버플로 대응</span>
@@ -278,6 +256,7 @@
 </article>
 
 <article class="person">
+<div class="person-photo"><img src="admin-ren.png" alt="렌" onerror="this.parentElement.style.display='none'"></div>
 <span class="person-field">치안 · 보안</span>
 <h3>렌</h3>
 <span class="person-work">현장 출동 · 불법 월드 · NULL 관련 사건</span>
@@ -285,6 +264,7 @@
 </article>
 
 <article class="person">
+<div class="person-photo"><img src="admin-sia.png" alt="시아" onerror="this.parentElement.style.display='none'"></div>
 <span class="person-field">시스템 · 기술 감사</span>
 <h3>시아</h3>
 <span class="person-work">월드 인증 · 오류 조사 · 레거시 코드 감사</span>
@@ -296,37 +276,11 @@
 
 <section id="panel-systems" class="admin-panel">
 <div class="system-list">
-
-<div class="system-row">
-<b>시민 정보 · 생활 행정</b>
-<p>시민 정보와 주거, 계약 기록 등 일상생활에 필요한 행정 서비스를 지원합니다.</p>
-<span class="system-state">정상 운영</span>
-</div>
-
-<div class="system-row">
-<b>월드 인증</b>
-<p>새로운 월드와 크리에이터 기능이 정해진 안전 기준에 맞는지 확인합니다.</p>
-<span class="system-state">정상 운영</span>
-</div>
-
-<div class="system-row">
-<b>복구 · 안정화</b>
-<p>사고나 데이터 손상이 발생한 시민의 상태를 확인하고 필요한 복구와 안정화 절차를 진행합니다.</p>
-<span class="system-state">정상 운영</span>
-</div>
-
-<div class="system-row">
-<b>가디언 운영 지원</b>
-<p>현역 가디언의 활동과 스타터 룸 후보들의 평가·훈련·생활 관련 행정 업무를 지원합니다.</p>
-<span class="system-state">정상 운영</span>
-</div>
-
-<div class="system-row">
-<b>기술 감사</b>
-<p>오래된 코드와 월드 호환 문제, 시스템 오류에서 발생하는 이상 징후를 지속적으로 확인합니다.</p>
-<span class="system-state">상시 확인</span>
-</div>
-
+<div class="system-row"><b>시민 정보 · 생활 행정</b><p>시민 정보와 주거, 계약 기록 등 일상생활에 필요한 행정 서비스를 지원합니다.</p><span class="system-state">정상 운영</span></div>
+<div class="system-row"><b>월드 인증</b><p>새로운 월드와 크리에이터 기능이 정해진 안전 기준에 맞는지 확인합니다.</p><span class="system-state">정상 운영</span></div>
+<div class="system-row"><b>복구 · 안정화</b><p>사고나 데이터 손상이 발생한 시민의 상태를 확인하고 필요한 복구와 안정화 절차를 진행합니다.</p><span class="system-state">정상 운영</span></div>
+<div class="system-row"><b>가디언 운영 지원</b><p>현역 가디언의 활동과 스타터 룸 후보들의 평가·훈련·생활 관련 행정 업무를 지원합니다.</p><span class="system-state">정상 운영</span></div>
+<div class="system-row"><b>기술 감사</b><p>오래된 코드와 월드 호환 문제, 시스템 오류에서 발생하는 이상 징후를 지속적으로 확인합니다.</p><span class="system-state">상시 확인</span></div>
 </div>
 </section>
 
@@ -340,13 +294,12 @@ const scenes=[
 {image:"scene-hallway.png",label:"입주 동기화실 이동 중",dialogue:["이쪽이 입주 동기화실이에요. 금방 도착해요.","파라다이스에 들어가시면 전력 제한 시간도, 주거 배정도 신경 쓰실 필요 없어요.","…저도 입주 순번이 아직 멀어서. 조금 부럽네요."]},
 {image:"scene-sync-room.png",label:"입주 동기화실",dialogue:["여기까지예요. 이제 편하게 기대시면 됩니다.","눈을 감으셔도 괜찮아요. 다음에 눈을 뜨시면 파라다이스일 거예요."]}
 ];
-
 const processSteps=["의식 이식 준비","시민 데이터 변환","감각 인터페이스 연결","파라다이스 환경 동기화","신원 데이터 정합성 확인","입주 무결성 확인"];
 const $=id=>document.getElementById(id),sceneImage=$("scene-image"),startButton=$("start-button"),dialogue=$("dialogue"),dialogueText=$("dialogue-text"),sceneLabel=$("scene-label"),eyeClose=$("eye-close"),cinematic=$("cinematic"),transfer=$("transfer"),processList=$("process-list"),progressBar=$("progress-bar"),progressState=$("progress-state"),progressPercent=$("progress-percent"),identity=$("identity"),identityForm=$("identity-form"),residentName=$("resident-name"),paradise=$("paradise"),arrivalMessage=$("arrival-message"),welcomeName=$("welcome-name"),residentIndicator=$("resident-indicator"),residentIndicatorName=$("resident-indicator-name"),mapUI=$("map-ui"),districtPreview=$("district-preview"),previewTitle=$("preview-title"),previewDesc=$("preview-desc"),adminPage=$("admin-page");
 let currentScene=0,currentDialogue=0,started=false,locked=false;
 const wait=ms=>new Promise(r=>setTimeout(r,ms)),nextFrame=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
 
-["scene-entry.png","paradise-plaza.png","admin-interior.png",...scenes.map(s=>s.image)].forEach(src=>{const i=new Image();i.src=src});
+["scene-entry.png","paradise-plaza.png","admin-interior.png","admin-dana.png","admin-serin.png","admin-ren.png","admin-sia.png",...scenes.map(s=>s.image)].forEach(src=>{const i=new Image();i.src=src});
 sceneImage.style.backgroundImage='url("scene-entry.png")';sceneImage.classList.add("move");
 
 async function switchScene(i){const s=scenes[i];sceneImage.classList.add("changing");await wait(900);sceneImage.style.backgroundImage=`url("${s.image}")`;sceneLabel.textContent=s.label;sceneImage.classList.remove("move","closing");await nextFrame();sceneImage.classList.remove("changing");await nextFrame();sceneImage.classList.add("move");await wait(700)}
@@ -355,81 +308,21 @@ async function beginStory(){if(started)return;started=locked=true;startButton.cl
 async function advanceStory(){if(!started){beginStory();return}if(locked)return;const s=scenes[currentScene];if(currentDialogue<s.dialogue.length-1){currentDialogue++;await showDialogue(s.dialogue[currentDialogue]);return}if(currentScene<scenes.length-1){locked=true;dialogue.classList.remove("show");await wait(400);currentScene++;currentDialogue=0;await switchScene(currentScene);await showDialogue(scenes[currentScene].dialogue[0]);locked=false;return}closeEyes()}
 async function closeEyes(){if(locked)return;locked=true;dialogue.classList.remove("show");await wait(500);sceneImage.classList.add("closing");await wait(100);eyeClose.classList.add("close");await wait(3500);cinematic.classList.add("hidden");transfer.classList.remove("hidden");runTransfer()}
 function renderProcess(){processList.innerHTML=processSteps.map((s,i)=>`<div class="process-item"><span class="process-number">${String(i+1).padStart(2,"0")}</span><span class="process-label">${s}</span><span class="process-status">대기</span></div>`).join("")}
+async function runTransfer(){renderProcess();const items=[...processList.querySelectorAll(".process-item")];for(let i=0;i<items.length;i++){const item=items[i];item.classList.add("active");item.querySelector(".process-status").textContent="진행 중";progressState.textContent=processSteps[i];let n=Math.round(i/processSteps.length*100);progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;await wait(i?1100:900);item.classList.remove("active");item.classList.add("complete");item.querySelector(".process-status").textContent="완료";n=Math.round((i+1)/processSteps.length*100);progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`}progressState.textContent="모든 검증 완료";await wait(1000);transfer.classList.add("hidden");identity.classList.remove("hidden");residentName.focus()}
 
-async function runTransfer(){
-renderProcess();
-const items=[...processList.querySelectorAll(".process-item")];
-for(let i=0;i<items.length;i++){
-const item=items[i];
-item.classList.add("active");
-item.querySelector(".process-status").textContent="진행 중";
-progressState.textContent=processSteps[i];
-let n=Math.round(i/processSteps.length*100);
-progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;
-await wait(i?1100:900);
-item.classList.remove("active");item.classList.add("complete");
-item.querySelector(".process-status").textContent="완료";
-n=Math.round((i+1)/processSteps.length*100);
-progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;
-}
-progressState.textContent="모든 검증 완료";
-await wait(1000);
-transfer.classList.add("hidden");
-identity.classList.remove("hidden");
-residentName.focus();
-}
-
-async function enterParadise(name){
-identity.classList.add("fade-out");await wait(850);identity.classList.add("hidden");
-welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;
-residentIndicatorName.textContent=name;
-paradise.classList.remove("hidden");await nextFrame();paradise.classList.add("awake");
-await wait(2600);arrivalMessage.classList.add("show");await wait(3800);
-arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");
-await wait(1800);residentIndicator.classList.add("show");mapUI.classList.add("ready");
-}
-
-async function openAdmin(){
-districtPreview.classList.remove("show");
-paradise.classList.add("leave");
-await wait(700);
-paradise.classList.add("hidden");
-paradise.classList.remove("leave");
-adminPage.classList.remove("hidden");
-adminPage.scrollTop=0;
-await nextFrame();
-adminPage.classList.add("show");
-}
-
-async function closeAdmin(){
-adminPage.classList.remove("show");
-await wait(600);
-adminPage.classList.add("hidden");
-paradise.classList.remove("hidden");
-await nextFrame();
-}
+async function enterParadise(name){identity.classList.add("fade-out");await wait(850);identity.classList.add("hidden");welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;paradise.classList.remove("hidden");await nextFrame();paradise.classList.add("awake");await wait(2600);arrivalMessage.classList.add("show");await wait(3800);arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");await wait(1800);residentIndicator.classList.add("show");mapUI.classList.add("ready")}
+async function openAdmin(){districtPreview.classList.remove("show");paradise.classList.add("leave");await wait(700);paradise.classList.add("hidden");paradise.classList.remove("leave");adminPage.classList.remove("hidden");adminPage.scrollTop=0;await nextFrame();adminPage.classList.add("show")}
+async function closeAdmin(){adminPage.classList.remove("show");await wait(600);adminPage.classList.add("hidden");paradise.classList.remove("hidden");await nextFrame()}
 
 identityForm.addEventListener("submit",e=>{e.preventDefault();const name=residentName.value.trim();if(name)enterParadise(name)});
 startButton.addEventListener("click",e=>{e.stopPropagation();beginStory()});
 cinematic.addEventListener("click",e=>{if(!e.target.closest("button"))advanceStory()});
 document.addEventListener("keydown",e=>{if(!identity.classList.contains("hidden")||!paradise.classList.contains("hidden"))return;if(e.key==="Enter"||e.code==="Space"){e.preventDefault();advanceStory()}});
 
-document.querySelectorAll(".map-node").forEach(node=>node.addEventListener("click",()=>{
-if(node.dataset.target==="admin"){openAdmin();return}
-previewTitle.textContent=node.dataset.title;
-previewDesc.textContent=node.dataset.desc;
-districtPreview.classList.add("show");
-}));
-
+document.querySelectorAll(".map-node").forEach(node=>node.addEventListener("click",()=>{if(node.dataset.target==="admin"){openAdmin();return}previewTitle.textContent=node.dataset.title;previewDesc.textContent=node.dataset.desc;districtPreview.classList.add("show")}));
 $("preview-close").addEventListener("click",()=>districtPreview.classList.remove("show"));
 $("admin-back").addEventListener("click",closeAdmin);
-
-document.querySelectorAll(".admin-tab").forEach(tab=>tab.addEventListener("click",()=>{
-document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));
-document.querySelectorAll(".admin-panel").forEach(p=>p.classList.remove("active"));
-tab.classList.add("active");
-$(`panel-${tab.dataset.panel}`).classList.add("active");
-}));
+document.querySelectorAll(".admin-tab").forEach(tab=>tab.addEventListener("click",()=>{document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".admin-panel").forEach(p=>p.classList.remove("active"));tab.classList.add("active");$(`panel-${tab.dataset.panel}`).classList.add("active")}));
 </script>
 </body>
 </html>
