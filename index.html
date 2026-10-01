@@ -7,18 +7,10 @@
 <title>VIRTUAL PARADISE — 입주 절차</title>
 
 <style>
-/* =========================================================
-   VIRTUAL PARADISE
-   ENTRY SEQUENCE v0.1
-   ========================================================= */
-
 :root {
     --white: #f7f6f1;
-    --soft-white: rgba(247, 246, 241, 0.72);
-
     --accent: #e7d7b2;
     --system: #b7d9ef;
-
     --dark: #050607;
 }
 
@@ -51,37 +43,25 @@ input {
     font: inherit;
 }
 
-
-/* =========================================================
-   공통
-   ========================================================= */
-
 .screen {
     position: fixed;
-
     inset: 0;
-
     width: 100vw;
     height: 100dvh;
 }
 
 
 /* =========================================================
-   1. 현실 파트
+   현실 장면
    ========================================================= */
 
 #cinematic {
     background: #050607;
-
     overflow: hidden;
 }
 
-
-/* 배경 이미지 */
-
 #scene-image {
     position: absolute;
-
     inset: -1.5%;
 
     background-position: center center;
@@ -102,22 +82,13 @@ input {
         filter 2.2s ease;
 }
 
-
-/* 장면 전환 */
-
 #scene-image.changing {
     opacity: 0;
 }
 
-
-/* 아주 느린 카메라 움직임 */
-
 #scene-image.move {
     transform: scale(1.045);
 }
-
-
-/* 마지막 시야 흐림 */
 
 #scene-image.blur {
     filter:
@@ -129,11 +100,10 @@ input {
 }
 
 
-/* 이미지 하단 가독성 */
+/* 화면 가장자리 어둡게 */
 
 .vignette {
     position: absolute;
-
     inset: 0;
 
     pointer-events: none;
@@ -153,7 +123,7 @@ input {
 }
 
 
-/* 우측 상단 작은 브랜드 */
+/* 우측 상단 로고 */
 
 .brand {
     position: absolute;
@@ -236,7 +206,6 @@ input {
         opacity 0.45s ease;
 }
 
-
 #start-button:hover {
     background:
         rgba(8,10,12,0.64);
@@ -249,7 +218,6 @@ input {
         translateY(-2px);
 }
 
-
 #start-button.hide {
     opacity: 0;
 
@@ -260,7 +228,6 @@ input {
         translateY(8px);
 }
 
-
 .start-small {
     display: block;
 
@@ -270,12 +237,10 @@ input {
     font-size: 11px;
 }
 
-
 .start-main {
     display: block;
 
-    margin:
-        5px 0 7px;
+    margin: 5px 0 7px;
 
     font-size:
         clamp(
@@ -286,7 +251,6 @@ input {
 
     font-weight: 550;
 }
-
 
 .start-help {
     display: block;
@@ -330,12 +294,6 @@ input {
     border-top:
         1px solid rgba(255,255,255,0.34);
 
-    /*
-        말풍선도 아니고
-        영화식 검정 자막 박스도 아닌
-        아주 얇은 시네마틱 UI
-    */
-
     background:
         linear-gradient(
             90deg,
@@ -360,22 +318,14 @@ input {
         transform 0.3s ease;
 }
 
-
 #dialogue.show {
     opacity: 1;
-
-    transform:
-        translateY(0);
+    transform: translateY(0);
 }
-
-
-/* 이름 / 장소 */
 
 .dialogue-info {
     display: flex;
-
     align-items: center;
-
     gap: 11px;
 
     margin-bottom: 7px;
@@ -388,13 +338,10 @@ input {
         rgba(255,255,255,0.52);
 }
 
-
 #speaker {
     color: var(--accent);
-
     font-weight: bold;
 }
-
 
 #scene-label::before {
     content: "·";
@@ -404,9 +351,6 @@ input {
     color:
         rgba(255,255,255,0.30);
 }
-
-
-/* 실제 대사 */
 
 #dialogue-text {
     margin: 0;
@@ -427,9 +371,6 @@ input {
     word-break: keep-all;
 }
 
-
-/* 클릭 안내 */
-
 .dialogue-next {
     margin-top: 10px;
 
@@ -441,7 +382,6 @@ input {
         rgba(255,255,255,0.31);
 }
 
-
 .dialogue-next span {
     display: inline-block;
 
@@ -451,14 +391,10 @@ input {
         arrow 1.3s infinite ease-in-out;
 }
 
-
 @keyframes arrow {
-
     50% {
-        transform:
-            translateX(4px);
+        transform: translateX(4px);
     }
-
 }
 
 
@@ -468,7 +404,6 @@ input {
 
 #eye-close {
     position: absolute;
-
     inset: 0;
 
     z-index: 50;
@@ -476,10 +411,6 @@ input {
     pointer-events: none;
 
     background: black;
-
-    /*
-        위아래가 가운데로 닫히는 형태
-    */
 
     clip-path:
         inset(
@@ -498,7 +429,6 @@ input {
         );
 }
 
-
 #eye-close.close {
     clip-path:
         inset(
@@ -509,7 +439,7 @@ input {
 
 
 /* =========================================================
-   2. 동기화 프로세스
+   동기화 프로세스
    ========================================================= */
 
 #transfer {
@@ -528,7 +458,6 @@ input {
         #04070a;
 }
 
-
 .transfer-panel {
     width:
         min(
@@ -536,7 +465,6 @@ input {
             92vw
         );
 }
-
 
 .system-brand {
     font-size: 13px;
@@ -547,13 +475,10 @@ input {
         rgba(255,255,255,0.80);
 }
 
-
 .system-sub {
-    margin:
-        8px 0 46px;
+    margin: 8px 0 46px;
 
-    font-family:
-        monospace;
+    font-family: monospace;
 
     font-size: 10px;
 
@@ -563,10 +488,8 @@ input {
         rgba(183,217,239,0.48);
 }
 
-
 #transfer h1 {
-    margin:
-        0 0 10px;
+    margin: 0 0 10px;
 
     font-size:
         clamp(
@@ -578,10 +501,8 @@ input {
     font-weight: 500;
 }
 
-
 .transfer-description {
-    margin:
-        0 0 34px;
+    margin: 0 0 34px;
 
     color:
         rgba(255,255,255,0.52);
@@ -590,9 +511,6 @@ input {
 
     font-size: 14px;
 }
-
-
-/* 프로세스 목록 */
 
 #process-list {
     display: grid;
@@ -604,7 +522,6 @@ input {
     border-top:
         1px solid rgba(255,255,255,0.10);
 }
-
 
 .process-item {
     display: grid;
@@ -618,8 +535,7 @@ input {
 
     min-height: 48px;
 
-    padding:
-        0 4px;
+    padding: 0 4px;
 
     border-bottom:
         1px solid rgba(255,255,255,0.075);
@@ -631,23 +547,19 @@ input {
         color 0.4s ease;
 }
 
-
 .process-number,
 .process-status {
     font-family:
         monospace;
 }
 
-
 .process-number {
     font-size: 10px;
 }
 
-
 .process-label {
     font-size: 13px;
 }
-
 
 .process-status {
     font-size: 9px;
@@ -655,20 +567,15 @@ input {
     letter-spacing: 0.1em;
 }
 
-
 .process-item.active {
     color:
         rgba(255,255,255,0.92);
 }
 
-
 .process-item.complete {
     color:
         rgba(183,217,239,0.68);
 }
-
-
-/* 진행률 */
 
 .progress-track {
     height: 1px;
@@ -678,7 +585,6 @@ input {
     background:
         rgba(255,255,255,0.12);
 }
-
 
 #progress-bar {
     width: 0%;
@@ -695,7 +601,6 @@ input {
     transition:
         width 0.75s ease;
 }
-
 
 .progress-info {
     display: flex;
@@ -717,7 +622,7 @@ input {
 
 
 /* =========================================================
-   3. 이름 확인
+   이름 입력
    ========================================================= */
 
 #identity {
@@ -736,7 +641,6 @@ input {
         #06090b;
 }
 
-
 .identity-card {
     width:
         min(
@@ -746,7 +650,6 @@ input {
 
     text-align: center;
 }
-
 
 .identity-check {
     display: grid;
@@ -770,7 +673,6 @@ input {
     font-size: 20px;
 }
 
-
 .identity-small {
     margin:
         0 0 11px;
@@ -786,7 +688,6 @@ input {
         rgba(183,217,239,0.52);
 }
 
-
 .identity-card h1 {
     margin:
         0 0 15px;
@@ -801,7 +702,6 @@ input {
     font-weight: 500;
 }
 
-
 .identity-card > p {
     margin:
         0 0 38px;
@@ -813,7 +713,6 @@ input {
 
     font-size: 14px;
 }
-
 
 .identity-card label {
     display: block;
@@ -827,7 +726,6 @@ input {
 
     font-size: 12px;
 }
-
 
 #resident-name {
     width: 100%;
@@ -859,7 +757,6 @@ input {
         background 0.2s ease;
 }
 
-
 #resident-name:focus {
     border-color:
         var(--system);
@@ -868,12 +765,10 @@ input {
         rgba(183,217,239,0.06);
 }
 
-
 #resident-name::placeholder {
     color:
         rgba(255,255,255,0.22);
 }
-
 
 .identity-button {
     width: 100%;
@@ -900,7 +795,6 @@ input {
         border-color 0.2s ease;
 }
 
-
 .identity-button:hover {
     background:
         rgba(183,217,239,0.16);
@@ -911,7 +805,7 @@ input {
 
 
 /* =========================================================
-   4. 파라다이스 도착
+   파라다이스 도착
    ========================================================= */
 
 #arrival {
@@ -927,7 +821,6 @@ input {
     background:
         white;
 }
-
 
 .arrival-light {
     position: absolute;
@@ -950,9 +843,7 @@ input {
         both;
 }
 
-
 @keyframes awaken {
-
     from {
         filter:
             brightness(3);
@@ -972,9 +863,7 @@ input {
         transform:
             scale(1.05);
     }
-
 }
-
 
 .arrival-content {
     position: relative;
@@ -995,15 +884,11 @@ input {
         forwards;
 }
 
-
 @keyframes reveal-arrival {
-
     to {
         opacity: 1;
     }
-
 }
-
 
 .arrival-content p {
     margin:
@@ -1013,7 +898,6 @@ input {
 
     letter-spacing: 0.34em;
 }
-
 
 .arrival-content h1 {
     margin: 0;
@@ -1030,7 +914,6 @@ input {
     letter-spacing: 0.06em;
 }
 
-
 .arrival-line {
     width: 80px;
     height: 1px;
@@ -1041,7 +924,6 @@ input {
     background:
         rgba(32,52,61,0.34);
 }
-
 
 #welcome-name {
     display: block;
@@ -1056,7 +938,6 @@ input {
     font-weight: 500;
 }
 
-
 .arrival-description {
     display: block;
 
@@ -1070,7 +951,7 @@ input {
 
 
 /* =========================================================
-   숨김
+   숨기기
    ========================================================= */
 
 .hidden {
@@ -1120,32 +1001,12 @@ input {
     }
 
 }
-
-
-/* 애니메이션 최소화 설정 사용자 대응 */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration:
-            0.01ms !important;
-
-        transition-duration:
-            0.01ms !important;
-    }
-
-}
 </style>
 </head>
 
-
 <body>
 
-<!-- ======================================================
-     현실 입주 장면
-     ====================================================== -->
+<!-- 현실 장면 -->
 
 <section id="cinematic" class="screen">
 
@@ -1153,13 +1014,12 @@ input {
 
     <div class="vignette"></div>
 
+
     <div class="brand">
         <strong>VIRTUAL PARADISE</strong>
         <span>RESIDENCY PROCEDURE</span>
     </div>
 
-
-    <!-- 시작 -->
 
     <button id="start-button">
 
@@ -1178,8 +1038,6 @@ input {
     </button>
 
 
-    <!-- 대사 -->
-
     <div id="dialogue" class="hidden">
 
         <div class="dialogue-info">
@@ -1194,7 +1052,9 @@ input {
 
         </div>
 
+
         <p id="dialogue-text"></p>
+
 
         <div class="dialogue-next">
             CLICK / SPACE
@@ -1204,17 +1064,13 @@ input {
     </div>
 
 
-    <!-- 눈 감기 연출 -->
-
     <div id="eye-close"></div>
 
 </section>
 
 
 
-<!-- ======================================================
-     동기화 프로세스
-     ====================================================== -->
+<!-- 시스템 동기화 -->
 
 <section
     id="transfer"
@@ -1231,9 +1087,11 @@ input {
             RESIDENCY SYNCHRONIZATION
         </div>
 
+
         <h1>
             입주 동기화 진행 중
         </h1>
+
 
         <p class="transfer-description">
             안전한 시민 데이터 전환을 진행하고 있습니다.
@@ -1269,9 +1127,7 @@ input {
 
 
 
-<!-- ======================================================
-     마지막 본인 확인
-     ====================================================== -->
+<!-- 이름 입력 -->
 
 <section
     id="identity"
@@ -1333,9 +1189,7 @@ input {
 
 
 
-<!-- ======================================================
-     파라다이스 도착
-     ====================================================== -->
+<!-- 파라다이스 도착 -->
 
 <section
     id="arrival"
@@ -1379,16 +1233,14 @@ input {
 <script>
 
 /* =========================================================
-   장면 데이터
+   장면 내용
    ========================================================= */
 
 const scenes = [
 
-    /* 1컷 — 상담 */
-
     {
         image:
-            "assets/images/scene-consultation.png",
+            "scene-consultation.png",
 
         position:
             "center center",
@@ -1406,11 +1258,9 @@ const scenes = [
     },
 
 
-    /* 2컷 — 이동 */
-
     {
         image:
-            "assets/images/scene-hallway.png",
+            "scene-hallway.png",
 
         position:
             "center center",
@@ -1430,11 +1280,9 @@ const scenes = [
     },
 
 
-    /* 3컷 — 마지막 현실 */
-
     {
         image:
-            "assets/images/scene-sync-room.png",
+            "scene-sync-room.png",
 
         position:
             "center center",
@@ -1455,10 +1303,6 @@ const scenes = [
 
 
 
-/* =========================================================
-   동기화 단계
-   ========================================================= */
-
 const processSteps = [
 
     "의식 이식 준비",
@@ -1476,10 +1320,6 @@ const processSteps = [
 ];
 
 
-
-/* =========================================================
-   요소
-   ========================================================= */
 
 const cinematic =
     document.getElementById(
@@ -1571,10 +1411,6 @@ const welcomeName =
 
 
 
-/* =========================================================
-   현재 진행 위치
-   ========================================================= */
-
 let currentScene = 0;
 
 let currentDialogue = 0;
@@ -1584,10 +1420,6 @@ let started = false;
 let locked = false;
 
 
-
-/* =========================================================
-   장면 표시
-   ========================================================= */
 
 function showScene(
     index,
@@ -1653,10 +1485,6 @@ function showScene(
 
 
 
-/* =========================================================
-   대사 표시
-   ========================================================= */
-
 function showDialogue(text) {
 
     dialogue.classList.remove(
@@ -1679,10 +1507,6 @@ function showDialogue(text) {
 }
 
 
-
-/* =========================================================
-   입주 시작
-   ========================================================= */
 
 function beginStory() {
 
@@ -1714,10 +1538,6 @@ function beginStory() {
 
 
 
-/* =========================================================
-   클릭할 때 진행
-   ========================================================= */
-
 async function advanceStory() {
 
     if (!started) {
@@ -1735,8 +1555,6 @@ async function advanceStory() {
     const scene =
         scenes[currentScene];
 
-
-    /* 아직 현재 장면 대사가 남았으면 */
 
     if (
         currentDialogue <
@@ -1757,8 +1575,6 @@ async function advanceStory() {
 
     }
 
-
-    /* 다음 장면이 있으면 */
 
     if (
         currentScene <
@@ -1802,17 +1618,11 @@ async function advanceStory() {
     }
 
 
-    /* 마지막 장면이면 */
-
     closeEyes();
 
 }
 
 
-
-/* =========================================================
-   대기용
-   ========================================================= */
 
 function wait(ms) {
 
@@ -1830,10 +1640,6 @@ function wait(ms) {
 
 
 
-/* =========================================================
-   눈 감기 → 동기화
-   ========================================================= */
-
 async function closeEyes() {
 
     if (locked) return;
@@ -1847,8 +1653,6 @@ async function closeEyes() {
     );
 
 
-    /* 먼저 시야가 약간 흐려짐 */
-
     sceneImage.classList.add(
         "blur"
     );
@@ -1856,8 +1660,6 @@ async function closeEyes() {
 
     await wait(600);
 
-
-    /* 눈 감기 */
 
     eyeClose.classList.add(
         "close"
@@ -1867,14 +1669,10 @@ async function closeEyes() {
     await wait(2600);
 
 
-    /* 현실 장면 제거 */
-
     cinematic.classList.add(
         "hidden"
     );
 
-
-    /* 시스템 시작 */
 
     transfer.classList.remove(
         "hidden"
@@ -1886,10 +1684,6 @@ async function closeEyes() {
 }
 
 
-
-/* =========================================================
-   동기화 UI 생성
-   ========================================================= */
 
 function renderProcess() {
 
@@ -1937,10 +1731,6 @@ function renderProcess() {
 }
 
 
-
-/* =========================================================
-   실제 동기화 진행
-   ========================================================= */
 
 async function runTransfer() {
 
@@ -2068,10 +1858,6 @@ async function runTransfer() {
 
 
 
-/* =========================================================
-   이름 입력
-   ========================================================= */
-
 identityForm.addEventListener(
     "submit",
     event => {
@@ -2104,10 +1890,6 @@ identityForm.addEventListener(
 
 
 
-/* =========================================================
-   클릭
-   ========================================================= */
-
 startButton.addEventListener(
     "click",
     event => {
@@ -2118,6 +1900,7 @@ startButton.addEventListener(
 
     }
 );
+
 
 
 cinematic.addEventListener(
@@ -2140,18 +1923,9 @@ cinematic.addEventListener(
 
 
 
-/* =========================================================
-   키보드 진행
-   ========================================================= */
-
 document.addEventListener(
     "keydown",
     event => {
-
-        /*
-            이름 입력 화면에서는
-            Enter를 폼이 사용함
-        */
 
         if (
             !identity.classList.contains(
@@ -2187,10 +1961,6 @@ document.addEventListener(
 
 
 
-/* =========================================================
-   최초 상담 장면 로딩
-   ========================================================= */
-
 showScene(
     0,
     true
@@ -2198,5 +1968,7 @@ showScene(
 
 </script>
 
+</body>
+</html>
 </body>
 </html>
