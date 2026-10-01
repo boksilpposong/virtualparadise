@@ -124,6 +124,7 @@ input {
 }
 
 
+
 /* =========================================================
    배경 이미지
    ========================================================= */
@@ -150,15 +151,16 @@ input {
 
     filter:
         saturate(0.96)
-        contrast(1.01);
+        contrast(1.01)
+        blur(0px)
+        brightness(1);
 
     opacity:
         1;
 
     transition:
         opacity 0.75s ease,
-        transform 8s ease-out,
-        filter 2.8s ease;
+        transform 8s ease-out;
 
 }
 
@@ -183,21 +185,111 @@ input {
 }
 
 
-/* 마지막 눈 감기 직전 */
+/* =========================================================
+   마지막 눈 감기용 시야 변화
+   ========================================================= */
 
-#scene-image.blur {
+/*
+    갑자기 뿅! 하고 흐려지는 대신,
+    초점이 서서히 흐려지고 어두워지도록
+    keyframes로 따로 처리
+*/
 
-    filter:
-        blur(13px)
-        brightness(0.38)
-        saturate(0.72);
+#scene-image.closing {
 
-    transform:
-        scale(1.075);
+    animation:
+        vision-close
+        3.25s
+        ease-in
+        forwards;
 
-    transition:
-        filter 2.8s ease,
-        transform 3s ease;
+}
+
+
+@keyframes vision-close {
+
+    0% {
+
+        filter:
+            saturate(0.96)
+            contrast(1.01)
+            blur(0px)
+            brightness(1);
+
+        transform:
+            scale(1.045);
+
+    }
+
+
+    18% {
+
+        filter:
+            saturate(0.94)
+            contrast(1.00)
+            blur(1px)
+            brightness(0.96);
+
+        transform:
+            scale(1.05);
+
+    }
+
+
+    38% {
+
+        filter:
+            saturate(0.90)
+            contrast(0.98)
+            blur(3px)
+            brightness(0.86);
+
+        transform:
+            scale(1.058);
+
+    }
+
+
+    62% {
+
+        filter:
+            saturate(0.84)
+            contrast(0.95)
+            blur(6px)
+            brightness(0.68);
+
+        transform:
+            scale(1.067);
+
+    }
+
+
+    82% {
+
+        filter:
+            saturate(0.78)
+            contrast(0.92)
+            blur(10px)
+            brightness(0.48);
+
+        transform:
+            scale(1.074);
+
+    }
+
+
+    100% {
+
+        filter:
+            saturate(0.72)
+            contrast(0.90)
+            blur(14px)
+            brightness(0.28);
+
+        transform:
+            scale(1.08);
+
+    }
 
 }
 
@@ -663,17 +755,6 @@ input {
    눈 감기
    ========================================================= */
 
-/*
-    검은 화면이 한 번에 덮이는 게 아니라
-
-    위쪽 눈꺼풀
-    +
-    아래쪽 눈꺼풀
-
-    두 개가 중앙으로 모이게 됨
-*/
-
-
 #eye-close {
 
     position:
@@ -694,7 +775,10 @@ input {
 }
 
 
-/* 위쪽 */
+/*
+    위 / 아래 눈꺼풀이
+    천천히 중앙으로 닫힘
+*/
 
 #eye-close::before {
 
@@ -714,47 +798,37 @@ input {
         106%;
 
     height:
-        55%;
+        56%;
 
     background:
 
         linear-gradient(
             to bottom,
 
-            #000
+            rgba(0,0,0,1)
             0%,
 
-            #000
-            72%,
+            rgba(0,0,0,1)
+            68%,
 
-            rgba(0,0,0,0.98)
-            88%,
+            rgba(0,0,0,0.95)
+            82%,
 
-            rgba(0,0,0,0.80)
+            rgba(0,0,0,0.72)
             100%
         );
 
     transform:
-        translateY(-100%);
+        translateY(-105%);
 
     filter:
-        blur(1px);
+        blur(1.5px);
 
     transition:
-
-        transform
-        2.7s
-        cubic-bezier(
-            0.65,
-            0,
-            0.25,
-            1
-        );
+        transform 3.05s cubic-bezier(0.62, 0, 0.26, 1);
 
 }
 
-
-/* 아래쪽 */
 
 #eye-close::after {
 
@@ -774,47 +848,37 @@ input {
         106%;
 
     height:
-        55%;
+        56%;
 
     background:
 
         linear-gradient(
             to top,
 
-            #000
+            rgba(0,0,0,1)
             0%,
 
-            #000
-            72%,
+            rgba(0,0,0,1)
+            68%,
 
-            rgba(0,0,0,0.98)
-            88%,
+            rgba(0,0,0,0.95)
+            82%,
 
-            rgba(0,0,0,0.80)
+            rgba(0,0,0,0.72)
             100%
         );
 
     transform:
-        translateY(100%);
+        translateY(105%);
 
     filter:
-        blur(1px);
+        blur(1.5px);
 
     transition:
-
-        transform
-        2.7s
-        cubic-bezier(
-            0.65,
-            0,
-            0.25,
-            1
-        );
+        transform 3.05s cubic-bezier(0.62, 0, 0.26, 1);
 
 }
 
-
-/* 실제로 눈 감기 */
 
 #eye-close.close::before {
 
@@ -1718,10 +1782,6 @@ input {
 
 
 
-    <!-- ==================================================
-         시작 버튼
-         ================================================== -->
-
     <button
         id="start-button"
     >
@@ -1755,10 +1815,6 @@ input {
     </button>
 
 
-
-    <!-- ==================================================
-         대사
-         ================================================== -->
 
     <div
         id="dialogue"
@@ -1815,8 +1871,6 @@ input {
     </div>
 
 
-
-    <!-- 눈 감기 -->
 
     <div
         id="eye-close"
@@ -2113,14 +2167,7 @@ const entryImage =
 
 const scenes = [
 
-
-    /* -----------------------------------------------------
-       1컷
-       상담
-       ----------------------------------------------------- */
-
     {
-
         image:
             "scene-consultation.png",
 
@@ -2141,14 +2188,7 @@ const scenes = [
     },
 
 
-
-    /* -----------------------------------------------------
-       2컷
-       복도 이동
-       ----------------------------------------------------- */
-
     {
-
         image:
             "scene-hallway.png",
 
@@ -2171,14 +2211,7 @@ const scenes = [
     },
 
 
-
-    /* -----------------------------------------------------
-       3컷
-       마지막 현실 시야
-       ----------------------------------------------------- */
-
     {
-
         image:
             "scene-sync-room.png",
 
@@ -2197,7 +2230,6 @@ const scenes = [
         ]
 
     }
-
 
 ];
 
@@ -2357,7 +2389,7 @@ let locked =
 
 
 /* =========================================================
-   잠깐 기다리는 함수
+   대기 함수
    ========================================================= */
 
 function wait(ms) {
@@ -2378,7 +2410,7 @@ function wait(ms) {
 
 
 /* =========================================================
-   이미지 미리 불러오기
+   이미지 미리 로드
    ========================================================= */
 
 function preloadImages() {
@@ -2422,25 +2454,20 @@ preloadImages();
 
 function showEntryScreen() {
 
-
     sceneImage.style.backgroundImage =
         `url("${entryImage}")`;
-
 
     sceneImage.style.backgroundPosition =
         "center center";
 
-
     sceneImage.classList.remove(
         "changing",
-        "blur"
+        "closing"
     );
-
 
     sceneImage.classList.add(
         "move"
     );
-
 
 }
 
@@ -2458,84 +2485,56 @@ function showScene(
     immediate = false
 ) {
 
-
     const scene =
         scenes[index];
 
-
     if (!scene) {
-
         return;
-
     }
-
 
 
     function applyScene() {
 
-
         sceneImage.style.backgroundImage =
             `url("${scene.image}")`;
-
 
         sceneImage.style.backgroundPosition =
             scene.position;
 
-
         sceneLabel.textContent =
             scene.label;
-
 
         sceneImage.classList.remove(
             "changing",
             "move",
-            "blur"
+            "closing"
         );
 
-
         requestAnimationFrame(
-
             () => {
-
                 sceneImage.classList.add(
                     "move"
                 );
-
             }
-
         );
 
-
     }
-
 
 
     if (immediate) {
-
-
         applyScene();
-
-
         return;
-
     }
-
 
 
     sceneImage.classList.add(
         "changing"
     );
 
-
-
     setTimeout(
-
         applyScene,
-
         520
-
     );
-
 
 }
 
@@ -2547,33 +2546,21 @@ function showScene(
 
 function showDialogue(text) {
 
-
     dialogue.classList.remove(
         "show"
     );
 
-
-
     setTimeout(
-
         () => {
-
-
             dialogueText.textContent =
                 text;
-
 
             dialogue.classList.add(
                 "show"
             );
-
-
         },
-
         150
-
     );
-
 
 }
 
@@ -2585,122 +2572,75 @@ function showDialogue(text) {
 
 async function beginStory() {
 
-
     if (started) {
-
         return;
-
     }
-
 
     started =
         true;
 
-
     locked =
         true;
 
-
-
-    /* 시작 버튼 사라짐 */
 
     startButton.classList.add(
         "hide"
     );
 
-
-
-    await wait(
-        400
-    );
-
-
-
-    /* 문 장면 어두워짐 */
+    await wait(400);
 
     sceneImage.classList.add(
         "changing"
     );
 
+    await wait(650);
 
-
-    await wait(
-        650
-    );
-
-
-
-    /* 상담실로 이동 */
 
     currentScene =
         0;
-
 
     currentDialogue =
         0;
 
 
-
     const firstScene =
         scenes[0];
-
 
     sceneImage.style.backgroundImage =
         `url("${firstScene.image}")`;
 
-
     sceneImage.style.backgroundPosition =
         firstScene.position;
-
 
     sceneLabel.textContent =
         firstScene.label;
 
-
-
     sceneImage.classList.remove(
         "changing",
         "move",
-        "blur"
+        "closing"
     );
 
-
-
     requestAnimationFrame(
-
         () => {
-
             sceneImage.classList.add(
                 "move"
             );
-
         }
-
     );
 
-
-
-    await wait(
-        650
-    );
-
-
-
-    /* 첫 대사 표시 */
+    await wait(650);
 
     dialogue.classList.remove(
         "hidden"
     );
 
-
     showDialogue(
         scenes[0].dialogue[0]
     );
 
-
     locked =
         false;
-
 
 }
 
@@ -2712,129 +2652,77 @@ async function beginStory() {
 
 async function advanceStory() {
 
-
     if (!started) {
-
-
         beginStory();
-
-
         return;
-
     }
-
-
 
     if (locked) {
-
         return;
-
     }
-
-
 
     const scene =
         scenes[currentScene];
 
 
-
-    /* -----------------------------------------------------
-       같은 장면의 다음 대사
-       ----------------------------------------------------- */
-
     if (
-
         currentDialogue
         <
         scene.dialogue.length - 1
-
     ) {
-
 
         currentDialogue++;
 
-
         showDialogue(
-
             scene.dialogue[
                 currentDialogue
             ]
-
         );
-
 
         return;
 
     }
 
 
-
-    /* -----------------------------------------------------
-       다음 장면
-       ----------------------------------------------------- */
-
     if (
-
         currentScene
         <
         scenes.length - 1
-
     ) {
-
 
         locked =
             true;
-
 
         dialogue.classList.remove(
             "show"
         );
 
-
         currentScene++;
-
 
         currentDialogue =
             0;
-
 
         showScene(
             currentScene
         );
 
-
-
-        await wait(
-            850
-        );
-
-
+        await wait(850);
 
         showDialogue(
-
             scenes[
                 currentScene
             ].dialogue[0]
-
         );
-
 
         locked =
             false;
-
 
         return;
 
     }
 
 
-
-    /* -----------------------------------------------------
-       마지막 장면
-       ----------------------------------------------------- */
-
     closeEyes();
-
 
 }
 
@@ -2846,81 +2734,45 @@ async function advanceStory() {
 
 async function closeEyes() {
 
-
     if (locked) {
-
         return;
-
     }
-
-
 
     locked =
         true;
 
 
-
-    /* 대사 UI 먼저 사라짐 */
-
     dialogue.classList.remove(
         "show"
     );
 
+    await wait(280);
 
-
-    await wait(
-        250
-    );
-
-
-
-    /* 초점이 흐려지고 밝기가 낮아짐 */
+    /*
+        여기서부터
+        시야 흐려짐 + 위아래 닫힘을
+        거의 동시에 시작
+    */
 
     sceneImage.classList.add(
-        "blur"
+        "closing"
     );
-
-
-
-    /* 거의 동시에 위아래 눈꺼풀 닫힘 */
-
-    await wait(
-        150
-    );
-
 
     eyeClose.classList.add(
         "close"
     );
 
-
-
-    /* 완전히 눈을 감을 때까지 기다림 */
-
-    await wait(
-        2900
-    );
-
-
-
-    /* 현실 화면 종료 */
+    await wait(3250);
 
     cinematic.classList.add(
         "hidden"
     );
 
-
-
-    /* 시스템 화면 시작 */
-
     transfer.classList.remove(
         "hidden"
     );
 
-
-
     runTransfer();
-
 
 }
 
@@ -2932,71 +2784,34 @@ async function closeEyes() {
 
 function renderProcess() {
 
-
     processList.innerHTML =
-
         processSteps
-
         .map(
-
-            (
-                step,
-                index
-            ) => `
-
-
+            (step, index) => `
                 <div
-
                     class="process-item"
-
                     data-step="${index}"
-
                 >
-
-
-                    <span
-                        class="process-number"
-                    >
-
+                    <span class="process-number">
                         ${String(
                             index + 1
                         ).padStart(
                             2,
                             "0"
                         )}
-
                     </span>
 
-
-
-                    <span
-                        class="process-label"
-                    >
-
+                    <span class="process-label">
                         ${step}
-
                     </span>
 
-
-
-                    <span
-                        class="process-status"
-                    >
-
+                    <span class="process-status">
                         대기
-
                     </span>
-
-
                 </div>
-
-
             `
-
         )
-
         .join("");
-
 
 }
 
@@ -3008,173 +2823,105 @@ function renderProcess() {
 
 async function runTransfer() {
 
-
     renderProcess();
 
-
-
     const items = [
-
         ...processList.querySelectorAll(
             ".process-item"
         )
-
     ];
 
-
-
     for (
-
         let i = 0;
-
         i < items.length;
-
         i++
-
     ) {
-
 
         const item =
             items[i];
 
-
-
         item.classList.add(
             "active"
         );
-
-
 
         item.querySelector(
             ".process-status"
         ).textContent =
             "진행 중";
 
-
-
         progressState.textContent =
             processSteps[i];
 
-
-
         const before =
-
             Math.round(
-
                 (
-                    i
-                    /
+                    i /
                     processSteps.length
-                )
-
-                * 100
-
+                ) * 100
             );
-
-
 
         progressBar.style.width =
             `${before}%`;
 
-
         progressPercent.textContent =
             `${before}%`;
 
-
-
         await wait(
-
             i === 0
-
             ? 850
-
             : 1050
-
         );
-
-
 
         item.classList.remove(
             "active"
         );
 
-
         item.classList.add(
             "complete"
         );
-
-
 
         item.querySelector(
             ".process-status"
         ).textContent =
             "완료";
 
-
-
         const complete =
-
             Math.round(
-
                 (
-                    (i + 1)
-                    /
+                    (
+                        i + 1
+                    ) /
                     processSteps.length
-                )
-
-                * 100
-
+                ) * 100
             );
-
-
 
         progressBar.style.width =
             `${complete}%`;
 
-
         progressPercent.textContent =
             `${complete}%`;
 
-
     }
-
-
 
     progressState.textContent =
         "모든 검증 완료";
 
-
-
-    await wait(
-        950
-    );
-
-
+    await wait(950);
 
     transfer.classList.add(
         "hidden"
     );
 
-
-
     identity.classList.remove(
         "hidden"
     );
 
-
-
     setTimeout(
-
         () => {
-
             residentName.focus();
-
         },
-
         250
-
     );
-
 
 }
 
@@ -3185,49 +2932,30 @@ async function runTransfer() {
    ========================================================= */
 
 identityForm.addEventListener(
-
     "submit",
-
     event => {
-
 
         event.preventDefault();
 
-
-
         const name =
-
             residentName.value.trim();
 
-
-
         if (!name) {
-
             return;
-
         }
 
-
-
         welcomeName.textContent =
-
             `${name}님, 파라다이스에 오신 것을 환영합니다.`;
-
-
 
         identity.classList.add(
             "hidden"
         );
 
-
-
         arrival.classList.remove(
             "hidden"
         );
 
-
     }
-
 );
 
 
@@ -3237,20 +2965,14 @@ identityForm.addEventListener(
    ========================================================= */
 
 startButton.addEventListener(
-
     "click",
-
     event => {
-
 
         event.stopPropagation();
 
-
         beginStory();
 
-
     }
-
 );
 
 
@@ -3260,101 +2982,60 @@ startButton.addEventListener(
    ========================================================= */
 
 cinematic.addEventListener(
-
     "click",
-
     event => {
 
-
         if (
-
             event.target.closest(
                 "button"
             )
-
         ) {
-
             return;
-
         }
-
-
 
         advanceStory();
 
-
     }
-
 );
 
 
 
 /* =========================================================
-   키보드
+   키보드 진행
    ========================================================= */
 
 document.addEventListener(
-
     "keydown",
-
     event => {
 
-
-        /*
-            이름 입력 화면에서는
-            Enter가 이름 제출에 사용됨
-        */
-
         if (
-
             !identity.classList.contains(
                 "hidden"
             )
-
         ) {
-
             return;
-
         }
 
-
-
         if (
-
             !arrival.classList.contains(
                 "hidden"
             )
-
         ) {
-
             return;
-
         }
 
-
-
         if (
-
-            event.key === "Enter"
-
-            ||
-
+            event.key === "Enter" ||
             event.code === "Space"
-
         ) {
-
 
             event.preventDefault();
 
-
             advanceStory();
-
 
         }
 
-
     }
-
 );
 
 
