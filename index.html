@@ -74,11 +74,10 @@
 #district-preview{position:absolute;z-index:40;left:50%;bottom:28px;width:min(560px,calc(100vw - 36px));padding:18px 20px;border:1px solid rgba(220,246,255,.45);border-radius:10px;background:rgba(7,29,39,.78);backdrop-filter:blur(16px);opacity:0;pointer-events:none;transform:translate(-50%,15px);transition:.35s}
 #district-preview.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}.preview-top{display:flex;justify-content:space-between;gap:15px}.preview-title{font-size:17px;font-weight:700}.preview-desc{margin-top:5px;font-size:12px;line-height:1.6;color:rgba(230,245,250,.72)}#preview-close{border:0;background:none;color:#fff;font-size:22px;cursor:pointer}
 
-/* 관리국 */
-#admin-page{overflow:auto;color:#143747;background:#dceff5;opacity:0;transform:scale(1.012);transition:opacity .7s,transform .7s}#admin-page.show{opacity:1;transform:scale(1)}
-#admin-bg{position:fixed;inset:0;background:url("admin-interior.png") center/cover no-repeat;z-index:0}
-#admin-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(235,249,253,.58),rgba(238,250,253,.46) 44%,rgba(224,243,249,.60))}
-.admin-shell{position:relative;z-index:2;width:min(1260px,calc(100% - 42px));margin:auto;padding:28px 0 70px}
+/* 관리국 — 배경을 페이지 자체에 고정 */
+#admin-page{overflow:auto;color:#143747;opacity:0;transition:opacity .7s;background:linear-gradient(120deg,rgba(235,249,253,.58),rgba(238,250,253,.46) 44%,rgba(224,243,249,.60)),url("admin-interior.png") center center/cover fixed no-repeat}
+#admin-page.show{opacity:1}
+.admin-shell{position:relative;width:min(1260px,calc(100% - 42px));margin:auto;padding:28px 0 24px}
 
 /* 관리국 상단 */
 .admin-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:54px;padding:12px 15px;border:1px solid rgba(255,255,255,.56);border-radius:12px;background:rgba(255,255,255,.32);backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(25,74,92,.07)}
@@ -98,7 +97,7 @@
 .admin-tab{border:0;border-radius:7px;padding:10px 16px;background:transparent;color:#456b79;font-size:12px;cursor:pointer;white-space:nowrap;transition:.2s}.admin-tab:hover{background:rgba(215,240,248,.63)}.admin-tab.active{background:#18485b;color:#fff;box-shadow:0 5px 16px rgba(25,72,91,.18)}
 
 /* 내용 */
-.admin-content{min-height:420px}.admin-panel{display:none;animation:panelIn .35s ease}.admin-panel.active{display:block}@keyframes panelIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.admin-content{min-height:0}.admin-panel{display:none;animation:panelIn .35s ease}.admin-panel.active{display:block}@keyframes panelIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 .info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .info-card,.dept,.person,.system-row{border:1px solid rgba(255,255,255,.65);background:rgba(248,253,255,.48);backdrop-filter:blur(10px);box-shadow:0 11px 36px rgba(29,83,103,.09)}
 .info-card{min-height:190px;padding:23px;border-radius:13px}.info-num{font:10px monospace;color:#3388a4}.info-card h3{margin:17px 0 8px;font-size:18px;color:#173e4e}.info-card p{margin:0;font-size:12px;line-height:1.75;color:#4e707d;word-break:keep-all}
@@ -145,7 +144,7 @@
 @media(max-width:800px){
 .brand{display:none}#dialogue{left:16px;bottom:24px;width:calc(100vw - 32px)}#arrival-message{width:calc(100vw - 28px);padding:28px 18px}
 .node-card{padding:8px 10px}.node-title{font-size:10px}.node-sub{display:none}
-.admin-shell{width:calc(100% - 28px)}.admin-topbar{margin-bottom:24px}.admin-hero{grid-template-columns:1fr;gap:20px;padding:23px}.admin-hero h1{font-size:48px}
+.admin-shell{width:calc(100% - 28px);padding-bottom:18px}.admin-topbar{margin-bottom:24px}.admin-hero{grid-template-columns:1fr;gap:20px;padding:23px}.admin-hero h1{font-size:48px}
 .info-grid,.person-grid{grid-template-columns:1fr}.dept-grid{grid-template-columns:1fr 1fr}.system-row{grid-template-columns:1fr}.status-grid{grid-template-columns:1fr 1fr}
 .person-photo{width:110px;height:110px}.person-field{max-width:calc(100% - 124px)}.person h3{margin-right:122px}.person-work{margin-right:116px}
 .staff-modal-card{grid-template-columns:1fr;width:min(520px,calc(100vw - 28px));gap:12px;padding:18px 18px 16px}.staff-modal-image{width:min(100%,320px);margin:auto}.staff-modal-info{padding:4px 4px 0}#staff-modal-name{font-size:42px}
@@ -174,7 +173,6 @@
 <div id="plaza-image"></div><div id="arrival-dark"></div>
 <div id="arrival-message"><span class="arrival-small">WELCOME TO</span><h1>VIRTUAL PARADISE</h1><div class="arrival-line"></div><strong id="welcome-name">새로운 시민님, 환영합니다.</strong><span class="arrival-description">당신의 새로운 일상이 지금 시작됩니다.</span></div>
 <div id="resident-indicator">시민 등록 완료 · <strong id="resident-indicator-name">신규 시민</strong></div>
-
 <div id="map-ui">
 <button id="node-admin" class="map-node" data-target="admin"><span class="node-dot"></span><span class="node-card"><span class="node-title">관리국</span><span class="node-sub">행정 · 시스템</span></span></button>
 <button id="node-guardian" class="map-node" data-title="가디언 본부" data-desc="파라다이스의 재난 대응과 특수 임무를 담당하는 가디언들의 거점입니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">가디언 본부</span><span class="node-sub">가디언 · 임무</span></span></button>
@@ -183,12 +181,10 @@
 <button id="node-citizen" class="map-node flip" data-title="시민 생활 구역" data-desc="주거, 음식, 쇼핑, 이벤트 등 시민들의 일상을 둘러볼 수 있습니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">시민 생활 구역</span><span class="node-sub">생활 · 상업</span></span></button>
 <button id="node-gate" class="map-node" data-title="구형 월드 게이트" data-desc="오래된 연결 게이트입니다. 버려진 월드와 NULL 관련 기록으로 이어집니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">구형 월드 게이트</span><span class="node-sub">구형 구역</span></span></button>
 </div>
-
 <div id="district-preview"><div class="preview-top"><div><div id="preview-title" class="preview-title"></div><div id="preview-desc" class="preview-desc"></div></div><button id="preview-close">×</button></div></div>
 </section>
 
 <section id="admin-page" class="screen hidden">
-<div id="admin-bg"></div>
 <div class="admin-shell">
 
 <header class="admin-topbar">
@@ -202,7 +198,6 @@
 <h1>관리국</h1>
 <p class="admin-lead">생활 행정부터 안전, 복구, 월드 관리까지. 시민들이 파라다이스에서 안심하고 생활할 수 있도록 다양한 공공 업무를 맡고 있습니다.</p>
 </div>
-
 <div class="admin-status">
 <div class="status-label">CURRENT SERVICE STATUS</div>
 <div class="status-main"><span class="status-dot"></span>관리국 주요 서비스 정상 운영 중</div>
@@ -248,38 +243,26 @@
 
 <article class="person" tabindex="0" data-image="admin-dana.png" data-name="다나" data-field="가디언 · 스타터 룸 관리" data-work="후보 평가 · 생활관리 · 상담" data-desc="스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다.">
 <div class="person-photo"><img src="admin-dana.png" alt="다나" onerror="this.parentElement.style.display='none'"></div>
-<span class="person-field">가디언 · 스타터 룸 관리</span>
-<h3>다나</h3>
-<span class="person-work">후보 평가 · 생활관리 · 상담</span>
-<p>스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다.</p>
-<span class="person-more">자세히 보기 ›</span>
+<span class="person-field">가디언 · 스타터 룸 관리</span><h3>다나</h3><span class="person-work">후보 평가 · 생활관리 · 상담</span>
+<p>스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다.</p><span class="person-more">자세히 보기 ›</span>
 </article>
 
 <article class="person" tabindex="0" data-image="admin-serin.png" data-name="세린" data-field="의료 · 복구 · 안정화" data-work="데이터 손상 · 정신 안정 · 초기 오버플로 대응" data-desc="오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다.">
 <div class="person-photo"><img src="admin-serin.png" alt="세린" onerror="this.parentElement.style.display='none'"></div>
-<span class="person-field">의료 · 복구 · 안정화</span>
-<h3>세린</h3>
-<span class="person-work">데이터 손상 · 정신 안정 · 초기 오버플로 대응</span>
-<p>오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다.</p>
-<span class="person-more">자세히 보기 ›</span>
+<span class="person-field">의료 · 복구 · 안정화</span><h3>세린</h3><span class="person-work">데이터 손상 · 정신 안정 · 초기 오버플로 대응</span>
+<p>오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다.</p><span class="person-more">자세히 보기 ›</span>
 </article>
 
 <article class="person" tabindex="0" data-image="admin-ren.png" data-name="렌" data-field="치안 · 보안" data-work="현장 출동 · 불법 월드 · NULL 관련 사건" data-desc="문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다.">
 <div class="person-photo"><img src="admin-ren.png" alt="렌" onerror="this.parentElement.style.display='none'"></div>
-<span class="person-field">치안 · 보안</span>
-<h3>렌</h3>
-<span class="person-work">현장 출동 · 불법 월드 · NULL 관련 사건</span>
-<p>문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다.</p>
-<span class="person-more">자세히 보기 ›</span>
+<span class="person-field">치안 · 보안</span><h3>렌</h3><span class="person-work">현장 출동 · 불법 월드 · NULL 관련 사건</span>
+<p>문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다.</p><span class="person-more">자세히 보기 ›</span>
 </article>
 
 <article class="person" tabindex="0" data-image="admin-sia.png" data-name="시아" data-field="시스템 · 기술 감사" data-work="월드 인증 · 오류 조사 · 레거시 코드 감사" data-desc="시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다.">
 <div class="person-photo"><img src="admin-sia.png" alt="시아" onerror="this.parentElement.style.display='none'"></div>
-<span class="person-field">시스템 · 기술 감사</span>
-<h3>시아</h3>
-<span class="person-work">월드 인증 · 오류 조사 · 레거시 코드 감사</span>
-<p>시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다.</p>
-<span class="person-more">자세히 보기 ›</span>
+<span class="person-field">시스템 · 기술 감사</span><h3>시아</h3><span class="person-work">월드 인증 · 오류 조사 · 레거시 코드 감사</span>
+<p>시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다.</p><span class="person-more">자세히 보기 ›</span>
 </article>
 
 </div>
@@ -299,7 +282,6 @@
 </div>
 </section>
 
-<!-- 직원 상세 팝업 -->
 <div id="staff-modal">
 <div class="staff-modal-card">
 <button id="staff-modal-close" aria-label="닫기">×</button>
@@ -340,68 +322,38 @@ async function runTransfer(){
 renderProcess();
 const items=[...processList.querySelectorAll(".process-item")];
 for(let i=0;i<items.length;i++){
-const item=items[i];
-item.classList.add("active");
-item.querySelector(".process-status").textContent="진행 중";
-progressState.textContent=processSteps[i];
-let n=Math.round(i/processSteps.length*100);
-progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;
-await wait(i?1100:900);
-item.classList.remove("active");item.classList.add("complete");
-item.querySelector(".process-status").textContent="완료";
-n=Math.round((i+1)/processSteps.length*100);
-progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;
+const item=items[i];item.classList.add("active");item.querySelector(".process-status").textContent="진행 중";
+progressState.textContent=processSteps[i];let n=Math.round(i/processSteps.length*100);
+progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;await wait(i?1100:900);
+item.classList.remove("active");item.classList.add("complete");item.querySelector(".process-status").textContent="완료";
+n=Math.round((i+1)/processSteps.length*100);progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;
 }
-progressState.textContent="모든 검증 완료";
-await wait(1000);
-transfer.classList.add("hidden");
-identity.classList.remove("hidden");
-residentName.focus();
+progressState.textContent="모든 검증 완료";await wait(1000);transfer.classList.add("hidden");identity.classList.remove("hidden");residentName.focus();
 }
 
 async function enterParadise(name){
 identity.classList.add("fade-out");await wait(850);identity.classList.add("hidden");
-welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;
-residentIndicatorName.textContent=name;
+welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;
 paradise.classList.remove("hidden");await nextFrame();paradise.classList.add("awake");
-await wait(2600);arrivalMessage.classList.add("show");await wait(3800);
-arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");
+await wait(2600);arrivalMessage.classList.add("show");await wait(3800);arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");
 await wait(1800);residentIndicator.classList.add("show");mapUI.classList.add("ready");
 }
 
 async function openAdmin(){
-districtPreview.classList.remove("show");
-paradise.classList.add("leave");
-await wait(700);
-paradise.classList.add("hidden");
-paradise.classList.remove("leave");
-adminPage.classList.remove("hidden");
-adminPage.scrollTop=0;
-await nextFrame();
-adminPage.classList.add("show");
+districtPreview.classList.remove("show");paradise.classList.add("leave");await wait(700);
+paradise.classList.add("hidden");paradise.classList.remove("leave");adminPage.classList.remove("hidden");adminPage.scrollTop=0;
+await nextFrame();adminPage.classList.add("show");
 }
 
 async function closeAdmin(){
-closeStaffModal();
-adminPage.classList.remove("show");
-await wait(600);
-adminPage.classList.add("hidden");
-paradise.classList.remove("hidden");
-await nextFrame();
+closeStaffModal();adminPage.classList.remove("show");await wait(600);adminPage.classList.add("hidden");paradise.classList.remove("hidden");await nextFrame();
 }
 
 function openStaffModal(card){
-staffModalField.textContent=card.dataset.field;
-staffModalName.textContent=card.dataset.name;
-staffModalWork.textContent=card.dataset.work;
-staffModalDesc.textContent=card.dataset.desc;
-staffModalImageWrap.style.display="block";
-staffModalImage.src=card.dataset.image;
-staffModalImage.alt=card.dataset.name;
-staffModalImage.onerror=()=>{staffModalImageWrap.style.display="none"};
-staffModal.classList.add("show");
+staffModalField.textContent=card.dataset.field;staffModalName.textContent=card.dataset.name;staffModalWork.textContent=card.dataset.work;staffModalDesc.textContent=card.dataset.desc;
+staffModalImageWrap.style.display="block";staffModalImage.src=card.dataset.image;staffModalImage.alt=card.dataset.name;
+staffModalImage.onerror=()=>{staffModalImageWrap.style.display="none"};staffModal.classList.add("show");
 }
-
 function closeStaffModal(){staffModal.classList.remove("show")}
 
 identityForm.addEventListener("submit",e=>{e.preventDefault();const name=residentName.value.trim();if(name)enterParadise(name)});
@@ -416,9 +368,7 @@ if(e.key==="Enter"||e.code==="Space"){e.preventDefault();advanceStory()}
 
 document.querySelectorAll(".map-node").forEach(node=>node.addEventListener("click",()=>{
 if(node.dataset.target==="admin"){openAdmin();return}
-previewTitle.textContent=node.dataset.title;
-previewDesc.textContent=node.dataset.desc;
-districtPreview.classList.add("show");
+previewTitle.textContent=node.dataset.title;previewDesc.textContent=node.dataset.desc;districtPreview.classList.add("show");
 }));
 
 $("preview-close").addEventListener("click",()=>districtPreview.classList.remove("show"));
@@ -427,8 +377,7 @@ $("admin-back").addEventListener("click",closeAdmin);
 document.querySelectorAll(".admin-tab").forEach(tab=>tab.addEventListener("click",()=>{
 document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));
 document.querySelectorAll(".admin-panel").forEach(p=>p.classList.remove("active"));
-tab.classList.add("active");
-$(`panel-${tab.dataset.panel}`).classList.add("active");
+tab.classList.add("active");$(`panel-${tab.dataset.panel}`).classList.add("active");
 }));
 
 document.querySelectorAll(".person").forEach(card=>{
