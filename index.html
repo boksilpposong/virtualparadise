@@ -187,7 +187,6 @@
 </head>
 <body>
 
-<!-- 입주 시퀀스 -->
 <section id="cinematic" class="screen">
 <div id="scene-image"></div><div class="vignette"></div>
 <div class="brand"><strong>VIRTUAL PARADISE</strong><span>RESIDENCY PROCEDURE</span></div>
@@ -204,7 +203,6 @@
 <form id="identity-form" class="identity-card"><div class="identity-check">✓</div><p class="identity-small">FINAL SYNCHRONIZATION</p><h1>최종 동기화 확인</h1><p>시민 데이터 무결성 검증이 완료되었습니다.<br>마지막으로 입주자 본인 확인을 진행해 주세요.</p><label for="resident-name">입주자 확인명</label><input id="resident-name" type="text" maxlength="24" autocomplete="off" placeholder="이름을 입력하세요" required><button class="identity-button" type="submit">확인하고 입주하기</button></form>
 </section>
 
-<!-- 중앙광장 -->
 <section id="paradise" class="screen hidden">
 <div id="plaza-image"></div><div id="arrival-dark"></div>
 <div id="arrival-message"><span class="arrival-small">WELCOME TO</span><h1>VIRTUAL PARADISE</h1><div class="arrival-line"></div><strong id="welcome-name">새로운 시민님, 환영합니다.</strong><span class="arrival-description">당신의 새로운 일상이 지금 시작됩니다.</span></div>
@@ -222,10 +220,8 @@
 <div id="district-preview"><div class="preview-top"><div><div id="preview-title" class="preview-title"></div><div id="preview-desc" class="preview-desc"></div></div><button id="preview-close">×</button></div></div>
 </section>
 
-<!-- 관리국 -->
 <section id="admin-page" class="screen hidden">
 <div class="admin-shell">
-
 <header class="admin-topbar">
 <div class="admin-brand"><strong>PARADISE ADMINISTRATION</strong><span>파라다이스 내부 관리국</span></div>
 <button id="admin-back" class="admin-back">← 중앙광장으로</button>
@@ -242,7 +238,6 @@
 <nav class="admin-nav"><button class="admin-tab active" data-panel="overview">개요</button><button class="admin-tab" data-panel="departments">업무 안내</button><button class="admin-tab" data-panel="people">직원 안내</button><button class="admin-tab" data-panel="systems">시스템 안내</button></nav>
 
 <main class="admin-content">
-
 <section id="panel-overview" class="admin-panel active">
 <div class="info-grid">
 <article class="info-card"><span class="info-num">01</span><h3>시민 생활 지원</h3><p>입주 이후 필요한 시민 정보, 주거, 계약 기록과 각종 생활 행정을 지원합니다. 일상생활 중 행정적인 도움이 필요할 때 가장 먼저 찾게 되는 곳입니다.</p></article>
@@ -264,23 +259,18 @@
 
 <section id="panel-people" class="admin-panel">
 <div class="person-grid">
-
 <article class="person" tabindex="0" data-image="admin-dana.png" data-name="다나" data-field="가디언 · 스타터 룸 관리" data-work="후보 평가 · 생활관리 · 상담" data-desc="스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다.">
 <div class="person-photo"><img src="admin-dana.png" alt="다나" onerror="this.parentElement.style.display='none'"></div><span class="person-field">가디언 · 스타터 룸 관리</span><h3>다나</h3><span class="person-work">후보 평가 · 생활관리 · 상담</span><p>스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다.</p><span class="person-more">자세히 보기 ›</span>
 </article>
-
 <article class="person" tabindex="0" data-image="admin-serin.png" data-name="세린" data-field="의료 · 복구 · 안정화" data-work="데이터 손상 · 정신 안정 · 초기 오버플로 대응" data-desc="오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다.">
 <div class="person-photo"><img src="admin-serin.png" alt="세린" onerror="this.parentElement.style.display='none'"></div><span class="person-field">의료 · 복구 · 안정화</span><h3>세린</h3><span class="person-work">데이터 손상 · 정신 안정 · 초기 오버플로 대응</span><p>오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다.</p><span class="person-more">자세히 보기 ›</span>
 </article>
-
 <article class="person" tabindex="0" data-image="admin-ren.png" data-name="렌" data-field="치안 · 보안" data-work="현장 출동 · 불법 월드 · NULL 관련 사건" data-desc="문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다.">
 <div class="person-photo"><img src="admin-ren.png" alt="렌" onerror="this.parentElement.style.display='none'"></div><span class="person-field">치안 · 보안</span><h3>렌</h3><span class="person-work">현장 출동 · 불법 월드 · NULL 관련 사건</span><p>문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다.</p><span class="person-more">자세히 보기 ›</span>
 </article>
-
 <article class="person" tabindex="0" data-image="admin-sia.png" data-name="시아" data-field="시스템 · 기술 감사" data-work="월드 인증 · 오류 조사 · 레거시 코드 감사" data-desc="시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다.">
 <div class="person-photo"><img src="admin-sia.png" alt="시아" onerror="this.parentElement.style.display='none'"></div><span class="person-field">시스템 · 기술 감사</span><h3>시아</h3><span class="person-work">월드 인증 · 오류 조사 · 레거시 코드 감사</span><p>시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다.</p><span class="person-more">자세히 보기 ›</span>
 </article>
-
 </div>
 </section>
 
@@ -293,12 +283,10 @@
 <div class="system-row"><b>기술 감사</b><p>오래된 코드와 월드 호환 문제, 시스템 오류에서 발생하는 이상 징후를 지속적으로 확인합니다.</p><span class="system-state">상시 확인</span></div>
 </div>
 </section>
-
 </main>
 </div>
 </section>
 
-<!-- 가디언 공식 사이트 -->
 <section id="guardian-page" class="screen hidden">
 <div class="guardian-shell">
 
@@ -307,39 +295,28 @@
 <div class="guardian-logo-mark">✦</div>
 <div><strong>GUARDIAN</strong><span>PARADISE OFFICIAL GUARDIAN TEAM</span></div>
 </div>
-
 <nav class="guardian-nav">
 <button class="guardian-nav-btn" data-scroll="guardian-members-section">GUARDIANS</button>
 <button class="guardian-nav-btn" data-scroll="guardian-stream-section">STREAM</button>
 <button class="guardian-nav-btn" data-scroll="guardian-field-section">FIELD</button>
 <button class="guardian-nav-btn" data-scroll="guardian-about-section">ABOUT</button>
 </nav>
-
 <button id="guardian-back" class="guardian-back">← 중앙광장</button>
 </header>
 
-<!-- 메인 키비주얼 -->
 <section class="guardian-kv">
 <img class="guardian-kv-img" src="guardian-keyvisual.png" alt="파라다이스 현역 가디언 6인">
 <div class="guardian-kv-shade"></div>
-
 <div class="guardian-kv-copy">
 <div class="guardian-kv-small">PARADISE OFFICIAL GUARDIAN TEAM</div>
 <h1>GUARDIAN</h1>
 <p>방송에서는 가장 가까운 스타.<br>현장에서는 가장 먼저 도착하는 사람들.</p>
 </div>
-
 <div class="guardian-kv-names">
-<span>아르카</span>
-<span>아샤</span>
-<span>유리아</span>
-<span>레나</span>
-<span>루루</span>
-<span>모카</span>
+<span>아르카</span><span>아샤</span><span>유리아</span><span>레나</span><span>루루</span><span>모카</span>
 </div>
 </section>
 
-<!-- 멤버 -->
 <section id="guardian-members-section" class="guardian-section">
 <div class="g-section-head">
 <div class="g-section-title"><small>ACTIVE GUARDIANS</small><h2>GUARDIANS</h2></div>
@@ -347,47 +324,27 @@
 </div>
 
 <div class="talent-grid">
-
 <article class="talent-card" tabindex="0" style="--talent:#2cb7c7" data-image="guardian-yuria.png" data-name="유리아" data-year="가디언 활동 82년" data-desc="오랜 활동기간 동안 가디언 전체를 연결하는 중심 역할을 해온 최고참 가디언. 방송에서는 안정적인 진행과 신뢰감이 가장 큰 강점입니다.">
-<img class="talent-img" src="guardian-yuria.png" alt="유리아">
-<div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">01</span>
-<div class="talent-info"><h3>유리아</h3></div><span class="talent-open">›</span>
+<img class="talent-img" src="guardian-yuria.png" alt="유리아"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">01</span><div class="talent-info"><h3>유리아</h3></div><span class="talent-open">›</span>
 </article>
-
 <article class="talent-card" tabindex="0" style="--talent:#b64c73" data-image="guardian-rena.png" data-name="레나" data-year="가디언 활동 82년" data-desc="유리아와 함께 초대 가디언으로 활동해온 최고참. 긴 활동 그 자체가 하나의 상징이 되어 강한 존재감을 지닌 가디언입니다.">
-<img class="talent-img" src="guardian-rena.png" alt="레나">
-<div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">02</span>
-<div class="talent-info"><h3>레나</h3></div><span class="talent-open">›</span>
+<img class="talent-img" src="guardian-rena.png" alt="레나"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">02</span><div class="talent-info"><h3>레나</h3></div><span class="talent-open">›</span>
 </article>
-
 <article class="talent-card" tabindex="0" style="--talent:#f05d42" data-image="guardian-asha.png" data-name="아샤" data-year="가디언 활동 43년" data-desc="강한 화력과 화려한 현장 장악이 특징인 가디언. 방송에서도 높은 텐션과 쇼맨십이 자연스럽게 이어집니다.">
-<img class="talent-img" src="guardian-asha.png" alt="아샤">
-<div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">03</span>
-<div class="talent-info"><h3>아샤</h3></div><span class="talent-open">›</span>
+<img class="talent-img" src="guardian-asha.png" alt="아샤"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">03</span><div class="talent-info"><h3>아샤</h3></div><span class="talent-open">›</span>
 </article>
-
 <article class="talent-card" tabindex="0" style="--talent:#756fe1" data-image="guardian-arka.png" data-name="아르카" data-year="가디언 활동 23년" data-desc="정교하고 완성도 높은 활동 스타일이 특징인 가디언. 방송과 공식 활동 모두 흐트러짐이 적고 정밀한 인상을 줍니다.">
-<img class="talent-img" src="guardian-arka.png" alt="아르카">
-<div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">04</span>
-<div class="talent-info"><h3>아르카</h3></div><span class="talent-open">›</span>
+<img class="talent-img" src="guardian-arka.png" alt="아르카"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">04</span><div class="talent-info"><h3>아르카</h3></div><span class="talent-open">›</span>
 </article>
-
 <article class="talent-card" tabindex="0" style="--talent:#61aeb6" data-image="guardian-moka.png" data-name="모카" data-year="가디언 활동 10년" data-desc="차분하고 안정적인 분위기가 강점인 가디언. 구조와 안정화 상황에서도 급하게 분위기를 몰아붙이지 않고 주변을 편안하게 만드는 편입니다.">
-<img class="talent-img" src="guardian-moka.png" alt="모카">
-<div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">05</span>
-<div class="talent-info"><h3>모카</h3></div><span class="talent-open">›</span>
+<img class="talent-img" src="guardian-moka.png" alt="모카"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">05</span><div class="talent-info"><h3>모카</h3></div><span class="talent-open">›</span>
 </article>
-
 <article class="talent-card" tabindex="0" style="--talent:#e8b13d" data-image="guardian-ruru.png" data-name="루루" data-year="가디언 활동 1년" data-desc="가장 최근에 합류한 신참 가디언. 계획된 연출보다 순간적인 반응과 자연스럽게 생기는 밈에서 강한 캐릭터성을 보여줍니다.">
-<img class="talent-img" src="guardian-ruru.png" alt="루루">
-<div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">06</span>
-<div class="talent-info"><h3>루루</h3></div><span class="talent-open">›</span>
+<img class="talent-img" src="guardian-ruru.png" alt="루루"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">06</span><div class="talent-info"><h3>루루</h3></div><span class="talent-open">›</span>
 </article>
-
 </div>
 </section>
 
-<!-- 방송 -->
 <section id="guardian-stream-section" class="guardian-section">
 <div class="g-section-head">
 <div class="g-section-title"><small>STREAM & CONTENT</small><h2>최근 방송</h2></div>
@@ -395,112 +352,62 @@
 </div>
 
 <div class="stream-layout">
-
 <article class="stream-feature">
-<img src="guardian-yuria.png" alt="유리아 방송">
+<img src="guardian-stream-yuria.png" alt="유리아 저챗 방송">
 <div class="stream-content">
 <span class="stream-label"><span class="stream-dot"></span> RECENT STREAM</span>
-<h3>유리아 · 오늘도 본부에서</h3>
+<h3>유리아 · 본부에서 잠깐 쉬어가요</h3>
 <p>가디언 활동 이야기와 시민들과의 편안한 대화.</p>
 </div>
 </article>
 
 <div class="stream-list">
-
 <article class="stream-item">
-<img class="stream-thumb" src="guardian-asha.png" alt="아샤">
-<div class="stream-copy"><small>ASHA · TALK</small><b>아까 그 장면 다시 봄?</b><span>현장 뒤풀이 · 저챗</span></div>
+<img class="stream-thumb" src="guardian-stream-asha.png" alt="아샤 하이텐션 방송">
+<div class="stream-copy"><small>ASHA · HYPE</small><b>오늘 이거 진짜 터뜨려도 돼?</b><span>하이텐션 · 현장 뒤풀이</span></div>
 </article>
-
 <article class="stream-item">
-<img class="stream-thumb" src="guardian-ruru.png" alt="루루">
-<div class="stream-copy"><small>RURU · DAILY</small><b>신참 가디언 오늘도 생존 중</b><span>일상 · 잡담</span></div>
+<img class="stream-thumb" src="guardian-stream-arka.png" alt="아르카 진지 방송">
+<div class="stream-copy"><small>ARKA · BRIEFING</small><b>이번 대응, 어디서 갈렸는지</b><span>진지 방송 · 정리 · 설명</span></div>
 </article>
-
 <article class="stream-item">
-<img class="stream-thumb" src="guardian-moka.png" alt="모카">
-<div class="stream-copy"><small>MOKA · TALK</small><b>오늘은 천천히 얘기할까요</b><span>편안한 저챗</span></div>
+<img class="stream-thumb" src="guardian-stream-ruru.png" alt="루루 하이텐션 방송">
+<div class="stream-copy"><small>RURU · LIVE</small><b>방금 그거 봤지?! 진짜였어!</b><span>신참 · 하이텐션 · 생방 감성</span></div>
 </article>
-
 </div>
 </div>
 </section>
 
-<!-- 현장 -->
 <section id="guardian-field-section" class="guardian-section">
 <div class="field-wrap">
-
 <div class="field-head">
 <div><div class="guardian-kv-small">FIELD ACTIVITY</div><h2>최근 현장 활동</h2></div>
 <p>가디언은 방송인이면서 동시에 파라다이스의 재난과 위험 상황에 대응하는 현장 인력입니다. 공개 가능한 활동 기록 일부를 확인할 수 있습니다.</p>
 </div>
-
 <div class="field-grid">
-
-<article class="field-card">
-<span class="field-type">재난 대응</span>
-<h3>도심 시설 이상 대응</h3>
-<p>시민 통행 구역에서 발생한 시설 이상에 대응하고 현장을 안정화했습니다.</p>
-<span class="field-state">대응 완료</span>
-</article>
-
-<article class="field-card">
-<span class="field-type">시민 구조</span>
-<h3>위험구역 구조 지원</h3>
-<p>접근 제한 구역에서 구조 요청을 확인하고 시민 대피 및 복구 인력을 지원했습니다.</p>
-<span class="field-state">대응 완료</span>
-</article>
-
-<article class="field-card">
-<span class="field-type">공동 활동</span>
-<h3>스타터 룸 합동 훈련</h3>
-<p>가디언 후보들의 현장 훈련과 평가를 지원하고 대응 과정을 점검했습니다.</p>
-<span class="field-state">활동 기록</span>
-</article>
-
+<article class="field-card"><span class="field-type">재난 대응</span><h3>도심 시설 이상 대응</h3><p>시민 통행 구역에서 발생한 시설 이상에 대응하고 현장을 안정화했습니다.</p><span class="field-state">대응 완료</span></article>
+<article class="field-card"><span class="field-type">시민 구조</span><h3>위험구역 구조 지원</h3><p>접근 제한 구역에서 구조 요청을 확인하고 시민 대피 및 복구 인력을 지원했습니다.</p><span class="field-state">대응 완료</span></article>
+<article class="field-card"><span class="field-type">공동 활동</span><h3>스타터 룸 합동 훈련</h3><p>가디언 후보들의 현장 훈련과 평가를 지원하고 대응 과정을 점검했습니다.</p><span class="field-state">활동 기록</span></article>
 </div>
 </div>
 </section>
 
-<!-- 소개 -->
 <section id="guardian-about-section" class="guardian-section">
 <div class="g-section-head">
 <div class="g-section-title"><small>ABOUT GUARDIAN</small><h2>가디언이란?</h2></div>
 <p class="g-section-desc">방송 속 인기와 실제 현장 대응 능력을 동시에 요구받는 파라다이스의 특별한 역할입니다.</p>
 </div>
-
 <div class="about-grid">
-
-<article class="about-card">
-<span class="about-no">01</span>
-<h3>현역 가디언</h3>
-<p>파라다이스에서는 여섯 명의 현역 가디언이 활동합니다. 각자의 전문 분야와 방송 스타일을 바탕으로 서로 다른 역할을 담당합니다.</p>
-</article>
-
-<article class="about-card">
-<span class="about-no">02</span>
-<h3>스타터 룸</h3>
-<p>차기 가디언 후보들은 스타터 룸에서 생활하며 방송, 전투, 구조와 현장 대응 능력을 쌓아갑니다.</p>
-</article>
-
-<article class="about-card">
-<span class="about-no">03</span>
-<h3>현장 권한</h3>
-<p>가디언에게는 재난과 특수 상황에 대응하기 위한 전용 장비와 제한적인 특수 시스템 권한이 제공됩니다.</p>
-</article>
-
+<article class="about-card"><span class="about-no">01</span><h3>현역 가디언</h3><p>파라다이스에서는 여섯 명의 현역 가디언이 활동합니다. 각자의 전문 분야와 방송 스타일을 바탕으로 서로 다른 역할을 담당합니다.</p></article>
+<article class="about-card"><span class="about-no">02</span><h3>스타터 룸</h3><p>차기 가디언 후보들은 스타터 룸에서 생활하며 방송, 전투, 구조와 현장 대응 능력을 쌓아갑니다.</p></article>
+<article class="about-card"><span class="about-no">03</span><h3>현장 권한</h3><p>가디언에게는 재난과 특수 상황에 대응하기 위한 전용 장비와 제한적인 특수 시스템 권한이 제공됩니다.</p></article>
 </div>
 </section>
 
-<footer class="guardian-footer">
-<strong>GUARDIAN</strong>
-<span>VIRTUAL PARADISE · OFFICIAL GUARDIAN TEAM</span>
-</footer>
-
+<footer class="guardian-footer"><strong>GUARDIAN</strong><span>VIRTUAL PARADISE · OFFICIAL GUARDIAN TEAM</span></footer>
 </div>
 </section>
 
-<!-- 관리국 직원 상세 팝업 -->
 <div id="staff-modal">
 <div class="staff-modal-card">
 <button id="staff-modal-close" aria-label="닫기">×</button>
@@ -513,7 +420,6 @@
 </div>
 </div>
 
-<!-- 가디언 상세 팝업 -->
 <div id="guardian-modal">
 <div class="guardian-modal-card">
 <button id="guardian-modal-close" aria-label="닫기">×</button>
@@ -543,7 +449,7 @@ guardianModal=$("guardian-modal"),guardianModalImage=$("guardian-modal-image"),g
 let currentScene=0,currentDialogue=0,started=false,locked=false;
 const wait=ms=>new Promise(r=>setTimeout(r,ms)),nextFrame=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
 
-["scene-entry.png","paradise-plaza.png","admin-interior.png","admin-dana.png","admin-serin.png","admin-ren.png","admin-sia.png","guardian-keyvisual.png","guardian-yuria.png","guardian-rena.png","guardian-asha.png","guardian-arka.png","guardian-moka.png","guardian-ruru.png",...scenes.map(s=>s.image)].forEach(src=>{const i=new Image();i.src=src});
+["scene-entry.png","paradise-plaza.png","admin-interior.png","admin-dana.png","admin-serin.png","admin-ren.png","admin-sia.png","guardian-keyvisual.png","guardian-yuria.png","guardian-rena.png","guardian-asha.png","guardian-arka.png","guardian-moka.png","guardian-ruru.png","guardian-stream-yuria.png","guardian-stream-asha.png","guardian-stream-arka.png","guardian-stream-ruru.png",...scenes.map(s=>s.image)].forEach(src=>{const i=new Image();i.src=src});
 
 sceneImage.style.backgroundImage='url("scene-entry.png")';
 sceneImage.classList.add("move");
@@ -586,13 +492,7 @@ async function advanceStory(){
 if(!started){beginStory();return}
 if(locked)return;
 const s=scenes[currentScene];
-
-if(currentDialogue<s.dialogue.length-1){
-currentDialogue++;
-await showDialogue(s.dialogue[currentDialogue]);
-return;
-}
-
+if(currentDialogue<s.dialogue.length-1){currentDialogue++;await showDialogue(s.dialogue[currentDialogue]);return}
 if(currentScene<scenes.length-1){
 locked=true;
 dialogue.classList.remove("show");
@@ -604,7 +504,6 @@ await showDialogue(scenes[currentScene].dialogue[0]);
 locked=false;
 return;
 }
-
 closeEyes();
 }
 
@@ -629,28 +528,22 @@ processList.innerHTML=processSteps.map((s,i)=>`<div class="process-item"><span c
 async function runTransfer(){
 renderProcess();
 const items=[...processList.querySelectorAll(".process-item")];
-
 for(let i=0;i<items.length;i++){
 const item=items[i];
 item.classList.add("active");
 item.querySelector(".process-status").textContent="진행 중";
 progressState.textContent=processSteps[i];
-
 let n=Math.round(i/processSteps.length*100);
 progressBar.style.width=`${n}%`;
 progressPercent.textContent=`${n}%`;
-
 await wait(i?1100:900);
-
 item.classList.remove("active");
 item.classList.add("complete");
 item.querySelector(".process-status").textContent="완료";
-
 n=Math.round((i+1)/processSteps.length*100);
 progressBar.style.width=`${n}%`;
 progressPercent.textContent=`${n}%`;
 }
-
 progressState.textContent="모든 검증 완료";
 await wait(1000);
 transfer.classList.add("hidden");
@@ -662,20 +555,16 @@ async function enterParadise(name){
 identity.classList.add("fade-out");
 await wait(850);
 identity.classList.add("hidden");
-
 welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;
 residentIndicatorName.textContent=name;
-
 paradise.classList.remove("hidden");
 await nextFrame();
 paradise.classList.add("awake");
-
 await wait(2600);
 arrivalMessage.classList.add("show");
 await wait(3800);
 arrivalMessage.classList.remove("show");
 arrivalMessage.classList.add("fade-away");
-
 await wait(1800);
 residentIndicator.classList.add("show");
 mapUI.classList.add("ready");
@@ -685,13 +574,10 @@ async function openSection(page){
 districtPreview.classList.remove("show");
 paradise.classList.add("leave");
 await wait(700);
-
 paradise.classList.add("hidden");
 paradise.classList.remove("leave");
-
 page.classList.remove("hidden");
 page.scrollTop=0;
-
 await nextFrame();
 page.classList.add("show");
 }
@@ -699,11 +585,9 @@ page.classList.add("show");
 async function closeSection(page){
 closeStaffModal();
 closeGuardianModal();
-
 page.classList.remove("show");
 await wait(600);
 page.classList.add("hidden");
-
 paradise.classList.remove("hidden");
 await nextFrame();
 }
@@ -713,35 +597,27 @@ staffModalField.textContent=card.dataset.field;
 staffModalName.textContent=card.dataset.name;
 staffModalWork.textContent=card.dataset.work;
 staffModalDesc.textContent=card.dataset.desc;
-
 staffModalImageWrap.style.display="block";
 staffModalImage.src=card.dataset.image;
 staffModalImage.alt=card.dataset.name;
 staffModalImage.onerror=()=>{staffModalImageWrap.style.display="none"};
-
 staffModal.classList.add("show");
 }
 
-function closeStaffModal(){
-staffModal.classList.remove("show");
-}
+function closeStaffModal(){staffModal.classList.remove("show")}
 
 function openGuardianModal(card){
 guardianModalYear.textContent=card.dataset.year;
 guardianModalName.textContent=card.dataset.name;
 guardianModalDesc.textContent=card.dataset.desc;
-
 guardianModalImageWrap.style.display="block";
 guardianModalImage.src=card.dataset.image;
 guardianModalImage.alt=card.dataset.name;
 guardianModalImage.onerror=()=>{guardianModalImageWrap.style.display="none"};
-
 guardianModal.classList.add("show");
 }
 
-function closeGuardianModal(){
-guardianModal.classList.remove("show");
-}
+function closeGuardianModal(){guardianModal.classList.remove("show")}
 
 identityForm.addEventListener("submit",e=>{
 e.preventDefault();
@@ -759,35 +635,15 @@ if(!e.target.closest("button"))advanceStory();
 });
 
 document.addEventListener("keydown",e=>{
-if(e.key==="Escape"&&staffModal.classList.contains("show")){
-closeStaffModal();
-return;
-}
-
-if(e.key==="Escape"&&guardianModal.classList.contains("show")){
-closeGuardianModal();
-return;
-}
-
+if(e.key==="Escape"&&staffModal.classList.contains("show")){closeStaffModal();return}
+if(e.key==="Escape"&&guardianModal.classList.contains("show")){closeGuardianModal();return}
 if(cinematic.classList.contains("hidden"))return;
-
-if(e.key==="Enter"||e.code==="Space"){
-e.preventDefault();
-advanceStory();
-}
+if(e.key==="Enter"||e.code==="Space"){e.preventDefault();advanceStory()}
 });
 
 document.querySelectorAll(".map-node").forEach(node=>node.addEventListener("click",()=>{
-if(node.dataset.target==="admin"){
-openSection(adminPage);
-return;
-}
-
-if(node.dataset.target==="guardian"){
-openSection(guardianPage);
-return;
-}
-
+if(node.dataset.target==="admin"){openSection(adminPage);return}
+if(node.dataset.target==="guardian"){openSection(guardianPage);return}
 previewTitle.textContent=node.dataset.title;
 previewDesc.textContent=node.dataset.desc;
 districtPreview.classList.add("show");
@@ -806,23 +662,15 @@ $(`panel-${tab.dataset.panel}`).classList.add("active");
 
 document.querySelectorAll(".person").forEach(card=>{
 card.addEventListener("click",()=>openStaffModal(card));
-
 card.addEventListener("keydown",e=>{
-if(e.key==="Enter"||e.code==="Space"){
-e.preventDefault();
-openStaffModal(card);
-}
+if(e.key==="Enter"||e.code==="Space"){e.preventDefault();openStaffModal(card)}
 });
 });
 
 document.querySelectorAll(".talent-card").forEach(card=>{
 card.addEventListener("click",()=>openGuardianModal(card));
-
 card.addEventListener("keydown",e=>{
-if(e.key==="Enter"||e.code==="Space"){
-e.preventDefault();
-openGuardianModal(card);
-}
+if(e.key==="Enter"||e.code==="Space"){e.preventDefault();openGuardianModal(card)}
 });
 });
 
@@ -832,14 +680,10 @@ if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
 }));
 
 $("staff-modal-close").addEventListener("click",closeStaffModal);
-staffModal.addEventListener("click",e=>{
-if(e.target===staffModal)closeStaffModal();
-});
+staffModal.addEventListener("click",e=>{if(e.target===staffModal)closeStaffModal()});
 
 $("guardian-modal-close").addEventListener("click",closeGuardianModal);
-guardianModal.addEventListener("click",e=>{
-if(e.target===guardianModal)closeGuardianModal();
-});
+guardianModal.addEventListener("click",e=>{if(e.target===guardianModal)closeGuardianModal()});
 </script>
 </body>
 </html>
