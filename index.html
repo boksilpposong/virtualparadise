@@ -101,64 +101,60 @@
 .staff-modal-image{overflow:hidden;border-radius:16px;background:#fff;border:1px solid rgba(50,126,152,.12);box-shadow:0 15px 40px rgba(33,91,112,.12)}.staff-modal-image img{display:block;width:100%;height:auto;max-height:420px;object-fit:contain;object-position:center top}
 .staff-modal-info{padding:8px 14px 4px 0}.staff-modal-small{font-size:9px;letter-spacing:.18em;color:#5e92a5}#staff-modal-field{display:inline-block;margin-top:16px;padding:6px 9px;border-radius:7px;background:rgba(64,144,171,.11);color:#327893;font-size:11px;font-weight:700}#staff-modal-name{margin:15px 0 8px;font-size:clamp(38px,5vw,62px);line-height:1;color:#153b4a}#staff-modal-work{display:block;font-size:12px;line-height:1.7;color:#527785}.staff-modal-line{width:45px;height:1px;margin:22px 0;background:rgba(56,125,149,.26)}#staff-modal-desc{margin:0;font-size:13px;line-height:1.9;color:#496c79}
 
-/* 가디언 공식 그룹 사이트 */
+/* 가디언 */
 #guardian-page{overflow:auto;color:#182c3a;opacity:0;transition:opacity .7s;background:linear-gradient(180deg,#f8fbfe 0%,#eef6fb 45%,#fbf9fd 100%)}
-#guardian-page.show{opacity:1}
-.guardian-shell{width:min(1460px,calc(100% - 36px));margin:auto;padding:18px 0 70px}
-
-/* 가디언 상단바 */
+#guardian-page.show{opacity:1}.guardian-shell{width:min(1460px,calc(100% - 36px));margin:auto;padding:18px 0 70px}
 .guardian-header{position:sticky;top:12px;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;padding:10px 13px 10px 18px;border:1px solid rgba(255,255,255,.82);border-radius:15px;background:rgba(250,253,255,.72);backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(44,71,98,.10)}
 .guardian-logo{display:flex;align-items:center;gap:12px}.guardian-logo-mark{display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:linear-gradient(135deg,#7abde0,#8979da);color:#fff;font-size:14px;box-shadow:0 5px 14px rgba(99,122,192,.22)}
 .guardian-logo strong{display:block;font-size:15px;letter-spacing:.22em;color:#172c3b}.guardian-logo span{display:block;margin-top:2px;font-size:8px;letter-spacing:.13em;color:#8394a0}
 .guardian-nav{display:flex;align-items:center;gap:4px}.guardian-nav-btn{border:0;border-radius:8px;padding:8px 11px;background:transparent;color:#607480;font-size:10px;cursor:pointer;transition:.2s}.guardian-nav-btn:hover{background:#edf4f8;color:#213b4a}
 .guardian-back{margin-left:7px;border:1px solid rgba(68,100,120,.16);border-radius:8px;padding:9px 13px;background:#fff;color:#415a68;font-size:10px;cursor:pointer}
 
-/* 키비주얼 */
+/* 가디언 키비주얼 */
 .guardian-kv{position:relative;overflow:hidden;border-radius:23px;background:#d6ebf6;box-shadow:0 24px 70px rgba(46,71,103,.17)}
 .guardian-kv-img{display:block;width:100%;height:auto;min-height:470px;object-fit:cover;object-position:center}
 .guardian-kv-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,24,38,.72) 0%,rgba(10,24,38,.2) 32%,transparent 59%),linear-gradient(90deg,rgba(9,24,38,.18),transparent 25%,transparent 75%,rgba(9,24,38,.12))}
 .guardian-kv-copy{position:absolute;z-index:3;left:42px;bottom:54px;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.38)}
 .guardian-kv-small{font-size:10px;letter-spacing:.27em;color:rgba(255,255,255,.77)}
-.guardian-kv-copy h1{margin:7px 0 9px;font-size:clamp(56px,8vw,108px);line-height:.85;letter-spacing:-.06em}
-.guardian-kv-copy p{margin:0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.86)}
+.guardian-kv-copy h1{margin:7px 0 9px;font-size:clamp(56px,8vw,108px);line-height:.85;letter-spacing:-.06em}.guardian-kv-copy p{margin:0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.86)}
 .guardian-kv-names{position:absolute;z-index:4;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(6,1fr);padding:10px 28px 11px;background:rgba(11,26,39,.32);backdrop-filter:blur(9px);border-top:1px solid rgba(255,255,255,.18)}
 .guardian-kv-names span{text-align:center;font-size:10px;font-weight:700;color:rgba(255,255,255,.88);letter-spacing:.05em}
 
-/* 공통 섹션 */
-.guardian-section{padding:78px 7px 0;scroll-margin-top:95px}
-.g-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin:0 7px 24px}
+/* 가디언 공통 */
+.guardian-section{padding:78px 7px 0;scroll-margin-top:95px}.g-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin:0 7px 24px}
 .g-section-title small{display:block;margin-bottom:7px;font-size:9px;letter-spacing:.24em;color:#7b91a1}.g-section-title h2{margin:0;font-size:clamp(34px,4vw,55px);letter-spacing:-.045em;color:#172e3e}.g-section-desc{max-width:480px;margin:0;text-align:right;font-size:11px;line-height:1.75;color:#758a96}
 
 /* 멤버 */
-.talent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
-.talent-card{--talent:#6e91c8;position:relative;overflow:hidden;min-height:480px;border-radius:19px;background:#dfeaf2;box-shadow:0 13px 35px rgba(36,63,88,.10);cursor:pointer;transition:transform .3s,box-shadow .3s}
-.talent-card:hover{transform:translateY(-6px);box-shadow:0 24px 55px rgba(36,63,88,.17)}
-.talent-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s}.talent-card:hover .talent-img{transform:scale(1.025)}
-.talent-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,22,34,.86) 0%,rgba(12,22,34,.34) 29%,transparent 57%)}
-.talent-accent{position:absolute;left:0;bottom:0;width:5px;height:33%;background:var(--talent)}
-.talent-number{position:absolute;top:17px;left:19px;font-size:10px;letter-spacing:.17em;color:rgba(255,255,255,.72)}
-.talent-info{position:absolute;z-index:3;left:22px;right:22px;bottom:20px;color:#fff}.talent-info h3{margin:0;font-size:34px;letter-spacing:-.04em}.talent-open{position:absolute;z-index:3;right:19px;bottom:22px;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff}
+.talent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.talent-card{--talent:#6e91c8;position:relative;overflow:hidden;min-height:480px;border-radius:19px;background:#dfeaf2;box-shadow:0 13px 35px rgba(36,63,88,.10);cursor:pointer;transition:transform .3s,box-shadow .3s}
+.talent-card:hover{transform:translateY(-6px);box-shadow:0 24px 55px rgba(36,63,88,.17)}.talent-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .5s}.talent-card:hover .talent-img{transform:scale(1.025)}
+.talent-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,22,34,.86) 0%,rgba(12,22,34,.34) 29%,transparent 57%)}.talent-accent{position:absolute;left:0;bottom:0;width:5px;height:33%;background:var(--talent)}
+.talent-number{position:absolute;top:17px;left:19px;font-size:10px;letter-spacing:.17em;color:rgba(255,255,255,.72)}.talent-info{position:absolute;z-index:3;left:22px;right:22px;bottom:20px;color:#fff}.talent-info h3{margin:0;font-size:34px;letter-spacing:-.04em}
+.talent-open{position:absolute;z-index:3;right:19px;bottom:22px;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff}
 
-/* 방송 */
-.stream-layout{display:grid;grid-template-columns:1.15fr .85fr;gap:17px}
-.stream-feature{position:relative;overflow:hidden;min-height:420px;border-radius:20px;background:#283548;box-shadow:0 14px 42px rgba(35,58,81,.11)}
-.stream-feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}.stream-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(14,20,30,.88),rgba(14,20,30,.1) 70%)}
-.stream-content{position:absolute;z-index:2;left:27px;right:27px;bottom:25px;color:#fff}.stream-label{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:20px;background:rgba(255,255,255,.16);font-size:9px}.stream-dot{width:6px;height:6px;border-radius:50%;background:#ff6681}.stream-content h3{margin:13px 0 8px;font-size:27px}.stream-content p{margin:0;font-size:11px;color:rgba(255,255,255,.72)}
-.stream-list{display:grid;gap:11px}.stream-item{display:grid;grid-template-columns:105px 1fr;min-height:125px;overflow:hidden;border-radius:15px;background:#fff;box-shadow:0 10px 30px rgba(43,72,95,.08)}.stream-thumb{width:100%;height:100%;object-fit:cover;object-position:center top}.stream-copy{padding:17px 17px 14px}.stream-copy small{font-size:8px;letter-spacing:.13em;color:#91a0aa}.stream-copy b{display:block;margin:8px 0 5px;font-size:14px;color:#233c4b}.stream-copy span{font-size:9px;color:#84949d}
+/* 방송 - 전부 가로형 */
+.stream-layout{display:grid;grid-template-columns:1.13fr .87fr;gap:17px;align-items:stretch}
+.stream-feature{position:relative;overflow:hidden;min-height:448px;border-radius:20px;background:#283548;box-shadow:0 14px 42px rgba(35,58,81,.11)}
+.stream-feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}.stream-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(14,20,30,.88),rgba(14,20,30,.08) 70%)}
+.stream-content{position:absolute;z-index:2;left:27px;right:27px;bottom:25px;color:#fff}.stream-label{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:20px;background:rgba(255,255,255,.16);font-size:9px}.stream-dot{width:6px;height:6px;border-radius:50%;background:#ff6681}
+.stream-content h3{margin:13px 0 8px;font-size:27px}.stream-content p{margin:0;font-size:11px;color:rgba(255,255,255,.72)}
+.stream-list{display:grid;grid-template-rows:repeat(3,1fr);gap:11px}
+.stream-item{display:grid;grid-template-columns:minmax(190px,43%) 1fr;min-height:142px;overflow:hidden;border-radius:15px;background:#fff;box-shadow:0 10px 30px rgba(43,72,95,.08)}
+.stream-thumb{display:block;width:100%;height:100%;min-height:142px;object-fit:cover;object-position:center}
+.stream-copy{display:flex;flex-direction:column;justify-content:center;min-width:0;padding:15px 17px}.stream-copy small{font-size:8px;letter-spacing:.13em;color:#91a0aa}.stream-copy b{display:block;margin:7px 0 5px;font-size:14px;line-height:1.35;color:#233c4b;word-break:keep-all}.stream-copy span{font-size:9px;line-height:1.5;color:#84949d}
 
 /* 현장 활동 */
 .field-wrap{position:relative;overflow:hidden;padding:30px;border-radius:22px;background:linear-gradient(135deg,#142a3b,#233f53 58%,#31556a);box-shadow:0 18px 55px rgba(27,48,66,.16)}
 .field-wrap::after{content:"";position:absolute;width:400px;height:400px;border-radius:50%;right:-170px;top:-220px;background:radial-gradient(circle,rgba(100,209,236,.21),transparent 70%)}
 .field-head{position:relative;z-index:2;display:flex;justify-content:space-between;gap:30px;margin-bottom:22px;color:#fff}.field-head h2{margin:0;font-size:35px}.field-head p{max-width:510px;margin:0;text-align:right;font-size:11px;line-height:1.75;color:rgba(255,255,255,.58)}
-.field-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field-card{padding:20px;border:1px solid rgba(255,255,255,.13);border-radius:13px;background:rgba(255,255,255,.07);backdrop-filter:blur(7px)}.field-type{font-size:9px;letter-spacing:.16em;color:#8fdced}.field-card h3{margin:14px 0 8px;font-size:17px;color:#fff}.field-card p{margin:0;font-size:10px;line-height:1.75;color:rgba(255,255,255,.58)}.field-state{display:inline-block;margin-top:18px;padding:5px 8px;border-radius:20px;background:rgba(115,223,199,.11);font-size:8px;color:#8fe2d1}
+.field-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field-card{padding:20px;border:1px solid rgba(255,255,255,.13);border-radius:13px;background:rgba(255,255,255,.07);backdrop-filter:blur(7px)}
+.field-type{font-size:9px;letter-spacing:.16em;color:#8fdced}.field-card h3{margin:14px 0 8px;font-size:17px;color:#fff}.field-card p{margin:0;font-size:10px;line-height:1.75;color:rgba(255,255,255,.58)}.field-state{display:inline-block;margin-top:18px;padding:5px 8px;border-radius:20px;background:rgba(115,223,199,.11);font-size:8px;color:#8fe2d1}
 
 /* ABOUT */
-.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.about-card{position:relative;overflow:hidden;min-height:210px;padding:26px;border:1px solid #e0e8ee;border-radius:17px;background:#fff;box-shadow:0 10px 32px rgba(45,70,91,.06)}.about-no{font:10px monospace;color:#8aa1b1}.about-card h3{margin:18px 0 8px;font-size:20px}.about-card p{margin:0;font-size:11px;line-height:1.8;color:#728791}.about-card::after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-55px;bottom:-60px;background:linear-gradient(135deg,rgba(115,184,220,.11),rgba(159,126,208,.08))}
-
-/* 가디언 푸터 */
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.about-card{position:relative;overflow:hidden;min-height:210px;padding:26px;border:1px solid #e0e8ee;border-radius:17px;background:#fff;box-shadow:0 10px 32px rgba(45,70,91,.06)}
+.about-no{font:10px monospace;color:#8aa1b1}.about-card h3{margin:18px 0 8px;font-size:20px}.about-card p{margin:0;font-size:11px;line-height:1.8;color:#728791}.about-card::after{content:"";position:absolute;width:130px;height:130px;border-radius:50%;right:-55px;bottom:-60px;background:linear-gradient(135deg,rgba(115,184,220,.11),rgba(159,126,208,.08))}
 .guardian-footer{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:70px;padding:22px 10px 0;border-top:1px solid #dbe4ea;color:#84959f;font-size:9px}.guardian-footer strong{font-size:12px;letter-spacing:.18em;color:#435d6c}
 
-/* 가디언 상세 팝업 */
+/* 가디언 상세 */
 #guardian-modal{position:fixed;inset:0;z-index:510;display:grid;place-items:center;padding:24px;background:rgba(9,20,30,.62);backdrop-filter:blur(11px);opacity:0;pointer-events:none;transition:.3s}#guardian-modal.show{opacity:1;pointer-events:auto}
 .guardian-modal-card{position:relative;width:min(930px,calc(100vw - 40px));max-height:calc(100dvh - 48px);overflow:auto;display:grid;grid-template-columns:minmax(310px,390px) 1fr;gap:31px;padding:24px;border:1px solid rgba(255,255,255,.84);border-radius:21px;background:linear-gradient(135deg,#fbfdff,#eef6fb);box-shadow:0 30px 90px rgba(0,25,40,.34);transform:translateY(15px) scale(.98);transition:.3s}#guardian-modal.show .guardian-modal-card{transform:none}
 #guardian-modal-close{position:absolute;z-index:5;right:14px;top:12px;width:38px;height:38px;border:1px solid rgba(48,90,110,.14);border-radius:50%;background:rgba(255,255,255,.84);color:#3b5967;font-size:22px;cursor:pointer}
@@ -168,18 +164,15 @@
 /* 반응형 */
 @media(max-width:1000px){
 .admin-hero,.stream-layout{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}.dept-grid{grid-template-columns:1fr 1fr}.person-grid{grid-template-columns:1fr 1fr}.talent-grid{grid-template-columns:1fr 1fr}.field-grid,.about-grid{grid-template-columns:1fr}
-.g-section-desc,.field-head p{text-align:left}.field-head{display:block}.field-head p{margin-top:10px}
-.guardian-nav{display:none}
+.g-section-desc,.field-head p{text-align:left}.field-head{display:block}.field-head p{margin-top:10px}.guardian-nav{display:none}
+.stream-feature{min-height:430px}.stream-list{grid-template-rows:none}.stream-item{grid-template-columns:minmax(210px,38%) 1fr;min-height:150px}.stream-thumb{min-height:150px}
 }
 @media(max-width:650px){
-.brand{display:none}#dialogue{left:16px;bottom:24px;width:calc(100vw - 32px)}#arrival-message{width:calc(100vw - 28px);padding:28px 18px}
-.node-card{padding:8px 10px}.node-title{font-size:10px}.node-sub{display:none}
+.brand{display:none}#dialogue{left:16px;bottom:24px;width:calc(100vw - 32px)}#arrival-message{width:calc(100vw - 28px);padding:28px 18px}.node-card{padding:8px 10px}.node-title{font-size:10px}.node-sub{display:none}
 .admin-shell{width:calc(100% - 28px)}.admin-topbar{margin-bottom:24px}.admin-hero{padding:23px}.admin-hero h1{font-size:48px}.person-grid,.dept-grid{grid-template-columns:1fr}.system-row{grid-template-columns:1fr}.status-grid{grid-template-columns:1fr 1fr}
-.guardian-shell{width:calc(100% - 20px);padding-top:10px}.guardian-header{top:7px}.guardian-logo span{display:none}
-.guardian-kv-img{height:520px;min-height:0;object-fit:cover;object-position:center}.guardian-kv-copy{left:22px;bottom:28px}.guardian-kv-copy h1{font-size:58px}.guardian-kv-copy p{font-size:11px}.guardian-kv-names{display:none}
-.guardian-section{padding-top:60px}.g-section-head{display:block}.g-section-desc{margin-top:10px;text-align:left}
-.talent-grid{grid-template-columns:1fr}.talent-card{min-height:540px}
-.stream-feature{min-height:380px}.stream-item{grid-template-columns:90px 1fr}
+.guardian-shell{width:calc(100% - 20px);padding-top:10px}.guardian-header{top:7px}.guardian-logo span{display:none}.guardian-kv-img{height:520px;min-height:0;object-fit:cover;object-position:center}.guardian-kv-copy{left:22px;bottom:28px}.guardian-kv-copy h1{font-size:58px}.guardian-kv-copy p{font-size:11px}.guardian-kv-names{display:none}
+.guardian-section{padding-top:60px}.g-section-head{display:block}.g-section-desc{margin-top:10px;text-align:left}.talent-grid{grid-template-columns:1fr}.talent-card{min-height:540px}
+.stream-feature{min-height:340px}.stream-item{grid-template-columns:42% 58%;min-height:115px}.stream-thumb{min-height:115px}.stream-copy{padding:11px 12px}.stream-copy b{font-size:12px}.stream-copy span{font-size:8px}
 .field-wrap{padding:23px}.field-grid,.about-grid{grid-template-columns:1fr}
 .staff-modal-card,.guardian-modal-card{grid-template-columns:1fr;width:min(520px,calc(100vw - 28px));padding:18px;gap:12px}.staff-modal-image,.guardian-modal-image{width:min(100%,330px);margin:auto}.staff-modal-info,.guardian-modal-info{padding:4px}
 }
@@ -207,7 +200,6 @@
 <div id="plaza-image"></div><div id="arrival-dark"></div>
 <div id="arrival-message"><span class="arrival-small">WELCOME TO</span><h1>VIRTUAL PARADISE</h1><div class="arrival-line"></div><strong id="welcome-name">새로운 시민님, 환영합니다.</strong><span class="arrival-description">당신의 새로운 일상이 지금 시작됩니다.</span></div>
 <div id="resident-indicator">시민 등록 완료 · <strong id="resident-indicator-name">신규 시민</strong></div>
-
 <div id="map-ui">
 <button id="node-admin" class="map-node" data-target="admin"><span class="node-dot"></span><span class="node-card"><span class="node-title">관리국</span><span class="node-sub">행정 · 시스템</span></span></button>
 <button id="node-guardian" class="map-node" data-target="guardian"><span class="node-dot"></span><span class="node-card"><span class="node-title">가디언 본부</span><span class="node-sub">가디언 · 방송 · 임무</span></span></button>
@@ -216,23 +208,16 @@
 <button id="node-citizen" class="map-node flip" data-title="시민 생활 구역" data-desc="주거, 음식, 쇼핑, 이벤트 등 시민들의 일상을 둘러볼 수 있습니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">시민 생활 구역</span><span class="node-sub">생활 · 상업</span></span></button>
 <button id="node-gate" class="map-node" data-title="구형 월드 게이트" data-desc="오래된 연결 게이트입니다. 버려진 월드와 NULL 관련 기록으로 이어집니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">구형 월드 게이트</span><span class="node-sub">구형 구역</span></span></button>
 </div>
-
 <div id="district-preview"><div class="preview-top"><div><div id="preview-title" class="preview-title"></div><div id="preview-desc" class="preview-desc"></div></div><button id="preview-close">×</button></div></div>
 </section>
 
 <section id="admin-page" class="screen hidden">
 <div class="admin-shell">
-<header class="admin-topbar">
-<div class="admin-brand"><strong>PARADISE ADMINISTRATION</strong><span>파라다이스 내부 관리국</span></div>
-<button id="admin-back" class="admin-back">← 중앙광장으로</button>
-</header>
+<header class="admin-topbar"><div class="admin-brand"><strong>PARADISE ADMINISTRATION</strong><span>파라다이스 내부 관리국</span></div><button id="admin-back" class="admin-back">← 중앙광장으로</button></header>
 
 <div class="admin-hero">
 <div><div class="admin-eyebrow">PARADISE CENTRAL ADMINISTRATION</div><h1>관리국</h1><p class="admin-lead">생활 행정부터 안전, 복구, 월드 관리까지. 시민들이 파라다이스에서 안심하고 생활할 수 있도록 다양한 공공 업무를 맡고 있습니다.</p></div>
-<div class="admin-status">
-<div class="status-label">CURRENT SERVICE STATUS</div><div class="status-main"><span class="status-dot"></span>관리국 주요 서비스 정상 운영 중</div>
-<div class="status-grid"><div class="status-cell"><b>117년차</b><span>파라다이스 운영</span></div><div class="status-cell"><b>5개</b><span>주요 업무 분야</span></div><div class="status-cell"><b>상시</b><span>시민 지원</span></div><div class="status-cell"><b>6명</b><span>현역 가디언</span></div></div>
-</div>
+<div class="admin-status"><div class="status-label">CURRENT SERVICE STATUS</div><div class="status-main"><span class="status-dot"></span>관리국 주요 서비스 정상 운영 중</div><div class="status-grid"><div class="status-cell"><b>117년차</b><span>파라다이스 운영</span></div><div class="status-cell"><b>5개</b><span>주요 업무 분야</span></div><div class="status-cell"><b>상시</b><span>시민 지원</span></div><div class="status-cell"><b>6명</b><span>현역 가디언</span></div></div></div>
 </div>
 
 <nav class="admin-nav"><button class="admin-tab active" data-panel="overview">개요</button><button class="admin-tab" data-panel="departments">업무 안내</button><button class="admin-tab" data-panel="people">직원 안내</button><button class="admin-tab" data-panel="systems">시스템 안내</button></nav>
@@ -259,18 +244,10 @@
 
 <section id="panel-people" class="admin-panel">
 <div class="person-grid">
-<article class="person" tabindex="0" data-image="admin-dana.png" data-name="다나" data-field="가디언 · 스타터 룸 관리" data-work="후보 평가 · 생활관리 · 상담" data-desc="스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다.">
-<div class="person-photo"><img src="admin-dana.png" alt="다나" onerror="this.parentElement.style.display='none'"></div><span class="person-field">가디언 · 스타터 룸 관리</span><h3>다나</h3><span class="person-work">후보 평가 · 생활관리 · 상담</span><p>스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다.</p><span class="person-more">자세히 보기 ›</span>
-</article>
-<article class="person" tabindex="0" data-image="admin-serin.png" data-name="세린" data-field="의료 · 복구 · 안정화" data-work="데이터 손상 · 정신 안정 · 초기 오버플로 대응" data-desc="오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다.">
-<div class="person-photo"><img src="admin-serin.png" alt="세린" onerror="this.parentElement.style.display='none'"></div><span class="person-field">의료 · 복구 · 안정화</span><h3>세린</h3><span class="person-work">데이터 손상 · 정신 안정 · 초기 오버플로 대응</span><p>오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다.</p><span class="person-more">자세히 보기 ›</span>
-</article>
-<article class="person" tabindex="0" data-image="admin-ren.png" data-name="렌" data-field="치안 · 보안" data-work="현장 출동 · 불법 월드 · NULL 관련 사건" data-desc="문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다.">
-<div class="person-photo"><img src="admin-ren.png" alt="렌" onerror="this.parentElement.style.display='none'"></div><span class="person-field">치안 · 보안</span><h3>렌</h3><span class="person-work">현장 출동 · 불법 월드 · NULL 관련 사건</span><p>문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다.</p><span class="person-more">자세히 보기 ›</span>
-</article>
-<article class="person" tabindex="0" data-image="admin-sia.png" data-name="시아" data-field="시스템 · 기술 감사" data-work="월드 인증 · 오류 조사 · 레거시 코드 감사" data-desc="시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다.">
-<div class="person-photo"><img src="admin-sia.png" alt="시아" onerror="this.parentElement.style.display='none'"></div><span class="person-field">시스템 · 기술 감사</span><h3>시아</h3><span class="person-work">월드 인증 · 오류 조사 · 레거시 코드 감사</span><p>시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다.</p><span class="person-more">자세히 보기 ›</span>
-</article>
+<article class="person" tabindex="0" data-image="admin-dana.png" data-name="다나" data-field="가디언 · 스타터 룸 관리" data-work="후보 평가 · 생활관리 · 상담" data-desc="스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다."><div class="person-photo"><img src="admin-dana.png" alt="다나" onerror="this.parentElement.style.display='none'"></div><span class="person-field">가디언 · 스타터 룸 관리</span><h3>다나</h3><span class="person-work">후보 평가 · 생활관리 · 상담</span><p>스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다.</p><span class="person-more">자세히 보기 ›</span></article>
+<article class="person" tabindex="0" data-image="admin-serin.png" data-name="세린" data-field="의료 · 복구 · 안정화" data-work="데이터 손상 · 정신 안정 · 초기 오버플로 대응" data-desc="오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다."><div class="person-photo"><img src="admin-serin.png" alt="세린" onerror="this.parentElement.style.display='none'"></div><span class="person-field">의료 · 복구 · 안정화</span><h3>세린</h3><span class="person-work">데이터 손상 · 정신 안정 · 초기 오버플로 대응</span><p>오랫동안 복구와 안정화 현장을 맡아온 숙련된 직원. 위급한 상황에서도 침착하게 상태를 확인하고 필요한 조치를 이어갑니다.</p><span class="person-more">자세히 보기 ›</span></article>
+<article class="person" tabindex="0" data-image="admin-ren.png" data-name="렌" data-field="치안 · 보안" data-work="현장 출동 · 불법 월드 · NULL 관련 사건" data-desc="문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다."><div class="person-photo"><img src="admin-ren.png" alt="렌" onerror="this.parentElement.style.display='none'"></div><span class="person-field">치안 · 보안</span><h3>렌</h3><span class="person-work">현장 출동 · 불법 월드 · NULL 관련 사건</span><p>문제가 생기면 직접 현장으로 향하는 실무자. 무단 침입이나 위험 월드, 시민 안전과 관련된 사건을 주로 처리합니다.</p><span class="person-more">자세히 보기 ›</span></article>
+<article class="person" tabindex="0" data-image="admin-sia.png" data-name="시아" data-field="시스템 · 기술 감사" data-work="월드 인증 · 오류 조사 · 레거시 코드 감사" data-desc="시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다."><div class="person-photo"><img src="admin-sia.png" alt="시아" onerror="this.parentElement.style.display='none'"></div><span class="person-field">시스템 · 기술 감사</span><h3>시아</h3><span class="person-work">월드 인증 · 오류 조사 · 레거시 코드 감사</span><p>시스템 로그와 기술 기록을 살피며 이상 징후를 추적하는 직원. 정상처럼 보이는 문제도 끝까지 확인하는 편입니다.</p><span class="person-more">자세히 보기 ›</span></article>
 </div>
 </section>
 
@@ -289,76 +266,37 @@
 
 <section id="guardian-page" class="screen hidden">
 <div class="guardian-shell">
-
 <header class="guardian-header">
-<div class="guardian-logo">
-<div class="guardian-logo-mark">✦</div>
-<div><strong>GUARDIAN</strong><span>PARADISE OFFICIAL GUARDIAN TEAM</span></div>
-</div>
-<nav class="guardian-nav">
-<button class="guardian-nav-btn" data-scroll="guardian-members-section">GUARDIANS</button>
-<button class="guardian-nav-btn" data-scroll="guardian-stream-section">STREAM</button>
-<button class="guardian-nav-btn" data-scroll="guardian-field-section">FIELD</button>
-<button class="guardian-nav-btn" data-scroll="guardian-about-section">ABOUT</button>
-</nav>
+<div class="guardian-logo"><div class="guardian-logo-mark">✦</div><div><strong>GUARDIAN</strong><span>PARADISE OFFICIAL GUARDIAN TEAM</span></div></div>
+<nav class="guardian-nav"><button class="guardian-nav-btn" data-scroll="guardian-members-section">GUARDIANS</button><button class="guardian-nav-btn" data-scroll="guardian-stream-section">STREAM</button><button class="guardian-nav-btn" data-scroll="guardian-field-section">FIELD</button><button class="guardian-nav-btn" data-scroll="guardian-about-section">ABOUT</button></nav>
 <button id="guardian-back" class="guardian-back">← 중앙광장</button>
 </header>
 
 <section class="guardian-kv">
-<img class="guardian-kv-img" src="guardian-keyvisual.png" alt="파라다이스 현역 가디언 6인">
-<div class="guardian-kv-shade"></div>
-<div class="guardian-kv-copy">
-<div class="guardian-kv-small">PARADISE OFFICIAL GUARDIAN TEAM</div>
-<h1>GUARDIAN</h1>
-<p>방송에서는 가장 가까운 스타.<br>현장에서는 가장 먼저 도착하는 사람들.</p>
-</div>
-<div class="guardian-kv-names">
-<span>아르카</span><span>아샤</span><span>유리아</span><span>레나</span><span>루루</span><span>모카</span>
-</div>
+<img class="guardian-kv-img" src="guardian-keyvisual.png" alt="파라다이스 현역 가디언 6인"><div class="guardian-kv-shade"></div>
+<div class="guardian-kv-copy"><div class="guardian-kv-small">PARADISE OFFICIAL GUARDIAN TEAM</div><h1>GUARDIAN</h1><p>방송에서는 가장 가까운 스타.<br>현장에서는 가장 먼저 도착하는 사람들.</p></div>
+<div class="guardian-kv-names"><span>아르카</span><span>아샤</span><span>유리아</span><span>레나</span><span>루루</span><span>모카</span></div>
 </section>
 
 <section id="guardian-members-section" class="guardian-section">
-<div class="g-section-head">
-<div class="g-section-title"><small>ACTIVE GUARDIANS</small><h2>GUARDIANS</h2></div>
-<p class="g-section-desc">현재 파라다이스에서 활동 중인 여섯 명의 가디언. 각자의 방송 스타일과 전문 분야, 그리고 서로 다른 방식으로 시민들과 만나고 있습니다.</p>
-</div>
-
+<div class="g-section-head"><div class="g-section-title"><small>ACTIVE GUARDIANS</small><h2>GUARDIANS</h2></div><p class="g-section-desc">현재 파라다이스에서 활동 중인 여섯 명의 가디언. 각자의 방송 스타일과 전문 분야, 그리고 서로 다른 방식으로 시민들과 만나고 있습니다.</p></div>
 <div class="talent-grid">
-<article class="talent-card" tabindex="0" style="--talent:#2cb7c7" data-image="guardian-yuria.png" data-name="유리아" data-year="가디언 활동 82년" data-desc="오랜 활동기간 동안 가디언 전체를 연결하는 중심 역할을 해온 최고참 가디언. 방송에서는 안정적인 진행과 신뢰감이 가장 큰 강점입니다.">
-<img class="talent-img" src="guardian-yuria.png" alt="유리아"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">01</span><div class="talent-info"><h3>유리아</h3></div><span class="talent-open">›</span>
-</article>
-<article class="talent-card" tabindex="0" style="--talent:#b64c73" data-image="guardian-rena.png" data-name="레나" data-year="가디언 활동 82년" data-desc="유리아와 함께 초대 가디언으로 활동해온 최고참. 긴 활동 그 자체가 하나의 상징이 되어 강한 존재감을 지닌 가디언입니다.">
-<img class="talent-img" src="guardian-rena.png" alt="레나"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">02</span><div class="talent-info"><h3>레나</h3></div><span class="talent-open">›</span>
-</article>
-<article class="talent-card" tabindex="0" style="--talent:#f05d42" data-image="guardian-asha.png" data-name="아샤" data-year="가디언 활동 43년" data-desc="강한 화력과 화려한 현장 장악이 특징인 가디언. 방송에서도 높은 텐션과 쇼맨십이 자연스럽게 이어집니다.">
-<img class="talent-img" src="guardian-asha.png" alt="아샤"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">03</span><div class="talent-info"><h3>아샤</h3></div><span class="talent-open">›</span>
-</article>
-<article class="talent-card" tabindex="0" style="--talent:#756fe1" data-image="guardian-arka.png" data-name="아르카" data-year="가디언 활동 23년" data-desc="정교하고 완성도 높은 활동 스타일이 특징인 가디언. 방송과 공식 활동 모두 흐트러짐이 적고 정밀한 인상을 줍니다.">
-<img class="talent-img" src="guardian-arka.png" alt="아르카"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">04</span><div class="talent-info"><h3>아르카</h3></div><span class="talent-open">›</span>
-</article>
-<article class="talent-card" tabindex="0" style="--talent:#61aeb6" data-image="guardian-moka.png" data-name="모카" data-year="가디언 활동 10년" data-desc="차분하고 안정적인 분위기가 강점인 가디언. 구조와 안정화 상황에서도 급하게 분위기를 몰아붙이지 않고 주변을 편안하게 만드는 편입니다.">
-<img class="talent-img" src="guardian-moka.png" alt="모카"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">05</span><div class="talent-info"><h3>모카</h3></div><span class="talent-open">›</span>
-</article>
-<article class="talent-card" tabindex="0" style="--talent:#e8b13d" data-image="guardian-ruru.png" data-name="루루" data-year="가디언 활동 1년" data-desc="가장 최근에 합류한 신참 가디언. 계획된 연출보다 순간적인 반응과 자연스럽게 생기는 밈에서 강한 캐릭터성을 보여줍니다.">
-<img class="talent-img" src="guardian-ruru.png" alt="루루"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">06</span><div class="talent-info"><h3>루루</h3></div><span class="talent-open">›</span>
-</article>
+<article class="talent-card" tabindex="0" style="--talent:#2cb7c7" data-image="guardian-yuria.png" data-name="유리아" data-year="가디언 활동 82년" data-desc="오랜 활동기간 동안 가디언 전체를 연결하는 중심 역할을 해온 최고참 가디언. 방송에서는 안정적인 진행과 신뢰감이 가장 큰 강점입니다."><img class="talent-img" src="guardian-yuria.png" alt="유리아"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">01</span><div class="talent-info"><h3>유리아</h3></div><span class="talent-open">›</span></article>
+<article class="talent-card" tabindex="0" style="--talent:#b64c73" data-image="guardian-rena.png" data-name="레나" data-year="가디언 활동 82년" data-desc="유리아와 함께 초대 가디언으로 활동해온 최고참. 긴 활동 그 자체가 하나의 상징이 되어 강한 존재감을 지닌 가디언입니다."><img class="talent-img" src="guardian-rena.png" alt="레나"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">02</span><div class="talent-info"><h3>레나</h3></div><span class="talent-open">›</span></article>
+<article class="talent-card" tabindex="0" style="--talent:#f05d42" data-image="guardian-asha.png" data-name="아샤" data-year="가디언 활동 43년" data-desc="강한 화력과 화려한 현장 장악이 특징인 가디언. 방송에서도 높은 텐션과 쇼맨십이 자연스럽게 이어집니다."><img class="talent-img" src="guardian-asha.png" alt="아샤"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">03</span><div class="talent-info"><h3>아샤</h3></div><span class="talent-open">›</span></article>
+<article class="talent-card" tabindex="0" style="--talent:#756fe1" data-image="guardian-arka.png" data-name="아르카" data-year="가디언 활동 23년" data-desc="정교하고 완성도 높은 활동 스타일이 특징인 가디언. 방송과 공식 활동 모두 흐트러짐이 적고 정밀한 인상을 줍니다."><img class="talent-img" src="guardian-arka.png" alt="아르카"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">04</span><div class="talent-info"><h3>아르카</h3></div><span class="talent-open">›</span></article>
+<article class="talent-card" tabindex="0" style="--talent:#61aeb6" data-image="guardian-moka.png" data-name="모카" data-year="가디언 활동 10년" data-desc="차분하고 안정적인 분위기가 강점인 가디언. 구조와 안정화 상황에서도 급하게 분위기를 몰아붙이지 않고 주변을 편안하게 만드는 편입니다."><img class="talent-img" src="guardian-moka.png" alt="모카"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">05</span><div class="talent-info"><h3>모카</h3></div><span class="talent-open">›</span></article>
+<article class="talent-card" tabindex="0" style="--talent:#e8b13d" data-image="guardian-ruru.png" data-name="루루" data-year="가디언 활동 1년" data-desc="가장 최근에 합류한 신참 가디언. 계획된 연출보다 순간적인 반응과 자연스럽게 생기는 밈에서 강한 캐릭터성을 보여줍니다."><img class="talent-img" src="guardian-ruru.png" alt="루루"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">06</span><div class="talent-info"><h3>루루</h3></div><span class="talent-open">›</span></article>
 </div>
 </section>
 
 <section id="guardian-stream-section" class="guardian-section">
-<div class="g-section-head">
-<div class="g-section-title"><small>STREAM & CONTENT</small><h2>최근 방송</h2></div>
-<p class="g-section-desc">재난 대응이 없는 날에는 각자의 방송실에서 시민들과 만납니다. 개인 방송부터 합동 방송, 공식 행사까지 가디언들의 또 다른 일상입니다.</p>
-</div>
+<div class="g-section-head"><div class="g-section-title"><small>STREAM & CONTENT</small><h2>최근 방송</h2></div><p class="g-section-desc">재난 대응이 없는 날에는 각자의 방송실에서 시민들과 만납니다. 개인 방송부터 합동 방송, 공식 행사까지 가디언들의 또 다른 일상입니다.</p></div>
 
 <div class="stream-layout">
 <article class="stream-feature">
 <img src="guardian-stream-yuria.png" alt="유리아 저챗 방송">
-<div class="stream-content">
-<span class="stream-label"><span class="stream-dot"></span> RECENT STREAM</span>
-<h3>유리아 · 본부에서 잠깐 쉬어가요</h3>
-<p>가디언 활동 이야기와 시민들과의 편안한 대화.</p>
-</div>
+<div class="stream-content"><span class="stream-label"><span class="stream-dot"></span> RECENT STREAM</span><h3>유리아 · 본부에서 잠깐 쉬어가요</h3><p>가디언 활동 이야기와 시민들과의 편안한 대화.</p></div>
 </article>
 
 <div class="stream-list">
@@ -366,13 +304,15 @@
 <img class="stream-thumb" src="guardian-stream-asha.png" alt="아샤 하이텐션 방송">
 <div class="stream-copy"><small>ASHA · HYPE</small><b>오늘 이거 진짜 터뜨려도 돼?</b><span>하이텐션 · 현장 뒤풀이</span></div>
 </article>
+
 <article class="stream-item">
 <img class="stream-thumb" src="guardian-stream-arka.png" alt="아르카 진지 방송">
 <div class="stream-copy"><small>ARKA · BRIEFING</small><b>이번 대응, 어디서 갈렸는지</b><span>진지 방송 · 정리 · 설명</span></div>
 </article>
+
 <article class="stream-item">
 <img class="stream-thumb" src="guardian-stream-ruru.png" alt="루루 하이텐션 방송">
-<div class="stream-copy"><small>RURU · LIVE</small><b>방금 그거 봤지?! 진짜였어!</b><span>신참 · 하이텐션 · 생방 감성</span></div>
+<div class="stream-copy"><small>RURU · LIVE</small><b>방금 그거 봤지?! 진짜였어!</b><span>신참 · 하이텐션 · 생방</span></div>
 </article>
 </div>
 </div>
@@ -380,10 +320,7 @@
 
 <section id="guardian-field-section" class="guardian-section">
 <div class="field-wrap">
-<div class="field-head">
-<div><div class="guardian-kv-small">FIELD ACTIVITY</div><h2>최근 현장 활동</h2></div>
-<p>가디언은 방송인이면서 동시에 파라다이스의 재난과 위험 상황에 대응하는 현장 인력입니다. 공개 가능한 활동 기록 일부를 확인할 수 있습니다.</p>
-</div>
+<div class="field-head"><div><div class="guardian-kv-small">FIELD ACTIVITY</div><h2>최근 현장 활동</h2></div><p>가디언은 방송인이면서 동시에 파라다이스의 재난과 위험 상황에 대응하는 현장 인력입니다. 공개 가능한 활동 기록 일부를 확인할 수 있습니다.</p></div>
 <div class="field-grid">
 <article class="field-card"><span class="field-type">재난 대응</span><h3>도심 시설 이상 대응</h3><p>시민 통행 구역에서 발생한 시설 이상에 대응하고 현장을 안정화했습니다.</p><span class="field-state">대응 완료</span></article>
 <article class="field-card"><span class="field-type">시민 구조</span><h3>위험구역 구조 지원</h3><p>접근 제한 구역에서 구조 요청을 확인하고 시민 대피 및 복구 인력을 지원했습니다.</p><span class="field-state">대응 완료</span></article>
@@ -393,10 +330,7 @@
 </section>
 
 <section id="guardian-about-section" class="guardian-section">
-<div class="g-section-head">
-<div class="g-section-title"><small>ABOUT GUARDIAN</small><h2>가디언이란?</h2></div>
-<p class="g-section-desc">방송 속 인기와 실제 현장 대응 능력을 동시에 요구받는 파라다이스의 특별한 역할입니다.</p>
-</div>
+<div class="g-section-head"><div class="g-section-title"><small>ABOUT GUARDIAN</small><h2>가디언이란?</h2></div><p class="g-section-desc">방송 속 인기와 실제 현장 대응 능력을 동시에 요구받는 파라다이스의 특별한 역할입니다.</p></div>
 <div class="about-grid">
 <article class="about-card"><span class="about-no">01</span><h3>현역 가디언</h3><p>파라다이스에서는 여섯 명의 현역 가디언이 활동합니다. 각자의 전문 분야와 방송 스타일을 바탕으로 서로 다른 역할을 담당합니다.</p></article>
 <article class="about-card"><span class="about-no">02</span><h3>스타터 룸</h3><p>차기 가디언 후보들은 스타터 룸에서 생활하며 방송, 전투, 구조와 현장 대응 능력을 쌓아갑니다.</p></article>
@@ -412,11 +346,7 @@
 <div class="staff-modal-card">
 <button id="staff-modal-close" aria-label="닫기">×</button>
 <div id="staff-modal-image-wrap" class="staff-modal-image"><img id="staff-modal-image" src="" alt=""></div>
-<div class="staff-modal-info">
-<div class="staff-modal-small">PARADISE ADMINISTRATION · STAFF INFORMATION</div>
-<span id="staff-modal-field"></span><h2 id="staff-modal-name"></h2><span id="staff-modal-work"></span>
-<div class="staff-modal-line"></div><p id="staff-modal-desc"></p>
-</div>
+<div class="staff-modal-info"><div class="staff-modal-small">PARADISE ADMINISTRATION · STAFF INFORMATION</div><span id="staff-modal-field"></span><h2 id="staff-modal-name"></h2><span id="staff-modal-work"></span><div class="staff-modal-line"></div><p id="staff-modal-desc"></p></div>
 </div>
 </div>
 
@@ -424,11 +354,7 @@
 <div class="guardian-modal-card">
 <button id="guardian-modal-close" aria-label="닫기">×</button>
 <div id="guardian-modal-image-wrap" class="guardian-modal-image"><img id="guardian-modal-image" src="" alt=""></div>
-<div class="guardian-modal-info">
-<div class="guardian-modal-small">PARADISE OFFICIAL GUARDIAN</div>
-<span id="guardian-modal-year"></span><h2 id="guardian-modal-name"></h2>
-<div class="guardian-modal-line"></div><p id="guardian-modal-desc"></p>
-</div>
+<div class="guardian-modal-info"><div class="guardian-modal-small">PARADISE OFFICIAL GUARDIAN</div><span id="guardian-modal-year"></span><h2 id="guardian-modal-name"></h2><div class="guardian-modal-line"></div><p id="guardian-modal-desc"></p></div>
 </div>
 </div>
 
@@ -455,37 +381,13 @@ sceneImage.style.backgroundImage='url("scene-entry.png")';
 sceneImage.classList.add("move");
 
 async function switchScene(i){
-const s=scenes[i];
-sceneImage.classList.add("changing");
-await wait(900);
-sceneImage.style.backgroundImage=`url("${s.image}")`;
-sceneLabel.textContent=s.label;
-sceneImage.classList.remove("move","closing");
-await nextFrame();
-sceneImage.classList.remove("changing");
-await nextFrame();
-sceneImage.classList.add("move");
-await wait(700);
+const s=scenes[i];sceneImage.classList.add("changing");await wait(900);sceneImage.style.backgroundImage=`url("${s.image}")`;sceneLabel.textContent=s.label;sceneImage.classList.remove("move","closing");await nextFrame();sceneImage.classList.remove("changing");await nextFrame();sceneImage.classList.add("move");await wait(700);
 }
 
-async function showDialogue(t){
-dialogue.classList.remove("show");
-await wait(260);
-dialogueText.textContent=t;
-await nextFrame();
-dialogue.classList.add("show");
-}
+async function showDialogue(t){dialogue.classList.remove("show");await wait(260);dialogueText.textContent=t;await nextFrame();dialogue.classList.add("show")}
 
 async function beginStory(){
-if(started)return;
-started=locked=true;
-startButton.classList.add("hide");
-await wait(500);
-await switchScene(0);
-dialogue.classList.remove("hidden");
-await nextFrame();
-await showDialogue(scenes[0].dialogue[0]);
-locked=false;
+if(started)return;started=locked=true;startButton.classList.add("hide");await wait(500);await switchScene(0);dialogue.classList.remove("hidden");await nextFrame();await showDialogue(scenes[0].dialogue[0]);locked=false;
 }
 
 async function advanceStory(){
@@ -493,32 +395,12 @@ if(!started){beginStory();return}
 if(locked)return;
 const s=scenes[currentScene];
 if(currentDialogue<s.dialogue.length-1){currentDialogue++;await showDialogue(s.dialogue[currentDialogue]);return}
-if(currentScene<scenes.length-1){
-locked=true;
-dialogue.classList.remove("show");
-await wait(400);
-currentScene++;
-currentDialogue=0;
-await switchScene(currentScene);
-await showDialogue(scenes[currentScene].dialogue[0]);
-locked=false;
-return;
-}
+if(currentScene<scenes.length-1){locked=true;dialogue.classList.remove("show");await wait(400);currentScene++;currentDialogue=0;await switchScene(currentScene);await showDialogue(scenes[currentScene].dialogue[0]);locked=false;return}
 closeEyes();
 }
 
 async function closeEyes(){
-if(locked)return;
-locked=true;
-dialogue.classList.remove("show");
-await wait(500);
-sceneImage.classList.add("closing");
-await wait(100);
-eyeClose.classList.add("close");
-await wait(3500);
-cinematic.classList.add("hidden");
-transfer.classList.remove("hidden");
-runTransfer();
+if(locked)return;locked=true;dialogue.classList.remove("show");await wait(500);sceneImage.classList.add("closing");await wait(100);eyeClose.classList.add("close");await wait(3500);cinematic.classList.add("hidden");transfer.classList.remove("hidden");runTransfer();
 }
 
 function renderProcess(){
@@ -529,110 +411,47 @@ async function runTransfer(){
 renderProcess();
 const items=[...processList.querySelectorAll(".process-item")];
 for(let i=0;i<items.length;i++){
-const item=items[i];
-item.classList.add("active");
-item.querySelector(".process-status").textContent="진행 중";
-progressState.textContent=processSteps[i];
-let n=Math.round(i/processSteps.length*100);
-progressBar.style.width=`${n}%`;
-progressPercent.textContent=`${n}%`;
-await wait(i?1100:900);
-item.classList.remove("active");
-item.classList.add("complete");
-item.querySelector(".process-status").textContent="완료";
-n=Math.round((i+1)/processSteps.length*100);
-progressBar.style.width=`${n}%`;
-progressPercent.textContent=`${n}%`;
+const item=items[i];item.classList.add("active");item.querySelector(".process-status").textContent="진행 중";progressState.textContent=processSteps[i];
+let n=Math.round(i/processSteps.length*100);progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;await wait(i?1100:900);
+item.classList.remove("active");item.classList.add("complete");item.querySelector(".process-status").textContent="완료";
+n=Math.round((i+1)/processSteps.length*100);progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;
 }
-progressState.textContent="모든 검증 완료";
-await wait(1000);
-transfer.classList.add("hidden");
-identity.classList.remove("hidden");
-residentName.focus();
+progressState.textContent="모든 검증 완료";await wait(1000);transfer.classList.add("hidden");identity.classList.remove("hidden");residentName.focus();
 }
 
 async function enterParadise(name){
-identity.classList.add("fade-out");
-await wait(850);
-identity.classList.add("hidden");
-welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;
-residentIndicatorName.textContent=name;
-paradise.classList.remove("hidden");
-await nextFrame();
-paradise.classList.add("awake");
-await wait(2600);
-arrivalMessage.classList.add("show");
-await wait(3800);
-arrivalMessage.classList.remove("show");
-arrivalMessage.classList.add("fade-away");
-await wait(1800);
-residentIndicator.classList.add("show");
-mapUI.classList.add("ready");
+identity.classList.add("fade-out");await wait(850);identity.classList.add("hidden");
+welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;
+paradise.classList.remove("hidden");await nextFrame();paradise.classList.add("awake");
+await wait(2600);arrivalMessage.classList.add("show");await wait(3800);arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");
+await wait(1800);residentIndicator.classList.add("show");mapUI.classList.add("ready");
 }
 
 async function openSection(page){
-districtPreview.classList.remove("show");
-paradise.classList.add("leave");
-await wait(700);
-paradise.classList.add("hidden");
-paradise.classList.remove("leave");
-page.classList.remove("hidden");
-page.scrollTop=0;
-await nextFrame();
-page.classList.add("show");
+districtPreview.classList.remove("show");paradise.classList.add("leave");await wait(700);paradise.classList.add("hidden");paradise.classList.remove("leave");page.classList.remove("hidden");page.scrollTop=0;await nextFrame();page.classList.add("show");
 }
 
 async function closeSection(page){
-closeStaffModal();
-closeGuardianModal();
-page.classList.remove("show");
-await wait(600);
-page.classList.add("hidden");
-paradise.classList.remove("hidden");
-await nextFrame();
+closeStaffModal();closeGuardianModal();page.classList.remove("show");await wait(600);page.classList.add("hidden");paradise.classList.remove("hidden");await nextFrame();
 }
 
 function openStaffModal(card){
-staffModalField.textContent=card.dataset.field;
-staffModalName.textContent=card.dataset.name;
-staffModalWork.textContent=card.dataset.work;
-staffModalDesc.textContent=card.dataset.desc;
-staffModalImageWrap.style.display="block";
-staffModalImage.src=card.dataset.image;
-staffModalImage.alt=card.dataset.name;
-staffModalImage.onerror=()=>{staffModalImageWrap.style.display="none"};
-staffModal.classList.add("show");
+staffModalField.textContent=card.dataset.field;staffModalName.textContent=card.dataset.name;staffModalWork.textContent=card.dataset.work;staffModalDesc.textContent=card.dataset.desc;
+staffModalImageWrap.style.display="block";staffModalImage.src=card.dataset.image;staffModalImage.alt=card.dataset.name;staffModalImage.onerror=()=>{staffModalImageWrap.style.display="none"};staffModal.classList.add("show");
 }
 
 function closeStaffModal(){staffModal.classList.remove("show")}
 
 function openGuardianModal(card){
-guardianModalYear.textContent=card.dataset.year;
-guardianModalName.textContent=card.dataset.name;
-guardianModalDesc.textContent=card.dataset.desc;
-guardianModalImageWrap.style.display="block";
-guardianModalImage.src=card.dataset.image;
-guardianModalImage.alt=card.dataset.name;
-guardianModalImage.onerror=()=>{guardianModalImageWrap.style.display="none"};
-guardianModal.classList.add("show");
+guardianModalYear.textContent=card.dataset.year;guardianModalName.textContent=card.dataset.name;guardianModalDesc.textContent=card.dataset.desc;
+guardianModalImageWrap.style.display="block";guardianModalImage.src=card.dataset.image;guardianModalImage.alt=card.dataset.name;guardianModalImage.onerror=()=>{guardianModalImageWrap.style.display="none"};guardianModal.classList.add("show");
 }
 
 function closeGuardianModal(){guardianModal.classList.remove("show")}
 
-identityForm.addEventListener("submit",e=>{
-e.preventDefault();
-const name=residentName.value.trim();
-if(name)enterParadise(name);
-});
-
-startButton.addEventListener("click",e=>{
-e.stopPropagation();
-beginStory();
-});
-
-cinematic.addEventListener("click",e=>{
-if(!e.target.closest("button"))advanceStory();
-});
+identityForm.addEventListener("submit",e=>{e.preventDefault();const name=residentName.value.trim();if(name)enterParadise(name)});
+startButton.addEventListener("click",e=>{e.stopPropagation();beginStory()});
+cinematic.addEventListener("click",e=>{if(!e.target.closest("button"))advanceStory()});
 
 document.addEventListener("keydown",e=>{
 if(e.key==="Escape"&&staffModal.classList.contains("show")){closeStaffModal();return}
@@ -644,9 +463,7 @@ if(e.key==="Enter"||e.code==="Space"){e.preventDefault();advanceStory()}
 document.querySelectorAll(".map-node").forEach(node=>node.addEventListener("click",()=>{
 if(node.dataset.target==="admin"){openSection(adminPage);return}
 if(node.dataset.target==="guardian"){openSection(guardianPage);return}
-previewTitle.textContent=node.dataset.title;
-previewDesc.textContent=node.dataset.desc;
-districtPreview.classList.add("show");
+previewTitle.textContent=node.dataset.title;previewDesc.textContent=node.dataset.desc;districtPreview.classList.add("show");
 }));
 
 $("preview-close").addEventListener("click",()=>districtPreview.classList.remove("show"));
@@ -654,34 +471,25 @@ $("admin-back").addEventListener("click",()=>closeSection(adminPage));
 $("guardian-back").addEventListener("click",()=>closeSection(guardianPage));
 
 document.querySelectorAll(".admin-tab").forEach(tab=>tab.addEventListener("click",()=>{
-document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));
-document.querySelectorAll(".admin-panel").forEach(p=>p.classList.remove("active"));
-tab.classList.add("active");
-$(`panel-${tab.dataset.panel}`).classList.add("active");
+document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".admin-panel").forEach(p=>p.classList.remove("active"));tab.classList.add("active");$(`panel-${tab.dataset.panel}`).classList.add("active");
 }));
 
 document.querySelectorAll(".person").forEach(card=>{
 card.addEventListener("click",()=>openStaffModal(card));
-card.addEventListener("keydown",e=>{
-if(e.key==="Enter"||e.code==="Space"){e.preventDefault();openStaffModal(card)}
-});
+card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.code==="Space"){e.preventDefault();openStaffModal(card)}});
 });
 
 document.querySelectorAll(".talent-card").forEach(card=>{
 card.addEventListener("click",()=>openGuardianModal(card));
-card.addEventListener("keydown",e=>{
-if(e.key==="Enter"||e.code==="Space"){e.preventDefault();openGuardianModal(card)}
-});
+card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.code==="Space"){e.preventDefault();openGuardianModal(card)}});
 });
 
 document.querySelectorAll(".guardian-nav-btn").forEach(btn=>btn.addEventListener("click",()=>{
-const target=$(btn.dataset.scroll);
-if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
+const target=$(btn.dataset.scroll);if(target)target.scrollIntoView({behavior:"smooth",block:"start"});
 }));
 
 $("staff-modal-close").addEventListener("click",closeStaffModal);
 staffModal.addEventListener("click",e=>{if(e.target===staffModal)closeStaffModal()});
-
 $("guardian-modal-close").addEventListener("click",closeGuardianModal);
 guardianModal.addEventListener("click",e=>{if(e.target===guardianModal)closeGuardianModal()});
 </script>
