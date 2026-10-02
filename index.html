@@ -8,42 +8,30 @@
 :root{--white:#f7f6f1;--accent:#e7d7b2;--system:#b7d9ef;--dark:#050607;--blue:#78d8ff;--navy:#0a2633}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:var(--dark)}body{overflow:hidden;color:var(--white);font-family:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif}button,input{font:inherit}.screen{position:fixed;inset:0;width:100vw;height:100dvh}.hidden{display:none!important}
 
-/* 현실 */
+/* 입주 시퀀스 */
 #cinematic{overflow:hidden;background:#050607}
 #scene-image{position:absolute;inset:-2%;background:center/cover no-repeat;opacity:1;transform:scale(1.015);filter:blur(0) brightness(1) saturate(.96);transition:opacity .9s ease,transform 8s ease-out}
 #scene-image.changing{opacity:0}#scene-image.move{transform:scale(1.045)}#scene-image.closing{animation:vision-close 3.4s cubic-bezier(.45,0,.25,1) forwards}
 @keyframes vision-close{0%{filter:blur(0) brightness(1);transform:scale(1.045)}30%{filter:blur(2px) brightness(.91);transform:scale(1.055)}48%{filter:blur(4px) brightness(.8);transform:scale(1.06)}66%{filter:blur(7px) brightness(.65);transform:scale(1.067)}84%{filter:blur(11px) brightness(.44);transform:scale(1.074)}100%{filter:blur(16px) brightness(.2);transform:scale(1.08)}}
 .vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.1) 34%,transparent 67%),radial-gradient(circle at center,transparent 55%,rgba(0,0,0,.14))}
 .brand{position:absolute;top:34px;right:45px;text-align:right;opacity:.72;text-shadow:0 2px 14px rgba(0,0,0,.55)}.brand strong{display:block;font-size:13px;letter-spacing:.22em}.brand span{display:block;margin-top:6px;font-size:8px;letter-spacing:.17em;color:rgba(255,255,255,.58)}
-
-/* 시작 */
 #start-button{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);width:min(520px,calc(100vw - 40px));padding:20px 28px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(8,10,12,.48);backdrop-filter:blur(14px);color:#fff;cursor:pointer;text-align:left;box-shadow:0 18px 60px rgba(0,0,0,.22);transition:.55s}
 #start-button:hover{background:rgba(8,10,12,.64);border-color:rgba(255,255,255,.48);transform:translateX(-50%) translateY(-2px)}#start-button.hide{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(10px)}
 .start-small{display:block;font-size:11px;color:rgba(255,255,255,.58)}.start-main{display:block;margin:5px 0 7px;font-size:clamp(20px,2.3vw,29px);font-weight:550}.start-help{display:block;font-size:11px;color:rgba(255,255,255,.42)}
-
-/* 대사 */
 #dialogue{position:absolute;left:clamp(24px,5vw,78px);bottom:clamp(28px,7vh,70px);width:min(720px,calc(100vw - 48px));padding:14px 20px 17px;border-top:1px solid rgba(255,255,255,.34);background:linear-gradient(90deg,rgba(3,5,7,.59),rgba(3,5,7,.3) 72%,transparent);backdrop-filter:blur(8px);text-shadow:0 2px 10px rgba(0,0,0,.88);opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
 #dialogue.show{opacity:1;transform:translateY(0)}.dialogue-info{display:flex;gap:11px;margin-bottom:7px;font-size:11px;letter-spacing:.07em;color:rgba(255,255,255,.52)}#speaker{color:var(--accent);font-weight:bold}#scene-label::before{content:"·";margin-right:11px;color:rgba(255,255,255,.3)}
 #dialogue-text{margin:0;max-width:650px;font-size:clamp(17px,1.65vw,23px);line-height:1.65;word-break:keep-all}.dialogue-next{margin-top:10px;font-size:9px;letter-spacing:.14em;color:rgba(255,255,255,.31)}.dialogue-next span{display:inline-block;margin-left:5px;animation:arrow 1.3s infinite ease-in-out}@keyframes arrow{50%{transform:translateX(4px)}}
-
-/* 눈 감기 */
 #eye-close{position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none}#eye-close::before,#eye-close::after{content:"";position:absolute;left:-4%;width:108%;height:57%;filter:blur(2px);transition:transform 3.2s cubic-bezier(.6,0,.25,1)}
 #eye-close::before{top:-4%;background:linear-gradient(to bottom,#000 65%,rgba(0,0,0,.6));transform:translateY(-106%)}#eye-close::after{bottom:-4%;background:linear-gradient(to top,#000 65%,rgba(0,0,0,.6));transform:translateY(106%)}#eye-close.close::before,#eye-close.close::after{transform:translateY(0)}
-
-/* 동기화 */
 #transfer{display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 50% 45%,rgba(40,78,104,.14),transparent 45%),#04070a}.transfer-panel{width:min(760px,92vw)}
 .system-brand{font-size:13px;letter-spacing:.28em;color:rgba(255,255,255,.8)}.system-sub{margin:8px 0 46px;font-family:monospace;font-size:10px;letter-spacing:.16em;color:rgba(183,217,239,.48)}
 #transfer h1{margin:0 0 10px;font-size:clamp(27px,4vw,46px);font-weight:500}.transfer-description{margin:0 0 34px;color:rgba(255,255,255,.52);line-height:1.7;font-size:14px}
 #process-list{display:grid;margin-bottom:34px;border-top:1px solid rgba(255,255,255,.1)}.process-item{display:grid;grid-template-columns:34px 1fr auto;align-items:center;min-height:48px;padding:0 4px;border-bottom:1px solid rgba(255,255,255,.075);color:rgba(255,255,255,.23);transition:color .5s}
 .process-number,.process-status{font-family:monospace}.process-number{font-size:10px}.process-label{font-size:13px}.process-status{font-size:9px}.process-item.active{color:#fff}.process-item.complete{color:rgba(183,217,239,.68)}
 .progress-track{height:1px;overflow:hidden;background:rgba(255,255,255,.12)}#progress-bar{width:0;height:100%;background:var(--system);transition:width .8s}.progress-info{display:flex;justify-content:space-between;margin-top:9px;font-family:monospace;font-size:9px;color:rgba(255,255,255,.34)}
-
-/* 이름 */
 #identity{display:grid;place-items:center;padding:24px;background:#06090b;transition:opacity .8s}.fade-out{opacity:0}.identity-card{width:min(520px,94vw);text-align:center}
-.identity-check{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 22px;border:1px solid rgba(183,217,239,.46);border-radius:50%;color:var(--system);font-size:20px}
-.identity-small{font:10px monospace;letter-spacing:.18em;color:rgba(183,217,239,.52)}.identity-card h1{font-size:clamp(28px,5vw,44px);font-weight:500}.identity-card>p{margin-bottom:38px;color:rgba(255,255,255,.56);line-height:1.75;font-size:14px}
-.identity-card label{display:block;margin-bottom:9px;text-align:left;color:rgba(255,255,255,.52);font-size:12px}#resident-name{width:100%;height:58px;padding:0 16px;border:0;border-bottom:1px solid rgba(255,255,255,.38);outline:none;background:rgba(255,255,255,.035);color:#fff;font-size:18px}
-.identity-button{width:100%;height:54px;margin-top:18px;border:1px solid rgba(183,217,239,.5);border-radius:3px;background:rgba(183,217,239,.08);color:#fff;cursor:pointer}
+.identity-check{display:grid;place-items:center;width:46px;height:46px;margin:0 auto 22px;border:1px solid rgba(183,217,239,.46);border-radius:50%;color:var(--system);font-size:20px}.identity-small{font:10px monospace;letter-spacing:.18em;color:rgba(183,217,239,.52)}.identity-card h1{font-size:clamp(28px,5vw,44px);font-weight:500}.identity-card>p{margin-bottom:38px;color:rgba(255,255,255,.56);line-height:1.75;font-size:14px}.identity-card label{display:block;margin-bottom:9px;text-align:left;color:rgba(255,255,255,.52);font-size:12px}
+#resident-name{width:100%;height:58px;padding:0 16px;border:0;border-bottom:1px solid rgba(255,255,255,.38);outline:none;background:rgba(255,255,255,.035);color:#fff;font-size:18px}.identity-button{width:100%;height:54px;margin-top:18px;border:1px solid rgba(183,217,239,.5);border-radius:3px;background:rgba(183,217,239,.08);color:#fff;cursor:pointer}
 
 /* 중앙광장 */
 #paradise{overflow:hidden;background:#02070a;opacity:1;transition:opacity .7s,filter .7s}#paradise.leave{opacity:0;filter:blur(5px)}
@@ -52,17 +40,12 @@
 #arrival-dark{position:absolute;inset:0;z-index:20;background:#000;opacity:1;pointer-events:none;transition:opacity 5s}#paradise.awake #arrival-dark{opacity:0}
 #arrival-message{position:absolute;z-index:30;left:50%;top:50%;width:min(700px,calc(100vw - 40px));padding:34px 42px;text-align:center;color:#fff;background:rgba(8,23,31,.58);border:1px solid rgba(255,255,255,.45);border-radius:10px;backdrop-filter:blur(16px);box-shadow:0 20px 70px rgba(0,0,0,.28);text-shadow:0 2px 14px rgba(0,0,0,.85);opacity:0;transform:translate(-50%,-43%);pointer-events:none;transition:opacity 1.8s,transform 1.8s}
 #arrival-message.show{opacity:1;transform:translate(-50%,-50%)}#arrival-message.fade-away{opacity:0;transform:translate(-50%,-56%)}.arrival-small{font-size:11px;letter-spacing:.32em;color:rgba(211,239,255,.76)}#arrival-message h1{margin:10px 0 0;font-size:clamp(38px,6vw,72px)}.arrival-line{width:70px;height:1px;margin:24px auto;background:rgba(205,235,250,.55)}#welcome-name{display:block;font-size:clamp(17px,2vw,24px)}.arrival-description{display:block;margin-top:9px;font-size:13px;color:rgba(232,245,252,.78)}
-#resident-indicator{position:absolute;z-index:10;top:26px;left:28px;padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(10,28,36,.33);backdrop-filter:blur(10px);font-size:10px;opacity:0;transform:translateY(-8px);transition:.8s}#resident-indicator.show{opacity:1;transform:translateY(0)}#resident-indicator strong{font-size:12px}
-
-/* 광장 노드 */
+#resident-indicator{position:absolute;z-index:10;top:26px;left:28px;padding:9px 12px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(10,28,36,.33);backdrop-filter:blur(10px);font-size:10px;opacity:0;transform:translateY(-8px);transition:.8s}#resident-indicator.show{opacity:1;transform:translateY(0)}
 #map-ui{position:absolute;inset:0;z-index:12;pointer-events:none;opacity:0;transition:opacity .9s}#map-ui.ready{opacity:1}
-.map-node{--x:50%;--y:50%;position:absolute;left:var(--x);top:var(--y);width:0;height:0;padding:0;border:0;background:none;color:#fff;cursor:pointer;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .55s,transform .55s}
-#map-ui.ready .map-node{pointer-events:auto;opacity:1;transform:translateY(0)}
-.node-dot{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:15px;height:15px;border:2px solid rgba(230,249,255,.95);border-radius:50%;background:rgba(40,125,155,.78);box-shadow:0 0 0 4px rgba(190,239,255,.13),0 0 13px rgba(126,220,255,.65);transition:.25s}.node-dot::after{content:"";position:absolute;left:13px;top:5px;width:25px;height:1px;background:rgba(227,247,255,.72)}
+.map-node{--x:50%;--y:50%;position:absolute;left:var(--x);top:var(--y);width:0;height:0;padding:0;border:0;background:none;color:#fff;cursor:pointer;pointer-events:none;opacity:0;transform:translateY(8px);transition:opacity .55s,transform .55s}#map-ui.ready .map-node{pointer-events:auto;opacity:1;transform:translateY(0)}
+.node-dot{position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:15px;height:15px;border:2px solid rgba(230,249,255,.95);border-radius:50%;background:rgba(40,125,155,.78);box-shadow:0 0 0 4px rgba(190,239,255,.13),0 0 13px rgba(126,220,255,.65)}.node-dot::after{content:"";position:absolute;left:13px;top:5px;width:25px;height:1px;background:rgba(227,247,255,.72)}
 .node-card{position:absolute;left:34px;top:50%;transform:translateY(-50%);padding:10px 14px 11px;border:1px solid rgba(235,250,255,.48);border-radius:8px;background:linear-gradient(135deg,rgba(12,39,52,.72),rgba(17,62,78,.48));backdrop-filter:blur(12px);box-shadow:0 8px 24px rgba(0,0,0,.18);white-space:nowrap;text-align:left;transition:.25s}
-.node-title{display:block;font-size:12px;font-weight:700}.node-sub{display:block;margin-top:3px;font-size:9px;color:rgba(220,242,250,.65)}
-.map-node:hover .node-card{transform:translateY(-50%) translateX(4px);border-color:#dff8ff;background:linear-gradient(135deg,rgba(18,67,86,.9),rgba(27,101,124,.72))}.map-node:hover .node-dot{transform:translate(-50%,-50%) scale(1.2);background:#75dcff;box-shadow:0 0 0 5px rgba(190,239,255,.16),0 0 20px rgba(126,220,255,.95)}
-.map-node.flip .node-dot::after{left:auto;right:13px}.map-node.flip .node-card{left:auto;right:34px;text-align:right}.map-node.flip:hover .node-card{transform:translateY(-50%) translateX(-4px)}
+.node-title{display:block;font-size:12px;font-weight:700}.node-sub{display:block;margin-top:3px;font-size:9px;color:rgba(220,242,250,.65)}.map-node:hover .node-card{transform:translateY(-50%) translateX(4px);border-color:#dff8ff}.map-node.flip .node-dot::after{left:auto;right:13px}.map-node.flip .node-card{left:auto;right:34px;text-align:right}
 #node-admin{--x:48%;--y:25%}#node-guardian{--x:22%;--y:34%}#node-starter{--x:79%;--y:34%}#node-news{--x:13%;--y:61%}#node-citizen{--x:78%;--y:66%}#node-gate{--x:13%;--y:82%}
 #district-preview{position:absolute;z-index:40;left:50%;bottom:28px;width:min(560px,calc(100vw - 36px));padding:18px 20px;border:1px solid rgba(220,246,255,.45);border-radius:10px;background:rgba(7,29,39,.78);backdrop-filter:blur(16px);opacity:0;pointer-events:none;transform:translate(-50%,15px);transition:.35s}
 #district-preview.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}.preview-top{display:flex;justify-content:space-between;gap:15px}.preview-title{font-size:17px;font-weight:700}.preview-desc{margin-top:5px;font-size:12px;line-height:1.6;color:rgba(230,245,250,.72)}#preview-close{border:0;background:none;color:#fff;font-size:22px;cursor:pointer}
@@ -70,78 +53,125 @@
 /* 관리국 */
 #admin-page{overflow:auto;color:#143747;opacity:0;transition:opacity .7s;background:linear-gradient(120deg,rgba(235,249,253,.58),rgba(238,250,253,.46) 44%,rgba(224,243,249,.60)),url("admin-interior.png") center/cover fixed no-repeat}
 #admin-page.show{opacity:1}.admin-shell{position:relative;width:min(1260px,calc(100% - 42px));margin:auto;padding:28px 0 24px}
-.admin-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:54px;padding:12px 15px;border:1px solid rgba(255,255,255,.56);border-radius:12px;background:rgba(255,255,255,.32);backdrop-filter:blur(10px);box-shadow:0 8px 30px rgba(25,74,92,.07)}
-.admin-brand strong{display:block;font-size:13px;letter-spacing:.24em;color:#173b4b}.admin-brand span{display:block;margin-top:5px;font-size:9px;letter-spacing:.15em;color:#648896}.admin-back{border:1px solid rgba(39,107,132,.27);border-radius:8px;padding:10px 15px;background:rgba(255,255,255,.46);color:#244957;cursor:pointer;backdrop-filter:blur(8px)}
-.admin-hero{display:grid;grid-template-columns:1.4fr .8fr;gap:42px;align-items:end;margin-bottom:38px;padding:32px 34px;border:1px solid rgba(255,255,255,.61);border-radius:18px;background:linear-gradient(110deg,rgba(255,255,255,.50),rgba(245,252,255,.27));backdrop-filter:blur(10px);box-shadow:0 16px 50px rgba(30,90,110,.10)}
-.admin-eyebrow{font-size:11px;letter-spacing:.22em;color:#287695}.admin-hero h1{margin:11px 0 14px;font-size:clamp(42px,6vw,78px);line-height:1;font-weight:700;letter-spacing:-.045em;color:#123443}.admin-lead{max-width:700px;margin:0;font-size:15px;line-height:1.8;color:#3f6877}
-.admin-status{padding:22px;border:1px solid rgba(255,255,255,.67);border-radius:14px;background:rgba(255,255,255,.43);backdrop-filter:blur(10px)}.status-label{font-size:9px;letter-spacing:.17em;color:#5c8797}.status-main{display:flex;align-items:center;gap:9px;margin-top:10px;font-size:15px;font-weight:700;color:#255364}.status-dot{width:9px;height:9px;border-radius:50%;background:#69d5c5}.status-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.status-cell{padding:11px;border-radius:8px;background:rgba(225,245,251,.56)}.status-cell b{display:block;font-size:16px;color:#214b5b}.status-cell span{font-size:9px;color:#668996}
-.admin-nav{display:flex;gap:8px;padding:7px;border:1px solid rgba(255,255,255,.62);border-radius:11px;background:rgba(255,255,255,.34);backdrop-filter:blur(10px);width:max-content;max-width:100%;overflow:auto;margin-bottom:24px}.admin-tab{border:0;border-radius:7px;padding:10px 16px;background:transparent;color:#456b79;font-size:12px;cursor:pointer;white-space:nowrap}.admin-tab.active{background:#18485b;color:#fff}
-.admin-panel{display:none;animation:panelIn .35s ease}.admin-panel.active{display:block}@keyframes panelIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.info-card,.dept,.person,.system-row{border:1px solid rgba(255,255,255,.65);background:rgba(248,253,255,.48);backdrop-filter:blur(10px);box-shadow:0 11px 36px rgba(29,83,103,.09)}
-.info-card{min-height:190px;padding:23px;border-radius:13px}.info-num{font:10px monospace;color:#3388a4}.info-card h3{margin:17px 0 8px;font-size:18px;color:#173e4e}.info-card p{margin:0;font-size:12px;line-height:1.75;color:#4e707d}.service-note{margin-top:18px;padding:17px 20px;border:1px solid rgba(255,255,255,.58);border-radius:12px;background:rgba(255,255,255,.30);color:#446d7b;font-size:11px;line-height:1.7}
-.dept-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.dept{padding:21px 17px;border-radius:12px}.dept-icon{display:grid;place-items:center;width:34px;height:34px;margin-bottom:18px;border-radius:9px;background:rgba(73,161,190,.11);font-size:16px;color:#347e98}.dept b{display:block;font-size:14px;color:#1d4859}.dept p{margin:12px 0 0;font-size:11px;line-height:1.7;color:#50727f}
-.person-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.person{position:relative;overflow:hidden;min-height:280px;padding:25px 23px;border-radius:14px;cursor:pointer;transition:.25s}.person:hover{transform:translateY(-5px);background:rgba(255,255,255,.61)}.person-photo{position:absolute;top:18px;right:17px;width:118px;height:118px;border-radius:17px;overflow:hidden;background:#fff}.person-photo img{width:100%;height:100%;object-fit:cover}.person-field{display:inline-block;max-width:calc(100% - 132px);padding:5px 8px;border-radius:6px;background:rgba(67,143,171,.11);font-size:10px;font-weight:700;color:#327893}.person h3{margin:17px 132px 8px 0;font-size:26px;color:#153b4a}.person-work{display:block;min-height:32px;margin-right:125px;font-size:10px;line-height:1.55;color:#597b88}.person p{margin:18px 0 0;font-size:11px;line-height:1.7;color:#4c6e7b}.person-more{position:absolute;right:18px;bottom:15px;font-size:9px;color:#5c8b9c}
-.system-list{display:grid;gap:10px}.system-row{display:grid;grid-template-columns:180px 1fr auto;gap:20px;align-items:center;padding:18px 20px;border-radius:11px}.system-row b{font-size:12px;color:#214b5b}.system-row p{margin:0;font-size:11px;color:#4f707c}.system-state{padding:5px 8px;border-radius:20px;background:rgba(218,247,241,.8);color:#297768;font-size:9px}
-
-/* 공통 모달 */
-#staff-modal,#guardian-modal,#starter-modal{position:fixed;inset:0;z-index:510;display:grid;place-items:center;padding:24px;background:rgba(9,20,30,.57);backdrop-filter:blur(11px);opacity:0;pointer-events:none;transition:.3s}
-#staff-modal.show,#guardian-modal.show,#starter-modal.show{opacity:1;pointer-events:auto}
-.staff-modal-card,.guardian-modal-card,.starter-modal-card{position:relative;width:min(900px,calc(100vw - 40px));max-height:calc(100dvh - 48px);overflow:auto;display:grid;grid-template-columns:minmax(290px,360px) 1fr;gap:30px;padding:24px;border-radius:21px;background:linear-gradient(135deg,#fbfdff,#eef6fb);box-shadow:0 30px 90px rgba(0,25,40,.34)}
-#staff-modal-close,#guardian-modal-close,#starter-modal-close{position:absolute;z-index:5;right:14px;top:12px;width:38px;height:38px;border:1px solid rgba(48,90,110,.14);border-radius:50%;background:rgba(255,255,255,.84);color:#3b5967;font-size:22px;cursor:pointer}
-.staff-modal-image,.guardian-modal-image,.starter-modal-image{overflow:hidden;border-radius:16px;background:#fff;min-height:300px}.staff-modal-image img,.guardian-modal-image img,.starter-modal-image img{display:block;width:100%;height:auto;max-height:510px;object-fit:contain;object-position:center top}
-.staff-modal-info,.guardian-modal-info,.starter-modal-info{align-self:center;padding:10px 18px 10px 0}.staff-modal-small,.guardian-modal-small,.starter-modal-small{font-size:9px;letter-spacing:.19em;color:#718d9c}
-#staff-modal-field,#guardian-modal-year,#starter-modal-role{display:inline-block;margin-top:18px;padding:6px 9px;border-radius:20px;background:#e6f0f5;color:#50758a;font-size:9px}
-#staff-modal-name,#guardian-modal-name,#starter-modal-name{margin:14px 0 8px;font-size:clamp(40px,5vw,65px);line-height:1;color:#163344}
-#staff-modal-work,#starter-modal-sub{display:block;font-size:12px;color:#607b89}.staff-modal-line,.guardian-modal-line,.starter-modal-line{width:48px;height:1px;margin:23px 0;background:#c9d7df}
-#staff-modal-desc,#guardian-modal-desc,#starter-modal-desc{margin:0;font-size:13px;line-height:1.9;color:#5f7783}
+.admin-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:54px;padding:12px 15px;border:1px solid rgba(255,255,255,.56);border-radius:12px;background:rgba(255,255,255,.32);backdrop-filter:blur(10px)}
+.admin-brand strong{display:block;font-size:13px;letter-spacing:.24em;color:#173b4b}.admin-brand span{display:block;margin-top:5px;font-size:9px;color:#648896}.admin-back{border:1px solid rgba(39,107,132,.27);border-radius:8px;padding:10px 15px;background:rgba(255,255,255,.46);color:#244957;cursor:pointer}
+.admin-hero{display:grid;grid-template-columns:1.4fr .8fr;gap:42px;align-items:end;margin-bottom:38px;padding:32px 34px;border:1px solid rgba(255,255,255,.61);border-radius:18px;background:rgba(255,255,255,.42);backdrop-filter:blur(10px)}
+.admin-eyebrow{font-size:11px;letter-spacing:.22em;color:#287695}.admin-hero h1{margin:11px 0 14px;font-size:clamp(42px,6vw,78px);line-height:1;color:#123443}.admin-lead{max-width:700px;margin:0;font-size:15px;line-height:1.8;color:#3f6877}
+.admin-status{padding:22px;border-radius:14px;background:rgba(255,255,255,.43)}.status-label{font-size:9px;color:#5c8797}.status-main{display:flex;align-items:center;gap:9px;margin-top:10px;font-size:15px;font-weight:700;color:#255364}.status-dot{width:9px;height:9px;border-radius:50%;background:#69d5c5}.status-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.status-cell{padding:11px;border-radius:8px;background:rgba(225,245,251,.56)}.status-cell b{display:block;font-size:16px}.status-cell span{font-size:9px;color:#668996}
+.admin-nav{display:flex;gap:8px;padding:7px;border-radius:11px;background:rgba(255,255,255,.34);width:max-content;max-width:100%;margin-bottom:24px}.admin-tab{border:0;border-radius:7px;padding:10px 16px;background:transparent;color:#456b79;font-size:12px;cursor:pointer}.admin-tab.active{background:#18485b;color:#fff}
+.admin-panel{display:none}.admin-panel.active{display:block}.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.info-card,.dept,.person,.system-row{border:1px solid rgba(255,255,255,.65);background:rgba(248,253,255,.48);backdrop-filter:blur(10px)}
+.info-card{min-height:190px;padding:23px;border-radius:13px}.info-num{font:10px monospace;color:#3388a4}.info-card h3{margin:17px 0 8px;font-size:18px}.info-card p{margin:0;font-size:12px;line-height:1.75;color:#4e707d}.service-note{margin-top:18px;padding:17px 20px;border-radius:12px;background:rgba(255,255,255,.30);color:#446d7b;font-size:11px;line-height:1.7}
+.dept-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.dept{padding:21px 17px;border-radius:12px}.dept-icon{display:grid;place-items:center;width:34px;height:34px;margin-bottom:18px;border-radius:9px;background:rgba(73,161,190,.11)}.dept b{font-size:14px}.dept p{font-size:11px;line-height:1.7;color:#50727f}
+.person-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.person{position:relative;min-height:280px;padding:25px 23px;border-radius:14px;cursor:pointer}.person-photo{position:absolute;top:18px;right:17px;width:118px;height:118px;border-radius:17px;overflow:hidden}.person-photo img{width:100%;height:100%;object-fit:cover}.person-field{display:inline-block;max-width:calc(100% - 132px);padding:5px 8px;border-radius:6px;background:rgba(67,143,171,.11);font-size:10px;color:#327893}.person h3{margin:17px 132px 8px 0;font-size:26px}.person-work{display:block;margin-right:125px;font-size:10px;color:#597b88}.person p{margin-top:18px;font-size:11px;line-height:1.7;color:#4c6e7b}.person-more{position:absolute;right:18px;bottom:15px;font-size:9px;color:#5c8b9c}
+.system-list{display:grid;gap:10px}.system-row{display:grid;grid-template-columns:180px 1fr auto;gap:20px;align-items:center;padding:18px 20px;border-radius:11px}.system-row b{font-size:12px}.system-row p{margin:0;font-size:11px;color:#4f707c}.system-state{padding:5px 8px;border-radius:20px;background:rgba(218,247,241,.8);font-size:9px}
 
 /* 가디언 */
-#guardian-page{overflow:auto;color:#182c3a;opacity:0;transition:opacity .7s;background:linear-gradient(180deg,#f8fbfe 0%,#eef6fb 45%,#fbf9fd 100%)}#guardian-page.show{opacity:1}
-.guardian-shell{width:min(1460px,calc(100% - 36px));margin:auto;padding:18px 0 70px}
-.guardian-header{position:sticky;top:12px;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;padding:10px 13px 10px 18px;border:1px solid rgba(255,255,255,.82);border-radius:15px;background:rgba(250,253,255,.72);backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(44,71,98,.10)}
-.guardian-logo{display:flex;align-items:center;gap:12px}.guardian-logo-mark{position:relative;width:34px;height:34px;flex:0 0 34px}.guardian-logo-mark::before{content:"";position:absolute;left:3px;right:3px;top:6px;bottom:6px;border:2px solid #527f93;border-top-color:transparent;border-bottom-color:transparent;border-radius:50%}.guardian-logo-mark::after{content:"";position:absolute;left:50%;top:5px;width:2px;height:24px;transform:translateX(-50%);background:linear-gradient(to bottom,#244b60 0 28%,transparent 28% 41%,#68a6bc 41% 59%,transparent 59% 72%,#244b60 72%)}
-.guardian-mark-core::before,.guardian-mark-core::after{content:"";position:absolute;top:50%;width:5px;height:5px;border-radius:1px;background:#68a6bc;transform:translateY(-50%) rotate(45deg)}.guardian-mark-core::before{left:2px}.guardian-mark-core::after{right:2px}
-.guardian-logo-text strong{display:block;font-size:15px;letter-spacing:.22em;color:#172c3b}.guardian-logo-text span{display:block;margin-top:2px;font-size:8px;letter-spacing:.13em;color:#8394a0}
-.guardian-nav{display:flex;align-items:center;gap:4px}.guardian-nav-btn{border:0;border-radius:8px;padding:8px 11px;background:transparent;color:#607480;font-size:10px;cursor:pointer}.guardian-back{border:1px solid rgba(68,100,120,.16);border-radius:8px;padding:9px 13px;background:#fff;color:#415a68;font-size:10px;cursor:pointer}
-.guardian-kv{position:relative;overflow:hidden;border-radius:23px;background:#d6ebf6;box-shadow:0 24px 70px rgba(46,71,103,.17)}.guardian-kv-img{display:block;width:100%;height:auto;min-height:470px;object-fit:cover;object-position:center}.guardian-kv-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,24,38,.72),rgba(10,24,38,.2) 32%,transparent 59%)}
-.guardian-kv-copy{position:absolute;z-index:3;left:42px;bottom:54px;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.38)}.guardian-kv-small{font-size:10px;letter-spacing:.27em;color:rgba(255,255,255,.77)}.guardian-kv-copy h1{margin:7px 0 9px;font-size:clamp(56px,8vw,108px);line-height:.85;letter-spacing:-.06em}.guardian-kv-copy p{margin:0;font-size:14px;line-height:1.7;color:rgba(255,255,255,.86)}
-.guardian-kv-names{position:absolute;z-index:4;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(6,1fr);padding:10px 28px 11px;background:rgba(11,26,39,.32);backdrop-filter:blur(9px)}.guardian-kv-names span{text-align:center;font-size:10px;font-weight:700;color:#fff}
-.guardian-section{padding:78px 7px 0;scroll-margin-top:95px}.g-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin:0 7px 24px}.g-section-title small{display:block;margin-bottom:7px;font-size:9px;letter-spacing:.24em;color:#7b91a1}.g-section-title h2{margin:0;font-size:clamp(34px,4vw,55px);letter-spacing:-.045em;color:#172e3e}.g-section-desc{max-width:480px;margin:0;text-align:right;font-size:11px;line-height:1.75;color:#758a96}
-.talent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.talent-card{--talent:#6e91c8;position:relative;overflow:hidden;min-height:480px;border-radius:19px;background:#dfeaf2;box-shadow:0 13px 35px rgba(36,63,88,.10);cursor:pointer;transition:.3s}.talent-card:hover{transform:translateY(-6px)}.talent-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}.talent-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,22,34,.86),rgba(12,22,34,.34) 29%,transparent 57%)}.talent-accent{position:absolute;left:0;bottom:0;width:5px;height:33%;background:var(--talent)}.talent-number{position:absolute;top:17px;left:19px;font-size:10px;color:rgba(255,255,255,.72)}.talent-info{position:absolute;z-index:3;left:22px;bottom:20px;color:#fff}.talent-info h3{margin:0;font-size:34px}.talent-open{position:absolute;z-index:3;right:19px;bottom:22px;display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff}
-
-/* 가디언 방송 */
-.stream-layout{display:grid;grid-template-columns:1.13fr .87fr;gap:17px}.stream-feature{position:relative;overflow:hidden;min-height:448px;border-radius:20px;background:#283548}.stream-feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}.stream-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(14,20,30,.88),rgba(14,20,30,.08) 70%)}.stream-content{position:absolute;z-index:2;left:27px;right:27px;bottom:25px;color:#fff}.stream-label{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border-radius:20px;background:rgba(255,255,255,.16);font-size:9px}.stream-dot{width:6px;height:6px;border-radius:50%;background:#ff6681}.stream-content h3{margin:13px 0 8px;font-size:27px}.stream-content p{margin:0;font-size:11px;color:rgba(255,255,255,.72)}
-.stream-list{display:grid;grid-template-rows:repeat(3,1fr);gap:11px}.stream-item{display:grid;grid-template-columns:minmax(190px,43%) 1fr;min-height:142px;overflow:hidden;border-radius:15px;background:#fff}.stream-thumb{width:100%;height:100%;object-fit:cover}.stream-copy{display:flex;flex-direction:column;justify-content:center;padding:15px 17px}.stream-copy small{font-size:8px;color:#91a0aa;letter-spacing:.12em}.stream-copy b{margin:7px 0 5px;font-size:14px;line-height:1.35;color:#233c4b}.stream-copy span{font-size:9px;line-height:1.5;color:#84949d}
-
-/* 현장 */
-.field-wrap{position:relative;overflow:hidden;padding:30px;border-radius:22px;background:linear-gradient(135deg,#142a3b,#233f53 58%,#31556a)}.field-head{display:flex;justify-content:space-between;gap:30px;margin-bottom:22px;color:#fff}.field-head h2{margin:0;font-size:35px}.field-head p{max-width:510px;margin:0;text-align:right;font-size:11px;line-height:1.75;color:rgba(255,255,255,.58)}.field-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field-card{padding:20px;border:1px solid rgba(255,255,255,.13);border-radius:13px;background:rgba(255,255,255,.07)}.field-type{font-size:9px;color:#8fdced}.field-card h3{margin:14px 0 8px;font-size:17px;color:#fff}.field-card p{margin:0;font-size:10px;line-height:1.75;color:rgba(255,255,255,.58)}.field-state{display:inline-block;margin-top:18px;padding:5px 8px;border-radius:20px;background:rgba(115,223,199,.11);font-size:8px;color:#8fe2d1}
-.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.about-card{min-height:210px;padding:26px;border:1px solid #e0e8ee;border-radius:17px;background:#fff}.about-no{font:10px monospace;color:#8aa1b1}.about-card h3{margin:18px 0 8px;font-size:20px}.about-card p{margin:0;font-size:11px;line-height:1.8;color:#728791}.guardian-footer{display:flex;justify-content:space-between;margin-top:70px;padding:22px 10px 0;border-top:1px solid #dbe4ea;color:#84959f;font-size:9px}
+#guardian-page{overflow:auto;color:#182c3a;opacity:0;transition:opacity .7s;background:linear-gradient(180deg,#f8fbfe,#eef6fb 45%,#fbf9fd)}#guardian-page.show{opacity:1}
+.guardian-shell{width:min(1460px,calc(100% - 36px));margin:auto;padding:18px 0 70px}.guardian-header{position:sticky;top:12px;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;padding:10px 13px 10px 18px;border-radius:15px;background:rgba(250,253,255,.78);backdrop-filter:blur(18px)}
+.guardian-logo{display:flex;align-items:center;gap:12px}.guardian-logo-mark{position:relative;width:34px;height:34px}.guardian-logo-mark::before{content:"";position:absolute;left:3px;right:3px;top:6px;bottom:6px;border:2px solid #527f93;border-top-color:transparent;border-bottom-color:transparent;border-radius:50%}.guardian-logo-mark::after{content:"";position:absolute;left:50%;top:5px;width:2px;height:24px;transform:translateX(-50%);background:linear-gradient(to bottom,#244b60 0 28%,transparent 28% 41%,#68a6bc 41% 59%,transparent 59% 72%,#244b60 72%)}.guardian-mark-core::before,.guardian-mark-core::after{content:"";position:absolute;top:50%;width:5px;height:5px;background:#68a6bc;transform:translateY(-50%) rotate(45deg)}.guardian-mark-core::before{left:2px}.guardian-mark-core::after{right:2px}
+.guardian-logo-text strong{display:block;font-size:15px;letter-spacing:.22em}.guardian-logo-text span{font-size:8px;color:#8394a0}.guardian-nav{display:flex;gap:4px}.guardian-nav-btn,.guardian-back{border:0;border-radius:8px;padding:9px 12px;background:transparent;color:#607480;font-size:10px;cursor:pointer}.guardian-back{background:#fff}
+.guardian-kv{position:relative;overflow:hidden;border-radius:23px;background:#d6ebf6}.guardian-kv-img{display:block;width:100%;min-height:470px;object-fit:cover}.guardian-kv-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,24,38,.72),rgba(10,24,38,.2) 32%,transparent 59%)}.guardian-kv-copy{position:absolute;z-index:3;left:42px;bottom:54px}.guardian-kv-small{font-size:10px;letter-spacing:.27em;color:rgba(255,255,255,.77)}.guardian-kv-copy h1{margin:7px 0 9px;font-size:clamp(56px,8vw,108px);line-height:.85}.guardian-kv-copy p{margin:0;font-size:14px;line-height:1.7}.guardian-kv-names{position:absolute;z-index:4;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(6,1fr);padding:10px 28px;background:rgba(11,26,39,.32)}.guardian-kv-names span{text-align:center;font-size:10px}
+.guardian-section{padding:78px 7px 0;scroll-margin-top:95px}.g-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin:0 7px 24px}.g-section-title small{display:block;font-size:9px;color:#7b91a1}.g-section-title h2{margin:7px 0 0;font-size:clamp(34px,4vw,55px)}.g-section-desc{max-width:480px;margin:0;text-align:right;font-size:11px;line-height:1.75;color:#758a96}
+.talent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.talent-card{--talent:#6e91c8;position:relative;overflow:hidden;min-height:480px;border-radius:19px;background:#dfeaf2;cursor:pointer}.talent-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}.talent-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(12,22,34,.86),rgba(12,22,34,.34) 29%,transparent 57%)}.talent-accent{position:absolute;left:0;bottom:0;width:5px;height:33%;background:var(--talent)}.talent-number{position:absolute;top:17px;left:19px;font-size:10px}.talent-info{position:absolute;z-index:3;left:22px;bottom:20px}.talent-info h3{margin:0;font-size:34px}.talent-open{position:absolute;z-index:3;right:19px;bottom:22px}
+.stream-layout{display:grid;grid-template-columns:1.13fr .87fr;gap:17px}.stream-feature{position:relative;overflow:hidden;min-height:448px;border-radius:20px}.stream-feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.stream-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(14,20,30,.88),rgba(14,20,30,.08) 70%)}.stream-content{position:absolute;z-index:2;left:27px;right:27px;bottom:25px}.stream-label{padding:6px 9px;border-radius:20px;background:rgba(255,255,255,.16);font-size:9px}.stream-content h3{margin:13px 0 8px;font-size:27px}.stream-content p{margin:0;font-size:11px;color:rgba(255,255,255,.72)}
+.stream-list{display:grid;grid-template-rows:repeat(3,1fr);gap:11px}.stream-item{display:grid;grid-template-columns:minmax(190px,43%) 1fr;overflow:hidden;border-radius:15px;background:#fff}.stream-thumb{width:100%;height:100%;object-fit:cover}.stream-copy{display:flex;flex-direction:column;justify-content:center;padding:15px 17px}.stream-copy small{font-size:8px;color:#91a0aa}.stream-copy b{margin:7px 0 5px;font-size:14px;color:#233c4b}.stream-copy span{font-size:9px;color:#84949d}
+.field-wrap{padding:30px;border-radius:22px;background:linear-gradient(135deg,#142a3b,#233f53 58%,#31556a)}.field-head{display:flex;justify-content:space-between;color:#fff}.field-head h2{margin:0;font-size:35px}.field-head p{max-width:510px;font-size:11px;color:rgba(255,255,255,.58)}.field-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field-card{padding:20px;border-radius:13px;background:rgba(255,255,255,.07)}.field-card h3{color:#fff}.field-card p{font-size:10px;color:rgba(255,255,255,.58)}.field-state{font-size:8px;color:#8fe2d1}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.about-card{padding:26px;border-radius:17px;background:#fff}.about-card p{font-size:11px;color:#728791}.guardian-footer{display:flex;justify-content:space-between;margin-top:70px;padding:22px 10px 0;border-top:1px solid #dbe4ea;color:#84959f;font-size:9px}
 
 /* 스타터 룸 */
-#starter-page{overflow:auto;color:#292335;opacity:0;transition:opacity .7s;background:radial-gradient(circle at 12% 8%,rgba(255,179,122,.18),transparent 28%),radial-gradient(circle at 87% 18%,rgba(126,215,201,.18),transparent 30%),radial-gradient(circle at 70% 65%,rgba(165,137,222,.13),transparent 34%),#f7f5fa}
-#starter-page.show{opacity:1}.starter-shell{width:min(1420px,calc(100% - 36px));margin:auto;padding:18px 0 72px}
-.starter-header{position:sticky;top:12px;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;padding:10px 13px 10px 18px;border:1px solid rgba(255,255,255,.78);border-radius:15px;background:rgba(252,250,253,.76);backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(70,54,85,.08)}
-.starter-logo{display:flex;align-items:center;gap:12px}.starter-logo-mark{display:grid;grid-template-columns:repeat(2,7px);grid-template-rows:repeat(2,7px);gap:3px;padding:7px;border-radius:9px;background:#242132;transform:rotate(-6deg)}.starter-logo-mark i{display:block;border-radius:2px;background:#fff}.starter-logo-mark i:nth-child(2){background:#ffb276}.starter-logo-mark i:nth-child(3){background:#79d5c5}.starter-logo-mark i:nth-child(4){background:#aa8add}.starter-logo strong{display:block;font-size:14px;letter-spacing:.19em;color:#2b2635}.starter-logo span{display:block;margin-top:2px;font-size:8px;letter-spacing:.13em;color:#968da0}.starter-nav{display:flex;align-items:center;gap:4px}.starter-nav-btn{border:0;border-radius:8px;padding:8px 11px;background:transparent;color:#756d7c;font-size:10px;cursor:pointer}.starter-back{border:1px solid rgba(82,63,95,.14);border-radius:8px;padding:9px 13px;background:#fff;color:#5f5668;font-size:10px;cursor:pointer}
-.starter-hero{position:relative;overflow:hidden;display:grid;grid-template-columns:1.18fr .82fr;gap:42px;min-height:490px;padding:58px 56px;border-radius:25px;background:linear-gradient(125deg,#242031,#30273e 53%,#183a3b);box-shadow:0 25px 70px rgba(52,40,62,.18)}.starter-hero::before{content:"";position:absolute;width:480px;height:480px;right:-170px;top:-200px;border-radius:50%;background:radial-gradient(circle,rgba(255,178,118,.28),transparent 67%)}.starter-hero::after{content:"";position:absolute;width:380px;height:380px;left:32%;bottom:-250px;border-radius:50%;background:radial-gradient(circle,rgba(116,212,196,.20),transparent 67%)}
-.starter-hero-copy{position:relative;z-index:2;align-self:center;color:#fff}.starter-eyebrow{font-size:10px;letter-spacing:.27em;color:#d7cce0}.starter-hero h1{margin:15px 0 22px;font-size:clamp(62px,8.5vw,122px);line-height:.78;letter-spacing:-.07em}.starter-hero h1 span{display:block;margin-top:10px;font-size:.42em;letter-spacing:-.03em;color:#ffbd87}.starter-hero-copy>p{max-width:610px;margin:0;font-size:15px;line-height:1.8;color:rgba(255,255,255,.72)}
-.starter-hero-board{position:relative;z-index:2;align-self:center;display:grid;gap:10px;padding:16px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.07);backdrop-filter:blur(12px)}.starter-board-title{padding:6px 8px 12px;font-size:9px;letter-spacing:.19em;color:rgba(255,255,255,.52)}.starter-board-row{display:grid;grid-template-columns:42px 1fr;gap:13px;align-items:center;padding:14px;border-radius:12px;background:rgba(255,255,255,.07)}.starter-board-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.10);color:#fff;font-size:17px}.starter-board-row b{display:block;font-size:13px;color:#fff}.starter-board-row span{display:block;margin-top:4px;font-size:9px;line-height:1.55;color:rgba(255,255,255,.52)}
-.starter-section{padding:76px 7px 0;scroll-margin-top:95px}.starter-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin:0 7px 24px}.starter-section-title small{display:block;margin-bottom:7px;font-size:9px;letter-spacing:.22em;color:#968ba1}.starter-section-title h2{margin:0;font-size:clamp(35px,4vw,55px);letter-spacing:-.045em;color:#2b2635}.starter-section-desc{max-width:490px;margin:0;text-align:right;font-size:11px;line-height:1.75;color:#817888}
-.candidate-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.candidate-card{--c:#8e7bc0;position:relative;overflow:hidden;aspect-ratio:.76;border:0;border-radius:18px;background:#e8e2ec;box-shadow:0 12px 32px rgba(57,42,68,.09);cursor:pointer;transition:.3s;text-align:left}.candidate-card:hover{transform:translateY(-6px)}.candidate-visual{position:absolute;inset:0;background:#ebe6ef}.candidate-img{width:100%;height:100%;object-fit:cover;object-position:center top}.candidate-visual.missing::after{content:"PROFILE IMAGE";position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);font-size:8px;letter-spacing:.16em;color:rgba(52,42,62,.24)}.candidate-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(24,20,31,.82),rgba(24,20,31,.16) 36%,transparent 58%)}.candidate-color{position:absolute;z-index:2;left:0;right:0;bottom:0;height:4px;background:var(--c)}.candidate-name{position:absolute;z-index:3;left:18px;bottom:17px;margin:0;color:#fff;font-size:27px}.candidate-arrow{position:absolute;z-index:3;right:16px;bottom:17px;color:#fff;font-size:19px}
+#starter-page{overflow:auto;color:#292335;opacity:0;transition:opacity .7s;background:radial-gradient(circle at 12% 8%,rgba(255,179,122,.18),transparent 28%),radial-gradient(circle at 87% 18%,rgba(126,215,201,.18),transparent 30%),#f7f5fa}#starter-page.show{opacity:1}
+.starter-shell{width:min(1420px,calc(100% - 36px));margin:auto;padding:18px 0 72px}.starter-header{position:sticky;top:12px;z-index:40;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding:10px 13px 10px 18px;border-radius:15px;background:rgba(252,250,253,.78);backdrop-filter:blur(18px)}
+.starter-logo{display:flex;align-items:center;gap:12px}.starter-logo-mark{display:grid;grid-template-columns:repeat(2,7px);gap:3px;padding:7px;border-radius:9px;background:#242132;transform:rotate(-6deg)}.starter-logo-mark i{width:7px;height:7px;border-radius:2px;background:#fff}.starter-logo-mark i:nth-child(2){background:#ffb276}.starter-logo-mark i:nth-child(3){background:#79d5c5}.starter-logo-mark i:nth-child(4){background:#aa8add}.starter-logo strong{display:block;font-size:14px;letter-spacing:.19em}.starter-logo span{font-size:8px;color:#968da0}.starter-nav{display:flex}.starter-nav-btn,.starter-back{border:0;border-radius:8px;padding:9px 12px;background:transparent;color:#756d7c;font-size:10px;cursor:pointer}.starter-back{background:#fff}
+.starter-hero{display:grid;grid-template-columns:1.18fr .82fr;gap:42px;padding:58px 56px;border-radius:25px;background:linear-gradient(125deg,#242031,#30273e 53%,#183a3b)}.starter-hero-copy{align-self:center}.starter-eyebrow{font-size:10px;letter-spacing:.27em;color:#d7cce0}.starter-hero h1{margin:15px 0 22px;font-size:clamp(62px,8.5vw,122px);line-height:.78}.starter-hero h1 span{display:block;margin-top:10px;font-size:.42em;color:#ffbd87}.starter-hero-copy>p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.72)}
+.starter-hero-board{display:grid;gap:10px;padding:16px;border-radius:18px;background:rgba(255,255,255,.07)}.starter-board-title{font-size:9px;color:rgba(255,255,255,.52)}.starter-board-row{display:grid;grid-template-columns:42px 1fr;gap:13px;padding:14px;border-radius:12px;background:rgba(255,255,255,.07)}.starter-board-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:rgba(255,255,255,.10)}.starter-board-row b{display:block;font-size:13px}.starter-board-row span{font-size:9px;color:rgba(255,255,255,.52)}
+.starter-section{padding:76px 7px 0;scroll-margin-top:95px}.starter-section-head{display:flex;justify-content:space-between;align-items:flex-end;margin:0 7px 24px}.starter-section-title small{font-size:9px;color:#968ba1}.starter-section-title h2{margin:7px 0 0;font-size:clamp(35px,4vw,55px)}.starter-section-desc{max-width:490px;text-align:right;font-size:11px;color:#817888}
+.candidate-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.candidate-card{--c:#8e7bc0;position:relative;overflow:hidden;aspect-ratio:.76;border:0;border-radius:18px;background:#e8e2ec;cursor:pointer}.candidate-visual{position:absolute;inset:0}.candidate-img{width:100%;height:100%;object-fit:cover;object-position:center top}.candidate-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(24,20,31,.82),rgba(24,20,31,.16) 36%,transparent 58%)}.candidate-color{position:absolute;left:0;right:0;bottom:0;height:4px;background:var(--c)}.candidate-name{position:absolute;z-index:3;left:18px;bottom:17px;margin:0;color:#fff;font-size:27px}.candidate-arrow{position:absolute;z-index:3;right:16px;bottom:17px;color:#fff}
+.starter-stream-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.starter-stream-card{position:relative;overflow:hidden;aspect-ratio:16/9;border-radius:18px}.starter-stream-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.starter-stream-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,16,26,.87),rgba(20,16,26,.03) 68%)}.starter-stream-info{position:absolute;z-index:3;left:22px;right:22px;bottom:19px}.starter-stream-info small{font-size:8px;color:rgba(255,255,255,.58)}.starter-stream-info h3{margin:7px 0 5px;font-size:21px}.starter-stream-info p{margin:0;font-size:9px;color:rgba(255,255,255,.60)}
+.starter-life-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.starter-life-card{padding:25px;border-radius:18px;background:rgba(255,255,255,.72)}.starter-life-card h3{color:#332c3b}.starter-life-card p{font-size:11px;line-height:1.8;color:#807686}
+.starter-eval{padding:37px;border-radius:23px;background:linear-gradient(128deg,#22202e,#33283e 58%,#2b3b3b)}.eval-top{display:flex;justify-content:space-between}.eval-top p{max-width:520px;text-align:right;font-size:11px;color:rgba(255,255,255,.57)}.eval-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:30px}.eval-chip{padding:10px 14px;border-radius:30px;background:rgba(255,255,255,.07);font-size:11px}.eval-foot{margin-top:25px;padding-top:20px;border-top:1px solid rgba(255,255,255,.10);font-size:10px;color:rgba(255,255,255,.47)}
+.starter-about{display:grid;grid-template-columns:1fr 1fr;gap:15px}.starter-about-main,.starter-about-side{padding:31px;border-radius:20px;background:#fff}.starter-about-main h3{font-size:30px;color:#312a39}.starter-about-main p{font-size:12px;line-height:1.9;color:#776d7e}.starter-about-side{display:grid;grid-template-columns:1fr 1fr;gap:9px}.about-mini{padding:16px;border-radius:13px;background:#f7f3f8}.about-mini b{display:block;font-size:12px}.about-mini span{font-size:9px;color:#918696}.starter-footer{display:flex;justify-content:space-between;margin-top:68px;padding-top:21px;border-top:1px solid #dfd9e3;color:#938a99;font-size:9px}
 
-/* 스타터 방송 */
-.starter-stream-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.starter-stream-card{position:relative;overflow:hidden;aspect-ratio:16/9;border-radius:18px;background:#302a39;box-shadow:0 13px 34px rgba(62,45,72,.10)}.starter-stream-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.starter-stream-card.missing::before{content:"BROADCAST IMAGE";position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-size:9px;color:rgba(255,255,255,.25)}.starter-stream-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,16,26,.87),rgba(20,16,26,.03) 68%)}
-.starter-stream-info{position:absolute;z-index:3;left:22px;right:22px;bottom:19px;color:#fff}.starter-stream-info small{font-size:8px;letter-spacing:.15em;color:rgba(255,255,255,.58)}.starter-stream-info h3{margin:7px 0 5px;font-size:21px;line-height:1.35}.starter-stream-info p{margin:0;font-size:9px;color:rgba(255,255,255,.60)}
-.starter-life-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.starter-life-card{min-height:225px;padding:25px;border:1px solid rgba(89,72,103,.09);border-radius:18px;background:rgba(255,255,255,.72)}.life-mark{display:grid;place-items:center;width:42px;height:42px;margin-bottom:29px;border-radius:13px;background:#f0eaf4;color:#5e5269;font-size:17px}.starter-life-card h3{margin:0 0 9px;font-size:18px;color:#332c3b}.starter-life-card p{margin:0;font-size:11px;line-height:1.8;color:#807686}
-.starter-eval{position:relative;overflow:hidden;padding:37px;border-radius:23px;background:linear-gradient(128deg,#22202e,#33283e 58%,#2b3b3b);color:#fff}.eval-top{display:flex;justify-content:space-between;gap:28px}.eval-top h2{margin:5px 0 0;font-size:36px}.eval-top p{max-width:520px;margin:0;text-align:right;font-size:11px;line-height:1.8;color:rgba(255,255,255,.57)}.eval-label{font-size:9px;letter-spacing:.19em;color:#bfaed0}.eval-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:30px}.eval-chip{padding:10px 14px;border:1px solid rgba(255,255,255,.13);border-radius:30px;background:rgba(255,255,255,.07);font-size:11px;color:rgba(255,255,255,.78)}.eval-foot{margin-top:25px;padding-top:20px;border-top:1px solid rgba(255,255,255,.10);font-size:10px;color:rgba(255,255,255,.47)}
-.starter-about{display:grid;grid-template-columns:1fr 1fr;gap:15px}.starter-about-main,.starter-about-side{padding:31px;border-radius:20px;background:#fff}.starter-about-main small{font-size:9px;color:#9b8da4}.starter-about-main h3{margin:13px 0 16px;font-size:30px;color:#312a39}.starter-about-main p{margin:0;font-size:12px;line-height:1.9;color:#776d7e}.starter-about-side{display:grid;grid-template-columns:1fr 1fr;gap:9px}.about-mini{padding:16px;border-radius:13px;background:#f7f3f8}.about-mini b{display:block;font-size:12px;color:#453a4c}.about-mini span{display:block;margin-top:6px;font-size:9px;color:#918696}.starter-footer{display:flex;justify-content:space-between;margin-top:68px;padding:21px 9px 0;border-top:1px solid #dfd9e3;color:#938a99;font-size:9px}
+/* =========================================================
+   커뮤니티 / 뉴스
+========================================================= */
+#news-page{overflow:auto;color:#173140;opacity:0;transition:opacity .7s;background:linear-gradient(180deg,#eff8fc 0%,#f8fbfd 24%,#f7f6fb 70%,#edf6f5 100%)}
+#news-page.show{opacity:1}.news-shell{width:min(1440px,calc(100% - 36px));margin:auto;padding:18px 0 74px}
 
-@media(max-width:1100px){.admin-hero,.stream-layout,.starter-hero{grid-template-columns:1fr}.candidate-grid{grid-template-columns:repeat(3,1fr)}.starter-life-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:900px){.info-grid,.field-grid,.about-grid{grid-template-columns:1fr}.dept-grid,.person-grid,.talent-grid{grid-template-columns:1fr 1fr}.starter-stream-grid,.starter-about{grid-template-columns:1fr}.guardian-nav,.starter-nav{display:none}.g-section-desc,.starter-section-desc,.field-head p,.eval-top p{text-align:left}.field-head,.eval-top{display:block}.field-head p,.eval-top p{margin-top:12px}}
-@media(max-width:650px){.brand{display:none}#dialogue{left:16px;bottom:24px;width:calc(100vw - 32px)}.node-sub{display:none}.admin-shell,.guardian-shell,.starter-shell{width:calc(100% - 20px)}.person-grid,.dept-grid,.talent-grid,.starter-life-grid{grid-template-columns:1fr}.candidate-grid{grid-template-columns:1fr 1fr;gap:9px}.candidate-name{font-size:22px;left:13px;bottom:13px}.guardian-kv-img{height:520px;min-height:0}.guardian-kv-names{display:none}.guardian-section,.starter-section{padding-top:58px}.starter-hero{padding:38px 23px}.starter-hero h1{font-size:58px}.starter-section-head,.g-section-head{display:block}.starter-section-desc,.g-section-desc{margin-top:10px;text-align:left}.staff-modal-card,.guardian-modal-card,.starter-modal-card{grid-template-columns:1fr;width:min(520px,calc(100vw - 28px));padding:18px}.staff-modal-image,.guardian-modal-image,.starter-modal-image{width:min(100%,330px);margin:auto}}
+/* 헤더 */
+.news-header{position:sticky;top:12px;z-index:60;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px;padding:10px 13px 10px 18px;border:1px solid rgba(255,255,255,.86);border-radius:15px;background:rgba(250,253,255,.82);backdrop-filter:blur(18px);box-shadow:0 10px 35px rgba(28,69,87,.09)}
+.news-logo{display:flex;align-items:center;gap:12px}.news-logo-mark{position:relative;width:31px;height:31px;border-radius:10px;background:#163f53;overflow:hidden}.news-logo-mark::before{content:"";position:absolute;width:19px;height:2px;left:6px;top:9px;background:#83dddc;box-shadow:0 6px 0 #fff,0 12px 0 #ffb780}.news-logo strong{display:block;font-size:14px;letter-spacing:.18em;color:#173645}.news-logo span{display:block;margin-top:2px;font-size:8px;letter-spacing:.11em;color:#7f98a3}
+.news-nav{display:flex;gap:4px}.news-nav-btn{border:0;border-radius:8px;padding:9px 11px;background:transparent;color:#617985;font-size:10px;cursor:pointer}.news-nav-btn:hover{background:#eaf3f6;color:#173f50}.news-back{border:1px solid rgba(43,91,108,.14);border-radius:8px;padding:9px 13px;background:#fff;color:#4d6874;font-size:10px;cursor:pointer}
+
+/* 히어로 */
+.news-hero{position:relative;overflow:hidden;padding:58px 55px 52px;border-radius:25px;background:linear-gradient(120deg,#164f68 0%,#28768a 52%,#53a49c 100%);box-shadow:0 24px 65px rgba(30,84,101,.17)}
+.news-hero::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;right:-170px;top:-310px;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 66%)}.news-hero::after{content:"";position:absolute;width:400px;height:400px;border-radius:50%;left:26%;bottom:-310px;background:radial-gradient(circle,rgba(255,196,129,.22),transparent 65%)}
+.news-hero-copy{position:relative;z-index:2;max-width:780px}.news-live{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid rgba(255,255,255,.20);border-radius:30px;background:rgba(255,255,255,.10);font-size:9px;letter-spacing:.15em}.news-live i{width:7px;height:7px;border-radius:50%;background:#8cf0cf}
+.news-hero h1{margin:17px 0 15px;font-size:clamp(54px,7vw,100px);line-height:.88;letter-spacing:-.065em}.news-hero p{max-width:650px;margin:0;font-size:14px;line-height:1.8;color:rgba(255,255,255,.76)}
+.news-ticker{position:relative;z-index:2;display:flex;align-items:center;gap:14px;margin-top:44px;padding:13px 16px;border-top:1px solid rgba(255,255,255,.16);border-bottom:1px solid rgba(255,255,255,.16);font-size:10px;color:rgba(255,255,255,.73)}.news-ticker b{color:#fff;letter-spacing:.12em}.ticker-dot{width:4px;height:4px;border-radius:50%;background:#ffbf82}
+
+/* 공통 */
+.news-section{padding:74px 7px 0;scroll-margin-top:95px}.news-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin:0 7px 24px}.news-section-title small{display:block;font-size:9px;letter-spacing:.21em;color:#77929f}.news-section-title h2{margin:7px 0 0;font-size:clamp(35px,4vw,55px);letter-spacing:-.045em;color:#173746}.news-section-desc{max-width:500px;margin:0;text-align:right;font-size:11px;line-height:1.75;color:#70858e}
+
+/* 오늘의 소식 */
+.headline-grid{display:grid;grid-template-columns:1.35fr .85fr .85fr;gap:15px}.headline-card{position:relative;overflow:hidden;min-height:390px;border-radius:19px;background:#163849;box-shadow:0 15px 40px rgba(30,67,85,.11)}.headline-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.headline-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(7,22,31,.91) 0%,rgba(7,22,31,.17) 58%,rgba(7,22,31,.05))}
+.headline-main{min-height:500px}.headline-copy{position:absolute;z-index:3;left:24px;right:24px;bottom:23px;color:#fff}.headline-type{display:inline-block;margin-bottom:10px;padding:5px 8px;border-radius:20px;background:rgba(255,255,255,.15);font-size:8px;letter-spacing:.13em}.headline-copy h3{margin:0 0 8px;font-size:22px;line-height:1.35;word-break:keep-all}.headline-main .headline-copy h3{font-size:31px}.headline-copy p{margin:0;font-size:10px;line-height:1.65;color:rgba(255,255,255,.66)}
+.news-jump{margin-top:15px;border:1px solid rgba(255,255,255,.28);border-radius:30px;padding:8px 12px;background:rgba(255,255,255,.10);color:#fff;font-size:9px;cursor:pointer}
+
+/* 커뮤니티 */
+.community-layout{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.community-feed{display:grid;gap:10px}.community-post{display:grid;grid-template-columns:42px 1fr auto;gap:13px;align-items:start;padding:18px 20px;border:1px solid #e1ebef;border-radius:14px;background:rgba(255,255,255,.78);box-shadow:0 8px 25px rgba(39,76,91,.05)}
+.community-avatar{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#98d8df,#8ca5db);color:#fff;font-size:13px;font-weight:700}.community-post:nth-child(2) .community-avatar{background:linear-gradient(135deg,#ffc386,#eb8d8d)}.community-post:nth-child(3) .community-avatar{background:linear-gradient(135deg,#b8a0e2,#e39fc1)}.community-post:nth-child(4) .community-avatar{background:linear-gradient(135deg,#75c9b9,#5fa4c8)}
+.post-user{font-size:11px;font-weight:700;color:#294b5a}.post-time{margin-left:7px;font-size:8px;color:#a0adb3}.post-text{margin:7px 0 0;font-size:12px;line-height:1.75;color:#526c77}.post-meta{font-size:9px;color:#9aaab0;white-space:nowrap}
+.community-side{display:grid;align-content:start;gap:12px}.trend-card,.notice-card{padding:22px;border:1px solid #e1ebef;border-radius:16px;background:#fff;box-shadow:0 9px 27px rgba(39,76,91,.05)}.trend-card h3,.notice-card h3{margin:0 0 16px;font-size:16px}.trend-list{display:grid;gap:10px}.trend-item{display:flex;justify-content:space-between;gap:12px;padding-bottom:9px;border-bottom:1px solid #edf1f3;font-size:11px;color:#426372}.trend-item b{color:#1b5267}.notice-card{background:linear-gradient(145deg,#173e50,#235a6b);color:#fff}.notice-card small{font-size:8px;letter-spacing:.15em;color:#87d8da}.notice-card p{margin:12px 0 0;font-size:11px;line-height:1.75;color:rgba(255,255,255,.66)}
+
+/* NULL / OVERFLOW 가이드 */
+.knowledge-intro{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:19px;padding:25px 28px;border-radius:18px;background:linear-gradient(110deg,#142f3d,#234c58);color:#fff}.knowledge-intro strong{font-size:22px}.knowledge-intro p{max-width:630px;margin:0;text-align:right;font-size:11px;line-height:1.8;color:rgba(255,255,255,.62)}
+.knowledge-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.knowledge-card{position:relative;overflow:hidden;padding:31px;border-radius:22px;background:#fff;box-shadow:0 15px 45px rgba(36,68,83,.08)}.knowledge-card.null{border-top:5px solid #5a86af}.knowledge-card.overflow{border-top:5px solid #c883a6}
+.knowledge-code{display:inline-block;padding:6px 9px;border-radius:20px;background:#edf3f8;color:#55748b;font-size:8px;letter-spacing:.16em}.overflow .knowledge-code{background:#f7eaf1;color:#a35f80}.knowledge-card h2{margin:17px 0 9px;font-size:42px;line-height:1;color:#173746}.knowledge-card>p{margin:0;font-size:12px;line-height:1.8;color:#637984}
+.knowledge-core{display:flex;align-items:center;gap:15px;margin:24px 0;padding:18px;border-radius:14px;background:#f4f7f9}.knowledge-core-icon{display:grid;place-items:center;width:52px;height:52px;flex:0 0 52px;border-radius:15px;background:#dfeaf2;color:#466e8c;font-size:23px}.overflow .knowledge-core-icon{background:#f4e2eb;color:#a4587b}.knowledge-core b{display:block;font-size:17px}.knowledge-core span{display:block;margin-top:4px;font-size:10px;color:#82939b}
+.knowledge-block{margin-top:22px}.knowledge-block h3{margin:0 0 11px;font-size:13px;color:#294d5c}.knowledge-block p{margin:0;font-size:10px;line-height:1.75;color:#6e8189}.chip-wrap{display:flex;flex-wrap:wrap;gap:7px}.info-chip{padding:7px 9px;border-radius:7px;background:#eef3f6;color:#55707d;font-size:9px}.overflow .info-chip{background:#f7edf2;color:#8b6376}
+.knowledge-note{margin-top:22px;padding:14px 16px;border-left:3px solid #6d99ba;border-radius:0 9px 9px 0;background:#f0f5f8;font-size:10px;line-height:1.7;color:#55707c}.overflow .knowledge-note{border-color:#bd789b;background:#faeff4;color:#7f6170}
+
+/* 널 입장 */
+.null-factions{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:12px}.faction{padding:15px;border-radius:12px;background:#f5f7f9}.faction b{display:block;font-size:11px}.faction span{display:block;margin-top:6px;font-size:9px;line-height:1.6;color:#7c8e96}.faction.recovery{border-top:3px solid #6b9dca}.faction.support{border-top:3px solid #64b69e}.faction.destroy{border-top:3px solid #c67178}
+
+/* 오버플로 단계 */
+.overflow-stages{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:12px}.overflow-stage{padding:11px 6px;border-radius:9px;background:#f6eef2;text-align:center}.overflow-stage b{display:block;font-size:10px;color:#854c69}.overflow-stage span{display:block;margin-top:4px;font-size:8px;color:#9d8490}.overflow-stage:nth-child(1),.overflow-stage:nth-child(2){background:#eaf5f1}.overflow-stage:nth-child(1) b,.overflow-stage:nth-child(2) b{color:#397463}
+
+/* 비교 */
+.compare-panel{margin-top:17px;padding:28px;border-radius:20px;background:#fff;box-shadow:0 12px 38px rgba(36,68,83,.07)}.compare-title{margin:0 0 20px;font-size:20px}.compare-grid{display:grid;grid-template-columns:1fr 90px 1fr;align-items:center;gap:20px}.compare-side{padding:20px;border-radius:14px;background:#eff5f8}.compare-side:last-child{background:#f8edf2}.compare-side small{font-size:8px;color:#80959e}.compare-side b{display:block;margin:7px 0;font-size:20px}.compare-side p{margin:0;font-size:10px;line-height:1.7;color:#71858e}.compare-vs{text-align:center;font-size:10px;font-weight:700;color:#99a7ad}
+
+/* FAQ */
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:11px}.faq-card{padding:21px;border:1px solid #e1e9ed;border-radius:15px;background:rgba(255,255,255,.75)}.faq-card b{display:block;font-size:13px;color:#264b5a}.faq-card p{margin:8px 0 0;font-size:10px;line-height:1.75;color:#71848c}
+.news-footer{display:flex;justify-content:space-between;margin-top:68px;padding:22px 8px 0;border-top:1px solid #d9e6e9;color:#869aa1;font-size:9px}.news-footer strong{color:#486674;letter-spacing:.16em}
+
+/* 모달 */
+#staff-modal,#guardian-modal,#starter-modal{position:fixed;inset:0;z-index:510;display:grid;place-items:center;padding:24px;background:rgba(9,20,30,.57);backdrop-filter:blur(11px);opacity:0;pointer-events:none;transition:.3s}
+#staff-modal.show,#guardian-modal.show,#starter-modal.show{opacity:1;pointer-events:auto}.staff-modal-card,.guardian-modal-card,.starter-modal-card{position:relative;width:min(900px,calc(100vw - 40px));max-height:calc(100dvh - 48px);overflow:auto;display:grid;grid-template-columns:minmax(290px,360px) 1fr;gap:30px;padding:24px;border-radius:21px;background:#f8fcfe;color:#173746}
+#staff-modal-close,#guardian-modal-close,#starter-modal-close{position:absolute;right:14px;top:12px;z-index:5;width:38px;height:38px;border:0;border-radius:50%;background:#fff;cursor:pointer}.staff-modal-image,.guardian-modal-image,.starter-modal-image{overflow:hidden;border-radius:16px;background:#fff}.staff-modal-image img,.guardian-modal-image img,.starter-modal-image img{display:block;width:100%;max-height:510px;object-fit:contain}.staff-modal-info,.guardian-modal-info,.starter-modal-info{align-self:center}.staff-modal-small,.guardian-modal-small,.starter-modal-small{font-size:9px;color:#718d9c}#staff-modal-field,#guardian-modal-year,#starter-modal-role{display:inline-block;margin-top:18px;padding:6px 9px;border-radius:20px;background:#e6f0f5;font-size:9px}#staff-modal-name,#guardian-modal-name,#starter-modal-name{margin:14px 0 8px;font-size:55px}#staff-modal-work,#starter-modal-sub{font-size:12px;color:#607b89}.staff-modal-line,.guardian-modal-line,.starter-modal-line{width:48px;height:1px;margin:23px 0;background:#c9d7df}#staff-modal-desc,#guardian-modal-desc,#starter-modal-desc{font-size:13px;line-height:1.9;color:#5f7783}
+
+/* 반응형 */
+@media(max-width:1100px){
+.admin-hero,.stream-layout,.starter-hero{grid-template-columns:1fr}.candidate-grid{grid-template-columns:repeat(3,1fr)}.starter-life-grid{grid-template-columns:1fr 1fr}
+.headline-grid{grid-template-columns:1fr 1fr}.headline-main{grid-column:1/-1}.knowledge-grid{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+.info-grid,.field-grid,.about-grid{grid-template-columns:1fr}.dept-grid,.person-grid,.talent-grid{grid-template-columns:1fr 1fr}.starter-stream-grid,.starter-about{grid-template-columns:1fr}.guardian-nav,.starter-nav,.news-nav{display:none}
+.community-layout{grid-template-columns:1fr}.compare-grid{grid-template-columns:1fr}.compare-vs{padding:4px}.news-section-desc,.knowledge-intro p{text-align:left}.knowledge-intro{display:block}.knowledge-intro p{margin-top:10px}
+}
+@media(max-width:650px){
+.brand{display:none}#dialogue{left:16px;bottom:24px;width:calc(100vw - 32px)}.node-sub{display:none}
+.admin-shell,.guardian-shell,.starter-shell,.news-shell{width:calc(100% - 20px)}.person-grid,.dept-grid,.talent-grid,.starter-life-grid{grid-template-columns:1fr}.candidate-grid{grid-template-columns:1fr 1fr;gap:9px}
+.guardian-kv-img{height:520px;min-height:0}.guardian-kv-names{display:none}.guardian-section,.starter-section,.news-section{padding-top:58px}.starter-hero{padding:38px 23px}.starter-hero h1{font-size:58px}
+.g-section-head,.starter-section-head,.news-section-head{display:block}.g-section-desc,.starter-section-desc,.news-section-desc{margin-top:10px;text-align:left}
+.headline-grid{grid-template-columns:1fr}.headline-main{grid-column:auto;min-height:390px}.headline-card{min-height:360px}.news-hero{padding:42px 24px}.news-hero h1{font-size:56px}.community-post{grid-template-columns:38px 1fr}.post-meta{display:none}
+.null-factions{grid-template-columns:1fr}.overflow-stages{grid-template-columns:1fr}.faq-grid{grid-template-columns:1fr}.knowledge-card{padding:23px}.knowledge-card h2{font-size:35px}
+.staff-modal-card,.guardian-modal-card,.starter-modal-card{grid-template-columns:1fr;width:min(520px,calc(100vw - 28px))}
+}
 </style>
 </head>
 <body>
 
+<!-- 입주 -->
 <section id="cinematic" class="screen">
 <div id="scene-image"></div><div class="vignette"></div>
 <div class="brand"><strong>VIRTUAL PARADISE</strong><span>RESIDENCY PROCEDURE</span></div>
@@ -154,6 +184,7 @@
 
 <section id="identity" class="screen hidden"><form id="identity-form" class="identity-card"><div class="identity-check">✓</div><p class="identity-small">FINAL SYNCHRONIZATION</p><h1>최종 동기화 확인</h1><p>시민 데이터 무결성 검증이 완료되었습니다.<br>마지막으로 입주자 본인 확인을 진행해 주세요.</p><label for="resident-name">입주자 확인명</label><input id="resident-name" type="text" maxlength="24" autocomplete="off" placeholder="이름을 입력하세요" required><button class="identity-button" type="submit">확인하고 입주하기</button></form></section>
 
+<!-- 중앙광장 -->
 <section id="paradise" class="screen hidden">
 <div id="plaza-image"></div><div id="arrival-dark"></div>
 <div id="arrival-message"><span class="arrival-small">WELCOME TO</span><h1>VIRTUAL PARADISE</h1><div class="arrival-line"></div><strong id="welcome-name">새로운 시민님, 환영합니다.</strong><span class="arrival-description">당신의 새로운 일상이 지금 시작됩니다.</span></div>
@@ -162,19 +193,20 @@
 <button id="node-admin" class="map-node" data-target="admin"><span class="node-dot"></span><span class="node-card"><span class="node-title">관리국</span><span class="node-sub">행정 · 시스템</span></span></button>
 <button id="node-guardian" class="map-node" data-target="guardian"><span class="node-dot"></span><span class="node-card"><span class="node-title">가디언 본부</span><span class="node-sub">가디언 · 방송 · 임무</span></span></button>
 <button id="node-starter" class="map-node flip" data-target="starter"><span class="node-dot"></span><span class="node-card"><span class="node-title">스타터 룸</span><span class="node-sub">후보 · 방송 · 훈련</span></span></button>
-<button id="node-news" class="map-node" data-title="커뮤니티 · 뉴스" data-desc="파라다이스의 최근 사건과 시민 반응, 방송 소식을 확인하는 공간입니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">커뮤니티 · 뉴스</span><span class="node-sub">소식 · 시민 반응</span></span></button>
+<button id="node-news" class="map-node" data-target="news"><span class="node-dot"></span><span class="node-card"><span class="node-title">커뮤니티 · 뉴스</span><span class="node-sub">소식 · 시민 반응</span></span></button>
 <button id="node-citizen" class="map-node flip" data-title="시민 생활 구역" data-desc="주거, 음식, 쇼핑, 이벤트 등 시민들의 일상을 둘러볼 수 있습니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">시민 생활 구역</span><span class="node-sub">생활 · 상업</span></span></button>
 <button id="node-gate" class="map-node" data-title="구형 월드 게이트" data-desc="오래된 연결 게이트입니다. 버려진 월드와 NULL 관련 기록으로 이어집니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">구형 월드 게이트</span><span class="node-sub">구형 구역</span></span></button>
 </div>
 <div id="district-preview"><div class="preview-top"><div><div id="preview-title" class="preview-title"></div><div id="preview-desc" class="preview-desc"></div></div><button id="preview-close">×</button></div></div>
 </section>
 
+<!-- 관리국 -->
 <section id="admin-page" class="screen hidden"><div class="admin-shell">
 <header class="admin-topbar"><div class="admin-brand"><strong>PARADISE ADMINISTRATION</strong><span>파라다이스 내부 관리국</span></div><button id="admin-back" class="admin-back">← 중앙광장으로</button></header>
 <div class="admin-hero"><div><div class="admin-eyebrow">PARADISE CENTRAL ADMINISTRATION</div><h1>관리국</h1><p class="admin-lead">생활 행정부터 안전, 복구, 월드 관리까지. 시민들이 파라다이스에서 안심하고 생활할 수 있도록 다양한 공공 업무를 맡고 있습니다.</p></div><div class="admin-status"><div class="status-label">CURRENT SERVICE STATUS</div><div class="status-main"><span class="status-dot"></span>관리국 주요 서비스 정상 운영 중</div><div class="status-grid"><div class="status-cell"><b>117년차</b><span>파라다이스 운영</span></div><div class="status-cell"><b>5개</b><span>주요 업무 분야</span></div><div class="status-cell"><b>상시</b><span>시민 지원</span></div><div class="status-cell"><b>6명</b><span>현역 가디언</span></div></div></div></div>
 <nav class="admin-nav"><button class="admin-tab active" data-panel="overview">개요</button><button class="admin-tab" data-panel="departments">업무 안내</button><button class="admin-tab" data-panel="people">직원 안내</button><button class="admin-tab" data-panel="systems">시스템 안내</button></nav>
 <main>
-<section id="panel-overview" class="admin-panel active"><div class="info-grid"><article class="info-card"><span class="info-num">01</span><h3>시민 생활 지원</h3><p>입주 이후 필요한 시민 정보, 주거, 계약 기록과 각종 생활 행정을 지원합니다.</p></article><article class="info-card"><span class="info-num">02</span><h3>안전과 복구</h3><p>범죄나 위험 월드부터 데이터 손상, 사고와 초기 오버플로까지 시민의 안전과 관련된 문제에 대응합니다.</p></article><article class="info-card"><span class="info-num">03</span><h3>파라다이스 운영 지원</h3><p>가디언과 스타터 룸 운영, 월드 인증, 시스템 오류 조사 등 다양한 시설과 서비스 운영을 지원합니다.</p></article></div><div class="service-note"><strong>처음 방문하셨나요?</strong><br>일반적인 생활 행정은 시민행정 업무를 이용하면 됩니다.</div></section>
+<section id="panel-overview" class="admin-panel active"><div class="info-grid"><article class="info-card"><span class="info-num">01</span><h3>시민 생활 지원</h3><p>입주 이후 필요한 시민 정보, 주거, 계약 기록과 각종 생활 행정을 지원합니다.</p></article><article class="info-card"><span class="info-num">02</span><h3>안전과 복구</h3><p>범죄나 위험 월드부터 데이터 손상, 사고와 초기 오버플로까지 시민 안전 문제에 대응합니다.</p></article><article class="info-card"><span class="info-num">03</span><h3>파라다이스 운영 지원</h3><p>가디언과 스타터 룸 운영, 월드 인증, 시스템 오류 조사 등을 지원합니다.</p></article></div><div class="service-note"><strong>처음 방문하셨나요?</strong><br>일반적인 생활 행정은 시민행정 업무를 이용하면 됩니다.</div></section>
 <section id="panel-departments" class="admin-panel"><div class="dept-grid"><article class="dept"><div class="dept-icon">◫</div><b>시민행정</b><p>시민 정보, 주거, 계약 기록과 생활 행정.</p></article><article class="dept"><div class="dept-icon">◇</div><b>치안 · 보안</b><p>범죄, 위험 방송, 불법 월드와 현장 안전 대응.</p></article><article class="dept"><div class="dept-icon">＋</div><b>의료 · 복구 · 안정화</b><p>데이터 손상과 사고 복구, 정신 안정.</p></article><article class="dept"><div class="dept-icon">☆</div><b>가디언 · 스타터 룸</b><p>가디언 활동과 후보 평가·훈련·생활관리.</p></article><article class="dept"><div class="dept-icon">⌁</div><b>시스템 · 기술 감사</b><p>월드 인증과 시스템 오류 조사.</p></article></div></section>
 <section id="panel-people" class="admin-panel"><div class="person-grid">
 <article class="person" data-image="admin-dana.png" data-name="다나" data-field="가디언 · 스타터 룸 관리" data-work="후보 평가 · 생활관리 · 상담" data-desc="스타터 룸 후보들과 가장 가까운 곳에서 일하는 직원. 점수와 기록뿐 아니라 후보 한 사람 한 사람의 상태를 세심하게 살피는 편입니다."><div class="person-photo"><img src="admin-dana.png" alt="다나"></div><span class="person-field">가디언 · 스타터 룸 관리</span><h3>다나</h3><span class="person-work">후보 평가 · 생활관리 · 상담</span><p>후보들과 가장 가까운 곳에서 일하는 직원.</p><span class="person-more">자세히 보기 ›</span></article>
@@ -185,9 +217,9 @@
 <section id="panel-systems" class="admin-panel"><div class="system-list"><div class="system-row"><b>시민 정보 · 생활 행정</b><p>시민 정보와 주거, 계약 기록 관련 서비스.</p><span class="system-state">정상 운영</span></div><div class="system-row"><b>월드 인증</b><p>월드와 기능의 안전 기준 확인.</p><span class="system-state">정상 운영</span></div><div class="system-row"><b>복구 · 안정화</b><p>사고 및 데이터 손상 복구 지원.</p><span class="system-state">정상 운영</span></div><div class="system-row"><b>가디언 운영 지원</b><p>가디언과 스타터 룸 관련 지원.</p><span class="system-state">정상 운영</span></div><div class="system-row"><b>기술 감사</b><p>레거시 코드와 시스템 오류 조사.</p><span class="system-state">상시 확인</span></div></div></section>
 </main></div></section>
 
+<!-- 가디언 -->
 <section id="guardian-page" class="screen hidden"><div class="guardian-shell">
 <header class="guardian-header"><div class="guardian-logo"><div class="guardian-logo-mark"><span class="guardian-mark-core"></span></div><div class="guardian-logo-text"><strong>GUARDIAN</strong><span>PARADISE OFFICIAL GUARDIAN TEAM</span></div></div><nav class="guardian-nav"><button class="guardian-nav-btn" data-scroll="guardian-members-section">GUARDIANS</button><button class="guardian-nav-btn" data-scroll="guardian-stream-section">STREAM</button><button class="guardian-nav-btn" data-scroll="guardian-field-section">FIELD</button><button class="guardian-nav-btn" data-scroll="guardian-about-section">ABOUT</button></nav><button id="guardian-back" class="guardian-back">← 중앙광장</button></header>
-
 <section class="guardian-kv"><img class="guardian-kv-img" src="guardian-keyvisual.png" alt="가디언"><div class="guardian-kv-shade"></div><div class="guardian-kv-copy"><div class="guardian-kv-small">PARADISE OFFICIAL GUARDIAN TEAM</div><h1>GUARDIAN</h1><p>방송에서는 가장 가까운 스타.<br>현장에서는 가장 먼저 도착하는 사람들.</p></div><div class="guardian-kv-names"><span>아르카</span><span>아샤</span><span>유리아</span><span>레나</span><span>루루</span><span>모카</span></div></section>
 
 <section id="guardian-members-section" class="guardian-section"><div class="g-section-head"><div class="g-section-title"><small>ACTIVE GUARDIANS</small><h2>GUARDIANS</h2></div><p class="g-section-desc">현재 파라다이스에서 활동 중인 여섯 명의 가디언.</p></div><div class="talent-grid">
@@ -199,51 +231,22 @@
 <article class="talent-card" style="--talent:#e8b13d" data-image="guardian-ruru.png" data-name="루루" data-year="가디언 활동 1년" data-desc="가장 최근에 합류한 신참 가디언."><img class="talent-img" src="guardian-ruru.png" alt="루루"><div class="talent-shade"></div><div class="talent-accent"></div><span class="talent-number">06</span><div class="talent-info"><h3>루루</h3></div><span class="talent-open">›</span></article>
 </div></section>
 
-<section id="guardian-stream-section" class="guardian-section">
-<div class="g-section-head"><div class="g-section-title"><small>STREAM & CONTENT</small><h2>최근 방송</h2></div><p class="g-section-desc">재난 대응이 없는 날에도 가디언들의 방송은 계속됩니다. 일상 대화부터 현장 복기, 행사 소식까지 각자의 방식으로 시민들과 만납니다.</p></div>
+<section id="guardian-stream-section" class="guardian-section"><div class="g-section-head"><div class="g-section-title"><small>STREAM & CONTENT</small><h2>최근 방송</h2></div></div><div class="stream-layout">
+<article class="stream-feature"><img src="guardian-stream-yuria.png" alt="유리아의 심야 저챗"><div class="stream-content"><span class="stream-label">YURIA · LATE NIGHT TALK</span><h3>유리아의 심야 저챗</h3><p>오늘도, 당신과 함께 나누는 늦은 밤의 이야기</p></div></article>
+<div class="stream-list"><article class="stream-item"><img class="stream-thumb" src="guardian-stream-asha.png" alt="아샤 방송"><div class="stream-copy"><small>ASHA · AFTER MISSION</small><b>제압 완료! 모두 무사 복귀!!</b><span>오버플로 제압 작전 종료 · 현장 복귀 방송</span></div></article><article class="stream-item"><img class="stream-thumb" src="guardian-stream-arka.png" alt="아르카 방송"><div class="stream-copy"><small>ARKA · SITUATION REPORT</small><b>지금, 우리가 알아야 할 것들</b><span>통제 구역 현황 · 복구 진행 · 시민 안내</span></div></article><article class="stream-item"><img class="stream-thumb" src="guardian-stream-ruru.png" alt="루루 방송"><div class="stream-copy"><small>RURU · SUMMER FESTIVAL</small><b>파라다이스 여름 축제, 같이 보자!</b><span>축제 소식 · 하이라이트 · 공식 굿즈 이야기</span></div></article></div>
+</div></section>
 
-<div class="stream-layout">
-<article class="stream-feature">
-<img src="guardian-stream-yuria.png" alt="유리아의 심야 저챗">
-<div class="stream-content"><span class="stream-label"><span class="stream-dot"></span> YURIA · LATE NIGHT TALK</span><h3>유리아의 심야 저챗</h3><p>오늘도, 당신과 함께 나누는 늦은 밤의 이야기</p></div>
-</article>
-
-<div class="stream-list">
-<article class="stream-item">
-<img class="stream-thumb" src="guardian-stream-asha.png" alt="아샤 방송">
-<div class="stream-copy"><small>ASHA · AFTER MISSION</small><b>제압 완료! 모두 무사 복귀!!</b><span>오버플로 제압 작전 종료 · 현장 복귀 방송</span></div>
-</article>
-
-<article class="stream-item">
-<img class="stream-thumb" src="guardian-stream-arka.png" alt="아르카 방송">
-<div class="stream-copy"><small>ARKA · SITUATION REPORT</small><b>지금, 우리가 알아야 할 것들</b><span>통제 구역 현황 · 복구 진행 · 시민 안내</span></div>
-</article>
-
-<article class="stream-item">
-<img class="stream-thumb" src="guardian-stream-ruru.png" alt="루루 방송">
-<div class="stream-copy"><small>RURU · SUMMER FESTIVAL</small><b>파라다이스 여름 축제, 같이 보자!</b><span>축제 소식 · 하이라이트 · 공식 굿즈 이야기</span></div>
-</article>
-</div>
-</div>
-</section>
-
-<section id="guardian-field-section" class="guardian-section"><div class="field-wrap"><div class="field-head"><div><div class="guardian-kv-small">FIELD ACTIVITY</div><h2>최근 현장 활동</h2></div><p>가디언은 방송인이면서 동시에 파라다이스의 재난과 위험 상황에 대응하는 현장 인력입니다.</p></div><div class="field-grid"><article class="field-card"><span class="field-type">재난 대응</span><h3>도심 시설 이상 대응</h3><p>시민 통행 구역에서 발생한 시설 이상에 대응했습니다.</p><span class="field-state">대응 완료</span></article><article class="field-card"><span class="field-type">시민 구조</span><h3>위험구역 구조 지원</h3><p>접근 제한 구역에서 시민 구조를 지원했습니다.</p><span class="field-state">대응 완료</span></article><article class="field-card"><span class="field-type">공동 활동</span><h3>스타터 룸 합동 훈련</h3><p>가디언 후보들의 현장 훈련을 지원했습니다.</p><span class="field-state">활동 기록</span></article></div></div></section>
-
-<section id="guardian-about-section" class="guardian-section"><div class="g-section-head"><div class="g-section-title"><small>ABOUT GUARDIAN</small><h2>가디언이란?</h2></div></div><div class="about-grid"><article class="about-card"><span class="about-no">01</span><h3>현역 가디언</h3><p>파라다이스에서는 여섯 명의 현역 가디언이 활동합니다.</p></article><article class="about-card"><span class="about-no">02</span><h3>스타터 룸</h3><p>차기 가디언 후보들이 방송과 훈련을 이어가는 공간입니다.</p></article><article class="about-card"><span class="about-no">03</span><h3>현장 권한</h3><p>재난과 특수 상황 대응을 위한 장비와 권한이 제공됩니다.</p></article></div></section>
+<section id="guardian-field-section" class="guardian-section"><div class="field-wrap"><div class="field-head"><h2>최근 현장 활동</h2><p>가디언은 방송인이면서 동시에 재난과 위험 상황에 대응하는 현장 인력입니다.</p></div><div class="field-grid"><article class="field-card"><h3>도심 시설 이상 대응</h3><p>시민 통행 구역에서 발생한 시설 이상에 대응했습니다.</p><span class="field-state">대응 완료</span></article><article class="field-card"><h3>위험구역 구조 지원</h3><p>접근 제한 구역에서 시민 구조를 지원했습니다.</p><span class="field-state">대응 완료</span></article><article class="field-card"><h3>스타터 룸 합동 훈련</h3><p>가디언 후보들의 현장 훈련을 지원했습니다.</p><span class="field-state">활동 기록</span></article></div></div></section>
+<section id="guardian-about-section" class="guardian-section"><div class="g-section-head"><div class="g-section-title"><small>ABOUT GUARDIAN</small><h2>가디언이란?</h2></div></div><div class="about-grid"><article class="about-card"><h3>현역 가디언</h3><p>현재 여섯 명이 활동합니다.</p></article><article class="about-card"><h3>스타터 룸</h3><p>차기 가디언 후보들이 방송과 훈련을 이어갑니다.</p></article><article class="about-card"><h3>현장 권한</h3><p>특수 상황 대응을 위한 장비와 권한이 제공됩니다.</p></article></div></section>
 <footer class="guardian-footer"><strong>GUARDIAN</strong><span>VIRTUAL PARADISE · OFFICIAL GUARDIAN TEAM</span></footer>
 </div></section>
 
+<!-- 스타터 룸 -->
 <section id="starter-page" class="screen hidden"><div class="starter-shell">
 <header class="starter-header"><div class="starter-logo"><div class="starter-logo-mark"><i></i><i></i><i></i><i></i></div><div><strong>STARTER ROOM</strong><span>PARADISE GUARDIAN CANDIDATES</span></div></div><nav class="starter-nav"><button class="starter-nav-btn" data-scroll="starter-candidates">CANDIDATES</button><button class="starter-nav-btn" data-scroll="starter-streams">STREAM</button><button class="starter-nav-btn" data-scroll="starter-life">LIFE</button><button class="starter-nav-btn" data-scroll="starter-evaluation">EVALUATION</button></nav><button id="starter-back" class="starter-back">← 중앙광장</button></header>
+<section class="starter-hero"><div class="starter-hero-copy"><div class="starter-eyebrow">PARADISE GUARDIAN CANDIDATE PROGRAM</div><h1>STARTER<span>ROOM</span></h1><p>방송하고, 훈련하고, 같이 살아간다.<br>가디언 바로 아래에서 각자의 방식으로 다음 기회를 준비하는 후보들의 공간.</p></div><div class="starter-hero-board"><div class="starter-board-title">LIFE IN STARTER ROOM</div><div class="starter-board-row"><div class="starter-board-icon">◉</div><div><b>방송</b><span>개인 방송 · 합방 · 콘텐츠 제작</span></div></div><div class="starter-board-row"><div class="starter-board-icon">◇</div><div><b>훈련</b><span>전투 · 구조 · 현장 대응</span></div></div><div class="starter-board-row"><div class="starter-board-icon">⌂</div><div><b>생활</b><span>기숙사 · 공용공간 · 자유 외출</span></div></div></div></section>
 
-<section class="starter-hero">
-<div class="starter-hero-copy"><div class="starter-eyebrow">PARADISE GUARDIAN CANDIDATE PROGRAM</div><h1>STARTER<span>ROOM</span></h1><p>방송하고, 훈련하고, 같이 살아간다.<br>가디언 바로 아래에서 각자의 방식으로 다음 기회를 준비하는 후보들의 공간.</p></div>
-<div class="starter-hero-board"><div class="starter-board-title">LIFE IN STARTER ROOM</div><div class="starter-board-row"><div class="starter-board-icon">◉</div><div><b>방송</b><span>개인 방송 · 합방 · 콘텐츠 제작 · 공식 행사</span></div></div><div class="starter-board-row"><div class="starter-board-icon">◇</div><div><b>훈련</b><span>전투 · 구조 · 현장 대응 · 시스템 규정 교육</span></div></div><div class="starter-board-row"><div class="starter-board-icon">⌂</div><div><b>생활</b><span>기숙사 · 공용공간 · 자유 외출 · 일상생활</span></div></div></div>
-</section>
-
-<section id="starter-candidates" class="starter-section">
-<div class="starter-section-head"><div class="starter-section-title"><small>CANDIDATE SPOTLIGHT</small><h2>후보 소개</h2></div><p class="starter-section-desc">스타터 룸에서 활동하는 후보들의 공개 프로필 중 일부를 소개합니다.</p></div>
-<div class="candidate-grid">
+<section id="starter-candidates" class="starter-section"><div class="starter-section-head"><div class="starter-section-title"><small>CANDIDATE SPOTLIGHT</small><h2>후보 소개</h2></div><p class="starter-section-desc">스타터 룸에서 활동하는 후보들의 공개 프로필 중 일부를 소개합니다.</p></div><div class="candidate-grid">
 <button class="candidate-card" style="--c:#38a8a9" data-image="starter-mia.png" data-name="미아" data-role="균형형 · 올라운더" data-sub="스타터 룸 소속 가디언 후보" data-desc="방송·전투·구조·협업 어느 한쪽도 크게 부족하지 않은 정석적인 유망주."><div class="candidate-visual"><img class="candidate-img" src="starter-mia.png" alt="미아"></div><div class="candidate-shade"></div><div class="candidate-color"></div><h3 class="candidate-name">미아</h3><span class="candidate-arrow">›</span></button>
 <button class="candidate-card" style="--c:#355da8" data-image="starter-sei.png" data-name="세이" data-role="추적 · 신속제압" data-sub="스타터 룸 소속 가디언 후보" data-desc="가디언 승급이라는 목표가 분명하며 추적과 신속제압에 강한 후보."><div class="candidate-visual"><img class="candidate-img" src="starter-sei.png" alt="세이"></div><div class="candidate-shade"></div><div class="candidate-color"></div><h3 class="candidate-name">세이</h3><span class="candidate-arrow">›</span></button>
 <button class="candidate-card" style="--c:#ee8b43" data-image="starter-tami.png" data-name="타미" data-role="방송 · 현장소통" data-sub="스타터 룸 소속 가디언 후보" data-desc="무슨 일이 생겨도 자연스럽게 방송거리로 바꾸는 숙련형 스트리머."><div class="candidate-visual"><img class="candidate-img" src="starter-tami.png" alt="타미"></div><div class="candidate-shade"></div><div class="candidate-color"></div><h3 class="candidate-name">타미</h3><span class="candidate-arrow">›</span></button>
@@ -254,48 +257,207 @@
 <button class="candidate-card" style="--c:#dc769b" data-image="starter-yume.png" data-name="유메" data-role="개인 방송" data-sub="스타터 룸 소속 가디언 후보" data-desc="방송 컨셉과 실제 감정의 경계가 흐린 후보."><div class="candidate-visual"><img class="candidate-img" src="starter-yume.png" alt="유메"></div><div class="candidate-shade"></div><div class="candidate-color"></div><h3 class="candidate-name">유메</h3><span class="candidate-arrow">›</span></button>
 <button class="candidate-card" style="--c:#7550a8" data-image="starter-lua.png" data-name="루아" data-role="위험 탐방 · 정찰" data-sub="스타터 룸 소속 가디언 후보" data-desc="위험 구역과 폐쇄 월드 탐방에 강한 정찰형 후보."><div class="candidate-visual"><img class="candidate-img" src="starter-lua.png" alt="루아"></div><div class="candidate-shade"></div><div class="candidate-color"></div><h3 class="candidate-name">루아</h3><span class="candidate-arrow">›</span></button>
 <button class="candidate-card" style="--c:#bda16e" data-image="starter-nabi.png" data-name="나비" data-role="자유 방송" data-sub="스타터 룸 소속 가디언 후보" data-desc="느긋한 방송과 좋은 상황 대처 능력으로 꾸준한 성적을 유지하는 후보."><div class="candidate-visual"><img class="candidate-img" src="starter-nabi.png" alt="나비"></div><div class="candidate-shade"></div><div class="candidate-color"></div><h3 class="candidate-name">나비</h3><span class="candidate-arrow">›</span></button>
-</div>
-</section>
+</div></section>
 
-<section id="starter-streams" class="starter-section">
-<div class="starter-section-head"><div class="starter-section-title"><small>RECENT BROADCASTS</small><h2>최근 방송</h2></div><p class="starter-section-desc">훈련, 평가, 합방, 작은 성공까지. 스타터 룸에서 벌어지는 일들은 자연스럽게 각자의 방송으로 이어집니다.</p></div>
+<section id="starter-streams" class="starter-section"><div class="starter-section-head"><div class="starter-section-title"><small>RECENT BROADCASTS</small><h2>최근 방송</h2></div></div><div class="starter-stream-grid">
+<article class="starter-stream-card"><img src="starter-stream-tami.png" alt="타미 방송"><div class="starter-stream-info"><small>TAMI · COLLAB NEWS</small><h3>드디어 공개됐다..! 이 조합 진짜 미쳤다!!!</h3><p>특별 합동방송 조 편성 공개 · 첫 반응</p></div></article>
+<article class="starter-stream-card"><img src="starter-stream-sei.png" alt="세이 방송"><div class="starter-stream-info"><small>SEI · FIELD ANALYSIS</small><h3>위험 구역 추적 분석</h3><p>이동 경로 · 위험 구역 · 대응 우선순위 정리</p></div></article>
+<article class="starter-stream-card"><img src="starter-stream-kaya.png" alt="카야 방송"><div class="starter-stream-info"><small>KAYA · TRAINING REVIEW</small><h3>오늘 모의전 복기</h3><p>진입 판단 · 놓친 부분 · 다음 훈련 정리</p></div></article>
+<article class="starter-stream-card"><img src="starter-stream-peri.png" alt="페리 방송"><div class="starter-stream-info"><small>PERI · RESULT TALK</small><h3>드디어 됐다! 오늘은 자랑 좀 할게</h3><p>처음 성공한 구간 · 이전 기록보다 향상</p></div></article>
+</div></section>
 
-<div class="starter-stream-grid">
-<article class="starter-stream-card">
-<img src="starter-stream-tami.png" alt="타미 방송">
-<div class="starter-stream-info"><small>TAMI · COLLAB NEWS</small><h3>드디어 공개됐다..! 이 조합 진짜 미쳤다!!!</h3><p>특별 합동방송 조 편성 공개 · 첫 반응</p></div>
-</article>
-
-<article class="starter-stream-card">
-<img src="starter-stream-sei.png" alt="세이 방송">
-<div class="starter-stream-info"><small>SEI · FIELD ANALYSIS</small><h3>위험 구역 추적 분석</h3><p>이동 경로 · 위험 구역 · 대응 우선순위 정리</p></div>
-</article>
-
-<article class="starter-stream-card">
-<img src="starter-stream-kaya.png" alt="카야 방송">
-<div class="starter-stream-info"><small>KAYA · TRAINING REVIEW</small><h3>오늘 모의전 복기</h3><p>진입 판단 · 놓친 부분 · 다음 훈련 정리</p></div>
-</article>
-
-<article class="starter-stream-card">
-<img src="starter-stream-peri.png" alt="페리 방송">
-<div class="starter-stream-info"><small>PERI · RESULT TALK</small><h3>드디어 됐다! 오늘은 자랑 좀 할게</h3><p>처음 성공한 구간 · 이전 기록보다 향상</p></div>
-</article>
-</div>
-</section>
-
-<section id="starter-life" class="starter-section"><div class="starter-section-head"><div class="starter-section-title"><small>LIFE & FACILITIES</small><h2>스타터 생활</h2></div><p class="starter-section-desc">훈련시설이면서 방송 제작 환경이고, 동시에 실제 생활공간입니다.</p></div><div class="starter-life-grid"><article class="starter-life-card"><div class="life-mark">◉</div><h3>방송 환경</h3><p>개인 방송과 합방을 위한 스튜디오, 전문 편집과 기술 지원을 이용할 수 있습니다.</p></article><article class="starter-life-card"><div class="life-mark">◇</div><h3>훈련 시설</h3><p>전투와 구조, 현장 대응 훈련을 진행합니다.</p></article><article class="starter-life-card"><div class="life-mark">⌂</div><h3>생활 공간</h3><p>기숙사와 공용공간을 이용하며 자유 외출도 가능합니다.</p></article><article class="starter-life-card"><div class="life-mark">＋</div><h3>지원 체계</h3><p>의료·안정화와 관리국의 생활 지원을 이용할 수 있습니다.</p></article></div></section>
-
-<section id="starter-evaluation" class="starter-section"><div class="starter-eval"><div class="eval-top"><div><div class="eval-label">CANDIDATE EVALUATION</div><h2>평가 기준</h2></div><p>방송인으로서의 활동과 실제 현장 능력, 팀 활동과 가디언 적성을 함께 확인합니다.</p></div><div class="eval-chips"><span class="eval-chip">트래픽</span><span class="eval-chip">방송력</span><span class="eval-chip">전투</span><span class="eval-chip">구조</span><span class="eval-chip">정신안정</span><span class="eval-chip">성격</span><span class="eval-chip">팀워크</span><span class="eval-chip">가디언 시스템 적성</span></div><div class="eval-foot">가디언 공석이 발생하면 상위 후보들을 대상으로 다시 종합심사가 진행됩니다.</div></div></section>
-
-<section class="starter-section"><div class="starter-section-head"><div class="starter-section-title"><small>ABOUT STARTER ROOM</small><h2>스타터 룸이란?</h2></div></div><div class="starter-about"><article class="starter-about-main"><small>NOT A SCHOOL</small><h3>가디언 바로 아래의 후보 조직.</h3><p>스타터 룸은 방송을 처음 시작하는 연습생을 모아두는 곳이 아닙니다. 이미 활동 경험과 실력을 인정받은 방송인들이 가디언 후보로 생활하며 방송과 훈련을 이어가는 복합 시설입니다.</p></article><div class="starter-about-side"><div class="about-mini"><b>방송</b><span>개인 방송 · 합방 · 콘텐츠 제작</span></div><div class="about-mini"><b>훈련</b><span>전투 · 구조 · 규정 교육</span></div><div class="about-mini"><b>생활</b><span>기숙사 · 공용공간 · 자유 외출</span></div><div class="about-mini"><b>기회</b><span>가디언 공석 발생 시 종합심사</span></div></div></div></section>
-
+<section id="starter-life" class="starter-section"><div class="starter-section-head"><div class="starter-section-title"><small>LIFE & FACILITIES</small><h2>스타터 생활</h2></div></div><div class="starter-life-grid"><article class="starter-life-card"><h3>방송 환경</h3><p>개인 방송과 합방을 위한 제작 환경을 이용합니다.</p></article><article class="starter-life-card"><h3>훈련 시설</h3><p>전투와 구조, 현장 대응 훈련을 진행합니다.</p></article><article class="starter-life-card"><h3>생활 공간</h3><p>기숙사와 공용공간을 이용합니다.</p></article><article class="starter-life-card"><h3>지원 체계</h3><p>의료·안정화와 관리국 지원을 이용할 수 있습니다.</p></article></div></section>
+<section id="starter-evaluation" class="starter-section"><div class="starter-eval"><div class="eval-top"><h2>평가 기준</h2><p>방송 활동과 실제 현장 능력, 팀 활동과 가디언 적성을 함께 확인합니다.</p></div><div class="eval-chips"><span class="eval-chip">트래픽</span><span class="eval-chip">방송력</span><span class="eval-chip">전투</span><span class="eval-chip">구조</span><span class="eval-chip">정신안정</span><span class="eval-chip">성격</span><span class="eval-chip">팀워크</span><span class="eval-chip">가디언 시스템 적성</span></div><div class="eval-foot">가디언 공석이 발생하면 상위 후보들을 대상으로 종합심사가 진행됩니다.</div></div></section>
 <footer class="starter-footer"><strong>STARTER ROOM</strong><span>VIRTUAL PARADISE · GUARDIAN CANDIDATE PROGRAM</span></footer>
 </div></section>
 
-<div id="staff-modal"><div class="staff-modal-card"><button id="staff-modal-close">×</button><div id="staff-modal-image-wrap" class="staff-modal-image"><img id="staff-modal-image" src="" alt=""></div><div class="staff-modal-info"><div class="staff-modal-small">PARADISE ADMINISTRATION · STAFF INFORMATION</div><span id="staff-modal-field"></span><h2 id="staff-modal-name"></h2><span id="staff-modal-work"></span><div class="staff-modal-line"></div><p id="staff-modal-desc"></p></div></div></div>
+<!-- =====================================================
+     커뮤니티 / 뉴스
+===================================================== -->
+<section id="news-page" class="screen hidden">
+<div class="news-shell">
 
+<header class="news-header">
+<div class="news-logo"><div class="news-logo-mark"></div><div><strong>PARADISE NOW</strong><span>COMMUNITY · NEWS · CITIZEN GUIDE</span></div></div>
+<nav class="news-nav">
+<button class="news-nav-btn" data-scroll="news-today">TODAY</button>
+<button class="news-nav-btn" data-scroll="news-community">COMMUNITY</button>
+<button class="news-nav-btn" data-scroll="news-guide">CITIZEN GUIDE</button>
+<button class="news-nav-btn" data-scroll="news-faq">FAQ</button>
+</nav>
+<button id="news-back" class="news-back">← 중앙광장</button>
+</header>
+
+<section class="news-hero">
+<div class="news-hero-copy">
+<span class="news-live"><i></i> PARADISE LIVE</span>
+<h1>오늘의<br>파라다이스</h1>
+<p>오늘 벌어진 일부터 방송 소식, 시민들의 이야기와 알아두면 좋은 생활 정보까지.<br>지금 파라다이스에서 가장 많이 이야기되고 있는 것들을 한곳에서 확인하세요.</p>
+</div>
+<div class="news-ticker"><b>NOW</b><span>여름 축제 프로그램 공개</span><span class="ticker-dot"></span><span>스타터 룸 특별 합방 조 편성 발표</span><span class="ticker-dot"></span><span>가디언 현장 대응 인원 전원 복귀</span></div>
+</section>
+
+<section id="news-today" class="news-section">
+<div class="news-section-head">
+<div class="news-section-title"><small>TODAY'S HEADLINES</small><h2>오늘의 주요 소식</h2></div>
+<p class="news-section-desc">시민들이 가장 많이 보고 있는 소식과 방송을 모았습니다.</p>
+</div>
+
+<div class="headline-grid">
+<article class="headline-card headline-main">
+<img src="guardian-stream-ruru.png" alt="파라다이스 여름 축제">
+<div class="headline-copy"><span class="headline-type">EVENT</span><h3>파라다이스 여름 축제,<br>올해 주요 프로그램 공개</h3><p>루루의 공식 소개 방송과 함께 축제 하이라이트 및 굿즈 정보가 공개됐습니다.</p></div>
+</article>
+
+<article class="headline-card">
+<img src="starter-stream-tami.png" alt="스타터 룸 특별 합동방송">
+<div class="headline-copy"><span class="headline-type">STARTER ROOM</span><h3>특별 합동방송<br>조 편성 공개</h3><p>발표 직후 후보들의 첫 반응 방송이 이어지고 있습니다.</p></div>
+</article>
+
+<article class="headline-card">
+<img src="guardian-stream-asha.png" alt="오버플로 대응 현장">
+<div class="headline-copy"><span class="headline-type">GUARDIAN</span><h3>오버플로 제압 작전<br>참가자 전원 무사 복귀</h3><p>통제 구역은 순차적으로 안정화되고 있습니다.</p><button class="news-jump" data-scroll="news-guide">오버플로 알아보기 ›</button></div>
+</article>
+</div>
+</section>
+
+<section id="news-community" class="news-section">
+<div class="news-section-head">
+<div class="news-section-title"><small>COMMUNITY</small><h2>시민 이야기</h2></div>
+<p class="news-section-desc">파라다이스 곳곳에서 올라온 시민들의 최근 이야기입니다.</p>
+</div>
+
+<div class="community-layout">
+<div class="community-feed">
+<article class="community-post"><div class="community-avatar">달</div><div><span class="post-user">달빛젤리</span><span class="post-time">방금 전</span><p class="post-text">여름 축제 월드 미리 열린 구역 가본 사람? 생각보다 규모 엄청 큰데ㅋㅋ 루루 방송 보고 바로 일정 잡음.</p></div><span class="post-meta">♡ 382</span></article>
+<article class="community-post"><div class="community-avatar">밤</div><div><span class="post-user">야간산책</span><span class="post-time">8분 전</span><p class="post-text">아샤 복귀 방송 보고 이제 좀 안심된다. 현장 안정화는 아직 진행 중이니까 통제 구역은 괜히 구경 가지 말자.</p></div><span class="post-meta">♡ 741</span></article>
+<article class="community-post"><div class="community-avatar">초</div><div><span class="post-user">초코라떼</span><span class="post-time">21분 전</span><p class="post-text">스타터 룸 합방 조합 누가 이렇게 짰냐ㅋㅋ 타미 방송 켜진 순간부터 이미 시끄러움 예약임.</p></div><span class="post-meta">♡ 519</span></article>
+<article class="community-post"><div class="community-avatar">푸</div><div><span class="post-user">푸른고래</span><span class="post-time">34분 전</span><p class="post-text">시민 가이드에 NULL 설명 새로 정리됐네. 그냥 아바타 외형이 망가지는 문제랑은 완전히 다른 거였구나.</p></div><span class="post-meta">♡ 266</span></article>
+</div>
+
+<aside class="community-side">
+<div class="trend-card"><h3>지금 많이 보는 주제</h3><div class="trend-list"><div class="trend-item"><b>#여름축제</b><span>12.8K</span></div><div class="trend-item"><b>#스타터룸합방</b><span>8.4K</span></div><div class="trend-item"><b>#가디언복귀</b><span>6.2K</span></div><div class="trend-item"><b>#오버플로안내</b><span>4.7K</span></div><div class="trend-item"><b>#월드추천</b><span>3.9K</span></div></div></div>
+<div class="notice-card"><small>CITIZEN NOTICE</small><h3>사고 현장을 콘텐츠로 소비하지 마세요.</h3><p>통제 중인 구역에 무단으로 접근하거나 피해 시민을 동의 없이 촬영·방송하는 행위는 삼가 주세요.</p></div>
+</aside>
+</div>
+</section>
+
+<section id="news-guide" class="news-section">
+<div class="news-section-head">
+<div class="news-section-title"><small>CITIZEN KNOWLEDGE</small><h2>NULL과 OVERFLOW</h2></div>
+<p class="news-section-desc">파라다이스에서 살아간다면 한 번쯤 들어보게 되는 두 종류의 데이터 이상. 서로 비슷해 보이지만 원리는 정반대입니다.</p>
+</div>
+
+<div class="knowledge-intro">
+<strong>하나는 사라지고,<br>하나는 너무 많이 남습니다.</strong>
+<p>NULL은 인간을 구성하는 데이터가 부족해지는 결손이며, OVERFLOW는 감정·기억·자아 정보가 제대로 정리되지 못한 채 지나치게 겹쳐지는 과잉 상태입니다.</p>
+</div>
+
+<div class="knowledge-grid">
+
+<article class="knowledge-card null">
+<span class="knowledge-code">DATA DEFICIENCY</span>
+<h2>NULL <small>/ 널</small></h2>
+<p>시민을 구성하는 데이터 일부가 불완전해진 사람을 가리키는 사회적 분류입니다. 동시에 일부 피해자와 동조 시민들이 사용하는 공동체적 정체성이기도 합니다.</p>
+
+<div class="knowledge-core"><div class="knowledge-core-icon">−</div><div><b>핵심은 결핍.</b><span>있어야 할 시민 데이터가 사라지거나 손상된 상태</span></div></div>
+
+<div class="knowledge-block">
+<h3>무엇이 사라질 수 있나요?</h3>
+<div class="chip-wrap"><span class="info-chip">신체</span><span class="info-chip">감각</span><span class="info-chip">기억</span><span class="info-chip">감정</span><span class="info-chip">신분</span><span class="info-chip">계약 기록</span><span class="info-chip">인격 일부</span><span class="info-chip">삶의 연속성</span></div>
+</div>
+
+<div class="knowledge-block">
+<h3>어떻게 발생하나요?</h3>
+<p>이식 실패, 월드 이동 사고, 시스템 버그, ID 손실, 신체·감각·기억·인격 데이터 손실 등 여러 기술 사고로 발생할 수 있습니다.</p>
+</div>
+
+<div class="knowledge-note"><b>중요:</b> NULL은 단순히 현재 아바타가 손상된 상태가 아닙니다. 시민 데이터 구조 자체에 결손이 생긴 것이므로 새 아바타로 바꾼다고 손실된 신체나 감각, 기억이 돌아오지 않습니다.</div>
+
+<div class="knowledge-block">
+<h3>NULL은 하나의 조직인가요?</h3>
+<p>아닙니다. 모든 NULL 당사자가 지하 공동체에서 활동하는 것도 아니며, 그 공동체에도 실제 피해자뿐 아니라 가족·친구·연인·동조 시민 등이 함께합니다.</p>
+</div>
+
+<div class="knowledge-block">
+<h3>공동체 안에서도 생각은 다릅니다.</h3>
+<div class="null-factions">
+<div class="faction recovery"><b>복구파</b><span>잃어버린 것을 되찾으려 합니다. 손상 데이터와 과거 기록의 복구를 가장 중요하게 봅니다.</span></div>
+<div class="faction support"><b>지원파</b><span>완전한 복구보다 지금 살아갈 수 있는 거처·생활·이동·생존 기반을 먼저 만듭니다.</span></div>
+<div class="faction destroy"><b>파괴파</b><span>같은 피해를 반복해서 만드는 파라다이스 시스템 자체를 없애야 한다고 주장하는 강경 세력입니다.</span></div>
+</div>
+</div>
+</article>
+
+<article class="knowledge-card overflow">
+<span class="knowledge-code">DATA EXCESS</span>
+<h2>OVERFLOW <small>/ 오버플로</small></h2>
+<p>사람의 감정·기억·자아 데이터가 정상적으로 정리되지 못하고 계속 겹쳐지는 처리 오류입니다.</p>
+
+<div class="knowledge-core"><div class="knowledge-core-icon">＋</div><div><b>핵심은 과잉.</b><span>사라져야 할 감정과 기억의 잔여 데이터가 계속 남는 상태</span></div></div>
+
+<div class="knowledge-block">
+<h3>정상적인 감정 처리는</h3>
+<p>새 감정이 발생하면 현재 상태가 업데이트되고 이전 감정은 압축·삭제·보관됩니다. 오버플로에서는 이 과정이 제대로 이루어지지 않습니다.</p>
+</div>
+
+<div class="knowledge-block">
+<h3>무엇이 겹칠 수 있나요?</h3>
+<div class="chip-wrap"><span class="info-chip">과거 감정</span><span class="info-chip">현재 감정</span><span class="info-chip">모순된 기억</span><span class="info-chip">시청자 반응</span><span class="info-chip">댓글</span><span class="info-chip">방송 페르소나</span><span class="info-chip">과거 방송</span><span class="info-chip">밈</span><span class="info-chip">타인의 말</span><span class="info-chip">오래된 자기 이미지</span></div>
+</div>
+
+<div class="knowledge-block">
+<h3>진행 단계</h3>
+<div class="overflow-stages">
+<div class="overflow-stage"><b>01</b><span>과부하 전조</span></div>
+<div class="overflow-stage"><b>02</b><span>불안정</span></div>
+<div class="overflow-stage"><b>03</b><span>오버플로 발현</span></div>
+<div class="overflow-stage"><b>04</b><span>붕괴</span></div>
+<div class="overflow-stage"><b>05</b><span>완전 붕괴</span></div>
+</div>
+</div>
+
+<div class="knowledge-note"><b>초기에는 회복할 수 있습니다.</b> 다만 심한 경우 기억손실, 감정 둔화, 데이터 흉터, 성격 변화 등의 후유증이 남을 수 있습니다.</div>
+
+<div class="knowledge-block">
+<h3>전염되나요?</h3>
+<p>사람에서 사람으로 바이러스처럼 전염되는 질환은 아닙니다. 다만 대규모 오버플로가 주변 시스템을 손상시키면 다른 시민의 인격 처리에도 2차 피해가 발생할 수 있습니다.</p>
+</div>
+
+<div class="knowledge-block">
+<h3>무엇을 확인하나요?</h3>
+<p>외형보다 자아경계가 중요합니다. 자신의 이름과 현재 장소·상황을 알고 있는지, 사건의 흐름을 이어서 이해하는지, 자신의 생각과 외부 정보를 구분할 수 있는지 등을 확인합니다.</p>
+</div>
+</article>
+</div>
+
+<div class="compare-panel">
+<h3 class="compare-title">둘의 차이를 한 번에 보면</h3>
+<div class="compare-grid">
+<div class="compare-side"><small>NULL</small><b>데이터가 부족하다</b><p>신체·감각·기억·신분 등 사람을 구성하던 무언가가 사라집니다. 사람에게서 일부가 빠져나간 상태에 가깝습니다.</p></div>
+<div class="compare-vs">DEFICIENCY<br>↔<br>EXCESS</div>
+<div class="compare-side"><small>OVERFLOW</small><b>데이터가 너무 많다</b><p>감정·기억·페르소나·외부 반응 등이 계속 쌓이고 겹칩니다. 사람 위에 너무 많은 정보가 덧씌워지는 상태에 가깝습니다.</p></div>
+</div>
+</div>
+</section>
+
+<section id="news-faq" class="news-section">
+<div class="news-section-head"><div class="news-section-title"><small>QUICK FAQ</small><h2>자주 묻는 질문</h2></div><p class="news-section-desc">두 현상을 둘러싼 대표적인 오해를 정리했습니다.</p></div>
+<div class="faq-grid">
+<article class="faq-card"><b>NULL은 아바타만 갈아끼우면 해결되나요?</b><p>아닙니다. 외형 레이어 문제가 아니라 시민 데이터 구조 자체의 결손이므로 정상적인 아바타 교체로 해결할 수 없습니다.</p></article>
+<article class="faq-card"><b>오버플로는 옆 사람에게 감염되나요?</b><p>아닙니다. 바이러스처럼 사람 사이에서 직접 전염되지는 않습니다. 다만 대형 사고가 주변 시스템에 2차 피해를 줄 가능성은 있습니다.</p></article>
+<article class="faq-card"><b>NULL은 모두 위험한 지하 조직원인가요?</b><p>아닙니다. NULL은 우선 피해 상태를 가리키는 사회적 분류입니다. 공동체에 참여하지 않고 일반적인 생활을 이어가는 사람도 있습니다.</p></article>
+<article class="faq-card"><b>오버플로가 시작되면 반드시 붕괴하나요?</b><p>아닙니다. 초기 단계에서는 회복이 가능합니다. 그래서 과부하 전조와 불안정 단계에서 빠르게 상태를 확인하고 안정화하는 것이 중요합니다.</p></article>
+</div>
+</section>
+
+<footer class="news-footer"><strong>PARADISE NOW</strong><span>COMMUNITY · NEWS · CITIZEN INFORMATION</span></footer>
+</div>
+</section>
+
+<!-- 모달 -->
+<div id="staff-modal"><div class="staff-modal-card"><button id="staff-modal-close">×</button><div id="staff-modal-image-wrap" class="staff-modal-image"><img id="staff-modal-image" src="" alt=""></div><div class="staff-modal-info"><div class="staff-modal-small">PARADISE ADMINISTRATION</div><span id="staff-modal-field"></span><h2 id="staff-modal-name"></h2><span id="staff-modal-work"></span><div class="staff-modal-line"></div><p id="staff-modal-desc"></p></div></div></div>
 <div id="guardian-modal"><div class="guardian-modal-card"><button id="guardian-modal-close">×</button><div id="guardian-modal-image-wrap" class="guardian-modal-image"><img id="guardian-modal-image" src="" alt=""></div><div class="guardian-modal-info"><div class="guardian-modal-small">PARADISE OFFICIAL GUARDIAN</div><span id="guardian-modal-year"></span><h2 id="guardian-modal-name"></h2><div class="guardian-modal-line"></div><p id="guardian-modal-desc"></p></div></div></div>
-
 <div id="starter-modal"><div class="starter-modal-card"><button id="starter-modal-close">×</button><div id="starter-modal-image-wrap" class="starter-modal-image"><img id="starter-modal-image" src="" alt=""></div><div class="starter-modal-info"><div class="starter-modal-small">STARTER ROOM · CANDIDATE PROFILE</div><span id="starter-modal-role"></span><h2 id="starter-modal-name"></h2><span id="starter-modal-sub"></span><div class="starter-modal-line"></div><p id="starter-modal-desc"></p></div></div></div>
 
 <script>
@@ -306,7 +468,7 @@ const scenes=[
 ];
 const processSteps=["의식 이식 준비","시민 데이터 변환","감각 인터페이스 연결","파라다이스 환경 동기화","신원 데이터 정합성 확인","입주 무결성 확인"];
 const $=id=>document.getElementById(id),
-sceneImage=$("scene-image"),startButton=$("start-button"),dialogue=$("dialogue"),dialogueText=$("dialogue-text"),sceneLabel=$("scene-label"),eyeClose=$("eye-close"),cinematic=$("cinematic"),transfer=$("transfer"),processList=$("process-list"),progressBar=$("progress-bar"),progressState=$("progress-state"),progressPercent=$("progress-percent"),identity=$("identity"),identityForm=$("identity-form"),residentName=$("resident-name"),paradise=$("paradise"),arrivalMessage=$("arrival-message"),welcomeName=$("welcome-name"),residentIndicator=$("resident-indicator"),residentIndicatorName=$("resident-indicator-name"),mapUI=$("map-ui"),districtPreview=$("district-preview"),previewTitle=$("preview-title"),previewDesc=$("preview-desc"),adminPage=$("admin-page"),guardianPage=$("guardian-page"),starterPage=$("starter-page"),
+sceneImage=$("scene-image"),startButton=$("start-button"),dialogue=$("dialogue"),dialogueText=$("dialogue-text"),sceneLabel=$("scene-label"),eyeClose=$("eye-close"),cinematic=$("cinematic"),transfer=$("transfer"),processList=$("process-list"),progressBar=$("progress-bar"),progressState=$("progress-state"),progressPercent=$("progress-percent"),identity=$("identity"),identityForm=$("identity-form"),residentName=$("resident-name"),paradise=$("paradise"),arrivalMessage=$("arrival-message"),welcomeName=$("welcome-name"),residentIndicator=$("resident-indicator"),residentIndicatorName=$("resident-indicator-name"),mapUI=$("map-ui"),districtPreview=$("district-preview"),previewTitle=$("preview-title"),previewDesc=$("preview-desc"),adminPage=$("admin-page"),guardianPage=$("guardian-page"),starterPage=$("starter-page"),newsPage=$("news-page"),
 staffModal=$("staff-modal"),staffModalImage=$("staff-modal-image"),staffModalImageWrap=$("staff-modal-image-wrap"),staffModalField=$("staff-modal-field"),staffModalName=$("staff-modal-name"),staffModalWork=$("staff-modal-work"),staffModalDesc=$("staff-modal-desc"),
 guardianModal=$("guardian-modal"),guardianModalImage=$("guardian-modal-image"),guardianModalImageWrap=$("guardian-modal-image-wrap"),guardianModalYear=$("guardian-modal-year"),guardianModalName=$("guardian-modal-name"),guardianModalDesc=$("guardian-modal-desc"),
 starterModal=$("starter-modal"),starterModalImage=$("starter-modal-image"),starterModalImageWrap=$("starter-modal-image-wrap"),starterModalRole=$("starter-modal-role"),starterModalName=$("starter-modal-name"),starterModalSub=$("starter-modal-sub"),starterModalDesc=$("starter-modal-desc");
@@ -328,24 +490,23 @@ async function runTransfer(){renderProcess();const items=[...processList.querySe
 async function enterParadise(name){identity.classList.add("fade-out");await wait(850);identity.classList.add("hidden");welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;paradise.classList.remove("hidden");await nextFrame();paradise.classList.add("awake");await wait(2600);arrivalMessage.classList.add("show");await wait(3800);arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");await wait(1800);residentIndicator.classList.add("show");mapUI.classList.add("ready")}
 async function openSection(page){districtPreview.classList.remove("show");paradise.classList.add("leave");await wait(700);paradise.classList.add("hidden");paradise.classList.remove("leave");page.classList.remove("hidden");page.scrollTop=0;await nextFrame();page.classList.add("show")}
 async function closeSection(page){closeStaffModal();closeGuardianModal();closeStarterModal();page.classList.remove("show");await wait(600);page.classList.add("hidden");paradise.classList.remove("hidden");await nextFrame()}
-function openStaffModal(card){staffModalField.textContent=card.dataset.field;staffModalName.textContent=card.dataset.name;staffModalWork.textContent=card.dataset.work;staffModalDesc.textContent=card.dataset.desc;staffModalImageWrap.style.display="block";staffModalImage.src=card.dataset.image;staffModalImage.alt=card.dataset.name;staffModalImage.onerror=()=>staffModalImageWrap.style.display="none";staffModal.classList.add("show")}
+
+function openStaffModal(card){staffModalField.textContent=card.dataset.field;staffModalName.textContent=card.dataset.name;staffModalWork.textContent=card.dataset.work;staffModalDesc.textContent=card.dataset.desc;staffModalImageWrap.style.display="block";staffModalImage.src=card.dataset.image;staffModalImage.alt=card.dataset.name;staffModal.classList.add("show")}
 function closeStaffModal(){staffModal.classList.remove("show")}
-function openGuardianModal(card){guardianModalYear.textContent=card.dataset.year;guardianModalName.textContent=card.dataset.name;guardianModalDesc.textContent=card.dataset.desc;guardianModalImageWrap.style.display="block";guardianModalImage.src=card.dataset.image;guardianModalImage.alt=card.dataset.name;guardianModalImage.onerror=()=>guardianModalImageWrap.style.display="none";guardianModal.classList.add("show")}
+function openGuardianModal(card){guardianModalYear.textContent=card.dataset.year;guardianModalName.textContent=card.dataset.name;guardianModalDesc.textContent=card.dataset.desc;guardianModalImageWrap.style.display="block";guardianModalImage.src=card.dataset.image;guardianModalImage.alt=card.dataset.name;guardianModal.classList.add("show")}
 function closeGuardianModal(){guardianModal.classList.remove("show")}
-function openStarterModal(card){starterModalRole.textContent=card.dataset.role;starterModalName.textContent=card.dataset.name;starterModalSub.textContent=card.dataset.sub;starterModalDesc.textContent=card.dataset.desc;starterModalImageWrap.style.display="block";starterModalImage.src=card.dataset.image;starterModalImage.alt=card.dataset.name;starterModalImage.onerror=()=>starterModalImageWrap.style.display="none";starterModal.classList.add("show")}
+function openStarterModal(card){starterModalRole.textContent=card.dataset.role;starterModalName.textContent=card.dataset.name;starterModalSub.textContent=card.dataset.sub;starterModalDesc.textContent=card.dataset.desc;starterModalImageWrap.style.display="block";starterModalImage.src=card.dataset.image;starterModalImage.alt=card.dataset.name;starterModal.classList.add("show")}
 function closeStarterModal(){starterModal.classList.remove("show")}
 
 identityForm.addEventListener("submit",e=>{e.preventDefault();const name=residentName.value.trim();if(name)enterParadise(name)});
 startButton.addEventListener("click",e=>{e.stopPropagation();beginStory()});
 cinematic.addEventListener("click",e=>{if(!e.target.closest("button"))advanceStory()});
 
-document.querySelectorAll(".candidate-img").forEach(img=>img.addEventListener("error",()=>{img.style.display="none";img.parentElement.classList.add("missing")}));
-document.querySelectorAll(".starter-stream-card img").forEach(img=>img.addEventListener("error",()=>{img.style.display="none";img.parentElement.classList.add("missing")}));
-
 document.querySelectorAll(".map-node").forEach(node=>node.addEventListener("click",()=>{
 if(node.dataset.target==="admin"){openSection(adminPage);return}
 if(node.dataset.target==="guardian"){openSection(guardianPage);return}
 if(node.dataset.target==="starter"){openSection(starterPage);return}
+if(node.dataset.target==="news"){openSection(newsPage);return}
 previewTitle.textContent=node.dataset.title;previewDesc.textContent=node.dataset.desc;districtPreview.classList.add("show")
 }));
 
@@ -353,12 +514,14 @@ $("preview-close").addEventListener("click",()=>districtPreview.classList.remove
 $("admin-back").addEventListener("click",()=>closeSection(adminPage));
 $("guardian-back").addEventListener("click",()=>closeSection(guardianPage));
 $("starter-back").addEventListener("click",()=>closeSection(starterPage));
+$("news-back").addEventListener("click",()=>closeSection(newsPage));
 
 document.querySelectorAll(".admin-tab").forEach(tab=>tab.addEventListener("click",()=>{document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));document.querySelectorAll(".admin-panel").forEach(p=>p.classList.remove("active"));tab.classList.add("active");$(`panel-${tab.dataset.panel}`).classList.add("active")}));
 document.querySelectorAll(".person").forEach(card=>card.addEventListener("click",()=>openStaffModal(card)));
 document.querySelectorAll(".talent-card").forEach(card=>card.addEventListener("click",()=>openGuardianModal(card)));
 document.querySelectorAll(".candidate-card").forEach(card=>card.addEventListener("click",()=>openStarterModal(card)));
-document.querySelectorAll(".guardian-nav-btn,.starter-nav-btn").forEach(btn=>btn.addEventListener("click",()=>{const target=$(btn.dataset.scroll);if(target)target.scrollIntoView({behavior:"smooth",block:"start"})}));
+
+document.querySelectorAll(".guardian-nav-btn,.starter-nav-btn,.news-nav-btn,.news-jump").forEach(btn=>btn.addEventListener("click",()=>{const target=$(btn.dataset.scroll);if(target)target.scrollIntoView({behavior:"smooth",block:"start"})}));
 
 $("staff-modal-close").addEventListener("click",closeStaffModal);$("guardian-modal-close").addEventListener("click",closeGuardianModal);$("starter-modal-close").addEventListener("click",closeStarterModal);
 staffModal.addEventListener("click",e=>{if(e.target===staffModal)closeStaffModal()});guardianModal.addEventListener("click",e=>{if(e.target===guardianModal)closeGuardianModal()});starterModal.addEventListener("click",e=>{if(e.target===starterModal)closeStarterModal()});
