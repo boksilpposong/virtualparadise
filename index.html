@@ -427,9 +427,23 @@ identity.classList.add("fade-out");await wait(850);identity.classList.add("hidde
 welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;paradise.classList.remove("hidden");
 await nextFrame();paradise.classList.add("awake");await wait(2600);arrivalMessage.classList.add("show");await wait(3800);
 arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");await wait(1800);residentIndicator.classList.add("show");mapUI.classList.add("ready");
+history.replaceState({vp:"plaza"},"",location.href);
 }
-async function openSection(page){districtPreview.classList.remove("show");paradise.classList.add("leave");await wait(700);paradise.classList.add("hidden");paradise.classList.remove("leave");page.classList.remove("hidden");page.scrollTop=0;await nextFrame();page.classList.add("show")}
-async function closeSection(page){closeStaffModal();closeGuardianModal();closeStarterModal();closeNullModal();page.classList.remove("show");await wait(600);page.classList.add("hidden");paradise.classList.remove("hidden");await nextFrame()}
+const sectionPages={admin:adminPage,guardian:guardianPage,starter:starterPage,news:newsPage,oldworld:oldWorldPage};
+function getSectionKey(page){return Object.keys(sectionPages).find(key=>sectionPages[key]===page)||null}
+function getVisibleSection(){return Object.values(sectionPages).find(page=>!page.classList.contains("hidden"))||null}
+async function openSection(page,pushHistory=true){
+const key=getSectionKey(page);
+if(pushHistory&&key)history.pushState({vp:"section",section:key},"",location.href);
+districtPreview.classList.remove("show");paradise.classList.add("leave");await wait(700);paradise.classList.add("hidden");paradise.classList.remove("leave");page.classList.remove("hidden");page.scrollTop=0;await nextFrame();page.classList.add("show");
+}
+async function closeSection(page){closeStaffModal();closeGuardianModal();closeStarterModal();closeNullModal();closeExploration();page.classList.remove("show");await wait(600);page.classList.add("hidden");paradise.classList.remove("hidden");await nextFrame()}
+function goPlazaFromButton(page){
+const state=history.state;
+if(state?.vp==="explore"){history.go(-2);return}
+if(state?.vp==="section"){history.back();return}
+closeSection(page);
+}
 
 function openStaffModal(card){staffModalField.textContent=card.dataset.field;staffModalName.textContent=card.dataset.name;staffModalWork.textContent=card.dataset.work;staffModalDesc.textContent=card.dataset.desc;staffModalImageWrap.style.display="block";staffModalImage.src=card.dataset.image;staffModal.classList.add("show")}
 function closeStaffModal(){staffModal.classList.remove("show")}
@@ -465,17 +479,28 @@ if(!scope)return;
 scope.querySelectorAll(".explore-viewer.show").forEach(v=>v.classList.remove("show"));
 scope.querySelectorAll(".discovery-scene.active").forEach(v=>v.classList.remove("active"));
 }
-document.querySelectorAll(".explore-hotspot").forEach(btn=>btn.addEventListener("click",()=>{
-const world=btn.closest(".oldworld-world"),viewer=world.querySelector(".explore-viewer");
-const target=world.querySelector('.discovery-scene[data-scene="'+btn.dataset.scene+'"]');
+function showExploration(worldKey,sceneKey,pushHistory=true){
+const world=$("oldworld-"+worldKey);if(!world)return;
+setOldWorld(worldKey);
+const viewer=world.querySelector(".explore-viewer"),target=world.querySelector('.discovery-scene[data-scene="'+sceneKey+'"]'),btn=world.querySelector('.explore-hotspot[data-scene="'+sceneKey+'"]');
 if(!viewer||!target)return;
 world.querySelectorAll(".discovery-scene").forEach(scene=>scene.classList.remove("active"));
-target.classList.add("active");viewer.classList.add("show");btn.classList.add("visited");
+target.classList.add("active");viewer.classList.add("show");
+if(btn)btn.classList.add("visited");
 const total=world.querySelectorAll(".explore-hotspot").length,visited=world.querySelectorAll(".explore-hotspot.visited").length,progress=world.querySelector(".stage-progress b");
 if(progress)progress.textContent=visited+"/"+total;
+if(pushHistory)history.pushState({vp:"explore",section:"oldworld",world:worldKey,scene:sceneKey},"",location.href);
+}
+function closeExplorationWithHistory(scope){
+if(history.state?.vp==="explore"){history.back();return}
+closeExploration(scope);
+}
+document.querySelectorAll(".explore-hotspot").forEach(btn=>btn.addEventListener("click",()=>{
+const world=btn.closest(".oldworld-world"),worldKey=world.id.replace("oldworld-","");
+showExploration(worldKey,btn.dataset.scene,true);
 }));
-document.querySelectorAll(".explore-close").forEach(btn=>btn.addEventListener("click",()=>closeExploration(btn.closest(".oldworld-world"))));
-document.querySelectorAll(".explore-viewer").forEach(viewer=>viewer.addEventListener("click",e=>{if(e.target===viewer)closeExploration(viewer.closest(".oldworld-world"))}));
+document.querySelectorAll(".explore-close").forEach(btn=>btn.addEventListener("click",()=>closeExplorationWithHistory(btn.closest(".oldworld-world"))));
+document.querySelectorAll(".explore-viewer").forEach(viewer=>viewer.addEventListener("click",e=>{if(e.target===viewer)closeExplorationWithHistory(viewer.closest(".oldworld-world"))}));
 
 identityForm.addEventListener("submit",e=>{e.preventDefault();const name=residentName.value.trim();if(name)enterParadise(name)});
 startButton.addEventListener("click",e=>{e.stopPropagation();beginStory()});
@@ -491,11 +516,11 @@ previewTitle.textContent=node.dataset.title;previewDesc.textContent=node.dataset
 }));
 
 $("preview-close").addEventListener("click",()=>districtPreview.classList.remove("show"));
-$("admin-back").addEventListener("click",()=>closeSection(adminPage));
-$("guardian-back").addEventListener("click",()=>closeSection(guardianPage));
-$("starter-back").addEventListener("click",()=>closeSection(starterPage));
-$("news-back").addEventListener("click",()=>closeSection(newsPage));
-$("oldworld-back").addEventListener("click",()=>closeSection(oldWorldPage));
+$("admin-back").addEventListener("click",()=>goPlazaFromButton(adminPage));
+$("guardian-back").addEventListener("click",()=>goPlazaFromButton(guardianPage));
+$("starter-back").addEventListener("click",()=>goPlazaFromButton(starterPage));
+$("news-back").addEventListener("click",()=>goPlazaFromButton(newsPage));
+$("oldworld-back").addEventListener("click",()=>goPlazaFromButton(oldWorldPage));
 
 document.querySelectorAll(".admin-tab").forEach(tab=>tab.addEventListener("click",()=>{
 document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));
@@ -526,9 +551,38 @@ guardianModal.addEventListener("click",e=>{if(e.target===guardianModal)closeGuar
 starterModal.addEventListener("click",e=>{if(e.target===starterModal)closeStarterModal()});
 nullModal.addEventListener("click",e=>{if(e.target===nullModal)closeNullModal()});
 
+window.addEventListener("popstate",async e=>{
+const state=e.state;
+if(!state?.vp)return;
+if(state.vp==="plaza"){
+closeExploration();closeStaffModal();closeGuardianModal();closeStarterModal();closeNullModal();
+const active=getVisibleSection();if(active)await closeSection(active);else paradise.classList.remove("hidden");
+return;
+}
+if(state.vp==="section"){
+closeExploration();closeStaffModal();closeGuardianModal();closeStarterModal();closeNullModal();
+const target=sectionPages[state.section];if(!target)return;
+const active=getVisibleSection();
+if(active===target)return;
+if(active){active.classList.remove("show");active.classList.add("hidden")}
+paradise.classList.remove("hidden");
+await openSection(target,false);
+return;
+}
+if(state.vp==="explore"){
+const active=getVisibleSection();
+if(active!==oldWorldPage){
+if(active){active.classList.remove("show");active.classList.add("hidden")}
+paradise.classList.remove("hidden");
+await openSection(oldWorldPage,false);
+}
+showExploration(state.world||"shelter",state.scene,false);
+}
+});
+
 document.addEventListener("keydown",e=>{
 if(e.key==="Escape"){
-const openExplore=oldWorldPage.querySelector(".explore-viewer.show");if(openExplore){closeExploration(openExplore.closest(".oldworld-world"));return}
+const openExplore=oldWorldPage.querySelector(".explore-viewer.show");if(openExplore){closeExplorationWithHistory(openExplore.closest(".oldworld-world"));return}
 if(nullModal.classList.contains("show")){closeNullModal();return}
 if(staffModal.classList.contains("show")){closeStaffModal();return}
 if(guardianModal.classList.contains("show")){closeGuardianModal();return}
