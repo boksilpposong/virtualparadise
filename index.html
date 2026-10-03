@@ -495,7 +495,7 @@ n=Math.round((i+1)/processSteps.length*100);progressBar.style.width=`${n}%`;prog
 }
 progressState.textContent="모든 검증 완료";await wait(1000);transfer.classList.add("hidden");identity.classList.remove("hidden");residentName.focus();
 }
-let textViewScale=1,textViewKey="overview";
+let textViewScale=1,textViewKey="overview",textViewClosingByButton=false;
 const loreCharacters={
 admin:[
 ["admin-dana.png","다나","스타터 룸 관련 문의","후보 생활과 상담을 담당합니다. 스타터 룸과 관련해 안내가 필요할 때 만날 수 있습니다."],
@@ -572,9 +572,27 @@ oldworld:()=>`<span class="lore-kicker">LEGACY WORLD GUIDE</span><h1 class="lore
 <div class="lore-note">구형 월드는 관광지가 아니라 관리가 끝난 오래된 공간입니다. 호기심은 좋지만, 경고가 붙은 장소에서는 돌아오는 판단도 탐험의 일부입니다.</div>`};
 
 function renderTextView(key="overview"){textViewKey=loreGuide[key]?key:"overview";document.querySelectorAll(".text-view-tab").forEach(btn=>btn.classList.toggle("active",btn.dataset.textKey===textViewKey));textViewBody.innerHTML=loreGuide[textViewKey]();textViewContent.scrollTop=0}
-function showTextView(pushHistory=true,key=null){renderTextView(key||textViewKey);textView.classList.remove("hidden");textView.setAttribute("aria-hidden","false");textViewToggle.classList.add("hidden");if(pushHistory)history.pushState({vp:"text"},"",location.href)}
+function getTextReturnState(){
+const state=history.state;
+if(state?.vp&&state.vp!=="text")return state;
+const active=getVisibleSection();
+if(active){const key=getSectionKey(active);if(key)return{vp:"section",section:key}}
+if(!paradise.classList.contains("hidden"))return{vp:"plaza"};
+return{vp:"entry"};
+}
+function showTextView(pushHistory=true,key=null){
+renderTextView(key||textViewKey);textView.classList.remove("hidden");textView.setAttribute("aria-hidden","false");textViewToggle.classList.add("hidden");
+if(pushHistory){
+const returnState=getTextReturnState();
+if(!history.state?.vp||history.state?.vp==="text")history.replaceState(returnState,"",location.href);
+history.pushState({vp:"text"},"",location.href);
+}
+}
 function hideTextView(){textView.classList.add("hidden");textView.setAttribute("aria-hidden","true");textViewToggle.classList.remove("hidden")}
-function closeTextView(){if(history.state?.vp==="text"){history.back();return}hideTextView()}
+function closeTextView(){
+hideTextView();
+if(history.state?.vp==="text"){textViewClosingByButton=true;history.back()}
+}
 function setTextScale(delta){textViewScale=Math.max(.9,Math.min(1.35,textViewScale+delta));textViewContent.style.setProperty("--reader-size",(16*textViewScale)+"px")}
 
 async function enterParadise(name){
@@ -716,6 +734,7 @@ document.querySelectorAll(".text-view-tab").forEach(btn=>btn.addEventListener("c
 
 window.addEventListener("popstate",async e=>{
 const state=e.state;
+if(textViewClosingByButton){textViewClosingByButton=false;return}
 if(state?.vp==="text"){showTextView(false);return}
 if(!textView.classList.contains("hidden"))hideTextView();
 if(!state?.vp)return;
