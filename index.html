@@ -6,107 +6,343 @@
 <title>VIRTUAL PARADISE — 입주 절차</title>
 <style>
 :root{--white:#f7f6f1;--accent:#e7d7b2;--system:#b7d9ef;--dark:#050607}
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#050607}body{overflow:hidden;color:#f7f6f1;font-family:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif}button,input{font:inherit}.screen{position:fixed;inset:0;width:100vw;height:100dvh}.hidden{display:none!important}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;background:#050607}
+body{overflow:hidden;color:#f7f6f1;font-family:Pretendard,"Noto Sans KR","Malgun Gothic",Arial,sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+.screen{position:fixed;inset:0;width:100vw;height:100dvh}
+.hidden{display:none!important}
 
 /* =========================================================
    입주
 ========================================================= */
 #cinematic{overflow:hidden;background:#050607}
 #scene-image{position:absolute;inset:-2%;background:center/cover no-repeat;opacity:1;transform:scale(1.015);filter:blur(0) brightness(1) saturate(.96);transition:opacity .9s ease,transform 8s ease-out}
-#scene-image.changing{opacity:0}#scene-image.move{transform:scale(1.045)}#scene-image.closing{animation:vision-close 3.4s cubic-bezier(.45,0,.25,1) forwards}
-@keyframes vision-close{0%{filter:blur(0) brightness(1);transform:scale(1.045)}30%{filter:blur(2px) brightness(.91);transform:scale(1.055)}48%{filter:blur(4px) brightness(.8);transform:scale(1.06)}66%{filter:blur(7px) brightness(.65);transform:scale(1.067)}84%{filter:blur(11px) brightness(.44);transform:scale(1.074)}100%{filter:blur(16px) brightness(.2);transform:scale(1.08)}}
+#scene-image.changing{opacity:0}
+#scene-image.move{transform:scale(1.045)}
+#scene-image.closing{animation:vision-close 3.4s cubic-bezier(.45,0,.25,1) forwards}
+
+@keyframes vision-close{
+0%{filter:blur(0) brightness(1);transform:scale(1.045)}
+30%{filter:blur(2px) brightness(.91);transform:scale(1.055)}
+48%{filter:blur(4px) brightness(.8);transform:scale(1.06)}
+66%{filter:blur(7px) brightness(.65);transform:scale(1.067)}
+84%{filter:blur(11px) brightness(.44);transform:scale(1.074)}
+100%{filter:blur(16px) brightness(.2);transform:scale(1.08)}
+}
+
 .vignette{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,.1) 34%,transparent 67%),radial-gradient(circle at center,transparent 55%,rgba(0,0,0,.14))}
-.brand{position:absolute;top:34px;right:45px;text-align:right;opacity:.72;text-shadow:0 2px 14px rgba(0,0,0,.55)}.brand strong{display:block;font-size:13px;letter-spacing:.22em}.brand span{display:block;margin-top:6px;font-size:8px;letter-spacing:.17em;color:rgba(255,255,255,.58)}
-#start-button{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);width:min(520px,calc(100vw - 40px));padding:20px 28px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(8,10,12,.48);backdrop-filter:blur(14px);color:#fff;cursor:pointer;text-align:left;transition:.55s}
-#start-button:hover{background:rgba(8,10,12,.64);transform:translateX(-50%) translateY(-2px)}#start-button.hide{opacity:0;pointer-events:none}.start-small{display:block;font-size:11px;color:rgba(255,255,255,.58)}.start-main{display:block;margin:5px 0 7px;font-size:27px}.start-help{display:block;font-size:11px;color:rgba(255,255,255,.42)}
+.brand{position:absolute;top:34px;right:45px;text-align:right;opacity:.72;text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.brand strong{display:block;font-size:13px;letter-spacing:.22em}
+.brand span{display:block;margin-top:6px;font-size:8px;letter-spacing:.17em;color:rgba(255,255,255,.58)}
+
+#start-button{position:absolute;left:50%;bottom:9vh;transform:translateX(-50%);width:min(520px,calc(100vw - 40px));padding:20px 28px;border:1px solid rgba(255,255,255,.28);border-radius:5px;background:rgba(8,10,12,.48);backdrop-filter:blur(14px);color:#fff;text-align:left;transition:.55s}
+#start-button:hover{background:rgba(8,10,12,.64);transform:translateX(-50%) translateY(-2px)}
+#start-button.hide{opacity:0;pointer-events:none}
+.start-small{display:block;font-size:11px;color:rgba(255,255,255,.58)}
+.start-main{display:block;margin:5px 0 7px;font-size:27px}
+.start-help{display:block;font-size:11px;color:rgba(255,255,255,.42)}
+
 #dialogue{position:absolute;left:clamp(24px,5vw,78px);bottom:clamp(28px,7vh,70px);width:min(720px,calc(100vw - 48px));padding:14px 20px 17px;border-top:1px solid rgba(255,255,255,.34);background:linear-gradient(90deg,rgba(3,5,7,.59),rgba(3,5,7,.3) 72%,transparent);backdrop-filter:blur(8px);opacity:0;transform:translateY(12px);transition:.5s}
-#dialogue.show{opacity:1;transform:none}.dialogue-info{display:flex;gap:11px;margin-bottom:7px;font-size:11px;color:rgba(255,255,255,.52)}#speaker{color:#e7d7b2;font-weight:bold}#scene-label::before{content:"·";margin-right:11px}#dialogue-text{margin:0;font-size:clamp(17px,1.65vw,23px);line-height:1.65}.dialogue-next{margin-top:10px;font-size:9px;color:rgba(255,255,255,.31)}
-#eye-close{position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none}#eye-close::before,#eye-close::after{content:"";position:absolute;left:-4%;width:108%;height:57%;transition:transform 3.2s cubic-bezier(.6,0,.25,1)}#eye-close::before{top:-4%;background:#000;transform:translateY(-106%)}#eye-close::after{bottom:-4%;background:#000;transform:translateY(106%)}#eye-close.close::before,#eye-close.close::after{transform:translateY(0)}
-#transfer{display:grid;place-items:center;padding:24px;background:#04070a}.transfer-panel{width:min(760px,92vw)}.system-brand{font-size:13px;letter-spacing:.28em}.system-sub{margin:8px 0 46px;font:10px monospace;color:rgba(183,217,239,.48)}#transfer h1{font-size:42px}.transfer-description{color:rgba(255,255,255,.52)}
-#process-list{display:grid;margin-bottom:34px;border-top:1px solid rgba(255,255,255,.1)}.process-item{display:grid;grid-template-columns:34px 1fr auto;align-items:center;min-height:48px;border-bottom:1px solid rgba(255,255,255,.075);color:rgba(255,255,255,.23)}.process-item.active{color:#fff}.process-item.complete{color:#b7d9ef}.process-number,.process-status{font:10px monospace}.process-label{font-size:13px}.progress-track{height:1px;background:rgba(255,255,255,.12)}#progress-bar{width:0;height:100%;background:#b7d9ef;transition:.8s}.progress-info{display:flex;justify-content:space-between;margin-top:9px;font:9px monospace;color:rgba(255,255,255,.34)}
-#identity{display:grid;place-items:center;padding:24px;background:#06090b;transition:.8s}.fade-out{opacity:0}.identity-card{width:min(520px,94vw);text-align:center}.identity-check{display:grid;place-items:center;width:46px;height:46px;margin:auto;border:1px solid #b7d9ef;border-radius:50%;color:#b7d9ef}.identity-small{font:10px monospace;color:#b7d9ef}.identity-card h1{font-size:40px}.identity-card>p{color:rgba(255,255,255,.56);line-height:1.75}.identity-card label{display:block;text-align:left;font-size:12px;color:#aaa}#resident-name{width:100%;height:58px;padding:0 16px;border:0;border-bottom:1px solid #777;background:#111;color:#fff}.identity-button{width:100%;height:54px;margin-top:18px;border:1px solid #7c9eb3;background:#0c151b;color:#fff}
+#dialogue.show{opacity:1;transform:none}
+.dialogue-info{display:flex;gap:11px;margin-bottom:7px;font-size:11px;color:rgba(255,255,255,.52)}
+#speaker{color:#e7d7b2;font-weight:bold}
+#scene-label::before{content:"·";margin-right:11px}
+#dialogue-text{margin:0;font-size:clamp(17px,1.65vw,23px);line-height:1.65}
+.dialogue-next{margin-top:10px;font-size:9px;color:rgba(255,255,255,.31)}
+
+#eye-close{position:absolute;inset:0;z-index:50;overflow:hidden;pointer-events:none}
+#eye-close::before,#eye-close::after{content:"";position:absolute;left:-4%;width:108%;height:57%;transition:transform 3.2s cubic-bezier(.6,0,.25,1)}
+#eye-close::before{top:-4%;background:#000;transform:translateY(-106%)}
+#eye-close::after{bottom:-4%;background:#000;transform:translateY(106%)}
+#eye-close.close::before,#eye-close.close::after{transform:translateY(0)}
+
+#transfer{display:grid;place-items:center;padding:24px;background:#04070a}
+.transfer-panel{width:min(760px,92vw)}
+.system-brand{font-size:13px;letter-spacing:.28em}
+.system-sub{margin:8px 0 46px;font:10px monospace;color:rgba(183,217,239,.48)}
+#transfer h1{font-size:42px}
+.transfer-description{color:rgba(255,255,255,.52)}
+
+#process-list{display:grid;margin-bottom:34px;border-top:1px solid rgba(255,255,255,.1)}
+.process-item{display:grid;grid-template-columns:34px 1fr auto;align-items:center;min-height:48px;border-bottom:1px solid rgba(255,255,255,.075);color:rgba(255,255,255,.23)}
+.process-item.active{color:#fff}
+.process-item.complete{color:#b7d9ef}
+.process-number,.process-status{font:10px monospace}
+.process-label{font-size:13px}
+.progress-track{height:1px;background:rgba(255,255,255,.12)}
+#progress-bar{width:0;height:100%;background:#b7d9ef;transition:.8s}
+.progress-info{display:flex;justify-content:space-between;margin-top:9px;font:9px monospace;color:rgba(255,255,255,.34)}
+
+#identity{display:grid;place-items:center;padding:24px;background:#06090b;transition:.8s}
+.fade-out{opacity:0}
+.identity-card{width:min(520px,94vw);text-align:center}
+.identity-check{display:grid;place-items:center;width:46px;height:46px;margin:auto;border:1px solid #b7d9ef;border-radius:50%;color:#b7d9ef}
+.identity-small{font:10px monospace;color:#b7d9ef}
+.identity-card h1{font-size:40px}
+.identity-card>p{color:rgba(255,255,255,.56);line-height:1.75}
+.identity-card label{display:block;text-align:left;font-size:12px;color:#aaa}
+#resident-name{width:100%;height:58px;padding:0 16px;border:0;border-bottom:1px solid #777;background:#111;color:#fff}
+.identity-button{width:100%;height:54px;margin-top:18px;border:1px solid #7c9eb3;background:#0c151b;color:#fff}
 
 /* =========================================================
-   광장
+   중앙 광장
 ========================================================= */
-#paradise{overflow:hidden;background:#02070a;transition:.7s}#paradise.leave{opacity:0;filter:blur(5px)}
-#plaza-image{position:absolute;inset:-2%;background:url("paradise-plaza.png") center/cover no-repeat;opacity:.25;transform:scale(1.10);filter:blur(22px) brightness(.22);transition:opacity 4.8s,transform 6s,filter 5.2s}#paradise.awake #plaza-image{opacity:1;transform:scale(1.02);filter:none}
-#arrival-dark{position:absolute;inset:0;z-index:20;background:#000;transition:opacity 5s}#paradise.awake #arrival-dark{opacity:0}
-#arrival-message{position:absolute;z-index:30;left:50%;top:50%;width:min(700px,calc(100vw - 40px));padding:34px;text-align:center;background:rgba(8,23,31,.58);border:1px solid #ffffff66;border-radius:10px;backdrop-filter:blur(16px);opacity:0;transform:translate(-50%,-43%);transition:1.8s}
-#arrival-message.show{opacity:1;transform:translate(-50%,-50%)}#arrival-message.fade-away{opacity:0}.arrival-small{font-size:11px;letter-spacing:.32em}#arrival-message h1{font-size:60px}.arrival-line{width:70px;height:1px;margin:24px auto;background:#ffffff77}
-#resident-indicator{position:absolute;z-index:10;top:26px;left:28px;padding:9px 12px;border:1px solid #ffffff44;border-radius:5px;background:#0a1c2455;backdrop-filter:blur(10px);font-size:10px;opacity:0;transition:.8s}#resident-indicator.show{opacity:1}
-#map-ui{position:absolute;inset:0;z-index:12;pointer-events:none;opacity:0;transition:.9s}#map-ui.ready{opacity:1}.map-node{--x:50%;--y:50%;position:absolute;left:var(--x);top:var(--y);width:0;height:0;border:0;background:none;color:#fff;cursor:pointer;pointer-events:none;opacity:0}#map-ui.ready .map-node{pointer-events:auto;opacity:1}
-.node-dot{position:absolute;transform:translate(-50%,-50%);width:15px;height:15px;border:2px solid #e6f9ff;border-radius:50%;background:#287d9b}.node-dot::after{content:"";position:absolute;left:13px;top:5px;width:25px;height:1px;background:#dff8ff}.node-card{position:absolute;left:34px;top:50%;transform:translateY(-50%);padding:10px 14px;border:1px solid #dff8ff77;border-radius:8px;background:#0c2734bb;backdrop-filter:blur(12px);white-space:nowrap;text-align:left}.node-title{display:block;font-size:12px;font-weight:700}.node-sub{display:block;margin-top:3px;font-size:9px;color:#dceffaaa}.map-node.flip .node-dot::after{left:auto;right:13px}.map-node.flip .node-card{left:auto;right:34px;text-align:right}
-#node-admin{--x:48%;--y:25%}#node-guardian{--x:22%;--y:34%}#node-starter{--x:79%;--y:34%}#node-news{--x:13%;--y:61%}#node-citizen{--x:78%;--y:66%}#node-gate{--x:13%;--y:82%}
-#district-preview{position:absolute;z-index:40;left:50%;bottom:28px;width:min(560px,calc(100vw - 36px));padding:18px;border-radius:10px;background:#071d27dd;opacity:0;pointer-events:none;transform:translate(-50%,15px);transition:.35s}#district-preview.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}.preview-top{display:flex;justify-content:space-between}.preview-desc{margin-top:5px;font-size:12px;color:#ddd}#preview-close{border:0;background:none;color:#fff;font-size:22px}
+#paradise{overflow:hidden;background:#02070a;transition:.7s}
+#paradise.leave{opacity:0;filter:blur(5px)}
+
+#plaza-image{position:absolute;inset:-2%;background:url("paradise-plaza.png") center/cover no-repeat;opacity:.25;transform:scale(1.10);filter:blur(22px) brightness(.22);transition:opacity 4.8s,transform 6s,filter 5.2s}
+#paradise.awake #plaza-image{opacity:1;transform:scale(1.02);filter:none}
+
+/* 중요: 투명해진 뒤 광장 클릭을 막지 않게 함 */
+#arrival-dark{position:absolute;inset:0;z-index:20;background:#000;pointer-events:none;transition:opacity 5s}
+#paradise.awake #arrival-dark{opacity:0}
+
+#arrival-message{position:absolute;z-index:30;left:50%;top:50%;width:min(700px,calc(100vw - 40px));padding:34px;text-align:center;background:rgba(8,23,31,.58);border:1px solid #ffffff66;border-radius:10px;backdrop-filter:blur(16px);opacity:0;transform:translate(-50%,-43%);pointer-events:none;transition:1.8s}
+#arrival-message.show{opacity:1;transform:translate(-50%,-50%)}
+#arrival-message.fade-away{opacity:0}
+.arrival-small{font-size:11px;letter-spacing:.32em}
+#arrival-message h1{font-size:60px}
+.arrival-line{width:70px;height:1px;margin:24px auto;background:#ffffff77}
+
+#resident-indicator{position:absolute;z-index:10;top:26px;left:28px;padding:9px 12px;border:1px solid #ffffff44;border-radius:5px;background:#0a1c2455;backdrop-filter:blur(10px);font-size:10px;opacity:0;pointer-events:none;transition:.8s}
+#resident-indicator.show{opacity:1}
+
+#map-ui{position:absolute;inset:0;z-index:12;pointer-events:none;opacity:0;transition:.9s}
+#map-ui.ready{opacity:1}
+
+.map-node{--x:50%;--y:50%;position:absolute;left:var(--x);top:var(--y);width:0;height:0;padding:0;border:0;background:none;color:#fff;pointer-events:none;opacity:0}
+#map-ui.ready .map-node{pointer-events:auto;opacity:1}
+
+.node-dot{position:absolute;transform:translate(-50%,-50%);width:15px;height:15px;border:2px solid #e6f9ff;border-radius:50%;background:#287d9b;box-shadow:0 0 0 4px rgba(190,239,255,.12),0 0 13px rgba(126,220,255,.6)}
+.node-dot::after{content:"";position:absolute;left:13px;top:5px;width:25px;height:1px;background:#dff8ff}
+
+.node-card{position:absolute;left:34px;top:50%;transform:translateY(-50%);padding:10px 14px;border:1px solid #dff8ff77;border-radius:8px;background:#0c2734bb;backdrop-filter:blur(12px);white-space:nowrap;text-align:left;transition:.25s}
+.node-title{display:block;font-size:12px;font-weight:700}
+.node-sub{display:block;margin-top:3px;font-size:9px;color:#dceffaaa}
+.map-node:hover .node-card{transform:translateY(-50%) translateX(4px)}
+.map-node.flip .node-dot::after{left:auto;right:13px}
+.map-node.flip .node-card{left:auto;right:34px;text-align:right}
+
+#node-admin{--x:48%;--y:25%}
+#node-guardian{--x:22%;--y:34%}
+#node-starter{--x:79%;--y:34%}
+#node-news{--x:13%;--y:61%}
+#node-citizen{--x:78%;--y:66%}
+#node-gate{--x:13%;--y:82%}
+
+#district-preview{position:absolute;z-index:40;left:50%;bottom:28px;width:min(560px,calc(100vw - 36px));padding:18px;border-radius:10px;background:#071d27dd;opacity:0;pointer-events:none;transform:translate(-50%,15px);transition:.35s}
+#district-preview.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.preview-top{display:flex;justify-content:space-between}
+.preview-desc{margin-top:5px;font-size:12px;color:#ddd}
+#preview-close{border:0;background:none;color:#fff;font-size:22px}
 
 /* =========================================================
    공통 내부 페이지
 ========================================================= */
-#admin-page,#guardian-page,#starter-page,#news-page{overflow:auto;opacity:0;transition:opacity .7s}#admin-page.show,#guardian-page.show,#starter-page.show,#news-page.show{opacity:1}
+#admin-page,#guardian-page,#starter-page,#news-page{overflow:auto;opacity:0;transition:opacity .7s}
+#admin-page.show,#guardian-page.show,#starter-page.show,#news-page.show{opacity:1}
+
 #admin-page{color:#143747;background:linear-gradient(#edf9fcaa,#edf9fcaa),url("admin-interior.png") center/cover fixed}
 .admin-shell,.guardian-shell,.starter-shell,.news-shell{width:min(1420px,calc(100% - 36px));margin:auto;padding:18px 0 72px}
+
 .admin-topbar,.guardian-header,.starter-header,.news-header{position:sticky;top:12px;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:18px;padding:10px 14px;border-radius:15px;backdrop-filter:blur(18px)}
-.admin-topbar{background:#ffffff88}.guardian-header,.news-header{background:#fbfdffdd}.starter-header{background:#fffafdde}
-.admin-brand strong,.guardian-logo-text strong,.starter-logo strong,.news-logo strong{display:block;font-size:14px;letter-spacing:.18em}.admin-brand span,.guardian-logo-text span,.starter-logo span,.news-logo span{font-size:8px;color:#81909a}
-.admin-back,.guardian-back,.starter-back,.news-back{border:0;border-radius:8px;padding:9px 13px;background:#fff;color:#50616b;cursor:pointer}
-.admin-hero{display:grid;grid-template-columns:1.4fr .8fr;gap:30px;padding:34px;border-radius:18px;background:#ffffff88}.admin-eyebrow{font-size:10px;color:#287695}.admin-hero h1{font-size:68px;margin:10px 0}.admin-lead{line-height:1.8}.admin-status{padding:20px;border-radius:14px;background:#ffffff88}.status-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}.status-cell{padding:10px;background:#e6f5f9;border-radius:8px}.status-cell b{display:block}.status-cell span{font-size:9px}
-.admin-nav{display:flex;gap:6px;margin:24px 0}.admin-tab{border:0;padding:10px 15px;border-radius:8px;background:#ffffff77;color:#456b79}.admin-tab.active{background:#18485b;color:#fff}.admin-panel{display:none}.admin-panel.active{display:block}.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.info-card{padding:22px;border-radius:14px;background:#ffffffaa}.info-card p{font-size:12px;line-height:1.7}.dept-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.dept{padding:20px;border-radius:13px;background:#ffffffaa}.dept p{font-size:11px;line-height:1.7}.person-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.person{position:relative;padding:22px;border-radius:14px;background:#ffffffaa;min-height:270px;cursor:pointer}.person-photo{position:absolute;right:16px;top:16px;width:105px;height:105px;border-radius:14px;overflow:hidden}.person-photo img{width:100%;height:100%;object-fit:cover}.person h3{font-size:26px}.person p{font-size:11px}.system-list{display:grid;gap:8px}.system-row{display:grid;grid-template-columns:180px 1fr auto;padding:17px;border-radius:12px;background:#ffffffaa}
+.admin-topbar{background:#ffffff88}
+.guardian-header,.news-header{background:#fbfdffdd}
+.starter-header{background:#fffafdde}
 
-/* guardian */
-#guardian-page{color:#182c3a;background:#f1f7fb}.guardian-logo{display:flex;gap:10px}.guardian-nav,.starter-nav,.news-nav{display:flex}.guardian-nav-btn,.starter-nav-btn,.news-nav-btn{border:0;background:none;padding:8px 10px;cursor:pointer}.guardian-kv{position:relative;overflow:hidden;border-radius:23px}.guardian-kv-img{display:block;width:100%;min-height:470px;object-fit:cover}.guardian-kv-shade{position:absolute;inset:0;background:linear-gradient(to top,#0a1826bb,transparent 60%)}.guardian-kv-copy{position:absolute;left:42px;bottom:50px}.guardian-kv-copy h1{font-size:90px;margin:0}.guardian-kv-names{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(6,1fr);padding:10px;background:#0a182655}.guardian-kv-names span{text-align:center}
-.guardian-section,.starter-section,.news-section{padding:76px 7px 0;scroll-margin-top:95px}.g-section-head,.starter-section-head,.news-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:25px;margin-bottom:22px}.g-section-title h2,.starter-section-title h2,.news-section-title h2{font-size:48px;margin:5px 0}.g-section-desc,.starter-section-desc,.news-section-desc{max-width:490px;text-align:right;font-size:11px;color:#788}
-.talent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.talent-card{position:relative;overflow:hidden;min-height:480px;border-radius:18px;cursor:pointer}.talent-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.talent-shade{position:absolute;inset:0;background:linear-gradient(to top,#0c1622dd,transparent 58%)}.talent-info{position:absolute;left:20px;bottom:18px}.talent-info h3{font-size:32px;margin:0}.talent-open{position:absolute;right:18px;bottom:18px}
-.stream-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}.stream-feature{position:relative;min-height:440px;overflow:hidden;border-radius:18px}.stream-feature img{position:absolute;width:100%;height:100%;object-fit:cover}.stream-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#111d,transparent)}.stream-content{position:absolute;z-index:2;left:24px;bottom:20px}.stream-list{display:grid;gap:10px}.stream-item{display:grid;grid-template-columns:43% 1fr;background:#fff;border-radius:14px;overflow:hidden}.stream-thumb{width:100%;height:100%;object-fit:cover}.stream-copy{padding:14px;color:#234}.stream-copy small,.stream-copy span{font-size:9px;color:#899}.stream-copy b{display:block;margin:7px 0}.field-wrap{padding:30px;border-radius:20px;background:#1f3a4c}.field-grid,.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field-card{padding:18px;background:#ffffff11;border-radius:12px}.about-card{padding:24px;background:#fff;border-radius:15px}
+.admin-brand strong,.guardian-logo-text strong,.starter-logo strong,.news-logo strong{display:block;font-size:14px;letter-spacing:.18em}
+.admin-brand span,.guardian-logo-text span,.starter-logo span,.news-logo span{font-size:8px;color:#81909a}
+.admin-back,.guardian-back,.starter-back,.news-back{border:0;border-radius:8px;padding:9px 13px;background:#fff;color:#50616b}
 
-/* starter */
-#starter-page{color:#292335;background:#f7f5fa}.starter-logo{display:flex;gap:10px}.starter-logo-mark{display:grid;grid-template-columns:repeat(2,7px);gap:3px;padding:7px;background:#242132;border-radius:9px}.starter-logo-mark i{width:7px;height:7px;background:#fff}.starter-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;padding:54px;border-radius:24px;background:linear-gradient(125deg,#242031,#30273e 53%,#183a3b)}.starter-hero h1{font-size:90px;line-height:.8;margin:15px 0}.starter-hero h1 span{display:block;font-size:.42em;color:#ffbd87}.starter-hero-board{display:grid;gap:9px;padding:14px;background:#ffffff11;border-radius:17px}.starter-board-row{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:13px;background:#ffffff10;border-radius:11px}.candidate-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}.candidate-card{position:relative;overflow:hidden;aspect-ratio:.76;border:0;border-radius:17px;cursor:pointer}.candidate-img{position:absolute;width:100%;height:100%;object-fit:cover}.candidate-shade{position:absolute;inset:0;background:linear-gradient(to top,#17131fe8,transparent 60%)}.candidate-name{position:absolute;left:17px;bottom:15px;color:#fff;font-size:26px}.candidate-arrow{position:absolute;right:15px;bottom:16px;color:#fff}.starter-stream-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.starter-stream-card{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:17px}.starter-stream-card img{width:100%;height:100%;object-fit:cover}.starter-stream-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#17131fee,transparent 68%)}.starter-stream-info{position:absolute;z-index:2;left:20px;bottom:17px}.starter-stream-info h3{margin:5px 0}.starter-life-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.starter-life-card{padding:24px;background:#fff;border-radius:16px}.starter-eval{padding:34px;background:#282431;border-radius:20px}
+/* 관리국 */
+.admin-hero{display:grid;grid-template-columns:1.4fr .8fr;gap:30px;padding:34px;border-radius:18px;background:#ffffff88}
+.admin-eyebrow{font-size:10px;color:#287695}
+.admin-hero h1{font-size:68px;margin:10px 0}
+.admin-lead{line-height:1.8}
+.admin-status{padding:20px;border-radius:14px;background:#ffffff88}
+.status-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}
+.status-cell{padding:10px;background:#e6f5f9;border-radius:8px}
+.status-cell b{display:block}
+.status-cell span{font-size:9px}
 
-/* news */
-#news-page{color:#173140;background:#f3f9fb}.news-logo{display:flex;gap:10px}.news-logo-mark{width:30px;height:30px;border-radius:9px;background:#164f68}.news-hero{padding:55px;border-radius:24px;background:linear-gradient(120deg,#164f68,#28768a 52%,#53a49c)}.news-hero h1{font-size:80px;line-height:.9}.news-ticker{display:flex;gap:12px;padding-top:30px}.headline-grid{display:grid;grid-template-columns:1.35fr .85fr .85fr;gap:14px}.headline-card{position:relative;min-height:390px;overflow:hidden;border-radius:18px}.headline-main{min-height:500px}.headline-card img{position:absolute;width:100%;height:100%;object-fit:cover}.headline-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#07161fe8,transparent)}.headline-copy{position:absolute;z-index:2;left:22px;bottom:20px}.community-layout{display:grid;grid-template-columns:1.3fr .7fr;gap:15px}.community-feed{display:grid;gap:9px}.community-post{display:grid;grid-template-columns:42px 1fr auto;padding:17px;background:#fff;border-radius:13px}.community-avatar{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#8ab9ce}.community-side{display:grid;gap:10px}.trend-card,.notice-card{padding:20px;background:#fff;border-radius:15px}.knowledge-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.knowledge-card{padding:28px;background:#fff;border-radius:20px}.knowledge-card h2{font-size:40px}.knowledge-card p{font-size:11px;line-height:1.8;color:#667}.knowledge-block{margin-top:22px}.chip-wrap{display:flex;flex-wrap:wrap;gap:6px}.info-chip{padding:7px;background:#eef3f6;border-radius:7px;font-size:9px}.knowledge-note{margin-top:20px;padding:14px;background:#eef3f6;border-left:3px solid #6d99ba;font-size:10px}.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.faq-card{padding:20px;background:#fff;border-radius:14px}
+.admin-nav{display:flex;gap:6px;margin:24px 0}
+.admin-tab{border:0;padding:10px 15px;border-radius:8px;background:#ffffff77;color:#456b79}
+.admin-tab.active{background:#18485b;color:#fff}
+.admin-panel{display:none}
+.admin-panel.active{display:block}
+
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.info-card{padding:22px;border-radius:14px;background:#ffffffaa}
+.info-card p{font-size:12px;line-height:1.7}
+
+.dept-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.dept{padding:20px;border-radius:13px;background:#ffffffaa}
+.dept p{font-size:11px;line-height:1.7}
+
+.person-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.person{position:relative;padding:22px;border-radius:14px;background:#ffffffaa;min-height:270px}
+.person-photo{position:absolute;right:16px;top:16px;width:105px;height:105px;border-radius:14px;overflow:hidden}
+.person-photo img{width:100%;height:100%;object-fit:cover}
+.person h3{font-size:26px}
+.person p{font-size:11px}
+
+.system-list{display:grid;gap:8px}
+.system-row{display:grid;grid-template-columns:180px 1fr auto;padding:17px;border-radius:12px;background:#ffffffaa}
 
 /* =========================================================
-   구형 월드 - 새 버전
+   가디언
+========================================================= */
+#guardian-page{color:#182c3a;background:#f1f7fb}
+
+.guardian-logo{display:flex;gap:10px}
+.guardian-nav,.starter-nav,.news-nav{display:flex}
+.guardian-nav-btn,.starter-nav-btn,.news-nav-btn{border:0;background:none;padding:8px 10px}
+
+.guardian-kv{position:relative;overflow:hidden;border-radius:23px}
+.guardian-kv-img{display:block;width:100%;min-height:470px;object-fit:cover}
+.guardian-kv-shade{position:absolute;inset:0;background:linear-gradient(to top,#0a1826bb,transparent 60%)}
+.guardian-kv-copy{position:absolute;left:42px;bottom:50px}
+.guardian-kv-copy h1{font-size:90px;margin:0}
+.guardian-kv-names{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(6,1fr);padding:10px;background:#0a182655}
+.guardian-kv-names span{text-align:center}
+
+.guardian-section,.starter-section,.news-section{padding:76px 7px 0;scroll-margin-top:95px}
+.g-section-head,.starter-section-head,.news-section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:25px;margin-bottom:22px}
+.g-section-title h2,.starter-section-title h2,.news-section-title h2{font-size:48px;margin:5px 0}
+.g-section-desc,.starter-section-desc,.news-section-desc{max-width:490px;text-align:right;font-size:11px;color:#788}
+
+.talent-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.talent-card{position:relative;overflow:hidden;min-height:480px;border-radius:18px}
+.talent-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.talent-shade{position:absolute;inset:0;background:linear-gradient(to top,#0c1622dd,transparent 58%)}
+.talent-info{position:absolute;left:20px;bottom:18px}
+.talent-info h3{font-size:32px;margin:0}
+.talent-open{position:absolute;right:18px;bottom:18px}
+
+.stream-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:16px}
+.stream-feature{position:relative;min-height:440px;overflow:hidden;border-radius:18px}
+.stream-feature img{position:absolute;width:100%;height:100%;object-fit:cover}
+.stream-feature::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#111d,transparent)}
+.stream-content{position:absolute;z-index:2;left:24px;bottom:20px}
+.stream-list{display:grid;gap:10px}
+.stream-item{display:grid;grid-template-columns:43% 1fr;background:#fff;border-radius:14px;overflow:hidden}
+.stream-thumb{width:100%;height:100%;object-fit:cover}
+.stream-copy{padding:14px;color:#234}
+.stream-copy small,.stream-copy span{font-size:9px;color:#899}
+.stream-copy b{display:block;margin:7px 0}
+
+/* =========================================================
+   스타터 룸
+========================================================= */
+#starter-page{color:#292335;background:#f7f5fa}
+
+.starter-logo{display:flex;gap:10px}
+.starter-logo-mark{display:grid;grid-template-columns:repeat(2,7px);gap:3px;padding:7px;background:#242132;border-radius:9px}
+.starter-logo-mark i{width:7px;height:7px;background:#fff}
+
+.starter-hero{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;padding:54px;border-radius:24px;background:linear-gradient(125deg,#242031,#30273e 53%,#183a3b)}
+.starter-hero h1{font-size:90px;line-height:.8;margin:15px 0}
+.starter-hero h1 span{display:block;font-size:.42em;color:#ffbd87}
+.starter-hero-board{display:grid;gap:9px;padding:14px;background:#ffffff11;border-radius:17px}
+.starter-board-row{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:13px;background:#ffffff10;border-radius:11px}
+
+.candidate-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:13px}
+.candidate-card{position:relative;overflow:hidden;aspect-ratio:.76;border:0;border-radius:17px}
+.candidate-img{position:absolute;width:100%;height:100%;object-fit:cover}
+.candidate-shade{position:absolute;inset:0;background:linear-gradient(to top,#17131fe8,transparent 60%)}
+.candidate-name{position:absolute;left:17px;bottom:15px;color:#fff;font-size:26px}
+.candidate-arrow{position:absolute;right:15px;bottom:16px;color:#fff}
+
+.starter-stream-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.starter-stream-card{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:17px}
+.starter-stream-card img{width:100%;height:100%;object-fit:cover}
+.starter-stream-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#17131fee,transparent 68%)}
+.starter-stream-info{position:absolute;z-index:2;left:20px;bottom:17px}
+.starter-stream-info h3{margin:5px 0}
+
+/* =========================================================
+   뉴스
+========================================================= */
+#news-page{color:#173140;background:#f3f9fb}
+
+.news-logo{display:flex;gap:10px}
+.news-logo-mark{width:30px;height:30px;border-radius:9px;background:#164f68}
+.news-hero{padding:55px;border-radius:24px;background:linear-gradient(120deg,#164f68,#28768a 52%,#53a49c)}
+.news-hero h1{font-size:80px;line-height:.9}
+.news-ticker{display:flex;gap:12px;padding-top:30px}
+
+.headline-grid{display:grid;grid-template-columns:1.35fr .85fr .85fr;gap:14px}
+.headline-card{position:relative;min-height:390px;overflow:hidden;border-radius:18px}
+.headline-main{min-height:500px}
+.headline-card img{position:absolute;width:100%;height:100%;object-fit:cover}
+.headline-card::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,#07161fe8,transparent)}
+.headline-copy{position:absolute;z-index:2;left:22px;bottom:20px}
+
+.knowledge-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.knowledge-card{padding:28px;background:#fff;border-radius:20px}
+.knowledge-card h2{font-size:40px}
+.knowledge-card p{font-size:11px;line-height:1.8;color:#667}
+.knowledge-block{margin-top:22px}
+.chip-wrap{display:flex;flex-wrap:wrap;gap:6px}
+.info-chip{padding:7px;background:#eef3f6;border-radius:7px;font-size:9px}
+.knowledge-note{margin-top:20px;padding:14px;background:#eef3f6;border-left:3px solid #6d99ba;font-size:10px}
+
+/* =========================================================
+   구형 월드
 ========================================================= */
 #oldworld-page{overflow:auto;opacity:0;transition:opacity .7s;color:#d9d4c8;background:#0d0e0e}
 #oldworld-page.show{opacity:1}
+
 .oldworld-shell{width:min(1460px,calc(100% - 36px));margin:auto;padding:18px 0 80px}
+
 .oldworld-header{position:sticky;top:12px;z-index:80;display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding:10px 14px;border:1px solid #ffffff13;border-radius:14px;background:#101111d9;backdrop-filter:blur(18px)}
 .oldworld-brand strong{display:block;font-size:14px;letter-spacing:.22em;color:#ded8c9}
 .oldworld-brand span{display:block;margin-top:3px;font-size:8px;letter-spacing:.15em;color:#726f67}
-.oldworld-back{border:1px solid #ffffff17;border-radius:8px;padding:9px 13px;background:#ffffff08;color:#c9c3b6;cursor:pointer}
+.oldworld-back{border:1px solid #ffffff17;border-radius:8px;padding:9px 13px;background:#ffffff08;color:#c9c3b6}
 
 /* 게이트 */
 .legacy-gate{position:relative;overflow:hidden;display:grid;grid-template-columns:.82fr 1.18fr;gap:34px;min-height:500px;padding:48px;border:1px solid #ffffff10;border-radius:24px;background:linear-gradient(125deg,#171818,#1b1b19 55%,#121514)}
 .legacy-gate::after{content:"";position:absolute;width:600px;height:600px;right:-260px;top:-300px;border-radius:50%;background:radial-gradient(circle,#c0ab7418,transparent 67%)}
+
 .legacy-copy{align-self:center;position:relative;z-index:2}
 .legacy-copy small{font-size:9px;letter-spacing:.27em;color:#827c6e}
 .legacy-copy h1{margin:15px 0 22px;font-size:clamp(58px,8vw,112px);line-height:.82;letter-spacing:-.07em;color:#e6e0d2}
 .legacy-copy h1 span{display:block;margin-top:12px;font-size:.38em;letter-spacing:.02em;color:#9d947f}
 .legacy-copy p{max-width:560px;font-size:13px;line-height:1.9;color:#8c887e}
+
 .legacy-directory{position:relative;z-index:2;display:grid;align-content:center;gap:9px}
-.legacy-world-button{--c:#999;display:grid;grid-template-columns:50px 1fr auto;gap:13px;align-items:center;padding:15px;border:1px solid #ffffff0f;border-radius:12px;background:#ffffff07;color:#bbb5a8;text-align:left;cursor:pointer;transition:.3s}
+.legacy-world-button{--c:#999;display:grid;grid-template-columns:50px 1fr auto;gap:13px;align-items:center;padding:15px;border:1px solid #ffffff0f;border-radius:12px;background:#ffffff07;color:#bbb5a8;text-align:left;transition:.3s}
 .legacy-world-button:hover,.legacy-world-button.active{transform:translateX(5px);background:#ffffff0e;border-color:var(--c)}
 .legacy-no{display:grid;place-items:center;width:44px;height:44px;border:1px solid #ffffff12;border-radius:10px;font:10px monospace;color:var(--c)}
-.legacy-world-button b{display:block;font-size:13px;color:#d8d2c5}.legacy-world-button span span{display:block;margin-top:4px;font-size:9px;color:#747168}
+.legacy-world-button b{display:block;font-size:13px;color:#d8d2c5}
+.legacy-world-button span span{display:block;margin-top:4px;font-size:9px;color:#747168}
 .legacy-state{font-size:8px!important;color:var(--c)!important;white-space:nowrap}
 
-/* 월드 공통 */
+/* 월드 */
 .world-chapter{display:none;padding-top:72px;animation:chapter-in .6s ease}
 .world-chapter.active{display:block}
-@keyframes chapter-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+@keyframes chapter-in{
+from{opacity:0;transform:translateY(12px)}
+to{opacity:1;transform:none}
+}
+
 .world-hero{position:relative;overflow:hidden;min-height:620px;border-radius:24px;border:1px solid #ffffff0e;background:#171818}
 .world-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .world-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#080909e8 0%,#080909a6 35%,#08090924 72%),linear-gradient(to top,#080909aa,transparent 52%)}
+
 .world-hero-copy{position:absolute;z-index:2;left:42px;top:50%;width:min(540px,55%);transform:translateY(-50%)}
 .world-connection{display:inline-flex;align-items:center;gap:7px;padding:6px 9px;border:1px solid #ffffff15;border-radius:20px;background:#11131299;font-size:8px;letter-spacing:.14em}
 .world-connection i{width:6px;height:6px;border-radius:50%;background:var(--wc,#8ca)}
 .world-hero-copy small{display:block;margin-top:21px;font-size:8px;letter-spacing:.2em;color:#918c80}
 .world-hero-copy h2{margin:8px 0 15px;font-size:clamp(42px,5vw,70px);line-height:.95;color:#eee9dd}
 .world-hero-copy p{margin:0;font-size:12px;line-height:1.9;color:#aaa59a}
+
 .world-system-note{position:absolute;z-index:2;right:22px;bottom:20px;max-width:310px;padding:13px 15px;border:1px solid #ffffff12;border-radius:11px;background:#0d0e0ec4;backdrop-filter:blur(9px);font:9px/1.7 monospace;color:#817d73}
 
-/* 발견 흐름 */
+/* 발견 */
 .discovery-section{padding:70px 4px 0}
 .discovery-heading{max-width:760px;margin-bottom:40px}
 .discovery-heading small{font-size:8px;letter-spacing:.22em;color:#6f6b62}
@@ -115,10 +351,13 @@
 
 .encounter{position:relative;display:grid;grid-template-columns:minmax(290px,.78fr) 1.22fr;gap:50px;align-items:center;min-height:560px;margin:0 0 70px;padding:34px 38px;border-top:1px solid #ffffff0d;border-bottom:1px solid #ffffff0b}
 .encounter.reverse{grid-template-columns:1.22fr minmax(290px,.78fr)}
-.encounter.reverse .encounter-image{order:2}.encounter.reverse .encounter-content{order:1}
+.encounter.reverse .encounter-image{order:2}
+.encounter.reverse .encounter-content{order:1}
+
 .encounter-image{position:relative;height:520px;overflow:hidden}
 .encounter-image img{position:absolute;left:50%;top:0;transform:translateX(-50%);height:100%;max-width:100%;object-fit:contain;object-position:center bottom}
 .encounter-image::after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(to top,#0d0e0e,transparent)}
+
 .encounter-content{max-width:620px}
 .encounter-index{font:9px monospace;letter-spacing:.14em;color:#67645e}
 .encounter-content h4{margin:11px 0 7px;font-size:43px;line-height:1;color:#e2ddd1}
@@ -126,50 +365,70 @@
 .encounter-quote{margin:0 0 25px;padding:18px 20px;border-left:2px solid var(--accent-color,#7a8);background:#ffffff05;font-size:17px;line-height:1.7;color:#ccc6b9}
 .encounter-caption{display:inline-block;padding:6px 9px;border-radius:20px;background:#ffffff08;font-size:8px;letter-spacing:.1em;color:#7d796f}
 
-/* 현장 흔적 */
+/* 흔적 */
 .trace-box{margin-bottom:25px;border:1px solid #ffffff0e;border-radius:12px;background:#111313;overflow:hidden}
 .trace-head{display:flex;justify-content:space-between;padding:10px 13px;border-bottom:1px solid #ffffff0d;font:8px monospace;color:#68655e}
 .trace-body{padding:16px 17px}
 .trace-row{display:grid;grid-template-columns:120px 1fr;gap:13px;padding:8px 0;border-bottom:1px solid #ffffff08;font-size:10px}
-.trace-row:last-child{border-bottom:0}.trace-row span:first-child{color:#706d66}.trace-row span:last-child{color:#aaa59b}
+.trace-row:last-child{border-bottom:0}
+.trace-row span:first-child{color:#706d66}
+.trace-row span:last-child{color:#aaa59b}
 
-/* 리타 터미널 */
 .terminal-box{margin-bottom:25px;padding:17px;border:1px solid #ffffff10;border-radius:11px;background:#090b0b;font:10px/1.9 monospace;color:#7e918a}
-.terminal-box .fail{color:#88716f}.terminal-box .good{color:#73a892}.terminal-box .user{color:#b8a36d}
+.terminal-box .fail{color:#88716f}
+.terminal-box .good{color:#73a892}
+.terminal-box .user{color:#b8a36d}
 
-/* 엘린 검색 */
 .search-record{margin-bottom:25px;padding:18px;border:1px solid #ffffff10;border-radius:12px;background:#121414}
 .search-input{padding:11px 13px;border:1px solid #ffffff0d;background:#0c0d0d;font:10px monospace;color:#bbb6aa}
 .search-result{margin-top:10px;padding:14px;background:#ffffff04;font:9px/1.8 monospace;color:#79766e}
 .search-result b{color:#c9c3b6}
 
-/* 쇼핑몰 생활 흔적 */
 .shelter-signs{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px}
 .shelter-sign{padding:14px;border:1px solid #ffffff0c;border-radius:11px;background:#ffffff05}
-.shelter-sign b{display:block;font-size:10px;color:#bbb5a8}.shelter-sign span{display:block;margin-top:5px;font-size:8px;line-height:1.6;color:#69665f}
+.shelter-sign b{display:block;font-size:10px;color:#bbb5a8}
+.shelter-sign span{display:block;margin-top:5px;font-size:8px;line-height:1.6;color:#69665f}
 
 /* 제한 구역 */
 .restricted-chapter .world-hero::after{background:linear-gradient(90deg,#090808ee,#090808a0 40%,#11050524 72%),linear-gradient(to top,#090808cc,transparent)}
+
 .security-panel{margin-bottom:24px;border:1px solid #70353666;border-radius:12px;background:#160c0ddd;overflow:hidden}
 .security-head{display:flex;justify-content:space-between;padding:10px 13px;background:#3c171966;font:8px monospace;color:#bd7474}
 .security-body{padding:16px}
-.security-line{display:grid;grid-template-columns:135px 1fr;gap:14px;padding:8px 0;border-bottom:1px solid #ffffff08;font-size:10px}.security-line:last-child{border-bottom:0}.security-line span:first-child{color:#765f5d}.security-line span:last-child{color:#b2a5a0}
-.contact-warning{margin-top:18px;padding:14px 16px;border:1px solid #a3484866;border-radius:9px;background:#43191933;font-size:10px;line-height:1.7;color:#d59a96}.contact-warning strong{display:block;margin-bottom:4px;color:#e7b0aa}
+.security-line{display:grid;grid-template-columns:135px 1fr;gap:14px;padding:8px 0;border-bottom:1px solid #ffffff08;font-size:10px}
+.security-line:last-child{border-bottom:0}
+.security-line span:first-child{color:#765f5d}
+.security-line span:last-child{color:#b2a5a0}
 
-/* 끝 */
+.contact-warning{margin-top:18px;padding:14px 16px;border:1px solid #a3484866;border-radius:9px;background:#43191933;font-size:10px;line-height:1.7;color:#d59a96}
+.contact-warning strong{display:block;margin-bottom:4px;color:#e7b0aa}
+
 .oldworld-epilogue{margin-top:82px;padding:55px 40px;border-top:1px solid #ffffff0e;border-bottom:1px solid #ffffff0e;text-align:center}
 .oldworld-epilogue small{font-size:8px;letter-spacing:.23em;color:#656159}
 .oldworld-epilogue h3{margin:16px auto 18px;max-width:820px;font-size:37px;line-height:1.35;color:#dcd6c9}
 .oldworld-epilogue p{max-width:760px;margin:auto;font-size:11px;line-height:1.9;color:#77736b}
+
 .oldworld-footer{display:flex;justify-content:space-between;margin-top:60px;padding:20px 7px 0;border-top:1px solid #ffffff0b;font-size:8px;color:#55524c}
 
-/* 기존 모달 */
+/* =========================================================
+   모달
+========================================================= */
 #staff-modal,#guardian-modal,#starter-modal{position:fixed;inset:0;z-index:510;display:grid;place-items:center;padding:24px;background:#09141e99;backdrop-filter:blur(11px);opacity:0;pointer-events:none;transition:.3s}
 #staff-modal.show,#guardian-modal.show,#starter-modal.show{opacity:1;pointer-events:auto}
-.staff-modal-card,.guardian-modal-card,.starter-modal-card{position:relative;width:min(900px,calc(100vw - 40px));display:grid;grid-template-columns:360px 1fr;gap:28px;padding:24px;border-radius:20px;background:#f8fcfe;color:#173746}
-#staff-modal-close,#guardian-modal-close,#starter-modal-close{position:absolute;right:14px;top:12px;width:38px;height:38px;border:0;border-radius:50%;background:#fff;cursor:pointer}
-.staff-modal-image img,.guardian-modal-image img,.starter-modal-image img{width:100%;max-height:510px;object-fit:contain}.staff-modal-info,.guardian-modal-info,.starter-modal-info{align-self:center}.staff-modal-small,.guardian-modal-small,.starter-modal-small{font-size:9px;color:#718d9c}#staff-modal-name,#guardian-modal-name,#starter-modal-name{font-size:55px;margin:14px 0}.staff-modal-line,.guardian-modal-line,.starter-modal-line{width:48px;height:1px;background:#ccd8df;margin:20px 0}#staff-modal-desc,#guardian-modal-desc,#starter-modal-desc{font-size:13px;line-height:1.9;color:#5f7783}
 
+.staff-modal-card,.guardian-modal-card,.starter-modal-card{position:relative;width:min(900px,calc(100vw - 40px));max-height:calc(100dvh - 40px);overflow:auto;display:grid;grid-template-columns:360px 1fr;gap:28px;padding:24px;border-radius:20px;background:#f8fcfe;color:#173746}
+#staff-modal-close,#guardian-modal-close,#starter-modal-close{position:absolute;right:14px;top:12px;width:38px;height:38px;border:0;border-radius:50%;background:#fff}
+
+.staff-modal-image img,.guardian-modal-image img,.starter-modal-image img{display:block;width:100%;max-height:510px;object-fit:contain}
+.staff-modal-info,.guardian-modal-info,.starter-modal-info{align-self:center}
+.staff-modal-small,.guardian-modal-small,.starter-modal-small{font-size:9px;color:#718d9c}
+#staff-modal-name,#guardian-modal-name,#starter-modal-name{font-size:55px;margin:14px 0}
+.staff-modal-line,.guardian-modal-line,.starter-modal-line{width:48px;height:1px;background:#ccd8df;margin:20px 0}
+#staff-modal-desc,#guardian-modal-desc,#starter-modal-desc{font-size:13px;line-height:1.9;color:#5f7783}
+
+/* =========================================================
+   반응형
+========================================================= */
 @media(max-width:1000px){
 .legacy-gate,.admin-hero,.starter-hero,.stream-layout{grid-template-columns:1fr}
 .candidate-grid{grid-template-columns:repeat(3,1fr)}
@@ -177,117 +436,511 @@
 .encounter,.encounter.reverse{grid-template-columns:1fr 1fr;gap:25px}
 .encounter-image{height:430px}
 }
+
 @media(max-width:700px){
 .guardian-nav,.starter-nav,.news-nav{display:none}
 .admin-shell,.guardian-shell,.starter-shell,.news-shell,.oldworld-shell{width:calc(100% - 20px)}
-.info-grid,.dept-grid,.person-grid,.talent-grid,.field-grid,.about-grid,.starter-life-grid,.starter-stream-grid,.headline-grid,.community-layout,.knowledge-grid,.faq-grid{grid-template-columns:1fr}
+.info-grid,.dept-grid,.person-grid,.talent-grid,.starter-stream-grid,.headline-grid,.knowledge-grid{grid-template-columns:1fr}
 .candidate-grid{grid-template-columns:1fr 1fr}
-.legacy-gate{padding:34px 22px}.legacy-copy h1{font-size:55px}
-.legacy-world-button{grid-template-columns:45px 1fr}.legacy-state{display:none}
-.world-hero{min-height:650px}.world-hero::after{background:linear-gradient(to top,#080909f5 0%,#080909aa 47%,transparent 82%)}
+
+.legacy-gate{padding:34px 22px}
+.legacy-copy h1{font-size:55px}
+.legacy-world-button{grid-template-columns:45px 1fr}
+.legacy-state{display:none}
+
+.world-hero{min-height:650px}
+.world-hero::after{background:linear-gradient(to top,#080909f5 0%,#080909aa 47%,transparent 82%)}
 .world-hero-copy{left:22px;right:22px;top:auto;bottom:30px;width:auto;transform:none}
 .world-system-note{display:none}
-.encounter,.encounter.reverse{grid-template-columns:1fr;gap:10px;padding:25px 5px}.encounter.reverse .encounter-image,.encounter.reverse .encounter-content{order:initial}
-.encounter-image{height:480px}.encounter-content h4{font-size:38px}.encounter-quote{font-size:15px}
+
+.encounter,.encounter.reverse{grid-template-columns:1fr;gap:10px;padding:25px 5px}
+.encounter.reverse .encounter-image,.encounter.reverse .encounter-content{order:initial}
+.encounter-image{height:480px}
+.encounter-content h4{font-size:38px}
+.encounter-quote{font-size:15px}
 .shelter-signs{grid-template-columns:1fr}
+
 .staff-modal-card,.guardian-modal-card,.starter-modal-card{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
+<!-- 입주 -->
 <section id="cinematic" class="screen">
-<div id="scene-image"></div><div class="vignette"></div>
+<div id="scene-image"></div>
+<div class="vignette"></div>
 <div class="brand"><strong>VIRTUAL PARADISE</strong><span>RESIDENCY PROCEDURE</span></div>
-<button id="start-button"><span class="start-small">신규 시민 입주 안내</span><strong class="start-main">입주 절차 시작</strong><span class="start-help">화면을 클릭하거나 Enter 키를 눌러 진행합니다</span></button>
-<div id="dialogue" class="hidden"><div class="dialogue-info"><span id="speaker">상담 직원</span><span id="scene-label">입주 상담센터</span></div><p id="dialogue-text"></p><div class="dialogue-next">CLICK / SPACE ›</div></div>
+
+<button id="start-button">
+<span class="start-small">신규 시민 입주 안내</span>
+<strong class="start-main">입주 절차 시작</strong>
+<span class="start-help">화면을 클릭하거나 Enter 키를 눌러 진행합니다</span>
+</button>
+
+<div id="dialogue" class="hidden">
+<div class="dialogue-info"><span id="speaker">상담 직원</span><span id="scene-label">입주 상담센터</span></div>
+<p id="dialogue-text"></p>
+<div class="dialogue-next">CLICK / SPACE ›</div>
+</div>
+
 <div id="eye-close"></div>
 </section>
 
-<section id="transfer" class="screen hidden"><div class="transfer-panel"><div class="system-brand">VIRTUAL PARADISE</div><div class="system-sub">RESIDENCY SYNCHRONIZATION</div><h1>입주 동기화 진행 중</h1><p class="transfer-description">안전한 시민 데이터 전환을 진행하고 있습니다.</p><div id="process-list"></div><div class="progress-track"><div id="progress-bar"></div></div><div class="progress-info"><span id="progress-state">준비 중</span><span id="progress-percent">0%</span></div></div></section>
-
-<section id="identity" class="screen hidden"><form id="identity-form" class="identity-card"><div class="identity-check">✓</div><p class="identity-small">FINAL SYNCHRONIZATION</p><h1>최종 동기화 확인</h1><p>시민 데이터 무결성 검증이 완료되었습니다.<br>마지막으로 본인 확인을 진행해 주세요.</p><label>입주자 확인명</label><input id="resident-name" required placeholder="이름을 입력하세요"><button class="identity-button">확인하고 입주하기</button></form></section>
-
-<section id="paradise" class="screen hidden">
-<div id="plaza-image"></div><div id="arrival-dark"></div>
-<div id="arrival-message"><span class="arrival-small">WELCOME TO</span><h1>VIRTUAL PARADISE</h1><div class="arrival-line"></div><strong id="welcome-name"></strong><span class="arrival-description">당신의 새로운 일상이 지금 시작됩니다.</span></div>
-<div id="resident-indicator">시민 등록 완료 · <strong id="resident-indicator-name"></strong></div>
-<div id="map-ui">
-<button id="node-admin" class="map-node" data-target="admin"><span class="node-dot"></span><span class="node-card"><span class="node-title">관리국</span><span class="node-sub">행정 · 시스템</span></span></button>
-<button id="node-guardian" class="map-node" data-target="guardian"><span class="node-dot"></span><span class="node-card"><span class="node-title">가디언 본부</span><span class="node-sub">가디언 · 방송 · 임무</span></span></button>
-<button id="node-starter" class="map-node flip" data-target="starter"><span class="node-dot"></span><span class="node-card"><span class="node-title">스타터 룸</span><span class="node-sub">후보 · 방송 · 훈련</span></span></button>
-<button id="node-news" class="map-node" data-target="news"><span class="node-dot"></span><span class="node-card"><span class="node-title">커뮤니티 · 뉴스</span><span class="node-sub">소식 · 시민 반응</span></span></button>
-<button id="node-citizen" class="map-node flip" data-title="시민 생활 구역" data-desc="주거, 음식, 쇼핑, 이벤트 등 시민들의 일상을 둘러볼 수 있습니다."><span class="node-dot"></span><span class="node-card"><span class="node-title">시민 생활 구역</span><span class="node-sub">생활 · 상업</span></span></button>
-<button id="node-gate" class="map-node" data-target="oldworld"><span class="node-dot"></span><span class="node-card"><span class="node-title">구형 월드 게이트</span><span class="node-sub">운영 종료 월드</span></span></button>
+<section id="transfer" class="screen hidden">
+<div class="transfer-panel">
+<div class="system-brand">VIRTUAL PARADISE</div>
+<div class="system-sub">RESIDENCY SYNCHRONIZATION</div>
+<h1>입주 동기화 진행 중</h1>
+<p class="transfer-description">안전한 시민 데이터 전환을 진행하고 있습니다.</p>
+<div id="process-list"></div>
+<div class="progress-track"><div id="progress-bar"></div></div>
+<div class="progress-info"><span id="progress-state">준비 중</span><span id="progress-percent">0%</span></div>
 </div>
-<div id="district-preview"><div class="preview-top"><div><div id="preview-title"></div><div id="preview-desc" class="preview-desc"></div></div><button id="preview-close">×</button></div></div>
+</section>
+
+<section id="identity" class="screen hidden">
+<form id="identity-form" class="identity-card">
+<div class="identity-check">✓</div>
+<p class="identity-small">FINAL SYNCHRONIZATION</p>
+<h1>최종 동기화 확인</h1>
+<p>시민 데이터 무결성 검증이 완료되었습니다.<br>마지막으로 본인 확인을 진행해 주세요.</p>
+<label for="resident-name">입주자 확인명</label>
+<input id="resident-name" required placeholder="이름을 입력하세요">
+<button class="identity-button">확인하고 입주하기</button>
+</form>
+</section>
+
+<!-- 중앙광장 -->
+<section id="paradise" class="screen hidden">
+<div id="plaza-image"></div>
+<div id="arrival-dark"></div>
+
+<div id="arrival-message">
+<span class="arrival-small">WELCOME TO</span>
+<h1>VIRTUAL PARADISE</h1>
+<div class="arrival-line"></div>
+<strong id="welcome-name"></strong>
+<span class="arrival-description">당신의 새로운 일상이 지금 시작됩니다.</span>
+</div>
+
+<div id="resident-indicator">시민 등록 완료 · <strong id="resident-indicator-name"></strong></div>
+
+<div id="map-ui">
+<button id="node-admin" class="map-node" data-target="admin">
+<span class="node-dot"></span>
+<span class="node-card"><span class="node-title">관리국</span><span class="node-sub">행정 · 시스템</span></span>
+</button>
+
+<button id="node-guardian" class="map-node" data-target="guardian">
+<span class="node-dot"></span>
+<span class="node-card"><span class="node-title">가디언 본부</span><span class="node-sub">가디언 · 방송 · 임무</span></span>
+</button>
+
+<button id="node-starter" class="map-node flip" data-target="starter">
+<span class="node-dot"></span>
+<span class="node-card"><span class="node-title">스타터 룸</span><span class="node-sub">후보 · 방송 · 훈련</span></span>
+</button>
+
+<button id="node-news" class="map-node" data-target="news">
+<span class="node-dot"></span>
+<span class="node-card"><span class="node-title">커뮤니티 · 뉴스</span><span class="node-sub">소식 · 시민 반응</span></span>
+</button>
+
+<button id="node-citizen" class="map-node flip" data-title="시민 생활 구역" data-desc="주거, 음식, 쇼핑, 이벤트 등 시민들의 일상을 둘러볼 수 있습니다.">
+<span class="node-dot"></span>
+<span class="node-card"><span class="node-title">시민 생활 구역</span><span class="node-sub">생활 · 상업</span></span>
+</button>
+
+<button id="node-gate" class="map-node" data-target="oldworld">
+<span class="node-dot"></span>
+<span class="node-card"><span class="node-title">구형 월드 게이트</span><span class="node-sub">운영 종료 월드</span></span>
+</button>
+</div>
+
+<div id="district-preview">
+<div class="preview-top">
+<div>
+<div id="preview-title"></div>
+<div id="preview-desc" class="preview-desc"></div>
+</div>
+<button id="preview-close">×</button>
+</div>
+</div>
 </section>
 
 <!-- 관리국 -->
-<section id="admin-page" class="screen hidden"><div class="admin-shell">
-<header class="admin-topbar"><div class="admin-brand"><strong>PARADISE ADMINISTRATION</strong><span>파라다이스 내부 관리국</span></div><button id="admin-back" class="admin-back">← 중앙광장</button></header>
-<div class="admin-hero"><div><div class="admin-eyebrow">PARADISE CENTRAL ADMINISTRATION</div><h1>관리국</h1><p class="admin-lead">생활 행정부터 안전, 복구, 월드 관리까지. 시민들이 파라다이스에서 안심하고 생활할 수 있도록 다양한 공공 업무를 맡고 있습니다.</p></div><div class="admin-status"><b>관리국 주요 서비스 정상 운영 중</b><div class="status-grid"><div class="status-cell"><b>117년차</b><span>파라다이스 운영</span></div><div class="status-cell"><b>5개</b><span>주요 업무 분야</span></div><div class="status-cell"><b>상시</b><span>시민 지원</span></div><div class="status-cell"><b>6명</b><span>현역 가디언</span></div></div></div></div>
-<nav class="admin-nav"><button class="admin-tab active" data-panel="overview">개요</button><button class="admin-tab" data-panel="departments">업무 안내</button><button class="admin-tab" data-panel="people">직원 안내</button><button class="admin-tab" data-panel="systems">시스템 안내</button></nav>
-<section id="panel-overview" class="admin-panel active"><div class="info-grid"><article class="info-card"><h3>시민 생활 지원</h3><p>시민 정보, 주거, 계약 기록과 생활 행정을 지원합니다.</p></article><article class="info-card"><h3>안전과 복구</h3><p>범죄, 사고, 데이터 손상과 초기 오버플로우에 대응합니다.</p></article><article class="info-card"><h3>파라다이스 운영 지원</h3><p>가디언과 스타터 룸, 월드 인증과 시스템 조사를 지원합니다.</p></article></div></section>
-<section id="panel-departments" class="admin-panel"><div class="dept-grid"><article class="dept"><h3>시민행정</h3><p>생활 행정과 시민 기록.</p></article><article class="dept"><h3>치안 · 보안</h3><p>범죄와 위험 구역 대응.</p></article><article class="dept"><h3>의료 · 복구</h3><p>데이터 손상과 안정화.</p></article><article class="dept"><h3>가디언 관리</h3><p>가디언·스타터 룸 지원.</p></article><article class="dept"><h3>기술 감사</h3><p>시스템과 월드 오류 조사.</p></article></div></section>
-<section id="panel-people" class="admin-panel"><div class="person-grid">
-<article class="person" data-image="admin-dana.png" data-name="다나" data-desc="가디언과 스타터 룸 후보들의 평가, 생활관리와 상담을 맡습니다."><div class="person-photo"><img src="admin-dana.png"></div><h3>다나</h3><p>가디언 · 스타터 룸 관리</p></article>
-<article class="person" data-image="admin-serin.png" data-name="세린" data-desc="데이터 손상과 정신 안정, 초기 오버플로우 대응을 맡습니다."><div class="person-photo"><img src="admin-serin.png"></div><h3>세린</h3><p>의료 · 복구 · 안정화</p></article>
-<article class="person" data-image="admin-ren.png" data-name="렌" data-desc="범죄와 위험 구역, 불법 월드 관련 현장 업무를 담당합니다."><div class="person-photo"><img src="admin-ren.png"></div><h3>렌</h3><p>치안 · 보안</p></article>
-<article class="person" data-image="admin-sia.png" data-name="시아" data-desc="월드 인증과 시스템 오류, 오래된 코드의 이상 징후를 조사합니다."><div class="person-photo"><img src="admin-sia.png"></div><h3>시아</h3><p>시스템 · 기술 감사</p></article>
-</div></section>
-<section id="panel-systems" class="admin-panel"><div class="system-list"><div class="system-row"><b>시민 정보</b><span>생활 행정 서비스</span><span>정상</span></div><div class="system-row"><b>월드 인증</b><span>월드 안전 기준 확인</span><span>정상</span></div><div class="system-row"><b>복구 · 안정화</b><span>데이터 손상 대응</span><span>정상</span></div></div></section>
-</div></section>
+<section id="admin-page" class="screen hidden">
+<div class="admin-shell">
+
+<header class="admin-topbar">
+<div class="admin-brand"><strong>PARADISE ADMINISTRATION</strong><span>파라다이스 내부 관리국</span></div>
+<button id="admin-back" class="admin-back">← 중앙광장</button>
+</header>
+
+<div class="admin-hero">
+<div>
+<div class="admin-eyebrow">PARADISE CENTRAL ADMINISTRATION</div>
+<h1>관리국</h1>
+<p class="admin-lead">생활 행정부터 안전, 복구, 월드 관리까지. 시민들이 파라다이스에서 안심하고 생활할 수 있도록 다양한 공공 업무를 맡고 있습니다.</p>
+</div>
+
+<div class="admin-status">
+<b>관리국 주요 서비스 정상 운영 중</b>
+<div class="status-grid">
+<div class="status-cell"><b>117년차</b><span>파라다이스 운영</span></div>
+<div class="status-cell"><b>5개</b><span>주요 업무 분야</span></div>
+<div class="status-cell"><b>상시</b><span>시민 지원</span></div>
+<div class="status-cell"><b>6명</b><span>현역 가디언</span></div>
+</div>
+</div>
+</div>
+
+<nav class="admin-nav">
+<button class="admin-tab active" data-panel="overview">개요</button>
+<button class="admin-tab" data-panel="departments">업무 안내</button>
+<button class="admin-tab" data-panel="people">직원 안내</button>
+<button class="admin-tab" data-panel="systems">시스템 안내</button>
+</nav>
+
+<section id="panel-overview" class="admin-panel active">
+<div class="info-grid">
+<article class="info-card"><h3>시민 생활 지원</h3><p>시민 정보, 주거, 계약 기록과 생활 행정을 지원합니다.</p></article>
+<article class="info-card"><h3>안전과 복구</h3><p>범죄, 사고, 데이터 손상과 초기 오버플로우에 대응합니다.</p></article>
+<article class="info-card"><h3>파라다이스 운영 지원</h3><p>가디언과 스타터 룸, 월드 인증과 시스템 조사를 지원합니다.</p></article>
+</div>
+</section>
+
+<section id="panel-departments" class="admin-panel">
+<div class="dept-grid">
+<article class="dept"><h3>시민행정</h3><p>생활 행정과 시민 기록.</p></article>
+<article class="dept"><h3>치안 · 보안</h3><p>범죄와 위험 구역 대응.</p></article>
+<article class="dept"><h3>의료 · 복구</h3><p>데이터 손상과 안정화.</p></article>
+<article class="dept"><h3>가디언 관리</h3><p>가디언·스타터 룸 지원.</p></article>
+<article class="dept"><h3>기술 감사</h3><p>시스템과 월드 오류 조사.</p></article>
+</div>
+</section>
+
+<section id="panel-people" class="admin-panel">
+<div class="person-grid">
+
+<article class="person" data-image="admin-dana.png" data-name="다나" data-desc="가디언과 스타터 룸 후보들의 평가, 생활관리와 상담을 맡습니다.">
+<div class="person-photo"><img src="admin-dana.png" alt="다나"></div>
+<h3>다나</h3><p>가디언 · 스타터 룸 관리</p>
+</article>
+
+<article class="person" data-image="admin-serin.png" data-name="세린" data-desc="데이터 손상과 정신 안정, 초기 오버플로우 대응을 맡습니다.">
+<div class="person-photo"><img src="admin-serin.png" alt="세린"></div>
+<h3>세린</h3><p>의료 · 복구 · 안정화</p>
+</article>
+
+<article class="person" data-image="admin-ren.png" data-name="렌" data-desc="범죄와 위험 구역, 불법 월드 관련 현장 업무를 담당합니다.">
+<div class="person-photo"><img src="admin-ren.png" alt="렌"></div>
+<h3>렌</h3><p>치안 · 보안</p>
+</article>
+
+<article class="person" data-image="admin-sia.png" data-name="시아" data-desc="월드 인증과 시스템 오류, 오래된 코드의 이상 징후를 조사합니다.">
+<div class="person-photo"><img src="admin-sia.png" alt="시아"></div>
+<h3>시아</h3><p>시스템 · 기술 감사</p>
+</article>
+
+</div>
+</section>
+
+<section id="panel-systems" class="admin-panel">
+<div class="system-list">
+<div class="system-row"><b>시민 정보</b><span>생활 행정 서비스</span><span>정상</span></div>
+<div class="system-row"><b>월드 인증</b><span>월드 안전 기준 확인</span><span>정상</span></div>
+<div class="system-row"><b>복구 · 안정화</b><span>데이터 손상 대응</span><span>정상</span></div>
+</div>
+</section>
+
+</div>
+</section>
 
 <!-- 가디언 -->
-<section id="guardian-page" class="screen hidden"><div class="guardian-shell">
-<header class="guardian-header"><div class="guardian-logo"><div class="guardian-logo-text"><strong>GUARDIAN</strong><span>PARADISE OFFICIAL GUARDIAN TEAM</span></div></div><nav class="guardian-nav"><button class="guardian-nav-btn" data-scroll="guardian-members">GUARDIANS</button><button class="guardian-nav-btn" data-scroll="guardian-streams">STREAM</button></nav><button id="guardian-back" class="guardian-back">← 중앙광장</button></header>
-<section class="guardian-kv"><img class="guardian-kv-img" src="guardian-keyvisual.png"><div class="guardian-kv-shade"></div><div class="guardian-kv-copy"><h1>GUARDIAN</h1><p>방송에서는 가장 가까운 스타.<br>현장에서는 가장 먼저 도착하는 사람들.</p></div><div class="guardian-kv-names"><span>아르카</span><span>아샤</span><span>유리아</span><span>레나</span><span>루루</span><span>모카</span></div></section>
+<section id="guardian-page" class="screen hidden">
+<div class="guardian-shell">
 
-<section id="guardian-members" class="guardian-section"><div class="g-section-head"><div class="g-section-title"><h2>GUARDIANS</h2></div></div><div class="talent-grid">
-<article class="talent-card" data-image="guardian-yuria.png" data-name="유리아" data-desc="가디언 활동 82년. 가디언 전체를 연결하는 중심 역할을 해온 최고참."><img class="talent-img" src="guardian-yuria.png"><div class="talent-shade"></div><div class="talent-info"><h3>유리아</h3></div><span class="talent-open">›</span></article>
-<article class="talent-card" data-image="guardian-rena.png" data-name="레나" data-desc="가디언 활동 82년. 유리아와 함께 초대 가디언으로 활동해온 최고참."><img class="talent-img" src="guardian-rena.png"><div class="talent-shade"></div><div class="talent-info"><h3>레나</h3></div><span class="talent-open">›</span></article>
-<article class="talent-card" data-image="guardian-asha.png" data-name="아샤" data-desc="가디언 활동 43년. 강한 화력과 화려한 현장 장악이 특징."><img class="talent-img" src="guardian-asha.png"><div class="talent-shade"></div><div class="talent-info"><h3>아샤</h3></div><span class="talent-open">›</span></article>
-<article class="talent-card" data-image="guardian-arka.png" data-name="아르카" data-desc="가디언 활동 23년. 정교하고 완성도 높은 활동 스타일이 특징."><img class="talent-img" src="guardian-arka.png"><div class="talent-shade"></div><div class="talent-info"><h3>아르카</h3></div><span class="talent-open">›</span></article>
-<article class="talent-card" data-image="guardian-moka.png" data-name="모카" data-desc="가디언 활동 10년. 차분하고 안정적인 분위기가 강점."><img class="talent-img" src="guardian-moka.png"><div class="talent-shade"></div><div class="talent-info"><h3>모카</h3></div><span class="talent-open">›</span></article>
-<article class="talent-card" data-image="guardian-ruru.png" data-name="루루" data-desc="가디언 활동 1년. 가장 최근 합류한 신참 가디언."><img class="talent-img" src="guardian-ruru.png"><div class="talent-shade"></div><div class="talent-info"><h3>루루</h3></div><span class="talent-open">›</span></article>
-</div></section>
+<header class="guardian-header">
+<div class="guardian-logo">
+<div class="guardian-logo-text"><strong>GUARDIAN</strong><span>PARADISE OFFICIAL GUARDIAN TEAM</span></div>
+</div>
+<nav class="guardian-nav">
+<button class="guardian-nav-btn" data-scroll="guardian-members">GUARDIANS</button>
+<button class="guardian-nav-btn" data-scroll="guardian-streams">STREAM</button>
+</nav>
+<button id="guardian-back" class="guardian-back">← 중앙광장</button>
+</header>
 
-<section id="guardian-streams" class="guardian-section"><div class="stream-layout"><article class="stream-feature"><img src="guardian-stream-yuria.png"><div class="stream-content"><h3>유리아의 심야 저챗</h3><p>오늘도, 당신과 함께 나누는 늦은 밤의 이야기</p></div></article><div class="stream-list"><article class="stream-item"><img class="stream-thumb" src="guardian-stream-asha.png"><div class="stream-copy"><b>제압 완료! 모두 무사 복귀!!</b><span>오버플로우 제압 작전 종료</span></div></article><article class="stream-item"><img class="stream-thumb" src="guardian-stream-arka.png"><div class="stream-copy"><b>지금, 우리가 알아야 할 것들</b><span>통제 구역 현황 · 시민 안내</span></div></article><article class="stream-item"><img class="stream-thumb" src="guardian-stream-ruru.png"><div class="stream-copy"><b>파라다이스 여름 축제, 같이 보자!</b><span>축제 소식 · 하이라이트</span></div></article></div></div></section>
-</div></section>
+<section class="guardian-kv">
+<img class="guardian-kv-img" src="guardian-keyvisual.png" alt="가디언">
+<div class="guardian-kv-shade"></div>
+<div class="guardian-kv-copy">
+<h1>GUARDIAN</h1>
+<p>방송에서는 가장 가까운 스타.<br>현장에서는 가장 먼저 도착하는 사람들.</p>
+</div>
+<div class="guardian-kv-names">
+<span>아르카</span><span>아샤</span><span>유리아</span><span>레나</span><span>루루</span><span>모카</span>
+</div>
+</section>
+
+<section id="guardian-members" class="guardian-section">
+<div class="g-section-head"><div class="g-section-title"><h2>GUARDIANS</h2></div></div>
+
+<div class="talent-grid">
+<article class="talent-card" data-image="guardian-yuria.png" data-name="유리아" data-desc="가디언 활동 82년. 가디언 전체를 연결하는 중심 역할을 해온 최고참.">
+<img class="talent-img" src="guardian-yuria.png" alt="유리아"><div class="talent-shade"></div><div class="talent-info"><h3>유리아</h3></div><span class="talent-open">›</span>
+</article>
+
+<article class="talent-card" data-image="guardian-rena.png" data-name="레나" data-desc="가디언 활동 82년. 유리아와 함께 초대 가디언으로 활동해온 최고참.">
+<img class="talent-img" src="guardian-rena.png" alt="레나"><div class="talent-shade"></div><div class="talent-info"><h3>레나</h3></div><span class="talent-open">›</span>
+</article>
+
+<article class="talent-card" data-image="guardian-asha.png" data-name="아샤" data-desc="가디언 활동 43년. 강한 화력과 화려한 현장 장악이 특징.">
+<img class="talent-img" src="guardian-asha.png" alt="아샤"><div class="talent-shade"></div><div class="talent-info"><h3>아샤</h3></div><span class="talent-open">›</span>
+</article>
+
+<article class="talent-card" data-image="guardian-arka.png" data-name="아르카" data-desc="가디언 활동 23년. 정교하고 완성도 높은 활동 스타일이 특징.">
+<img class="talent-img" src="guardian-arka.png" alt="아르카"><div class="talent-shade"></div><div class="talent-info"><h3>아르카</h3></div><span class="talent-open">›</span>
+</article>
+
+<article class="talent-card" data-image="guardian-moka.png" data-name="모카" data-desc="가디언 활동 10년. 차분하고 안정적인 분위기가 강점.">
+<img class="talent-img" src="guardian-moka.png" alt="모카"><div class="talent-shade"></div><div class="talent-info"><h3>모카</h3></div><span class="talent-open">›</span>
+</article>
+
+<article class="talent-card" data-image="guardian-ruru.png" data-name="루루" data-desc="가디언 활동 1년. 가장 최근 합류한 신참 가디언.">
+<img class="talent-img" src="guardian-ruru.png" alt="루루"><div class="talent-shade"></div><div class="talent-info"><h3>루루</h3></div><span class="talent-open">›</span>
+</article>
+</div>
+</section>
+
+<section id="guardian-streams" class="guardian-section">
+<div class="stream-layout">
+
+<article class="stream-feature">
+<img src="guardian-stream-yuria.png" alt="유리아 방송">
+<div class="stream-content"><h3>유리아의 심야 저챗</h3><p>오늘도, 당신과 함께 나누는 늦은 밤의 이야기</p></div>
+</article>
+
+<div class="stream-list">
+<article class="stream-item">
+<img class="stream-thumb" src="guardian-stream-asha.png" alt="아샤 방송">
+<div class="stream-copy"><b>제압 완료! 모두 무사 복귀!!</b><span>오버플로우 제압 작전 종료</span></div>
+</article>
+
+<article class="stream-item">
+<img class="stream-thumb" src="guardian-stream-arka.png" alt="아르카 방송">
+<div class="stream-copy"><b>지금, 우리가 알아야 할 것들</b><span>통제 구역 현황 · 시민 안내</span></div>
+</article>
+
+<article class="stream-item">
+<img class="stream-thumb" src="guardian-stream-ruru.png" alt="루루 방송">
+<div class="stream-copy"><b>파라다이스 여름 축제, 같이 보자!</b><span>축제 소식 · 하이라이트</span></div>
+</article>
+</div>
+
+</div>
+</section>
+
+</div>
+</section>
 
 <!-- 스타터 룸 -->
-<section id="starter-page" class="screen hidden"><div class="starter-shell">
-<header class="starter-header"><div class="starter-logo"><div class="starter-logo-mark"><i></i><i></i><i></i><i></i></div><div><strong>STARTER ROOM</strong><span>PARADISE GUARDIAN CANDIDATES</span></div></div><nav class="starter-nav"><button class="starter-nav-btn" data-scroll="starter-candidates">CANDIDATES</button><button class="starter-nav-btn" data-scroll="starter-streams">STREAM</button></nav><button id="starter-back" class="starter-back">← 중앙광장</button></header>
-<section class="starter-hero"><div><div>PARADISE GUARDIAN CANDIDATE PROGRAM</div><h1>STARTER<span>ROOM</span></h1><p>방송하고, 훈련하고, 같이 살아간다.<br>가디언 바로 아래에서 다음 기회를 준비하는 후보들의 공간.</p></div><div class="starter-hero-board"><div class="starter-board-row"><div>◉</div><div><b>방송</b><span>개인 방송 · 합방 · 콘텐츠 제작</span></div></div><div class="starter-board-row"><div>◇</div><div><b>훈련</b><span>전투 · 구조 · 현장 대응</span></div></div><div class="starter-board-row"><div>⌂</div><div><b>생활</b><span>기숙사 · 공용공간 · 자유 외출</span></div></div></div></section>
+<section id="starter-page" class="screen hidden">
+<div class="starter-shell">
 
-<section id="starter-candidates" class="starter-section"><div class="candidate-grid">
-<button class="candidate-card" data-image="starter-mia.png" data-name="미아" data-desc="방송·전투·구조·협업 모두 안정적인 후보."><img class="candidate-img" src="starter-mia.png"><div class="candidate-shade"></div><h3 class="candidate-name">미아</h3><span class="candidate-arrow">›</span></button>
-<button class="candidate-card" data-image="starter-sei.png" data-name="세이" data-desc="가디언 승급 목표가 분명하며 추적과 신속제압에 강한 후보."><img class="candidate-img" src="starter-sei.png"><div class="candidate-shade"></div><h3 class="candidate-name">세이</h3><span class="candidate-arrow">›</span></button>
-<button class="candidate-card" data-image="starter-tami.png" data-name="타미" data-desc="무슨 일이 생겨도 자연스럽게 방송거리로 바꾸는 스트리머."><img class="candidate-img" src="starter-tami.png"><div class="candidate-shade"></div><h3 class="candidate-name">타미</h3><span class="candidate-arrow">›</span></button>
-<button class="candidate-card" data-image="starter-bella.png" data-name="벨라" data-desc="팬관리와 브랜딩, 상업 방송 감각이 뛰어난 후보."><img class="candidate-img" src="starter-bella.png"><div class="candidate-shade"></div><h3 class="candidate-name">벨라</h3><span class="candidate-arrow">›</span></button>
-<button class="candidate-card" data-image="starter-eda.png" data-name="에다" data-desc="오랫동안 스타터 룸에서 활동해온 베테랑 후보."><img class="candidate-img" src="starter-eda.png"><div class="candidate-shade"></div><h3 class="candidate-name">에다</h3><span class="candidate-arrow">›</span></button>
-<button class="candidate-card" data-image="starter-kaya.png" data-name="카야" data-desc="현장에서 정확한 판단을 보여주는 전투 특화 후보."><img class="candidate-img" src="starter-kaya.png"><div class="candidate-shade"></div><h3 class="candidate-name">카야</h3><span class="candidate-arrow">›</span></button>
-<button class="candidate-card" data-image="starter-peri.png" data-name="페리" data-desc="성장 속도는 느리지만 계속해서 다시 도전하는 후보."><img class="candidate-img" src="starter-peri.png"><div class="candidate-shade"></div><h3 class="candidate-name">페리</h3><span class="candidate-arrow">›</span></button>
-<button class="candidate-card" data-image="starter-yume.png" data-name="유메" data-desc="방송 컨셉과 실제 감정의 경계가 흐린 후보."><img class="candidate-img" src="starter-yume.png"><div class="candidate-shade"></div><h3 class="candidate-name">유메</h3><span class="candidate-arrow">›</span></button>
-<button class="candidate-card" data-image="starter-lua.png" data-name="루아" data-desc="위험 구역과 폐쇄 월드 탐방에 강한 후보."><img class="candidate-img" src="starter-lua.png"><div class="candidate-shade"></div><h3 class="candidate-name">루아</h3><span class="candidate-arrow">›</span></button>
-<button class="candidate-card" data-image="starter-nabi.png" data-name="나비" data-desc="느긋하지만 좋은 감각으로 꾸준한 성적을 유지하는 후보."><img class="candidate-img" src="starter-nabi.png"><div class="candidate-shade"></div><h3 class="candidate-name">나비</h3><span class="candidate-arrow">›</span></button>
-</div></section>
+<header class="starter-header">
+<div class="starter-logo">
+<div class="starter-logo-mark"><i></i><i></i><i></i><i></i></div>
+<div><strong>STARTER ROOM</strong><span>PARADISE GUARDIAN CANDIDATES</span></div>
+</div>
 
-<section id="starter-streams" class="starter-section"><div class="starter-stream-grid"><article class="starter-stream-card"><img src="starter-stream-tami.png"><div class="starter-stream-info"><h3>드디어 공개됐다..! 이 조합 진짜 미쳤다!!!</h3><p>특별 합동방송 조 편성 공개</p></div></article><article class="starter-stream-card"><img src="starter-stream-sei.png"><div class="starter-stream-info"><h3>위험 구역 추적 분석</h3><p>이동 경로 · 대응 우선순위</p></div></article><article class="starter-stream-card"><img src="starter-stream-kaya.png"><div class="starter-stream-info"><h3>오늘 모의전 복기</h3><p>진입 판단 · 놓친 부분</p></div></article><article class="starter-stream-card"><img src="starter-stream-peri.png"><div class="starter-stream-info"><h3>드디어 됐다! 오늘은 자랑 좀 할게</h3><p>처음 성공한 구간</p></div></article></div></section>
-</div></section>
+<nav class="starter-nav">
+<button class="starter-nav-btn" data-scroll="starter-candidates">CANDIDATES</button>
+<button class="starter-nav-btn" data-scroll="starter-streams">STREAM</button>
+</nav>
 
-<!-- 커뮤니티 뉴스 -->
-<section id="news-page" class="screen hidden"><div class="news-shell">
-<header class="news-header"><div class="news-logo"><div class="news-logo-mark"></div><div><strong>PARADISE NOW</strong><span>COMMUNITY · NEWS · CITIZEN GUIDE</span></div></div><nav class="news-nav"><button class="news-nav-btn" data-scroll="news-today">TODAY</button><button class="news-nav-btn" data-scroll="news-guide">GUIDE</button></nav><button id="news-back" class="news-back">← 중앙광장</button></header>
-<section class="news-hero"><h1>오늘의<br>파라다이스</h1><p>방송 소식, 시민 이야기와 알아두면 좋은 생활 정보를 확인하세요.</p></section>
-<section id="news-today" class="news-section"><div class="headline-grid"><article class="headline-card headline-main"><img src="guardian-stream-ruru.png"><div class="headline-copy"><h3>파라다이스 여름 축제<br>주요 프로그램 공개</h3></div></article><article class="headline-card"><img src="starter-stream-tami.png"><div class="headline-copy"><h3>스타터 룸<br>특별 합동방송 공개</h3></div></article><article class="headline-card"><img src="guardian-stream-asha.png"><div class="headline-copy"><h3>오버플로우 제압 작전<br>참가자 전원 복귀</h3></div></article></div></section>
+<button id="starter-back" class="starter-back">← 중앙광장</button>
+</header>
 
-<section id="news-guide" class="news-section"><div class="knowledge-grid">
-<article class="knowledge-card"><span>NULL</span><h2>널</h2><p>시민을 구성하는 데이터 일부가 사고나 시스템 이상으로 손상되거나 사라진 상태입니다.</p><div class="knowledge-block"><h3>어떤 문제가 생기나요?</h3><div class="chip-wrap"><span class="info-chip">신체 데이터 손상</span><span class="info-chip">감각 이상</span><span class="info-chip">기억 손실</span><span class="info-chip">신원 정보 손실</span></div></div><div class="knowledge-note">널이라는 이유만으로 위험한 시민이거나 특정 단체에 속해 있다고 볼 수 없습니다.</div></article>
-<article class="knowledge-card"><span>OVERFLOW</span><h2>오버플로우</h2><p>감정·기억·자아 정보를 처리하는 과정에 이상이 생겨 현재 상태를 안정적으로 유지하기 어려워지는 현상입니다.</p><div class="knowledge-block"><h3>어떤 증상이 생기나요?</h3><div class="chip-wrap"><span class="info-chip">기억 혼선</span><span class="info-chip">감정 불안정</span><span class="info-chip">상황 혼동</span><span class="info-chip">자아 인식 불안정</span></div></div><div class="knowledge-note">사람 사이에서 감염되는 현상은 아닙니다.</div></article>
-</div></section>
-</div></section>
+<section class="starter-hero">
+<div>
+<div>PARADISE GUARDIAN CANDIDATE PROGRAM</div>
+<h1>STARTER<span>ROOM</span></h1>
+<p>방송하고, 훈련하고, 같이 살아간다.<br>가디언 바로 아래에서 다음 기회를 준비하는 후보들의 공간.</p>
+</div>
+
+<div class="starter-hero-board">
+<div class="starter-board-row"><div>◉</div><div><b>방송</b><span>개인 방송 · 합방 · 콘텐츠 제작</span></div></div>
+<div class="starter-board-row"><div>◇</div><div><b>훈련</b><span>전투 · 구조 · 현장 대응</span></div></div>
+<div class="starter-board-row"><div>⌂</div><div><b>생활</b><span>기숙사 · 공용공간 · 자유 외출</span></div></div>
+</div>
+</section>
+
+<section id="starter-candidates" class="starter-section">
+<div class="candidate-grid">
+
+<button class="candidate-card" data-image="starter-mia.png" data-name="미아" data-desc="방송·전투·구조·협업 모두 안정적인 후보.">
+<img class="candidate-img" src="starter-mia.png" alt="미아"><div class="candidate-shade"></div><h3 class="candidate-name">미아</h3><span class="candidate-arrow">›</span>
+</button>
+
+<button class="candidate-card" data-image="starter-sei.png" data-name="세이" data-desc="가디언 승급 목표가 분명하며 추적과 신속제압에 강한 후보.">
+<img class="candidate-img" src="starter-sei.png" alt="세이"><div class="candidate-shade"></div><h3 class="candidate-name">세이</h3><span class="candidate-arrow">›</span>
+</button>
+
+<button class="candidate-card" data-image="starter-tami.png" data-name="타미" data-desc="무슨 일이 생겨도 자연스럽게 방송거리로 바꾸는 스트리머.">
+<img class="candidate-img" src="starter-tami.png" alt="타미"><div class="candidate-shade"></div><h3 class="candidate-name">타미</h3><span class="candidate-arrow">›</span>
+</button>
+
+<button class="candidate-card" data-image="starter-bella.png" data-name="벨라" data-desc="팬관리와 브랜딩, 상업 방송 감각이 뛰어난 후보.">
+<img class="candidate-img" src="starter-bella.png" alt="벨라"><div class="candidate-shade"></div><h3 class="candidate-name">벨라</h3><span class="candidate-arrow">›</span>
+</button>
+
+<button class="candidate-card" data-image="starter-eda.png" data-name="에다" data-desc="오랫동안 스타터 룸에서 활동해온 베테랑 후보.">
+<img class="candidate-img" src="starter-eda.png" alt="에다"><div class="candidate-shade"></div><h3 class="candidate-name">에다</h3><span class="candidate-arrow">›</span>
+</button>
+
+<button class="candidate-card" data-image="starter-kaya.png" data-name="카야" data-desc="현장에서 정확한 판단을 보여주는 전투 특화 후보.">
+<img class="candidate-img" src="starter-kaya.png" alt="카야"><div class="candidate-shade"></div><h3 class="candidate-name">카야</h3><span class="candidate-arrow">›</span>
+</button>
+
+<button class="candidate-card" data-image="starter-peri.png" data-name="페리" data-desc="성장 속도는 느리지만 계속해서 다시 도전하는 후보.">
+<img class="candidate-img" src="starter-peri.png" alt="페리"><div class="candidate-shade"></div><h3 class="candidate-name">페리</h3><span class="candidate-arrow">›</span>
+</button>
+
+<button class="candidate-card" data-image="starter-yume.png" data-name="유메" data-desc="방송 컨셉과 실제 감정의 경계가 흐린 후보.">
+<img class="candidate-img" src="starter-yume.png" alt="유메"><div class="candidate-shade"></div><h3 class="candidate-name">유메</h3><span class="candidate-arrow">›</span>
+</button>
+
+<button class="candidate-card" data-image="starter-lua.png" data-name="루아" data-desc="위험 구역과 폐쇄 월드 탐방에 강한 후보.">
+<img class="candidate-img" src="starter-lua.png" alt="루아"><div class="candidate-shade"></div><h3 class="candidate-name">루아</h3><span class="candidate-arrow">›</span>
+</button>
+
+<button class="candidate-card" data-image="starter-nabi.png" data-name="나비" data-desc="느긋하지만 좋은 감각으로 꾸준한 성적을 유지하는 후보.">
+<img class="candidate-img" src="starter-nabi.png" alt="나비"><div class="candidate-shade"></div><h3 class="candidate-name">나비</h3><span class="candidate-arrow">›</span>
+</button>
+
+</div>
+</section>
+
+<section id="starter-streams" class="starter-section">
+<div class="starter-stream-grid">
+
+<article class="starter-stream-card">
+<img src="starter-stream-tami.png" alt="타미 방송">
+<div class="starter-stream-info"><h3>드디어 공개됐다..! 이 조합 진짜 미쳤다!!!</h3><p>특별 합동방송 조 편성 공개</p></div>
+</article>
+
+<article class="starter-stream-card">
+<img src="starter-stream-sei.png" alt="세이 방송">
+<div class="starter-stream-info"><h3>위험 구역 추적 분석</h3><p>이동 경로 · 대응 우선순위</p></div>
+</article>
+
+<article class="starter-stream-card">
+<img src="starter-stream-kaya.png" alt="카야 방송">
+<div class="starter-stream-info"><h3>오늘 모의전 복기</h3><p>진입 판단 · 놓친 부분</p></div>
+</article>
+
+<article class="starter-stream-card">
+<img src="starter-stream-peri.png" alt="페리 방송">
+<div class="starter-stream-info"><h3>드디어 됐다! 오늘은 자랑 좀 할게</h3><p>처음 성공한 구간</p></div>
+</article>
+
+</div>
+</section>
+
+</div>
+</section>
+
+<!-- 커뮤니티 / 뉴스 -->
+<section id="news-page" class="screen hidden">
+<div class="news-shell">
+
+<header class="news-header">
+<div class="news-logo">
+<div class="news-logo-mark"></div>
+<div><strong>PARADISE NOW</strong><span>COMMUNITY · NEWS · CITIZEN GUIDE</span></div>
+</div>
+
+<nav class="news-nav">
+<button class="news-nav-btn" data-scroll="news-today">TODAY</button>
+<button class="news-nav-btn" data-scroll="news-guide">GUIDE</button>
+</nav>
+
+<button id="news-back" class="news-back">← 중앙광장</button>
+</header>
+
+<section class="news-hero">
+<h1>오늘의<br>파라다이스</h1>
+<p>방송 소식, 시민 이야기와 알아두면 좋은 생활 정보를 확인하세요.</p>
+</section>
+
+<section id="news-today" class="news-section">
+<div class="headline-grid">
+
+<article class="headline-card headline-main">
+<img src="guardian-stream-ruru.png" alt="여름 축제">
+<div class="headline-copy"><h3>파라다이스 여름 축제<br>주요 프로그램 공개</h3></div>
+</article>
+
+<article class="headline-card">
+<img src="starter-stream-tami.png" alt="스타터 룸 합방">
+<div class="headline-copy"><h3>스타터 룸<br>특별 합동방송 공개</h3></div>
+</article>
+
+<article class="headline-card">
+<img src="guardian-stream-asha.png" alt="오버플로우 대응">
+<div class="headline-copy"><h3>오버플로우 제압 작전<br>참가자 전원 복귀</h3></div>
+</article>
+
+</div>
+</section>
+
+<section id="news-guide" class="news-section">
+<div class="knowledge-grid">
+
+<article class="knowledge-card">
+<span>NULL</span>
+<h2>널</h2>
+<p>시민을 구성하는 데이터 일부가 사고나 시스템 이상으로 손상되거나 사라진 상태입니다.</p>
+
+<div class="knowledge-block">
+<h3>어떤 문제가 생기나요?</h3>
+<div class="chip-wrap">
+<span class="info-chip">신체 데이터 손상</span>
+<span class="info-chip">감각 이상</span>
+<span class="info-chip">기억 손실</span>
+<span class="info-chip">신원 정보 손실</span>
+</div>
+</div>
+
+<div class="knowledge-note">널이라는 이유만으로 위험한 시민이거나 특정 단체에 속해 있다고 볼 수 없습니다.</div>
+</article>
+
+<article class="knowledge-card">
+<span>OVERFLOW</span>
+<h2>오버플로우</h2>
+<p>감정·기억·자아 정보를 처리하는 과정에 이상이 생겨 현재 상태를 안정적으로 유지하기 어려워지는 현상입니다.</p>
+
+<div class="knowledge-block">
+<h3>어떤 증상이 생기나요?</h3>
+<div class="chip-wrap">
+<span class="info-chip">기억 혼선</span>
+<span class="info-chip">감정 불안정</span>
+<span class="info-chip">상황 혼동</span>
+<span class="info-chip">자아 인식 불안정</span>
+</div>
+</div>
+
+<div class="knowledge-note">사람 사이에서 감염되는 현상은 아닙니다.</div>
+</article>
+
+</div>
+</section>
+
+</div>
+</section>
 
 <!-- =====================================================
      구형 월드
@@ -296,20 +949,41 @@
 <div class="oldworld-shell">
 
 <header class="oldworld-header">
-<div class="oldworld-brand"><strong>OLD WORLD GATE</strong><span>LEGACY WORLD CONNECTION</span></div>
+<div class="oldworld-brand">
+<strong>OLD WORLD GATE</strong>
+<span>LEGACY WORLD CONNECTION</span>
+</div>
 <button id="oldworld-back" class="oldworld-back">← 중앙광장</button>
 </header>
 
 <section class="legacy-gate">
+
 <div class="legacy-copy">
 <small>LEGACY CONNECTION DIRECTORY</small>
 <h1>구형 월드<span>게이트</span></h1>
 <p>운영이 끝난 월드도 완전히 사라지지는 않습니다.<br>오래된 연결이 남아 있는 곳에서는 지금도 누군가의 흔적이 발견됩니다.</p>
 </div>
+
 <div class="legacy-directory">
-<button class="legacy-world-button active" data-world="shelter" style="--c:#7f9f86"><span class="legacy-no">01</span><span><b>폐쇄 쇼핑몰</b><span>오래된 상업 월드 · 일부 전력 유지</span></span><span class="legacy-state">접속 가능</span></button>
-<button class="legacy-world-button" data-world="archive" style="--c:#6f9bad"><span class="legacy-no">02</span><span><b>폐기 이벤트·방송 월드</b><span>기록 서버 일부 응답 중</span></span><span class="legacy-state">연결 불안정</span></button>
-<button class="legacy-world-button" data-world="restricted" style="--c:#a54f52"><span class="legacy-no">03</span><span><b>폐쇄 구형 시설</b><span>비인가 접속 흔적 확인</span></span><span class="legacy-state">접근 제한</span></button>
+
+<button class="legacy-world-button active" data-world="shelter" style="--c:#7f9f86">
+<span class="legacy-no">01</span>
+<span><b>폐쇄 쇼핑몰</b><span>오래된 상업 월드 · 일부 전력 유지</span></span>
+<span class="legacy-state">접속 가능</span>
+</button>
+
+<button class="legacy-world-button" data-world="archive" style="--c:#6f9bad">
+<span class="legacy-no">02</span>
+<span><b>폐기 이벤트·방송 월드</b><span>기록 서버 일부 응답 중</span></span>
+<span class="legacy-state">연결 불안정</span>
+</button>
+
+<button class="legacy-world-button" data-world="restricted" style="--c:#a54f52">
+<span class="legacy-no">03</span>
+<span><b>폐쇄 구형 시설</b><span>비인가 접속 흔적 확인</span></span>
+<span class="legacy-state">접근 제한</span>
+</button>
+
 </div>
 </section>
 
@@ -318,21 +992,25 @@
 
 <div class="world-hero" style="--wc:#7f9f86">
 <img src="oldworld-shelter.png" alt="폐쇄 쇼핑몰">
+
 <div class="world-hero-copy">
 <span class="world-connection"><i></i> CONNECTION STABLE</span>
 <small>FORMER COMMERCIAL WORLD</small>
 <h2>폐쇄 쇼핑몰</h2>
 <p>운영 종료 후 대부분의 점포가 비었습니다. 전력은 일부 구역에서만 유지되고 있지만, 최근 사람이 머문 흔적이 반복해서 발견되고 있습니다.</p>
+
 <div class="shelter-signs">
 <div class="shelter-sign"><b>휴게실</b><span>접이식 침대와 담요 사용 흔적</span></div>
 <div class="shelter-sign"><b>식품점</b><span>재고가 정기적으로 이동됨</span></div>
 <div class="shelter-sign"><b>의무 공간</b><span>간단한 의약품과 붕대 보관</span></div>
 </div>
 </div>
+
 <div class="world-system-note">공식 거주 등록 없음<br>최근 전력 사용량 증가</div>
 </div>
 
 <div class="discovery-section">
+
 <div class="discovery-heading">
 <small>FOUND INSIDE</small>
 <h3>누군가 이곳에서 생활하고 있다.</h3>
@@ -340,10 +1018,15 @@
 </div>
 
 <article class="encounter" style="--accent-color:#9aa96f">
-<div class="encounter-image"><img src="null-mari.png" alt="마리"></div>
+
+<div class="encounter-image">
+<img src="null-mari.png" alt="마리">
+</div>
+
 <div class="encounter-content">
 <span class="encounter-index">RECORD 01 · HANDWRITTEN NOTE</span>
 <h4>마리</h4>
+
 <div class="trace-box">
 <div class="trace-head"><span>휴게실 냉장고 옆</span><span>작성자 미상</span></div>
 <div class="trace-body">
@@ -352,17 +1035,24 @@
 <div class="trace-row"><span>주의</span><span>상태부터 캐묻지 말 것.</span></div>
 </div>
 </div>
+
 <p class="encounter-quote">“새로 온 사람 있으면 일단 밥부터 줘. 설명은 그다음에 들어도 돼.”</p>
 <p class="encounter-summary">이 생활공간을 관리하는 사람은 자신을 마리라고 소개했다. 누가 왜 이곳까지 왔는지보다, 오늘 잘 곳이 있는지를 먼저 확인한다.</p>
 <span class="encounter-caption">생활공간 관리 · 물자 배분</span>
 </div>
+
 </article>
 
 <article class="encounter reverse" style="--accent-color:#c08751">
-<div class="encounter-image"><img src="null-jena.png" alt="제나"></div>
+
+<div class="encounter-image">
+<img src="null-jena.png" alt="제나">
+</div>
+
 <div class="encounter-content">
 <span class="encounter-index">RECORD 02 · ENTRY LOG</span>
 <h4>제나</h4>
+
 <div class="trace-box">
 <div class="trace-head"><span>외부 출입 기록</span><span>AUTO LOG</span></div>
 <div class="trace-body">
@@ -371,30 +1061,35 @@
 <div class="trace-row"><span>03:05</span><span>의무 공간 사용</span></div>
 </div>
 </div>
+
 <p class="encounter-quote">“못 걷겠으면 업혀. 여기까지 왔으면 다 온 거야.”</p>
 <p class="encounter-summary">제나는 폐기 월드와 위험 구역을 오가며 사람을 이곳까지 데려온다. 상처가 늘어나는 일에는 무심하지만 구조 요청은 그냥 지나치지 않는다.</p>
 <span class="encounter-caption">외부 구조 · 이동 경로 확보</span>
 </div>
-</article>
-</div>
 
+</article>
+
+</div>
 </section>
 
-<!-- 이벤트/방송 월드 -->
+<!-- 폐기 방송 월드 -->
 <section id="world-archive" class="world-chapter">
 
 <div class="world-hero" style="--wc:#6f9bad">
 <img src="oldworld-archive.png" alt="폐기 이벤트 방송 월드">
+
 <div class="world-hero-copy">
 <span class="world-connection"><i></i> CONNECTION UNSTABLE</span>
 <small>FORMER EVENT & BROADCAST WORLD</small>
 <h2>폐기 이벤트·방송 월드</h2>
 <p>끝난 행사와 방송 시설이 그대로 남아 있습니다. 오래된 장비 상당수는 정지했지만 몇몇 저장 장치에서는 아직 데이터가 읽힙니다.</p>
 </div>
+
 <div class="world-system-note">기록 서버 부분 응답<br>일부 저장 영역 손상</div>
 </div>
 
 <div class="discovery-section">
+
 <div class="discovery-heading">
 <small>REMAINING DATA</small>
 <h3>사라진 기록을 찾는 사람들.</h3>
@@ -402,10 +1097,15 @@
 </div>
 
 <article class="encounter" style="--accent-color:#63aaa5">
-<div class="encounter-image"><img src="null-eve.png" alt="이브"></div>
+
+<div class="encounter-image">
+<img src="null-eve.png" alt="이브">
+</div>
+
 <div class="encounter-content">
 <span class="encounter-index">FRAGMENT 01 · RECOVERY REQUEST</span>
 <h4>이브</h4>
+
 <div class="trace-box">
 <div class="trace-head"><span>RECOVERY TASK</span><span>PARTIAL</span></div>
 <div class="trace-body">
@@ -414,17 +1114,24 @@
 <div class="trace-row"><span>작업자</span><span>EVE</span></div>
 </div>
 </div>
+
 <p class="encounter-quote">“없다는 기록이 남아 있다면, 완전히 사라진 건 아니잖아.”</p>
 <p class="encounter-summary">이브는 손상되거나 사라진 시민 데이터를 추적하고 있다. 자신의 빈 소매 역시 아직 끝나지 않은 복구 작업 중 하나처럼 다룬다.</p>
 <span class="encounter-caption">손상 데이터 추적</span>
 </div>
+
 </article>
 
 <article class="encounter reverse" style="--accent-color:#c69248">
-<div class="encounter-image"><img src="null-rita.png" alt="리타"></div>
+
+<div class="encounter-image">
+<img src="null-rita.png" alt="리타">
+</div>
+
 <div class="encounter-content">
 <span class="encounter-index">FRAGMENT 02 · ACCESS LOG</span>
 <h4>리타</h4>
+
 <div class="terminal-box">
 <div class="fail">&gt; ACCESS DENIED</div>
 <div class="fail">&gt; ACCESS DENIED</div>
@@ -433,16 +1140,23 @@
 <div class="good">&gt; ACCESS GRANTED</div>
 <div class="user">&gt; “막아놨으면 다른 데로 들어가면 되지.”</div>
 </div>
+
 <p class="encounter-summary">리타는 오래된 시민 기록과 접근 권한을 찾아내는 데 익숙하다. 공식 경로가 막혀 있다는 사실은 포기할 이유가 아니라 다른 입구를 찾을 이유에 가깝다.</p>
 <span class="encounter-caption">기록 접근 · 신원 추적</span>
 </div>
+
 </article>
 
 <article class="encounter" style="--accent-color:#7b9fae">
-<div class="encounter-image"><img src="null-elin.png" alt="엘린"></div>
+
+<div class="encounter-image">
+<img src="null-elin.png" alt="엘린">
+</div>
+
 <div class="encounter-content">
 <span class="encounter-index">FRAGMENT 03 · IDENTITY SEARCH</span>
 <h4>엘린</h4>
+
 <div class="search-record">
 <div class="search-input">SEARCH : ELIN</div>
 <div class="search-result">
@@ -453,30 +1167,35 @@
 연결 가능한 기억 로그 없음.
 </div>
 </div>
+
 <p class="encounter-quote">“예전의 내가 누군지 알고 싶어. 그렇다고 지금의 내가 가짜라는 뜻은 아니고.”</p>
 <p class="encounter-summary">엘린은 사고 이전의 삶을 거의 기억하지 못한다. 지금 사용하는 이름과 지금까지 새로 쌓아온 기억 역시 자신의 삶이라고 생각하면서, 동시에 사라진 과거를 계속 찾고 있다.</p>
 <span class="encounter-caption">기억 · 과거 기록 추적</span>
 </div>
-</article>
-</div>
 
+</article>
+
+</div>
 </section>
 
-<!-- 구형 시설 -->
+<!-- 폐쇄 구형 시설 -->
 <section id="world-restricted" class="world-chapter restricted-chapter">
 
 <div class="world-hero" style="--wc:#a54f52">
 <img src="oldworld-restricted.png" alt="폐쇄 구형 시설">
+
 <div class="world-hero-copy">
 <span class="world-connection"><i></i> ACCESS RESTRICTED</span>
 <small>LEGACY SYSTEM FACILITY</small>
 <h2>폐쇄 구형 시설</h2>
 <p>초기 운영기에 사용되던 관리 시설입니다. 대부분 폐쇄되었지만 일부 구형 회선과 장치는 아직 시스템과 연결되어 있습니다.</p>
 </div>
+
 <div class="world-system-note">최근 비인가 접속 확인<br>시설 훼손 기록 있음</div>
 </div>
 
 <div class="discovery-section">
+
 <div class="discovery-heading">
 <small>ADMINISTRATION SECURITY RECORD</small>
 <h3>이 구역의 기록만은 조금 다르다.</h3>
@@ -484,10 +1203,15 @@
 </div>
 
 <article class="encounter" style="--accent-color:#b95053">
-<div class="encounter-image"><img src="null-sion.png" alt="시온"></div>
+
+<div class="encounter-image">
+<img src="null-sion.png" alt="시온">
+</div>
+
 <div class="encounter-content">
 <span class="encounter-index">SECURITY RECORD 01</span>
 <h4>시온</h4>
+
 <div class="security-panel">
 <div class="security-head"><span>PARADISE SECURITY</span><span>ACTIVE TRACE</span></div>
 <div class="security-body">
@@ -497,16 +1221,27 @@
 <div class="security-line"><span>관련 기록</span><span>시스템 침투 및 파괴공작 계획 연관</span></div>
 </div>
 </div>
+
 <p class="encounter-summary">직접 현장을 부수기보다 어디를 공격할지, 어떤 경로를 사용할지 결정하는 쪽에 가까운 인물로 기록되어 있다.</p>
-<div class="contact-warning"><strong>접촉하지 마십시오.</strong>발견 시 추적하거나 제지하지 말고 위치 정보만 관리국에 전달하십시오.</div>
+
+<div class="contact-warning">
+<strong>접촉하지 마십시오.</strong>
+발견 시 추적하거나 제지하지 말고 위치 정보만 관리국에 전달하십시오.
 </div>
+</div>
+
 </article>
 
 <article class="encounter reverse" style="--accent-color:#c97e38">
-<div class="encounter-image"><img src="null-rev.png" alt="레브"></div>
+
+<div class="encounter-image">
+<img src="null-rev.png" alt="레브">
+</div>
+
 <div class="encounter-content">
 <span class="encounter-index">SECURITY RECORD 02</span>
 <h4>레브</h4>
+
 <div class="security-panel">
 <div class="security-head"><span>FIELD INCIDENT RECORD</span><span>ACTIVE TRACE</span></div>
 <div class="security-body">
@@ -516,12 +1251,18 @@
 <div class="security-line"><span>행동 특성</span><span>추가 손상 위험을 거의 회피하지 않음</span></div>
 </div>
 </div>
+
 <p class="encounter-summary">시온의 계획이 실제 현장으로 옮겨질 때 반복해서 확인되는 인물. 자신의 상태가 더 악화되는 것보다 목표 수행을 우선하는 경향이 기록되어 있다.</p>
-<div class="contact-warning"><strong>단독 접근 금지.</strong>시설 내부에서 확인된 경우 즉시 구역을 이탈하고 현장 대응 인력을 호출하십시오.</div>
+
+<div class="contact-warning">
+<strong>단독 접근 금지.</strong>
+시설 내부에서 확인된 경우 즉시 구역을 이탈하고 현장 대응 인력을 호출하십시오.
 </div>
-</article>
 </div>
 
+</article>
+
+</div>
 </section>
 
 <section class="oldworld-epilogue">
@@ -530,15 +1271,53 @@
 <p>누군가는 지금 살아갈 장소를 만들고, 누군가는 잃어버린 것을 되찾으려 하며, 누군가는 이 모든 일이 반복되는 시스템 자체를 받아들이지 못합니다.</p>
 </section>
 
-<footer class="oldworld-footer"><strong>OLD WORLD GATE</strong><span>VIRTUAL PARADISE · LEGACY CONNECTION</span></footer>
+<footer class="oldworld-footer">
+<strong>OLD WORLD GATE</strong>
+<span>VIRTUAL PARADISE · LEGACY CONNECTION</span>
+</footer>
 
 </div>
 </section>
 
-<!-- 기존 모달 -->
-<div id="staff-modal"><div class="staff-modal-card"><button id="staff-modal-close">×</button><div class="staff-modal-image"><img id="staff-modal-image"></div><div class="staff-modal-info"><div class="staff-modal-small">PARADISE ADMINISTRATION</div><h2 id="staff-modal-name"></h2><div class="staff-modal-line"></div><p id="staff-modal-desc"></p></div></div></div>
-<div id="guardian-modal"><div class="guardian-modal-card"><button id="guardian-modal-close">×</button><div class="guardian-modal-image"><img id="guardian-modal-image"></div><div class="guardian-modal-info"><div class="guardian-modal-small">PARADISE OFFICIAL GUARDIAN</div><h2 id="guardian-modal-name"></h2><div class="guardian-modal-line"></div><p id="guardian-modal-desc"></p></div></div></div>
-<div id="starter-modal"><div class="starter-modal-card"><button id="starter-modal-close">×</button><div class="starter-modal-image"><img id="starter-modal-image"></div><div class="starter-modal-info"><div class="starter-modal-small">STARTER ROOM</div><h2 id="starter-modal-name"></h2><div class="starter-modal-line"></div><p id="starter-modal-desc"></p></div></div></div>
+<!-- 모달 -->
+<div id="staff-modal">
+<div class="staff-modal-card">
+<button id="staff-modal-close">×</button>
+<div class="staff-modal-image"><img id="staff-modal-image" alt=""></div>
+<div class="staff-modal-info">
+<div class="staff-modal-small">PARADISE ADMINISTRATION</div>
+<h2 id="staff-modal-name"></h2>
+<div class="staff-modal-line"></div>
+<p id="staff-modal-desc"></p>
+</div>
+</div>
+</div>
+
+<div id="guardian-modal">
+<div class="guardian-modal-card">
+<button id="guardian-modal-close">×</button>
+<div class="guardian-modal-image"><img id="guardian-modal-image" alt=""></div>
+<div class="guardian-modal-info">
+<div class="guardian-modal-small">PARADISE OFFICIAL GUARDIAN</div>
+<h2 id="guardian-modal-name"></h2>
+<div class="guardian-modal-line"></div>
+<p id="guardian-modal-desc"></p>
+</div>
+</div>
+</div>
+
+<div id="starter-modal">
+<div class="starter-modal-card">
+<button id="starter-modal-close">×</button>
+<div class="starter-modal-image"><img id="starter-modal-image" alt=""></div>
+<div class="starter-modal-info">
+<div class="starter-modal-small">STARTER ROOM</div>
+<h2 id="starter-modal-name"></h2>
+<div class="starter-modal-line"></div>
+<p id="starter-modal-desc"></p>
+</div>
+</div>
+</div>
 
 <script>
 const scenes=[
@@ -546,93 +1325,454 @@ const scenes=[
 {image:"scene-hallway.png",label:"입주 동기화실 이동 중",dialogue:["이쪽이 입주 동기화실이에요. 금방 도착해요.","파라다이스에 들어가시면 전력 제한 시간도, 주거 배정도 신경 쓰실 필요 없어요.","…저도 입주 순번이 아직 멀어서. 조금 부럽네요."]},
 {image:"scene-sync-room.png",label:"입주 동기화실",dialogue:["여기까지예요. 이제 편하게 기대시면 됩니다.","눈을 감으셔도 괜찮아요. 다음에 눈을 뜨시면 파라다이스일 거예요."]}
 ];
+
 const processSteps=["의식 이식 준비","시민 데이터 변환","감각 인터페이스 연결","파라다이스 환경 동기화","신원 데이터 정합성 확인","입주 무결성 확인"];
 const $=id=>document.getElementById(id);
 
-const cinematic=$("cinematic"),sceneImage=$("scene-image"),startButton=$("start-button"),dialogue=$("dialogue"),dialogueText=$("dialogue-text"),sceneLabel=$("scene-label"),eyeClose=$("eye-close"),transfer=$("transfer"),processList=$("process-list"),progressBar=$("progress-bar"),progressState=$("progress-state"),progressPercent=$("progress-percent"),identity=$("identity"),identityForm=$("identity-form"),residentName=$("resident-name"),paradise=$("paradise"),arrivalMessage=$("arrival-message"),welcomeName=$("welcome-name"),residentIndicator=$("resident-indicator"),residentIndicatorName=$("resident-indicator-name"),mapUI=$("map-ui"),districtPreview=$("district-preview"),previewTitle=$("preview-title"),previewDesc=$("preview-desc");
-const adminPage=$("admin-page"),guardianPage=$("guardian-page"),starterPage=$("starter-page"),newsPage=$("news-page"),oldworldPage=$("oldworld-page");
-const staffModal=$("staff-modal"),guardianModal=$("guardian-modal"),starterModal=$("starter-modal");
+const cinematic=$("cinematic");
+const sceneImage=$("scene-image");
+const startButton=$("start-button");
+const dialogue=$("dialogue");
+const dialogueText=$("dialogue-text");
+const sceneLabel=$("scene-label");
+const eyeClose=$("eye-close");
 
-let currentScene=0,currentDialogue=0,started=false,locked=false;
-const wait=ms=>new Promise(r=>setTimeout(r,ms)),nextFrame=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+const transfer=$("transfer");
+const processList=$("process-list");
+const progressBar=$("progress-bar");
+const progressState=$("progress-state");
+const progressPercent=$("progress-percent");
+
+const identity=$("identity");
+const identityForm=$("identity-form");
+const residentName=$("resident-name");
+
+const paradise=$("paradise");
+const arrivalMessage=$("arrival-message");
+const welcomeName=$("welcome-name");
+const residentIndicator=$("resident-indicator");
+const residentIndicatorName=$("resident-indicator-name");
+const mapUI=$("map-ui");
+
+const districtPreview=$("district-preview");
+const previewTitle=$("preview-title");
+const previewDesc=$("preview-desc");
+
+const adminPage=$("admin-page");
+const guardianPage=$("guardian-page");
+const starterPage=$("starter-page");
+const newsPage=$("news-page");
+const oldworldPage=$("oldworld-page");
+
+const staffModal=$("staff-modal");
+const guardianModal=$("guardian-modal");
+const starterModal=$("starter-modal");
+
+let currentScene=0;
+let currentDialogue=0;
+let started=false;
+let locked=false;
+
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+const nextFrame=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
 
 [
-"scene-entry.png","paradise-plaza.png","admin-interior.png","admin-dana.png","admin-serin.png","admin-ren.png","admin-sia.png",
-"guardian-keyvisual.png","guardian-yuria.png","guardian-rena.png","guardian-asha.png","guardian-arka.png","guardian-moka.png","guardian-ruru.png",
+"scene-entry.png",
+"paradise-plaza.png",
+"admin-interior.png",
+"admin-dana.png","admin-serin.png","admin-ren.png","admin-sia.png",
+"guardian-keyvisual.png",
+"guardian-yuria.png","guardian-rena.png","guardian-asha.png","guardian-arka.png","guardian-moka.png","guardian-ruru.png",
 "guardian-stream-yuria.png","guardian-stream-asha.png","guardian-stream-arka.png","guardian-stream-ruru.png",
 "starter-mia.png","starter-sei.png","starter-tami.png","starter-bella.png","starter-eda.png","starter-kaya.png","starter-peri.png","starter-yume.png","starter-lua.png","starter-nabi.png",
 "starter-stream-tami.png","starter-stream-sei.png","starter-stream-kaya.png","starter-stream-peri.png",
 "oldworld-shelter.png","oldworld-archive.png","oldworld-restricted.png",
 "null-eve.png","null-rita.png","null-elin.png","null-mari.png","null-jena.png","null-sion.png","null-rev.png",
 ...scenes.map(s=>s.image)
-].forEach(src=>{const i=new Image();i.src=src});
+].forEach(src=>{
+const i=new Image();
+i.src=src;
+});
 
-sceneImage.style.backgroundImage='url("scene-entry.png")';sceneImage.classList.add("move");
+sceneImage.style.backgroundImage='url("scene-entry.png")';
+sceneImage.classList.add("move");
 
-async function switchScene(i){const s=scenes[i];sceneImage.classList.add("changing");await wait(900);sceneImage.style.backgroundImage=`url("${s.image}")`;sceneLabel.textContent=s.label;sceneImage.classList.remove("move","closing");await nextFrame();sceneImage.classList.remove("changing");await nextFrame();sceneImage.classList.add("move");await wait(700)}
-async function showDialogue(t){dialogue.classList.remove("show");await wait(260);dialogueText.textContent=t;await nextFrame();dialogue.classList.add("show")}
-async function beginStory(){if(started)return;started=locked=true;startButton.classList.add("hide");await wait(500);await switchScene(0);dialogue.classList.remove("hidden");await showDialogue(scenes[0].dialogue[0]);locked=false}
-async function advanceStory(){if(!started){beginStory();return}if(locked)return;const s=scenes[currentScene];if(currentDialogue<s.dialogue.length-1){currentDialogue++;await showDialogue(s.dialogue[currentDialogue]);return}if(currentScene<scenes.length-1){locked=true;dialogue.classList.remove("show");await wait(400);currentScene++;currentDialogue=0;await switchScene(currentScene);await showDialogue(scenes[currentScene].dialogue[0]);locked=false;return}closeEyes()}
-async function closeEyes(){locked=true;dialogue.classList.remove("show");await wait(500);eyeClose.classList.add("close");await wait(3300);cinematic.classList.add("hidden");transfer.classList.remove("hidden");runTransfer()}
-function renderProcess(){processList.innerHTML=processSteps.map((s,i)=>`<div class="process-item"><span class="process-number">${i+1}</span><span class="process-label">${s}</span><span class="process-status">대기</span></div>`).join("")}
-async function runTransfer(){renderProcess();const items=[...processList.querySelectorAll(".process-item")];for(let i=0;i<items.length;i++){items[i].classList.add("active");items[i].querySelector(".process-status").textContent="진행 중";progressState.textContent=processSteps[i];await wait(900);items[i].classList.remove("active");items[i].classList.add("complete");items[i].querySelector(".process-status").textContent="완료";const n=Math.round((i+1)/items.length*100);progressBar.style.width=n+"%";progressPercent.textContent=n+"%"}await wait(700);transfer.classList.add("hidden");identity.classList.remove("hidden")}
-async function enterParadise(name){identity.classList.add("fade-out");await wait(800);identity.classList.add("hidden");welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;paradise.classList.remove("hidden");await nextFrame();paradise.classList.add("awake");await wait(2400);arrivalMessage.classList.add("show");await wait(3200);arrivalMessage.classList.remove("show");await wait(1200);residentIndicator.classList.add("show");mapUI.classList.add("ready")}
-async function openSection(page){districtPreview.classList.remove("show");paradise.classList.add("leave");await wait(650);paradise.classList.add("hidden");paradise.classList.remove("leave");page.classList.remove("hidden");page.scrollTop=0;await nextFrame();page.classList.add("show")}
-async function closeSection(page){page.classList.remove("show");staffModal.classList.remove("show");guardianModal.classList.remove("show");starterModal.classList.remove("show");await wait(550);page.classList.add("hidden");paradise.classList.remove("hidden")}
+async function switchScene(i){
+const s=scenes[i];
+sceneImage.classList.add("changing");
+await wait(900);
 
-identityForm.addEventListener("submit",e=>{e.preventDefault();const name=residentName.value.trim();if(name)enterParadise(name)});
-startButton.addEventListener("click",e=>{e.stopPropagation();beginStory()});
-cinematic.addEventListener("click",e=>{if(!e.target.closest("button"))advanceStory()});
+sceneImage.style.backgroundImage=`url("${s.image}")`;
+sceneLabel.textContent=s.label;
 
-document.querySelectorAll(".map-node").forEach(node=>node.addEventListener("click",()=>{
-if(node.dataset.target==="admin")return openSection(adminPage);
-if(node.dataset.target==="guardian")return openSection(guardianPage);
-if(node.dataset.target==="starter")return openSection(starterPage);
-if(node.dataset.target==="news")return openSection(newsPage);
-if(node.dataset.target==="oldworld")return openSection(oldworldPage);
-previewTitle.textContent=node.dataset.title;previewDesc.textContent=node.dataset.desc;districtPreview.classList.add("show");
-}));
+sceneImage.classList.remove("move","closing");
+await nextFrame();
+sceneImage.classList.remove("changing");
+await nextFrame();
+sceneImage.classList.add("move");
+await wait(700);
+}
 
-$("preview-close").onclick=()=>districtPreview.classList.remove("show");
-$("admin-back").onclick=()=>closeSection(adminPage);
-$("guardian-back").onclick=()=>closeSection(guardianPage);
-$("starter-back").onclick=()=>closeSection(starterPage);
-$("news-back").onclick=()=>closeSection(newsPage);
-$("oldworld-back").onclick=()=>closeSection(oldworldPage);
+async function showDialogue(t){
+dialogue.classList.remove("show");
+await wait(260);
+dialogueText.textContent=t;
+await nextFrame();
+dialogue.classList.add("show");
+}
 
-document.querySelectorAll(".admin-tab").forEach(tab=>tab.onclick=()=>{
+async function beginStory(){
+if(started)return;
+
+started=true;
+locked=true;
+startButton.classList.add("hide");
+
+await wait(500);
+await switchScene(0);
+
+dialogue.classList.remove("hidden");
+await showDialogue(scenes[0].dialogue[0]);
+
+locked=false;
+}
+
+async function advanceStory(){
+if(!started){
+beginStory();
+return;
+}
+
+if(locked)return;
+
+const s=scenes[currentScene];
+
+if(currentDialogue<s.dialogue.length-1){
+currentDialogue++;
+await showDialogue(s.dialogue[currentDialogue]);
+return;
+}
+
+if(currentScene<scenes.length-1){
+locked=true;
+dialogue.classList.remove("show");
+
+await wait(400);
+
+currentScene++;
+currentDialogue=0;
+
+await switchScene(currentScene);
+await showDialogue(scenes[currentScene].dialogue[0]);
+
+locked=false;
+return;
+}
+
+closeEyes();
+}
+
+async function closeEyes(){
+if(locked)return;
+
+locked=true;
+dialogue.classList.remove("show");
+
+await wait(500);
+
+sceneImage.classList.add("closing");
+eyeClose.classList.add("close");
+
+await wait(3300);
+
+cinematic.classList.add("hidden");
+transfer.classList.remove("hidden");
+
+runTransfer();
+}
+
+function renderProcess(){
+processList.innerHTML=processSteps.map((s,i)=>`
+<div class="process-item">
+<span class="process-number">${String(i+1).padStart(2,"0")}</span>
+<span class="process-label">${s}</span>
+<span class="process-status">대기</span>
+</div>`).join("");
+}
+
+async function runTransfer(){
+renderProcess();
+
+const items=[...processList.querySelectorAll(".process-item")];
+
+for(let i=0;i<items.length;i++){
+const item=items[i];
+
+item.classList.add("active");
+item.querySelector(".process-status").textContent="진행 중";
+progressState.textContent=processSteps[i];
+
+const before=Math.round(i/items.length*100);
+progressBar.style.width=before+"%";
+progressPercent.textContent=before+"%";
+
+await wait(900);
+
+item.classList.remove("active");
+item.classList.add("complete");
+item.querySelector(".process-status").textContent="완료";
+
+const after=Math.round((i+1)/items.length*100);
+progressBar.style.width=after+"%";
+progressPercent.textContent=after+"%";
+}
+
+progressState.textContent="모든 검증 완료";
+
+await wait(700);
+
+transfer.classList.add("hidden");
+identity.classList.remove("hidden");
+residentName.focus();
+}
+
+async function enterParadise(name){
+identity.classList.add("fade-out");
+
+await wait(800);
+
+identity.classList.add("hidden");
+
+welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;
+residentIndicatorName.textContent=name;
+
+paradise.classList.remove("hidden");
+
+await nextFrame();
+
+paradise.classList.add("awake");
+
+await wait(2400);
+
+arrivalMessage.classList.add("show");
+
+await wait(3200);
+
+arrivalMessage.classList.remove("show");
+arrivalMessage.classList.add("fade-away");
+
+await wait(1200);
+
+residentIndicator.classList.add("show");
+mapUI.classList.add("ready");
+}
+
+async function openSection(page){
+districtPreview.classList.remove("show");
+
+paradise.classList.add("leave");
+
+await wait(650);
+
+paradise.classList.add("hidden");
+paradise.classList.remove("leave");
+
+page.classList.remove("hidden");
+page.scrollTop=0;
+
+await nextFrame();
+
+page.classList.add("show");
+}
+
+async function closeSection(page){
+page.classList.remove("show");
+
+staffModal.classList.remove("show");
+guardianModal.classList.remove("show");
+starterModal.classList.remove("show");
+
+await wait(550);
+
+page.classList.add("hidden");
+
+paradise.classList.remove("hidden");
+}
+
+/* 입주 */
+identityForm.addEventListener("submit",e=>{
+e.preventDefault();
+
+const name=residentName.value.trim();
+
+if(name)enterParadise(name);
+});
+
+startButton.addEventListener("click",e=>{
+e.stopPropagation();
+beginStory();
+});
+
+cinematic.addEventListener("click",e=>{
+if(!e.target.closest("button"))advanceStory();
+});
+
+/* 중앙광장 */
+document.querySelectorAll(".map-node").forEach(node=>{
+node.addEventListener("click",()=>{
+const target=node.dataset.target;
+
+if(target==="admin"){
+openSection(adminPage);
+return;
+}
+
+if(target==="guardian"){
+openSection(guardianPage);
+return;
+}
+
+if(target==="starter"){
+openSection(starterPage);
+return;
+}
+
+if(target==="news"){
+openSection(newsPage);
+return;
+}
+
+if(target==="oldworld"){
+openSection(oldworldPage);
+return;
+}
+
+previewTitle.textContent=node.dataset.title||"";
+previewDesc.textContent=node.dataset.desc||"";
+districtPreview.classList.add("show");
+});
+});
+
+$("preview-close").addEventListener("click",()=>{
+districtPreview.classList.remove("show");
+});
+
+/* 페이지 복귀 */
+$("admin-back").addEventListener("click",()=>closeSection(adminPage));
+$("guardian-back").addEventListener("click",()=>closeSection(guardianPage));
+$("starter-back").addEventListener("click",()=>closeSection(starterPage));
+$("news-back").addEventListener("click",()=>closeSection(newsPage));
+$("oldworld-back").addEventListener("click",()=>closeSection(oldworldPage));
+
+/* 관리국 탭 */
+document.querySelectorAll(".admin-tab").forEach(tab=>{
+tab.addEventListener("click",()=>{
 document.querySelectorAll(".admin-tab").forEach(t=>t.classList.remove("active"));
 document.querySelectorAll(".admin-panel").forEach(p=>p.classList.remove("active"));
-tab.classList.add("active");$(`panel-${tab.dataset.panel}`).classList.add("active");
+
+tab.classList.add("active");
+
+const panel=$(`panel-${tab.dataset.panel}`);
+if(panel)panel.classList.add("active");
+});
 });
 
-document.querySelectorAll(".person").forEach(card=>card.onclick=()=>{
-$("staff-modal-image").src=card.dataset.image;$("staff-modal-name").textContent=card.dataset.name;$("staff-modal-desc").textContent=card.dataset.desc;staffModal.classList.add("show");
+/* 모달 */
+document.querySelectorAll(".person").forEach(card=>{
+card.addEventListener("click",()=>{
+$("staff-modal-image").src=card.dataset.image;
+$("staff-modal-name").textContent=card.dataset.name;
+$("staff-modal-desc").textContent=card.dataset.desc;
+staffModal.classList.add("show");
 });
-document.querySelectorAll(".talent-card").forEach(card=>card.onclick=()=>{
-$("guardian-modal-image").src=card.dataset.image;$("guardian-modal-name").textContent=card.dataset.name;$("guardian-modal-desc").textContent=card.dataset.desc;guardianModal.classList.add("show");
-});
-document.querySelectorAll(".candidate-card").forEach(card=>card.onclick=()=>{
-$("starter-modal-image").src=card.dataset.image;$("starter-modal-name").textContent=card.dataset.name;$("starter-modal-desc").textContent=card.dataset.desc;starterModal.classList.add("show");
 });
 
-$("staff-modal-close").onclick=()=>staffModal.classList.remove("show");
-$("guardian-modal-close").onclick=()=>guardianModal.classList.remove("show");
-$("starter-modal-close").onclick=()=>starterModal.classList.remove("show");
+document.querySelectorAll(".talent-card").forEach(card=>{
+card.addEventListener("click",()=>{
+$("guardian-modal-image").src=card.dataset.image;
+$("guardian-modal-name").textContent=card.dataset.name;
+$("guardian-modal-desc").textContent=card.dataset.desc;
+guardianModal.classList.add("show");
+});
+});
 
-document.querySelectorAll(".guardian-nav-btn,.starter-nav-btn,.news-nav-btn").forEach(btn=>btn.onclick=()=>{const t=$(btn.dataset.scroll);if(t)t.scrollIntoView({behavior:"smooth",block:"start"})});
+document.querySelectorAll(".candidate-card").forEach(card=>{
+card.addEventListener("click",()=>{
+$("starter-modal-image").src=card.dataset.image;
+$("starter-modal-name").textContent=card.dataset.name;
+$("starter-modal-desc").textContent=card.dataset.desc;
+starterModal.classList.add("show");
+});
+});
 
-document.querySelectorAll(".legacy-world-button").forEach(btn=>btn.onclick=()=>{
+$("staff-modal-close").addEventListener("click",()=>staffModal.classList.remove("show"));
+$("guardian-modal-close").addEventListener("click",()=>guardianModal.classList.remove("show"));
+$("starter-modal-close").addEventListener("click",()=>starterModal.classList.remove("show"));
+
+staffModal.addEventListener("click",e=>{
+if(e.target===staffModal)staffModal.classList.remove("show");
+});
+
+guardianModal.addEventListener("click",e=>{
+if(e.target===guardianModal)guardianModal.classList.remove("show");
+});
+
+starterModal.addEventListener("click",e=>{
+if(e.target===starterModal)starterModal.classList.remove("show");
+});
+
+/* 내부 네비 */
+document.querySelectorAll(".guardian-nav-btn,.starter-nav-btn,.news-nav-btn").forEach(btn=>{
+btn.addEventListener("click",()=>{
+const target=$(btn.dataset.scroll);
+
+if(target){
+target.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+}
+});
+});
+
+/* 구형 월드 */
+document.querySelectorAll(".legacy-world-button").forEach(btn=>{
+btn.addEventListener("click",()=>{
 document.querySelectorAll(".legacy-world-button").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
-document.querySelectorAll(".world-chapter").forEach(w=>w.classList.remove("active"));
-$(`world-${btn.dataset.world}`).classList.add("active");
-oldworldPage.querySelector(".world-chapter.active").scrollIntoView({behavior:"smooth",block:"start"});
+
+document.querySelectorAll(".world-chapter").forEach(world=>world.classList.remove("active"));
+
+const target=$(`world-${btn.dataset.world}`);
+
+if(target){
+target.classList.add("active");
+
+setTimeout(()=>{
+target.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+},30);
+}
+});
 });
 
+/* 키보드 */
 document.addEventListener("keydown",e=>{
-if(e.key==="Escape"){staffModal.classList.remove("show");guardianModal.classList.remove("show");starterModal.classList.remove("show")}
-if(!cinematic.classList.contains("hidden")&&(e.key==="Enter"||e.code==="Space")){e.preventDefault();advanceStory()}
+if(e.key==="Escape"){
+staffModal.classList.remove("show");
+guardianModal.classList.remove("show");
+starterModal.classList.remove("show");
+}
+
+if(
+!cinematic.classList.contains("hidden") &&
+(e.key==="Enter"||e.code==="Space")
+){
+e.preventDefault();
+advanceStory();
+}
 });
 </script>
 </body>
