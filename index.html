@@ -734,9 +734,10 @@ document.querySelectorAll(".text-view-tab").forEach(btn=>btn.addEventListener("c
 
 window.addEventListener("popstate",async e=>{
 const state=e.state;
+const textWasOpen=!textView.classList.contains("hidden");
 if(textViewClosingByButton){textViewClosingByButton=false;return}
 if(state?.vp==="text"){showTextView(false);return}
-if(!textView.classList.contains("hidden"))hideTextView();
+if(textWasOpen){hideTextView();return}
 if(!state?.vp)return;
 if(state.vp==="plaza"){
 closeExploration();closeStaffModal();closeGuardianModal();closeStarterModal();closeNullModal();
