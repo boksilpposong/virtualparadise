@@ -144,6 +144,11 @@
 @media(max-width:650px){.oldworld-shell{width:calc(100% - 20px)}.oldworld-gate{padding:34px 20px}.oldworld-choice{grid-template-columns:42px 1fr}.world-choice-state{display:none}.explore-stage{height:calc(100dvh - 88px);min-height:620px;border-radius:16px}.stage-hud{left:12px;right:12px;top:12px}.stage-title{max-width:75%;padding:10px 11px}.stage-title h2{font-size:20px}.stage-title p{display:none}.hotspot-label{font-size:8px}.stage-footnote{left:12px;bottom:10px}.explore-viewer{padding:8px}.explore-panel{width:100%;max-height:82%;border-radius:14px}.discovery-scene{padding:28px 22px}.discovery-scene.with-person,.discovery-scene.with-person.active{display:block;padding:0 20px 24px}.scene-character{height:280px;min-height:0}.scene-character img{height:100%}.scene-copy{padding:20px 0 0}.scene-copy h3{font-size:27px}.security-record div{grid-template-columns:95px 1fr}}
 
 
+/* 텍스트로 보기 */
+#text-view-toggle{position:fixed;z-index:480;right:22px;bottom:22px;display:flex;align-items:center;gap:8px;padding:11px 15px;border:1px solid rgba(255,255,255,.22);border-radius:30px;background:rgba(16,24,27,.76);backdrop-filter:blur(14px);box-shadow:0 10px 32px rgba(0,0,0,.18);color:#fff;cursor:pointer;font-size:11px}#text-view-toggle b{font-size:13px}
+#text-view{position:fixed;inset:0;z-index:800;background:#eef2ef;color:#24322e;overflow:hidden}#text-view.hidden{display:none!important}.text-view-shell{height:100%;display:grid;grid-template-rows:auto 1fr}.text-view-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 22px;border-bottom:1px solid #d5dfda;background:rgba(250,252,250,.94);backdrop-filter:blur(16px)}.text-view-brand small{display:block;font-size:8px;letter-spacing:.19em;color:#82928c}.text-view-brand strong{display:block;margin-top:4px;font-size:18px;color:#263d36}.text-view-controls{display:flex;align-items:center;gap:7px}.text-font-btn,.text-view-close{border:1px solid #d7e0dc;border-radius:9px;background:#fff;color:#50645d;cursor:pointer}.text-font-btn{width:35px;height:35px}.text-view-close{padding:9px 12px;font-size:10px}.text-view-layout{min-height:0;display:grid;grid-template-columns:230px 1fr}.text-view-nav{overflow:auto;padding:19px 14px;border-right:1px solid #d5dfda;background:#e8eeeb}.text-view-nav small{display:block;padding:0 9px 10px;font-size:8px;letter-spacing:.18em;color:#899991}.text-view-tab{display:block;width:100%;margin:3px 0;padding:11px 12px;border:0;border-radius:9px;background:transparent;color:#667871;text-align:left;cursor:pointer;font-size:11px}.text-view-tab:hover,.text-view-tab.active{background:#fff;color:#254d40;box-shadow:0 4px 14px rgba(61,89,78,.06)}.text-view-content{--reader-size:16px;overflow:auto;padding:42px 7vw 90px;background:#fbfcfa}.text-view-body{max-width:880px;margin:0 auto;font-size:var(--reader-size);line-height:1.9}.text-reader-intro{margin-bottom:34px;padding-bottom:26px;border-bottom:1px solid #e2e8e5}.text-reader-intro small{font-size:.58em;letter-spacing:.19em;color:#80928b}.text-reader-intro h1{margin:8px 0 10px;font-size:2.4em;line-height:1.12;letter-spacing:-.05em;color:#223d35}.text-reader-intro p{margin:0;color:#687a73}.text-copy section{margin:42px 0}.text-copy article{margin:20px 0;padding:18px 20px;border:1px solid #e2e8e5;border-radius:13px;background:#fff}.text-copy h1{margin:42px 0 16px;font-size:2.2em;line-height:1.15;letter-spacing:-.05em;color:#213f36}.text-copy h2{margin:38px 0 14px;font-size:1.65em;line-height:1.25;color:#294d43}.text-copy h3{margin:26px 0 10px;font-size:1.18em;line-height:1.35;color:#365c50}.text-copy p{margin:8px 0 15px;color:#5f746c}.text-copy small{display:block;margin:18px 0 6px;font-size:.62em;letter-spacing:.13em;color:#83958e}.text-copy strong,.text-copy b{color:#31584c}.text-overview-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px}.text-overview-card{padding:19px;border:1px solid #e0e7e3;border-radius:13px;background:#fff}.text-overview-card b{display:block;margin-bottom:6px;color:#2c5448}.text-overview-card span{font-size:.86em;line-height:1.65;color:#71827c}
+@media(max-width:760px){#text-view-toggle{right:12px;bottom:12px}.text-view-header{padding:12px 14px}.text-view-layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}.text-view-nav{display:flex;gap:5px;overflow-x:auto;padding:9px 10px;border-right:0;border-bottom:1px solid #d5dfda}.text-view-nav small{display:none}.text-view-tab{flex:0 0 auto;width:auto;margin:0;padding:9px 11px;white-space:nowrap}.text-view-content{padding:28px 20px 70px}.text-overview-grid{grid-template-columns:1fr}.text-view-brand strong{font-size:16px}.text-font-btn{display:none}}
+
 /* 모달 */
 #staff-modal,#guardian-modal,#starter-modal,#null-modal{position:fixed;inset:0;z-index:510;display:grid;place-items:center;padding:24px;background:rgba(9,20,30,.57);backdrop-filter:blur(11px);opacity:0;pointer-events:none;transition:.3s}
 #staff-modal.show,#guardian-modal.show,#starter-modal.show,#null-modal.show{opacity:1;pointer-events:auto}
@@ -388,6 +393,13 @@
 <footer class="oldworld-footer"><strong>OLD WORLD GATE</strong><span>VIRTUAL PARADISE · LEGACY CONNECTION</span></footer>
 </div></section>
 
+<!-- 텍스트로 보기 -->
+<button id="text-view-toggle" type="button" aria-label="텍스트로 보기"><b>Aa</b><span>텍스트로 보기</span></button>
+<section id="text-view" class="hidden" aria-hidden="true"><div class="text-view-shell">
+<header class="text-view-header"><div class="text-view-brand"><small>VIRTUAL PARADISE · READER MODE</small><strong>텍스트로 보기</strong></div><div class="text-view-controls"><button id="text-font-down" class="text-font-btn" type="button">A−</button><button id="text-font-up" class="text-font-btn" type="button">A＋</button><button id="text-view-close" class="text-view-close" type="button">닫기 ×</button></div></header>
+<div class="text-view-layout"><nav class="text-view-nav"><small>CONTENTS</small><button class="text-view-tab active" data-text-key="overview">처음</button><button class="text-view-tab" data-text-key="admin">관리국</button><button class="text-view-tab" data-text-key="guardian">가디언</button><button class="text-view-tab" data-text-key="starter">스타터 룸</button><button class="text-view-tab" data-text-key="news">커뮤니티 · 뉴스</button><button class="text-view-tab" data-text-key="citizen">시민 생활구역</button><button class="text-view-tab" data-text-key="oldworld">구형 월드</button></nav><main id="text-view-content" class="text-view-content"><div id="text-view-body" class="text-view-body"></div></main></div>
+</div></section>
+
 <!-- 모달 -->
 <div id="staff-modal"><div class="staff-modal-card"><button id="staff-modal-close">×</button><div id="staff-modal-image-wrap" class="staff-modal-image"><img id="staff-modal-image" src="" alt=""></div><div class="staff-modal-info"><div class="staff-modal-small">PARADISE ADMINISTRATION</div><span id="staff-modal-field"></span><h2 id="staff-modal-name"></h2><span id="staff-modal-work"></span><div class="staff-modal-line"></div><p id="staff-modal-desc"></p></div></div></div>
 <div id="guardian-modal"><div class="guardian-modal-card"><button id="guardian-modal-close">×</button><div id="guardian-modal-image-wrap" class="guardian-modal-image"><img id="guardian-modal-image" src="" alt=""></div><div class="guardian-modal-info"><div class="guardian-modal-small">PARADISE OFFICIAL GUARDIAN</div><span id="guardian-modal-year"></span><h2 id="guardian-modal-name"></h2><div class="guardian-modal-line"></div><p id="guardian-modal-desc"></p></div></div></div>
@@ -420,6 +432,7 @@ const $=id=>document.getElementById(id);
 
 const sceneImage=$("scene-image"),startButton=$("start-button"),dialogue=$("dialogue"),dialogueText=$("dialogue-text"),sceneLabel=$("scene-label"),eyeClose=$("eye-close"),cinematic=$("cinematic"),transfer=$("transfer"),processList=$("process-list"),progressBar=$("progress-bar"),progressState=$("progress-state"),progressPercent=$("progress-percent"),identity=$("identity"),identityForm=$("identity-form"),residentName=$("resident-name"),paradise=$("paradise"),arrivalMessage=$("arrival-message"),welcomeName=$("welcome-name"),residentIndicator=$("resident-indicator"),residentIndicatorName=$("resident-indicator-name"),mapUI=$("map-ui"),districtPreview=$("district-preview"),previewTitle=$("preview-title"),previewDesc=$("preview-desc");
 const adminPage=$("admin-page"),guardianPage=$("guardian-page"),starterPage=$("starter-page"),newsPage=$("news-page"),citizenPage=$("citizen-page"),oldWorldPage=$("oldworld-page");
+const textViewToggle=$("text-view-toggle"),textView=$("text-view"),textViewBody=$("text-view-body"),textViewContent=$("text-view-content"),textViewClose=$("text-view-close"),textFontDown=$("text-font-down"),textFontUp=$("text-font-up");
 
 const staffModal=$("staff-modal"),staffModalImage=$("staff-modal-image"),staffModalImageWrap=$("staff-modal-image-wrap"),staffModalField=$("staff-modal-field"),staffModalName=$("staff-modal-name"),staffModalWork=$("staff-modal-work"),staffModalDesc=$("staff-modal-desc");
 const guardianModal=$("guardian-modal"),guardianModalImage=$("guardian-modal-image"),guardianModalImageWrap=$("guardian-modal-image-wrap"),guardianModalYear=$("guardian-modal-year"),guardianModalName=$("guardian-modal-name"),guardianModalDesc=$("guardian-modal-desc");
@@ -471,6 +484,40 @@ n=Math.round((i+1)/processSteps.length*100);progressBar.style.width=`${n}%`;prog
 }
 progressState.textContent="모든 검증 완료";await wait(1000);transfer.classList.add("hidden");identity.classList.remove("hidden");residentName.focus();
 }
+const textViewPages={admin:adminPage,guardian:guardianPage,starter:starterPage,news:newsPage,citizen:citizenPage,oldworld:oldWorldPage};
+const textViewLabels={admin:"관리국",guardian:"가디언",starter:"스타터 룸",news:"커뮤니티 · 뉴스",citizen:"시민 생활구역",oldworld:"구형 월드"};
+let textViewScale=1;
+function textViewCurrentKey(){const active=Object.values(textViewPages).find(page=>!page.classList.contains("hidden"));return Object.keys(textViewPages).find(key=>textViewPages[key]===active)||"overview"}
+function makeTextCopy(source){
+const clone=source.cloneNode(true);
+clone.querySelectorAll("header,footer,nav,img,script,style,input").forEach(el=>el.remove());
+clone.querySelectorAll("[data-name][data-desc]").forEach(card=>{
+const article=document.createElement("article"),h=document.createElement("h3"),meta=document.createElement("p"),desc=document.createElement("p");
+h.textContent=card.dataset.name||"";const bits=[card.dataset.year,card.dataset.role,card.dataset.field,card.dataset.work,card.dataset.sub].filter(Boolean);
+if(bits.length){const strong=document.createElement("strong");strong.textContent=bits.join(" · ");meta.appendChild(strong)}
+desc.textContent=card.dataset.desc||"";article.appendChild(h);if(bits.length)article.appendChild(meta);article.appendChild(desc);card.replaceWith(article);
+});
+clone.querySelectorAll("button").forEach(btn=>{const t=btn.textContent.replace(/\s+/g," ").trim();if(!t||t==="×"||t.includes("중앙광장")||btn.classList.contains("news-jump")){btn.remove();return}const p=document.createElement("p"),b=document.createElement("strong");b.textContent=t;p.appendChild(b);btn.replaceWith(p)});
+clone.querySelectorAll("*").forEach(el=>{el.removeAttribute("id");el.removeAttribute("class");el.removeAttribute("style");el.removeAttribute("onclick");el.removeAttribute("aria-hidden")});
+clone.querySelectorAll("div,span").forEach(el=>{if(!el.textContent.trim()&&!el.children.length)el.remove()});
+const wrap=document.createElement("div");wrap.className="text-copy";while(clone.firstChild)wrap.appendChild(clone.firstChild);return wrap;
+}
+function renderTextView(key="overview"){
+document.querySelectorAll(".text-view-tab").forEach(btn=>btn.classList.toggle("active",btn.dataset.textKey===key));textViewBody.innerHTML="";
+const intro=document.createElement("div");intro.className="text-reader-intro";
+if(key==="overview"){
+intro.innerHTML='<small>VIRTUAL PARADISE · TEXT GUIDE</small><h1>버츄얼 파라다이스</h1><p>이미지를 제외하고 세계관 소개 사이트의 내용을 글 중심으로 읽을 수 있습니다. 메뉴에서 원하는 구역을 선택하세요.</p>';
+const grid=document.createElement("div");grid.className="text-overview-grid";
+[["관리국","생활 행정 · 안전 · 복구 · 월드 관리"],["가디언","현역 가디언 6명 · 방송 · 현장 대응"],["스타터 룸","가디언 후보 · 방송 · 훈련 · 생활"],["커뮤니티 · 뉴스","오늘의 소식 · 시민 이야기 · 시민 가이드"],["시민 생활구역","주거 · 쇼핑 · 월드 관광 · 일상"],["구형 월드","운영이 끝난 오래된 월드와 남겨진 기록"]].forEach(([a,b])=>{const c=document.createElement("div");c.className="text-overview-card";const strong=document.createElement("b"),span=document.createElement("span");strong.textContent=a;span.textContent=b;c.append(strong,span);grid.appendChild(c)});
+textViewBody.append(intro,grid);textViewContent.scrollTop=0;return;
+}
+intro.innerHTML='<small>TEXT VIEW · '+textViewLabels[key]+'</small><h1>'+textViewLabels[key]+'</h1><p>화면 연출과 이미지를 제외하고 해당 구역에 공개된 내용을 순서대로 표시합니다.</p>';textViewBody.appendChild(intro);textViewBody.appendChild(makeTextCopy(textViewPages[key]));textViewContent.scrollTop=0;
+}
+function showTextView(pushHistory=true,key=null){renderTextView(key||textViewCurrentKey());textView.classList.remove("hidden");textView.setAttribute("aria-hidden","false");textViewToggle.classList.add("hidden");if(pushHistory)history.pushState({vp:"text"},"",location.href)}
+function hideTextView(){textView.classList.add("hidden");textView.setAttribute("aria-hidden","true");textViewToggle.classList.remove("hidden")}
+function closeTextView(){if(history.state?.vp==="text"){history.back();return}hideTextView()}
+function setTextScale(delta){textViewScale=Math.max(.9,Math.min(1.35,textViewScale+delta));textViewContent.style.setProperty("--reader-size",(16*textViewScale)+"px")}
+
 async function enterParadise(name){
 identity.classList.add("fade-out");await wait(850);identity.classList.add("hidden");
 welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;paradise.classList.remove("hidden");
@@ -602,8 +649,16 @@ guardianModal.addEventListener("click",e=>{if(e.target===guardianModal)closeGuar
 starterModal.addEventListener("click",e=>{if(e.target===starterModal)closeStarterModal()});
 nullModal.addEventListener("click",e=>{if(e.target===nullModal)closeNullModal()});
 
+textViewToggle.addEventListener("click",()=>showTextView(true));
+textViewClose.addEventListener("click",closeTextView);
+textFontDown.addEventListener("click",()=>setTextScale(-.1));
+textFontUp.addEventListener("click",()=>setTextScale(.1));
+document.querySelectorAll(".text-view-tab").forEach(btn=>btn.addEventListener("click",()=>renderTextView(btn.dataset.textKey)));
+
 window.addEventListener("popstate",async e=>{
 const state=e.state;
+if(state?.vp==="text"){showTextView(false);return}
+if(!textView.classList.contains("hidden"))hideTextView();
 if(!state?.vp)return;
 if(state.vp==="plaza"){
 closeExploration();closeStaffModal();closeGuardianModal();closeStarterModal();closeNullModal();
@@ -633,6 +688,7 @@ showExploration(state.world||"shelter",state.scene,false);
 
 document.addEventListener("keydown",e=>{
 if(e.key==="Escape"){
+if(!textView.classList.contains("hidden")){closeTextView();return}
 const openExplore=oldWorldPage.querySelector(".explore-viewer.show");if(openExplore){closeExplorationWithHistory(openExplore.closest(".oldworld-world"));return}
 if(nullModal.classList.contains("show")){closeNullModal();return}
 if(staffModal.classList.contains("show")){closeStaffModal();return}
