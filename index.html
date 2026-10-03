@@ -450,7 +450,7 @@ const guardianModal=$("guardian-modal"),guardianModalImage=$("guardian-modal-ima
 const starterModal=$("starter-modal"),starterModalImage=$("starter-modal-image"),starterModalImageWrap=$("starter-modal-image-wrap"),starterModalRole=$("starter-modal-role"),starterModalName=$("starter-modal-name"),starterModalSub=$("starter-modal-sub"),starterModalDesc=$("starter-modal-desc");
 const nullModal=$("null-modal"),nullModalImage=$("null-modal-image"),nullModalImageWrap=$("null-modal-image-wrap"),nullModalStatus=$("null-modal-status"),nullModalName=$("null-modal-name"),nullModalRole=$("null-modal-role"),nullModalDesc=$("null-modal-desc"),nullModalNote=$("null-modal-note");
 
-let currentScene=0,currentDialogue=0,started=false,locked=false;
+let currentScene=0,currentDialogue=0,started=false,locked=false,arrivalReady=false;
 const wait=ms=>new Promise(r=>setTimeout(r,ms)),nextFrame=()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
 
 [
@@ -467,6 +467,8 @@ const wait=ms=>new Promise(r=>setTimeout(r,ms)),nextFrame=()=>new Promise(r=>req
 
 sceneImage.style.backgroundImage='url("scene-entry.png")';
 sceneImage.classList.add("move");
+history.replaceState({vp:"intro-base"},"",location.href);
+history.pushState({vp:"intro"},"",location.href);
 
 async function switchScene(i){
 const s=scenes[i];sceneImage.classList.add("changing");await wait(900);
@@ -483,7 +485,7 @@ if(currentDialogue<s.dialogue.length-1){currentDialogue++;await showDialogue(s.d
 if(currentScene<scenes.length-1){locked=true;dialogue.classList.remove("show");await wait(400);currentScene++;currentDialogue=0;await switchScene(currentScene);await showDialogue(scenes[currentScene].dialogue[0]);locked=false;return}
 closeEyes();
 }
-async function closeEyes(){if(locked)return;locked=true;dialogue.classList.remove("show");await wait(500);sceneImage.classList.add("closing");await wait(100);eyeClose.classList.add("close");await wait(3500);cinematic.classList.add("hidden");transfer.classList.remove("hidden");runTransfer()}
+async function closeEyes(){if(locked)return;locked=true;dialogue.classList.remove("show");await wait(500);sceneImage.classList.add("closing");await wait(100);eyeClose.classList.add("close");await wait(3500);history.replaceState({vp:"transfer"},"",location.href);cinematic.classList.add("hidden");transfer.classList.remove("hidden");runTransfer()}
 function renderProcess(){processList.innerHTML=processSteps.map((s,i)=>`<div class="process-item"><span class="process-number">${String(i+1).padStart(2,"0")}</span><span class="process-label">${s}</span><span class="process-status">대기</span></div>`).join("")}
 async function runTransfer(){
 renderProcess();const items=[...processList.querySelectorAll(".process-item")];
@@ -493,7 +495,7 @@ let n=Math.round(i/processSteps.length*100);progressBar.style.width=`${n}%`;prog
 item.classList.remove("active");item.classList.add("complete");item.querySelector(".process-status").textContent="완료";
 n=Math.round((i+1)/processSteps.length*100);progressBar.style.width=`${n}%`;progressPercent.textContent=`${n}%`;
 }
-progressState.textContent="모든 검증 완료";await wait(1000);transfer.classList.add("hidden");identity.classList.remove("hidden");residentName.focus();
+progressState.textContent="모든 검증 완료";await wait(1000);history.replaceState({vp:"identity"},"",location.href);transfer.classList.add("hidden");identity.classList.remove("hidden");residentName.focus();
 }
 let textViewScale=1,textViewKey="overview",textViewClosingByButton=false;
 const loreCharacters={
@@ -600,7 +602,7 @@ identity.classList.add("fade-out");await wait(850);identity.classList.add("hidde
 welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;paradise.classList.remove("hidden");
 await nextFrame();paradise.classList.add("awake");await wait(2600);arrivalMessage.classList.add("show");await wait(3800);
 arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");await wait(1800);residentIndicator.classList.add("show");mapUI.classList.add("ready");
-history.replaceState({vp:"plaza"},"",location.href);
+arrivalReady=true;history.replaceState({vp:"plaza"},"",location.href);
 }
 const sectionPages={admin:adminPage,guardian:guardianPage,starter:starterPage,news:newsPage,citizen:citizenPage,oldworld:oldWorldPage};
 function getSectionKey(page){return Object.keys(sectionPages).find(key=>sectionPages[key]===page)||null}
@@ -738,6 +740,10 @@ const textWasOpen=!textView.classList.contains("hidden");
 if(textViewClosingByButton){textViewClosingByButton=false;return}
 if(state?.vp==="text"){showTextView(false);return}
 if(textWasOpen){hideTextView();return}
+if(state?.vp==="intro-base"){
+if(!arrivalReady){history.forward();return}
+history.back();return
+}
 if(!state?.vp)return;
 if(state.vp==="plaza"){
 closeExploration();closeStaffModal();closeGuardianModal();closeStarterModal();closeNullModal();
