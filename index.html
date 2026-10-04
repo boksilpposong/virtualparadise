@@ -181,6 +181,12 @@
 .oldworld-gate{padding:34px 22px}.oldworld-gate h1{font-size:53px}.oldworld-choice{grid-template-columns:48px 1fr}.world-choice-state{display:none}.world-choice-no{width:43px;height:43px}.world-banner{min-height:620px}.world-banner::after{background:linear-gradient(to top,rgba(8,9,9,.94) 0%,rgba(8,9,9,.65) 47%,rgba(8,9,9,.10) 80%)}.world-banner-info{top:auto;bottom:25px;transform:none;left:22px;right:22px}.world-facts{grid-template-columns:1fr 1fr}.null-grid.three,.null-grid.two{grid-template-columns:1fr 1fr;gap:9px}.null-card-info h4{font-size:23px}.null-card-info p{display:none}
 .staff-modal-card,.guardian-modal-card,.starter-modal-card,.null-modal-card{grid-template-columns:1fr;width:min(520px,calc(100vw - 28px))}.null-modal-image{width:min(100%,340px);margin:auto}.null-modal-info{padding:5px 8px 10px}
 }
+
+/* 전역 BGM 플레이어 */
+#bgm-player{position:fixed;z-index:470;left:22px;bottom:22px;display:flex;align-items:center;gap:13px;max-width:min(520px,calc(100vw - 44px));padding:10px 12px 10px 15px;border:1px solid rgba(255,255,255,.20);border-radius:18px;background:rgba(10,22,27,.72);backdrop-filter:blur(16px);box-shadow:0 12px 34px rgba(0,0,0,.22);color:#fff;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
+#bgm-player.show{opacity:1;pointer-events:auto;transform:none}.bgm-meta{min-width:120px;max-width:190px;line-height:1.15}.bgm-meta span{display:block;margin-bottom:4px;font-size:8px;letter-spacing:.15em;color:rgba(255,255,255,.58)}.bgm-meta strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px;font-weight:700}.bgm-controls{display:flex;align-items:center;gap:6px}.bgm-btn{width:30px;height:30px;padding:0;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;line-height:1}.bgm-btn:hover{background:rgba(255,255,255,.16)}#bgm-toggle{width:34px;height:34px;background:rgba(255,255,255,.15);font-size:11px}#bgm-mute{border:0;background:transparent;font-size:13px}.bgm-volume{width:82px;height:3px;accent-color:#fff;cursor:pointer}
+@media(max-width:700px){#bgm-player{left:10px;bottom:10px;gap:8px;max-width:calc(100vw - 20px);padding:8px 9px 8px 11px;border-radius:15px}.bgm-meta{min-width:0;width:92px}.bgm-meta span{font-size:7px}.bgm-meta strong{font-size:10px}.bgm-btn{width:28px;height:28px}.bgm-volume{width:58px}}
+
 </style>
 </head>
 <body>
@@ -442,6 +448,19 @@
 </div>
 </div>
 
+
+<div id="bgm-player" aria-label="파라다이스 배경음악 플레이어">
+  <div class="bgm-meta"><span id="bgm-artist">유리아</span><strong id="bgm-title">다음으로</strong></div>
+  <div class="bgm-controls">
+    <button id="bgm-prev" class="bgm-btn" type="button" aria-label="이전 곡">‹</button>
+    <button id="bgm-toggle" class="bgm-btn" type="button" aria-label="재생">▶</button>
+    <button id="bgm-next" class="bgm-btn" type="button" aria-label="다음 곡">›</button>
+    <button id="bgm-mute" class="bgm-btn" type="button" aria-label="음소거">🔉</button>
+    <input id="bgm-volume" class="bgm-volume" type="range" min="0" max="100" value="28" step="1" aria-label="배경음악 볼륨">
+  </div>
+  <audio id="bgm-audio" preload="metadata"></audio>
+</div>
+
 <script>
 const scenes=[
 {image:"scene-consultation.png",label:"입주 상담센터",dialogue:["신청하신 입주 절차와 계약 내용은 모두 확인됐어요.","긴장하지 않으셔도 돼요. 천천히 하나씩 안내해드릴게요."]},
@@ -454,6 +473,15 @@ const $=id=>document.getElementById(id);
 const sceneImage=$("scene-image"),startButton=$("start-button"),dialogue=$("dialogue"),dialogueText=$("dialogue-text"),sceneLabel=$("scene-label"),eyeClose=$("eye-close"),cinematic=$("cinematic"),transfer=$("transfer"),processList=$("process-list"),progressBar=$("progress-bar"),progressState=$("progress-state"),progressPercent=$("progress-percent"),identity=$("identity"),identityForm=$("identity-form"),residentName=$("resident-name"),paradise=$("paradise"),arrivalMessage=$("arrival-message"),welcomeName=$("welcome-name"),residentIndicator=$("resident-indicator"),residentIndicatorName=$("resident-indicator-name"),mapUI=$("map-ui"),districtPreview=$("district-preview"),previewTitle=$("preview-title"),previewDesc=$("preview-desc");
 const adminPage=$("admin-page"),guardianPage=$("guardian-page"),starterPage=$("starter-page"),newsPage=$("news-page"),citizenPage=$("citizen-page"),oldWorldPage=$("oldworld-page");
 const textViewToggle=$("text-view-toggle"),textView=$("text-view"),textViewBody=$("text-view-body"),textViewContent=$("text-view-content"),textViewClose=$("text-view-close"),textFontDown=$("text-font-down"),textFontUp=$("text-font-up");
+const bgmPlayer=$("bgm-player"),bgmAudio=$("bgm-audio"),bgmArtist=$("bgm-artist"),bgmTitle=$("bgm-title"),bgmPrev=$("bgm-prev"),bgmToggle=$("bgm-toggle"),bgmNext=$("bgm-next"),bgmMute=$("bgm-mute"),bgmVolume=$("bgm-volume");
+const bgmTracks=[
+{artist:"유리아",title:"다음으로",src:"guardian-yuria-song.mp3"},
+{artist:"레나",title:"처음인 척",src:"guardian-rena-song.mp3"},
+{artist:"아샤",title:"불 좀 붙여볼까",src:"guardian-asha-song.mp3"},
+{artist:"아르카",title:"Welcome to Paradise",src:"guardian-arka-song.mp3"},
+{artist:"모카",title:"눈이 녹은 자리",src:"guardian-moka-song.mp3"},
+{artist:"루루",title:"일단 해볼래?",src:"guardian-ruru-song.mp3"}
+];
 
 const staffModal=$("staff-modal"),staffModalImage=$("staff-modal-image"),staffModalImageWrap=$("staff-modal-image-wrap"),staffModalField=$("staff-modal-field"),staffModalName=$("staff-modal-name"),staffModalWork=$("staff-modal-work"),staffModalDesc=$("staff-modal-desc");
 const guardianModal=$("guardian-modal"),guardianModalImage=$("guardian-modal-image"),guardianModalImageWrap=$("guardian-modal-image-wrap"),guardianModalYear=$("guardian-modal-year"),guardianModalName=$("guardian-modal-name"),guardianModalDesc=$("guardian-modal-desc");
@@ -486,7 +514,25 @@ sceneImage.style.backgroundImage=`url("${s.image}")`;sceneLabel.textContent=s.la
 sceneImage.classList.remove("move","closing");await nextFrame();sceneImage.classList.remove("changing");await nextFrame();sceneImage.classList.add("move");await wait(700);
 }
 async function showDialogue(t){dialogue.classList.remove("show");await wait(260);dialogueText.textContent=t;await nextFrame();dialogue.classList.add("show")}
-async function beginStory(){if(started)return;started=locked=true;startButton.classList.add("hide");await wait(500);await switchScene(0);dialogue.classList.remove("hidden");await nextFrame();await showDialogue(scenes[0].dialogue[0]);locked=false}
+let bgmIndex=0,bgmArmed=false,bgmStarted=false,bgmFadeTimer=null;
+function readBgmVolume(){try{const n=parseFloat(localStorage.getItem("vp-bgm-volume"));return Number.isFinite(n)?Math.max(0,Math.min(1,n)):.28}catch{return .28}}
+let bgmTargetVolume=readBgmVolume();
+function syncBgmMeta(){const track=bgmTracks[bgmIndex];bgmArtist.textContent=track.artist;bgmTitle.textContent=track.title}
+function syncBgmButtons(){const playing=!bgmAudio.paused&&!bgmAudio.ended;bgmToggle.textContent=playing?"❚❚":"▶";bgmToggle.setAttribute("aria-label",playing?"일시정지":"재생");const muted=bgmAudio.muted||bgmTargetVolume===0;bgmMute.textContent=muted?"🔇":bgmTargetVolume<.5?"🔉":"🔊";bgmMute.setAttribute("aria-label",muted?"음소거 해제":"음소거")}
+function setBgmVolume(v,save=true){bgmTargetVolume=Math.max(0,Math.min(1,v));bgmVolume.value=String(Math.round(bgmTargetVolume*100));if(!bgmAudio.muted)bgmAudio.volume=bgmTargetVolume;if(save){try{localStorage.setItem("vp-bgm-volume",String(bgmTargetVolume))}catch{}}syncBgmButtons()}
+function loadBgmTrack(index,autoplay=true){bgmIndex=(index+bgmTracks.length)%bgmTracks.length;const track=bgmTracks[bgmIndex];syncBgmMeta();bgmAudio.src=track.src;bgmAudio.load();if(autoplay){bgmAudio.muted=false;bgmAudio.volume=bgmTargetVolume;const p=bgmAudio.play();if(p&&p.catch)p.catch(()=>syncBgmButtons())}}
+function armBgm(){if(bgmArmed||bgmStarted)return;if(!bgmAudio.src)loadBgmTrack(0,false);bgmAudio.muted=true;bgmAudio.volume=0;const p=bgmAudio.play();if(p&&p.then)p.then(()=>{bgmArmed=true}).catch(()=>{bgmArmed=false})}
+function fadeBgmTo(target,duration=1800){clearInterval(bgmFadeTimer);const start=bgmAudio.volume,steps=Math.max(1,Math.round(duration/50)),delta=(target-start)/steps;let step=0;bgmFadeTimer=setInterval(()=>{step++;bgmAudio.volume=Math.max(0,Math.min(1,start+delta*step));if(step>=steps){clearInterval(bgmFadeTimer);bgmFadeTimer=null;bgmAudio.volume=target}},50)}
+function startParadiseBgm(){bgmPlayer.classList.add("show");syncBgmMeta();bgmAudio.currentTime=0;bgmAudio.muted=false;bgmAudio.volume=0;const p=bgmAudio.play();if(p&&p.then)p.then(()=>{bgmStarted=true;fadeBgmTo(bgmTargetVolume);syncBgmButtons()}).catch(()=>{bgmStarted=false;bgmAudio.volume=bgmTargetVolume;syncBgmButtons()});else{bgmStarted=true;fadeBgmTo(bgmTargetVolume);syncBgmButtons()}}
+bgmPrev.addEventListener("click",()=>loadBgmTrack(bgmIndex-1,true));
+bgmNext.addEventListener("click",()=>loadBgmTrack(bgmIndex+1,true));
+bgmToggle.addEventListener("click",()=>{if(bgmAudio.paused){bgmAudio.muted=false;bgmAudio.volume=bgmTargetVolume;const p=bgmAudio.play();if(p&&p.catch)p.catch(()=>{});}else bgmAudio.pause()});
+bgmMute.addEventListener("click",()=>{bgmAudio.muted=!bgmAudio.muted;syncBgmButtons()});
+bgmVolume.addEventListener("input",()=>{bgmAudio.muted=false;setBgmVolume(Number(bgmVolume.value)/100,true)});
+bgmAudio.addEventListener("play",syncBgmButtons);bgmAudio.addEventListener("pause",syncBgmButtons);bgmAudio.addEventListener("ended",()=>loadBgmTrack(bgmIndex+1,true));bgmAudio.addEventListener("error",syncBgmButtons);
+loadBgmTrack(0,false);setBgmVolume(bgmTargetVolume,false);
+
+async function beginStory(){if(started)return;armBgm();started=locked=true;startButton.classList.add("hide");await wait(500);await switchScene(0);dialogue.classList.remove("hidden");await nextFrame();await showDialogue(scenes[0].dialogue[0]);locked=false}
 async function advanceStory(){
 if(!started){beginStory();return}
 if(locked)return;
@@ -610,7 +656,7 @@ function setTextScale(delta){textViewScale=Math.max(.9,Math.min(1.35,textViewSca
 async function enterParadise(name){
 identity.classList.add("fade-out");await wait(850);identity.classList.add("hidden");
 welcomeName.textContent=`${name}님, 파라다이스에 오신 것을 환영합니다.`;residentIndicatorName.textContent=name;paradise.classList.remove("hidden");
-await nextFrame();paradise.classList.add("awake");await wait(2600);arrivalMessage.classList.add("show");await wait(3800);
+await nextFrame();paradise.classList.add("awake");startParadiseBgm();await wait(2600);arrivalMessage.classList.add("show");await wait(3800);
 arrivalMessage.classList.remove("show");arrivalMessage.classList.add("fade-away");await wait(1800);residentIndicator.classList.add("show");mapUI.classList.add("ready");
 arrivalReady=true;history.replaceState({vp:"plaza"},"",location.href);
 }
