@@ -184,8 +184,8 @@
 
 /* 전역 BGM 플레이어 */
 #bgm-player{position:fixed;z-index:820;left:22px;bottom:22px;display:flex;align-items:center;gap:13px;max-width:min(520px,calc(100vw - 44px));padding:10px 12px 10px 15px;border:1px solid rgba(255,255,255,.20);border-radius:18px;background:rgba(10,22,27,.72);backdrop-filter:blur(16px);box-shadow:0 12px 34px rgba(0,0,0,.22);color:#fff;opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
-#bgm-player.show{opacity:1;pointer-events:auto;transform:none}.bgm-meta{min-width:138px;max-width:210px;line-height:1.15}.bgm-meta span{display:block;margin-bottom:4px;font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.58)}.bgm-meta strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:700}.bgm-controls{display:flex;align-items:center;gap:6px}.bgm-btn{width:30px;height:30px;padding:0;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;line-height:1}.bgm-btn:hover{background:rgba(255,255,255,.16)}#bgm-toggle{width:34px;height:34px;background:rgba(255,255,255,.15);font-size:11px}#bgm-mute{border:0;background:transparent;font-size:13px}.bgm-volume{width:82px;height:3px;accent-color:#fff;cursor:pointer}
-@media(max-width:700px){#bgm-player{left:10px;bottom:10px;gap:8px;max-width:calc(100vw - 20px);padding:8px 9px 8px 11px;border-radius:15px}.bgm-meta{min-width:0;width:108px}.bgm-meta span{font-size:9px}.bgm-meta strong{font-size:12px}.bgm-btn{width:28px;height:28px}.bgm-volume{width:58px}}
+#bgm-player.show{opacity:1;pointer-events:auto;transform:none}.bgm-youtube{display:flex;align-items:center;height:30px;padding:0 9px;border:1px solid rgba(255,255,255,.16);border-radius:15px;background:rgba(255,255,255,.08);color:#fff;text-decoration:none;font-size:9px;font-weight:700;letter-spacing:.04em;white-space:nowrap;transition:.2s}.bgm-youtube:hover{background:rgba(255,255,255,.16)}.guardian-song-link{display:inline-flex;align-items:center;gap:7px;margin-top:18px;padding:10px 13px;border:1px solid #d9e6ec;border-radius:12px;background:#fff;color:#31596c;text-decoration:none;font-size:10px;font-weight:700;box-shadow:0 5px 16px rgba(45,81,96,.07);transition:.2s}.guardian-song-link:hover{transform:translateY(-1px);border-color:#bcd3de;box-shadow:0 7px 20px rgba(45,81,96,.11)}.guardian-song-link small{font-size:7px;letter-spacing:.12em;color:#7f99a5}.bgm-meta{min-width:138px;max-width:210px;line-height:1.15}.bgm-meta span{display:block;margin-bottom:4px;font-size:10px;letter-spacing:.15em;color:rgba(255,255,255,.58)}.bgm-meta strong{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:700}.bgm-controls{display:flex;align-items:center;gap:6px}.bgm-btn{width:30px;height:30px;padding:0;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;cursor:pointer;line-height:1}.bgm-btn:hover{background:rgba(255,255,255,.16)}#bgm-toggle{width:34px;height:34px;background:rgba(255,255,255,.15);font-size:11px}#bgm-mute{border:0;background:transparent;font-size:13px}.bgm-volume{width:82px;height:3px;accent-color:#fff;cursor:pointer}
+@media(max-width:700px){.bgm-youtube{padding:0 7px;font-size:8px}.guardian-song-link{font-size:9px}#bgm-player{left:10px;bottom:10px;gap:8px;max-width:calc(100vw - 20px);padding:8px 9px 8px 11px;border-radius:15px}.bgm-meta{min-width:0;width:108px}.bgm-meta span{font-size:9px}.bgm-meta strong{font-size:12px}.bgm-btn{width:28px;height:28px}.bgm-volume{width:58px}}
 
 </style>
 </head>
@@ -429,7 +429,7 @@
 
 <!-- 모달 -->
 <div id="staff-modal"><div class="staff-modal-card"><button id="staff-modal-close">×</button><div id="staff-modal-image-wrap" class="staff-modal-image"><img id="staff-modal-image" src="" alt=""></div><div class="staff-modal-info"><div class="staff-modal-small">PARADISE ADMINISTRATION</div><span id="staff-modal-field"></span><h2 id="staff-modal-name"></h2><span id="staff-modal-work"></span><div class="staff-modal-line"></div><p id="staff-modal-desc"></p></div></div></div>
-<div id="guardian-modal"><div class="guardian-modal-card"><button id="guardian-modal-close">×</button><div id="guardian-modal-image-wrap" class="guardian-modal-image"><img id="guardian-modal-image" src="" alt=""></div><div class="guardian-modal-info"><div class="guardian-modal-small">PARADISE OFFICIAL GUARDIAN</div><span id="guardian-modal-year"></span><h2 id="guardian-modal-name"></h2><div class="guardian-modal-line"></div><p id="guardian-modal-desc"></p></div></div></div>
+<div id="guardian-modal"><div class="guardian-modal-card"><button id="guardian-modal-close">×</button><div id="guardian-modal-image-wrap" class="guardian-modal-image"><img id="guardian-modal-image" src="" alt=""></div><div class="guardian-modal-info"><div class="guardian-modal-small">PARADISE OFFICIAL GUARDIAN</div><span id="guardian-modal-year"></span><h2 id="guardian-modal-name"></h2><div class="guardian-modal-line"></div><p id="guardian-modal-desc"></p><a id="guardian-song-link" class="guardian-song-link" href="#" target="_blank" rel="noopener noreferrer"><small>ORIGINAL SONG</small><span id="guardian-song-title"></span><b>↗</b></a></div></div></div>
 <div id="starter-modal"><div class="starter-modal-card"><button id="starter-modal-close">×</button><div id="starter-modal-image-wrap" class="starter-modal-image"><img id="starter-modal-image" src="" alt=""></div><div class="starter-modal-info"><div class="starter-modal-small">STARTER ROOM · CANDIDATE PROFILE</div><span id="starter-modal-role"></span><h2 id="starter-modal-name"></h2><span id="starter-modal-sub"></span><div class="starter-modal-line"></div><p id="starter-modal-desc"></p></div></div></div>
 
 <div id="null-modal">
@@ -457,6 +457,7 @@
     <button id="bgm-next" class="bgm-btn" type="button" aria-label="다음 곡">›</button>
     <button id="bgm-mute" class="bgm-btn" type="button" aria-label="음소거">🔉</button>
     <input id="bgm-volume" class="bgm-volume" type="range" min="0" max="100" value="28" step="1" aria-label="배경음악 볼륨">
+    <a id="bgm-youtube" class="bgm-youtube" href="https://youtu.be/ds6OgiWagw4" target="_blank" rel="noopener noreferrer" aria-label="현재 곡 YouTube에서 듣기">YouTube ↗</a>
   </div>
   <audio id="bgm-audio" preload="metadata"></audio>
 </div>
@@ -473,18 +474,18 @@ const $=id=>document.getElementById(id);
 const sceneImage=$("scene-image"),startButton=$("start-button"),dialogue=$("dialogue"),dialogueText=$("dialogue-text"),sceneLabel=$("scene-label"),eyeClose=$("eye-close"),cinematic=$("cinematic"),transfer=$("transfer"),processList=$("process-list"),progressBar=$("progress-bar"),progressState=$("progress-state"),progressPercent=$("progress-percent"),identity=$("identity"),identityForm=$("identity-form"),residentName=$("resident-name"),paradise=$("paradise"),arrivalMessage=$("arrival-message"),welcomeName=$("welcome-name"),residentIndicator=$("resident-indicator"),residentIndicatorName=$("resident-indicator-name"),mapUI=$("map-ui"),districtPreview=$("district-preview"),previewTitle=$("preview-title"),previewDesc=$("preview-desc");
 const adminPage=$("admin-page"),guardianPage=$("guardian-page"),starterPage=$("starter-page"),newsPage=$("news-page"),citizenPage=$("citizen-page"),oldWorldPage=$("oldworld-page");
 const textViewToggle=$("text-view-toggle"),textView=$("text-view"),textViewBody=$("text-view-body"),textViewContent=$("text-view-content"),textViewClose=$("text-view-close"),textFontDown=$("text-font-down"),textFontUp=$("text-font-up");
-const bgmPlayer=$("bgm-player"),bgmAudio=$("bgm-audio"),bgmArtist=$("bgm-artist"),bgmTitle=$("bgm-title"),bgmPrev=$("bgm-prev"),bgmToggle=$("bgm-toggle"),bgmNext=$("bgm-next"),bgmMute=$("bgm-mute"),bgmVolume=$("bgm-volume");
+const bgmPlayer=$("bgm-player"),bgmAudio=$("bgm-audio"),bgmArtist=$("bgm-artist"),bgmTitle=$("bgm-title"),bgmPrev=$("bgm-prev"),bgmToggle=$("bgm-toggle"),bgmNext=$("bgm-next"),bgmMute=$("bgm-mute"),bgmVolume=$("bgm-volume"),bgmYoutube=$("bgm-youtube");
 const bgmTracks=[
-{artist:"유리아",title:"다음으로",src:"guardian-yuria-song.mp3"},
-{artist:"레나",title:"처음인 척",src:"guardian-rena-song.mp3"},
-{artist:"아샤",title:"불 좀 붙여볼까",src:"guardian-asha-song.mp3"},
-{artist:"아르카",title:"Welcome to Paradise",src:"guardian-arka-song.mp3"},
-{artist:"모카",title:"눈이 녹은 자리",src:"guardian-moka-song.mp3"},
-{artist:"루루",title:"일단 해볼래?",src:"guardian-ruru-song.mp3"}
+{artist:"유리아",title:"다음으로",src:"guardian-yuria-song.mp3",youtube:"https://youtu.be/ds6OgiWagw4"},
+{artist:"레나",title:"처음인 척",src:"guardian-rena-song.mp3",youtube:"https://youtu.be/apHM2Wlb7Wk"},
+{artist:"아샤",title:"불 좀 붙여볼까",src:"guardian-asha-song.mp3",youtube:"https://youtu.be/owFPKiY0_JY"},
+{artist:"아르카",title:"Welcome to Paradise",src:"guardian-arka-song.mp3",youtube:"https://youtu.be/Ap4AbnWdszE"},
+{artist:"모카",title:"눈이 녹은 자리",src:"guardian-moka-song.mp3",youtube:"https://youtu.be/McmRugu33Xc"},
+{artist:"루루",title:"일단 해볼래?",src:"guardian-ruru-song.mp3",youtube:"https://youtu.be/Nw7T1fPecCo"}
 ];
 
 const staffModal=$("staff-modal"),staffModalImage=$("staff-modal-image"),staffModalImageWrap=$("staff-modal-image-wrap"),staffModalField=$("staff-modal-field"),staffModalName=$("staff-modal-name"),staffModalWork=$("staff-modal-work"),staffModalDesc=$("staff-modal-desc");
-const guardianModal=$("guardian-modal"),guardianModalImage=$("guardian-modal-image"),guardianModalImageWrap=$("guardian-modal-image-wrap"),guardianModalYear=$("guardian-modal-year"),guardianModalName=$("guardian-modal-name"),guardianModalDesc=$("guardian-modal-desc");
+const guardianModal=$("guardian-modal"),guardianModalImage=$("guardian-modal-image"),guardianModalImageWrap=$("guardian-modal-image-wrap"),guardianModalYear=$("guardian-modal-year"),guardianModalName=$("guardian-modal-name"),guardianModalDesc=$("guardian-modal-desc"),guardianSongLink=$("guardian-song-link"),guardianSongTitle=$("guardian-song-title");
 const starterModal=$("starter-modal"),starterModalImage=$("starter-modal-image"),starterModalImageWrap=$("starter-modal-image-wrap"),starterModalRole=$("starter-modal-role"),starterModalName=$("starter-modal-name"),starterModalSub=$("starter-modal-sub"),starterModalDesc=$("starter-modal-desc");
 const nullModal=$("null-modal"),nullModalImage=$("null-modal-image"),nullModalImageWrap=$("null-modal-image-wrap"),nullModalStatus=$("null-modal-status"),nullModalName=$("null-modal-name"),nullModalRole=$("null-modal-role"),nullModalDesc=$("null-modal-desc"),nullModalNote=$("null-modal-note");
 
@@ -517,7 +518,7 @@ async function showDialogue(t){dialogue.classList.remove("show");await wait(260)
 let bgmIndex=0,bgmArmed=false,bgmStarted=false,bgmFadeTimer=null;
 function readBgmVolume(){try{const n=parseFloat(localStorage.getItem("vp-bgm-volume"));return Number.isFinite(n)?Math.max(0,Math.min(1,n)):.28}catch{return .28}}
 let bgmTargetVolume=readBgmVolume();
-function syncBgmMeta(){const track=bgmTracks[bgmIndex];bgmArtist.textContent=track.artist;bgmTitle.textContent=track.title}
+function syncBgmMeta(){const track=bgmTracks[bgmIndex];bgmArtist.textContent=track.artist;bgmTitle.textContent=track.title;bgmYoutube.href=track.youtube;bgmYoutube.setAttribute("aria-label",`${track.artist} ${track.title} YouTube에서 듣기`)}
 function syncBgmButtons(){const playing=!bgmAudio.paused&&!bgmAudio.ended;bgmToggle.textContent=playing?"❚❚":"▶";bgmToggle.setAttribute("aria-label",playing?"일시정지":"재생");const muted=bgmAudio.muted||bgmTargetVolume===0;bgmMute.textContent=muted?"🔇":bgmTargetVolume<.5?"🔉":"🔊";bgmMute.setAttribute("aria-label",muted?"음소거 해제":"음소거")}
 function setBgmVolume(v,save=true){bgmTargetVolume=Math.max(0,Math.min(1,v));bgmVolume.value=String(Math.round(bgmTargetVolume*100));if(!bgmAudio.muted)bgmAudio.volume=bgmTargetVolume;if(save){try{localStorage.setItem("vp-bgm-volume",String(bgmTargetVolume))}catch{}}syncBgmButtons()}
 function loadBgmTrack(index,autoplay=true){bgmIndex=(index+bgmTracks.length)%bgmTracks.length;const track=bgmTracks[bgmIndex];syncBgmMeta();bgmAudio.src=track.src;bgmAudio.load();if(autoplay){bgmAudio.muted=false;bgmAudio.volume=bgmTargetVolume;const p=bgmAudio.play();if(p&&p.catch)p.catch(()=>syncBgmButtons())}}
@@ -678,7 +679,7 @@ closeSection(page);
 
 function openStaffModal(card){staffModalField.textContent=card.dataset.field;staffModalName.textContent=card.dataset.name;staffModalWork.textContent=card.dataset.work;staffModalDesc.textContent=card.dataset.desc;staffModalImageWrap.style.display="block";staffModalImage.src=card.dataset.image;staffModal.classList.add("show")}
 function closeStaffModal(){staffModal.classList.remove("show")}
-function openGuardianModal(card){guardianModalYear.textContent=card.dataset.year;guardianModalName.textContent=card.dataset.name;guardianModalDesc.textContent=card.dataset.desc;guardianModalImageWrap.style.display="block";guardianModalImage.src=card.dataset.image;guardianModal.classList.add("show")}
+function openGuardianModal(card){guardianModalYear.textContent=card.dataset.year;guardianModalName.textContent=card.dataset.name;guardianModalDesc.textContent=card.dataset.desc;guardianModalImageWrap.style.display="block";guardianModalImage.src=card.dataset.image;const song=bgmTracks.find(track=>track.artist===card.dataset.name);if(song){guardianSongLink.style.display="inline-flex";guardianSongLink.href=song.youtube;guardianSongTitle.textContent=`〈${song.title}〉 · YouTube에서 듣기`}else guardianSongLink.style.display="none";guardianModal.classList.add("show")}
 function closeGuardianModal(){guardianModal.classList.remove("show")}
 function openStarterModal(card){starterModalRole.textContent=card.dataset.role;starterModalName.textContent=card.dataset.name;starterModalSub.textContent=card.dataset.sub;starterModalDesc.textContent=card.dataset.desc;starterModalImageWrap.style.display="block";starterModalImage.src=card.dataset.image;starterModal.classList.add("show")}
 function closeStarterModal(){starterModal.classList.remove("show")}
