@@ -154,6 +154,12 @@
 @media(max-width:650px){.oldworld-shell{width:calc(100% - 20px)}.oldworld-gate{padding:34px 20px}.oldworld-choice{grid-template-columns:42px 1fr}.world-choice-state{display:none}.explore-stage{height:calc(100dvh - 88px);min-height:620px;border-radius:16px}.stage-hud{left:12px;right:12px;top:12px}.stage-title{max-width:75%;padding:10px 11px}.stage-title h2{font-size:20px}.stage-title p{display:none}.hotspot-label{font-size:8px}.stage-footnote{left:12px;bottom:10px}.explore-viewer{padding:8px}.explore-panel{width:100%;max-height:82%;border-radius:14px}.discovery-scene{padding:28px 22px}.discovery-scene.with-person,.discovery-scene.with-person.active{display:block;padding:0 20px 24px}.scene-character{height:280px;min-height:0}.scene-character img{height:100%}.scene-copy{padding:20px 0 0}.scene-copy h3{font-size:27px}.security-record div{grid-template-columns:95px 1fr}}
 
 
+/* 캐릭터 도감 플로팅 진입 */
+#character-index-toggle{position:fixed;z-index:480;right:168px;bottom:22px;display:flex;align-items:center;gap:8px;padding:11px 15px;border:1px solid rgba(255,255,255,.25);border-radius:30px;background:rgba(23,56,58,.83);backdrop-filter:blur(14px);box-shadow:0 10px 32px rgba(0,0,0,.18);color:#fff;cursor:pointer;font-size:11px}
+#character-index-toggle:hover{background:rgba(31,94,88,.94)}#character-index-toggle b{font-size:13px}
+.directory-categories{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 25px}.directory-categories button{border:1px solid #d7e5de;border-radius:30px;padding:9px 13px;background:#fff;color:#3b695a;cursor:pointer;font-size:.78em}.directory-categories button:hover{background:#ebf4ef}
+.directory-group{scroll-margin-top:20px}.lore-avatar-placeholder{display:grid;place-items:center;aspect-ratio:4/3;background:linear-gradient(145deg,#e6f3ed,#e1e9ef);color:#5b9c85;font-size:42px;font-weight:650}
+@media(max-width:760px){#character-index-toggle{right:155px;bottom:12px;padding:11px 12px;font-size:10px}}
 /* 텍스트로 보기 · 독립 세계관 가이드 */
 #text-view-toggle{position:fixed;z-index:480;right:22px;bottom:22px;display:flex;align-items:center;gap:8px;padding:11px 15px;border:1px solid rgba(255,255,255,.22);border-radius:30px;background:rgba(16,24,27,.76);backdrop-filter:blur(14px);box-shadow:0 10px 32px rgba(0,0,0,.18);color:#fff;cursor:pointer;font-size:11px}#text-view-toggle b{font-size:13px}
 #text-view{position:fixed;inset:0;z-index:800;background:#edf1ef;color:#24322e;overflow:hidden}#text-view.hidden{display:none!important}.text-view-shell{height:100%;display:grid;grid-template-rows:auto 1fr}.text-view-header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 22px;border-bottom:1px solid #d4ddd8;background:rgba(250,252,250,.96);backdrop-filter:blur(16px)}.text-view-brand small{display:block;font-size:8px;letter-spacing:.19em;color:#82928c}.text-view-brand strong{display:block;margin-top:4px;font-size:18px;color:#263d36}.text-view-controls{display:flex;align-items:center;gap:7px}.text-font-btn,.text-view-close{border:1px solid #d7e0dc;border-radius:9px;background:#fff;color:#50645d;cursor:pointer}.text-font-btn{width:35px;height:35px;font-size:18px;line-height:1}.text-view-close{padding:9px 12px;font-size:10px}.text-view-layout{min-height:0;display:grid;grid-template-columns:232px 1fr}.text-view-nav{overflow:auto;padding:19px 14px;border-right:1px solid #d5dfda;background:#e7edea}.text-view-nav small{display:block;padding:0 9px 10px;font-size:8px;letter-spacing:.18em;color:#899991}.text-view-tab{display:block;width:100%;margin:3px 0;padding:11px 12px;border:0;border-radius:9px;background:transparent;color:#667871;text-align:left;cursor:pointer;font-size:11px}.text-view-tab:hover,.text-view-tab.active{background:#fff;color:#254d40;box-shadow:0 4px 14px rgba(61,89,78,.06)}.text-view-content{--reader-size:16px;overflow:auto;padding:45px 7vw 90px;background:#fbfcfa}.text-view-body{max-width:930px;margin:0 auto;font-size:var(--reader-size);line-height:1.9}.lore-kicker{display:block;font-size:.6em;letter-spacing:.19em;color:#80928b}.lore-title{margin:8px 0 15px;font-size:2.55em;line-height:1.12;letter-spacing:-.055em;color:#223d35}.lore-lead{margin:0 0 34px;padding-bottom:29px;border-bottom:1px solid #e0e7e3;font-size:1.05em;color:#62766e}.lore-section{margin:39px 0}.lore-section h2{margin:0 0 13px;font-size:1.65em;line-height:1.28;letter-spacing:-.035em;color:#294d43}.lore-section h3{margin:24px 0 9px;font-size:1.15em;color:#365c50}.lore-section p{margin:8px 0 15px;color:#5f746c}.lore-section ul{margin:10px 0 18px;padding-left:21px;color:#61756d}.lore-section li{margin:5px 0}.lore-note{margin:23px 0;padding:17px 19px;border-left:3px solid #66a491;border-radius:0 10px 10px 0;background:#f0f6f3;color:#526c63}.lore-dark{padding:25px 27px;border-radius:17px;background:#233b43;color:#fff}.lore-dark h2,.lore-dark h3{color:#fff}.lore-dark p,.lore-dark li{color:rgba(255,255,255,.72)}.lore-chain{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin:18px 0}.lore-chain span{padding:8px 11px;border:1px solid #dce6e1;border-radius:9px;background:#fff;color:#45645a;font-size:.82em}.lore-chain b{color:#91a39c;font-weight:500}.lore-character-group{margin:34px 0 45px}.lore-character-group>h2{margin-bottom:7px}.lore-character-group>p{margin:0 0 18px;color:#758780}.lore-character-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.lore-character{overflow:hidden;border:1px solid #e0e7e3;border-radius:16px;background:#fff;box-shadow:0 8px 24px rgba(64,86,78,.05)}.lore-character img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center top;background:#eef1ef}.lore-character-copy{padding:16px 17px 18px}.lore-character-copy small{display:block;font-size:.58em;letter-spacing:.11em;color:#879991}.lore-character-copy h3{margin:5px 0 7px;font-size:1.18em;color:#31584c}.lore-character-copy p{margin:0;font-size:.83em;line-height:1.65;color:#71827c}.lore-faction{margin-top:28px;padding:20px 22px;border:1px solid #e1e7e4;border-radius:14px;background:#fff}.lore-faction b{display:block;margin-bottom:7px;color:#31584c}.lore-faction p{margin:0;color:#6b7f77}.lore-warning{border-left-color:#b56b6b;background:#faf1f1}.lore-warning strong{color:#8b4e4e}
@@ -411,12 +417,14 @@
 <footer class="oldworld-footer"><strong>OLD WORLD GATE</strong><span>VIRTUAL PARADISE · LEGACY CONNECTION</span></footer>
 </div></section>
 
-<!-- 텍스트로 보기 -->
+<!-- 캐릭터 도감 · 텍스트 가이드 -->
+<button id="character-index-toggle" type="button" aria-label="캐릭터 도감"><b>▦</b><span>캐릭터 도감</span></button>
 <button id="text-view-toggle" type="button" aria-label="텍스트로 보기"><b>Aa</b><span>텍스트로 보기</span></button>
 <section id="text-view" class="hidden" aria-hidden="true"><div class="text-view-shell">
 <header class="text-view-header"><div class="text-view-brand"><small>VIRTUAL PARADISE · NEW RESIDENT GUIDE</small><strong>신규 시민 생활 가이드</strong></div><div class="text-view-controls"><button id="text-font-down" class="text-font-btn" type="button" aria-label="글자 작게">−</button><button id="text-font-up" class="text-font-btn" type="button" aria-label="글자 크게">＋</button><button id="text-view-close" class="text-view-close" type="button">닫기 ×</button></div></header>
 <div class="text-view-layout"><nav class="text-view-nav"><small>NEW RESIDENT GUIDE</small>
 <button class="text-view-tab active" data-text-key="overview">처음 도착했다면</button>
+<button class="text-view-tab" data-text-key="characters">캐릭터 도감</button>
 <button class="text-view-tab" data-text-key="life">생활 시작하기</button>
 <button class="text-view-tab" data-text-key="worlds">이동과 월드</button>
 <button class="text-view-tab" data-text-key="etiquette">시민 예절</button>
@@ -473,7 +481,7 @@ const $=id=>document.getElementById(id);
 
 const sceneImage=$("scene-image"),startButton=$("start-button"),dialogue=$("dialogue"),dialogueText=$("dialogue-text"),sceneLabel=$("scene-label"),eyeClose=$("eye-close"),cinematic=$("cinematic"),transfer=$("transfer"),processList=$("process-list"),progressBar=$("progress-bar"),progressState=$("progress-state"),progressPercent=$("progress-percent"),identity=$("identity"),identityForm=$("identity-form"),residentName=$("resident-name"),paradise=$("paradise"),arrivalMessage=$("arrival-message"),welcomeName=$("welcome-name"),residentIndicator=$("resident-indicator"),residentIndicatorName=$("resident-indicator-name"),mapUI=$("map-ui"),districtPreview=$("district-preview"),previewTitle=$("preview-title"),previewDesc=$("preview-desc");
 const adminPage=$("admin-page"),guardianPage=$("guardian-page"),starterPage=$("starter-page"),newsPage=$("news-page"),citizenPage=$("citizen-page"),oldWorldPage=$("oldworld-page");
-const textViewToggle=$("text-view-toggle"),textView=$("text-view"),textViewBody=$("text-view-body"),textViewContent=$("text-view-content"),textViewClose=$("text-view-close"),textFontDown=$("text-font-down"),textFontUp=$("text-font-up");
+const characterIndexToggle=$("character-index-toggle"),textViewToggle=$("text-view-toggle"),textView=$("text-view"),textViewBody=$("text-view-body"),textViewContent=$("text-view-content"),textViewClose=$("text-view-close"),textFontDown=$("text-font-down"),textFontUp=$("text-font-up");
 const bgmPlayer=$("bgm-player"),bgmAudio=$("bgm-audio"),bgmArtist=$("bgm-artist"),bgmTitle=$("bgm-title"),bgmPrev=$("bgm-prev"),bgmToggle=$("bgm-toggle"),bgmNext=$("bgm-next"),bgmMute=$("bgm-mute"),bgmVolume=$("bgm-volume"),bgmYoutube=$("bgm-youtube");
 const bgmTracks=[
 {artist:"유리아",title:"다음으로",src:"guardian-yuria-song.mp3",youtube:"https://youtu.be/ds6OgiWagw4"},
@@ -582,6 +590,11 @@ starter:[
 ["starter-lua.png","루아","스타터 룸 후보","새로운 장소와 현장에 대한 호기심이 강한 후보입니다."],
 ["starter-nabi.png","나비","스타터 룸 후보","느긋한 방송 분위기와 높은 잠재력으로 알려져 있습니다."]
 ],
+citizen:[
+["citizen-haru.png","하루","일반 시민 · 첫 방문 안내","교외 주거지역의 토끼귀 이웃입니다. 새로 입주한 시민에게 월드·축제·쇼핑 등 생활을 소개합니다."],
+["citizen-riel.png","리엘","퇴역 가디언 · 방송인","54년간 가디언으로 활동한 뒤 퇴역했습니다. 현재는 일반 시민으로 지내고 있습니다."],
+["citizen-sena.png","세나","독립 뉴스 기자","관리국 소속이 아닌 독립 기자입니다. 사건·행사·생활정보를 취재하며 확인된 사실을 중시합니다."]
+],
 null:[
 ["null-eve.png","이브","데이터 복구","한쪽 팔의 데이터가 손실된 널입니다. 오래된 기록과 손상된 데이터를 추적하며 잃어버린 신체 정보를 되찾으려 하고 있습니다."],
 ["null-rita.png","리타","기록 추적","신원과 기록 복구에 능한 인물입니다. 오래된 시스템과 비공식 경로를 오가며 사라진 기록을 찾아다닙니다."],
@@ -592,9 +605,14 @@ null:[
 ["null-rev.png","레브","위험 인물","한쪽 눈의 시각 데이터가 완전히 손실된 널입니다. 파괴공작 현장에 직접 나타나는 경우가 있어 접근하지 않는 편이 안전합니다."]
 ]};
 function characterGrid(group){
-return '<div class="lore-character-grid">'+loreCharacters[group].map(c=>'<article class="lore-character"><img loading="lazy" src="'+c[0]+'" alt="'+c[1]+'"><div class="lore-character-copy"><small>'+c[2]+'</small><h3>'+c[1]+'</h3><p>'+c[3]+'</p></div></article>').join("")+'</div>';
+return '<div class="lore-character-grid">'+loreCharacters[group].map(c=>'<article class="lore-character">'+(c[0]?'<img loading="lazy" src="'+c[0]+'" alt="'+c[1]+'">':'<div class="lore-avatar-placeholder" aria-hidden="true">'+c[1][0]+'</div>')+'<div class="lore-character-copy"><small>'+c[2]+'</small><h3>'+c[1]+'</h3><p>'+c[3]+'</p></div></article>').join("")+'</div>';
+}
+function renderCharacterDirectory(){
+const groups=[["citizen","일반 시민","이웃과 방송인 등 파라다이스에서 살아가는 시민들입니다."],["guardian","가디언","현재 활동 중인 가디언 6명입니다."],["starter","스타터 룸","공개된 주요 가디언 후보 10명입니다. 스타터 룸 전체 인원은 더 많습니다."],["admin","관리국","일상·안전·의료·기술을 담당하는 관리국 직원들입니다."],["null","NULL 관련 인물","복구·지원·파괴 등 각기 다른 입장에 놓인 인물들입니다."]];
+return '<span class="lore-kicker">PARADISE · CHARACTER ARCHIVE</span><h1 class="lore-title">파라다이스 인물 도감</h1><p class="lore-lead">세계에서 만나게 될 주요 인물 30명을 한곳에 모았습니다. 소속을 선택해 살펴보세요. 공개적으로 알려진 소개 위주이며, 캐릭터의 모든 비밀을 담고 있지는 않습니다.</p><div class="directory-categories">'+groups.map(([key,title])=>'<button type="button" data-directory-target="directory-'+key+'">'+title+'</button>').join("")+'</div>'+groups.map(([key,title,desc])=>'<section id="directory-'+key+'" class="lore-character-group directory-group"><h2>'+title+'</h2><p>'+desc+'</p>'+characterGrid(key)+'</section>').join("");
 }
 const loreGuide={
+characters:()=>renderCharacterDirectory(),
 overview:()=>`<span class="lore-kicker">NEW RESIDENT GUIDE</span><h1 class="lore-title">처음 도착했다면 이것부터 알아두세요</h1><p class="lore-lead">파라다이스에 막 입주하셨다면 모든 걸 한 번에 외울 필요는 없습니다. 집을 확인하고, 생활권을 익히고, 궁금한 곳을 천천히 돌아다니시면 됩니다.</p>
 <section class="lore-section"><h2>우선 해야 할 일</h2><ul><li>배정된 주거와 시민 정보를 확인해 주세요.</li><li>가까운 관리국 위치와 긴급 지원 방법을 알아두세요.</li><li>중심도시와 교외 주거지역 중 자주 다닐 생활권을 먼저 익혀두면 편합니다.</li><li>처음 보는 월드에 들어가기 전에는 운영 상태와 이용 안내를 확인해 주세요.</li></ul></section>
 <section class="lore-section"><h2>처음 며칠은 이렇게 보내도 좋습니다</h2><p>중심가를 한 번 둘러보고, 동네 상점이나 공용시설을 확인한 뒤, 관심 있는 방송이나 이벤트를 찾아보세요. 파라다이스에서는 새로운 월드와 행사가 자주 열리기 때문에 가볍게 구경만 다녀도 금방 생활 감각을 익힐 수 있습니다.</p></section>
@@ -630,7 +648,7 @@ oldworld:()=>`<span class="lore-kicker">LEGACY WORLD GUIDE</span><h1 class="lore
 <section class="lore-section"><h2>무엇을 볼 수 있나요?</h2><p>운영 당시의 안내문, 오래된 방송 장비, 남겨진 기록, 자동으로 계속 돌아가는 조명이나 음악 같은 흔적을 발견할 수 있습니다. 일부 공간에는 지금도 누군가 드나든 흔적이 남아 있기도 합니다.</p></section>
 <div class="lore-note">구형 월드는 관광지가 아니라 관리가 끝난 오래된 공간입니다. 호기심은 좋지만, 경고가 붙은 장소에서는 돌아오는 판단도 탐험의 일부입니다.</div>`};
 
-function renderTextView(key="overview"){textViewKey=loreGuide[key]?key:"overview";document.querySelectorAll(".text-view-tab").forEach(btn=>btn.classList.toggle("active",btn.dataset.textKey===textViewKey));textViewBody.innerHTML=loreGuide[textViewKey]();textViewContent.scrollTop=0}
+function renderTextView(key="overview"){textViewKey=loreGuide[key]?key:"overview";document.querySelectorAll(".text-view-tab").forEach(btn=>btn.classList.toggle("active",btn.dataset.textKey===textViewKey));textViewBody.innerHTML=loreGuide[textViewKey]();document.querySelector(".text-view-brand strong").textContent=textViewKey==="characters"?"파라다이스 인물 도감":"신규 시민 생활 가이드";textViewContent.scrollTop=0}
 function getTextReturnState(){
 const state=history.state;
 if(state?.vp&&state.vp!=="text")return state;
@@ -640,14 +658,14 @@ if(!paradise.classList.contains("hidden"))return{vp:"plaza"};
 return{vp:"entry"};
 }
 function showTextView(pushHistory=true,key=null){
-renderTextView(key||textViewKey);textView.classList.remove("hidden");textView.setAttribute("aria-hidden","false");textViewToggle.classList.add("hidden");
+renderTextView(key||textViewKey);textView.classList.remove("hidden");textView.setAttribute("aria-hidden","false");textViewToggle.classList.add("hidden");characterIndexToggle.classList.add("hidden");
 if(pushHistory){
 const returnState=getTextReturnState();
 if(!history.state?.vp||history.state?.vp==="text")history.replaceState(returnState,"",location.href);
 history.pushState({vp:"text"},"",location.href);
 }
 }
-function hideTextView(){textView.classList.add("hidden");textView.setAttribute("aria-hidden","true");textViewToggle.classList.remove("hidden")}
+function hideTextView(){textView.classList.add("hidden");textView.setAttribute("aria-hidden","true");textViewToggle.classList.remove("hidden");characterIndexToggle.classList.remove("hidden")}
 function closeTextView(){
 hideTextView();
 if(history.state?.vp==="text"){textViewClosingByButton=true;history.back()}
@@ -785,7 +803,10 @@ guardianModal.addEventListener("click",e=>{if(e.target===guardianModal)closeGuar
 starterModal.addEventListener("click",e=>{if(e.target===starterModal)closeStarterModal()});
 nullModal.addEventListener("click",e=>{if(e.target===nullModal)closeNullModal()});
 
-textViewToggle.addEventListener("click",()=>showTextView(true));
+textViewToggle.addEventListener("click",()=>showTextView(true,textViewKey==="characters"?"overview":textViewKey));
+characterIndexToggle.addEventListener("click",()=>showTextView(true,"characters"));
+textViewBody.addEventListener("click",e=>{const btn=e.target.closest("[data-directory-target]");if(btn)document.getElementById(btn.dataset.directoryTarget)?.scrollIntoView({behavior:"smooth",block:"start"})});
+textViewBody.addEventListener("error",e=>{const img=e.target;if(img?.tagName!=="IMG"||!img.closest(".lore-character"))return;const avatar=document.createElement("div");avatar.className="lore-avatar-placeholder";avatar.setAttribute("aria-hidden","true");avatar.textContent=(img.alt||"?").slice(0,1);img.replaceWith(avatar)},true);
 textViewClose.addEventListener("click",closeTextView);
 textFontDown.addEventListener("click",()=>setTextScale(-.1));
 textFontUp.addEventListener("click",()=>setTextScale(.1));
