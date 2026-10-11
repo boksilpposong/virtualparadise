@@ -418,7 +418,7 @@
 </div></section>
 
 <!-- 캐릭터 도감 · 텍스트 가이드 -->
-<button id="character-index-toggle" type="button" aria-label="캐릭터 도감"><b>♧</b><span>캐릭터 도감</span></button>
+<button id="character-index-toggle" type="button" aria-label="캐릭터 도감"><b>▦</b><span>캐릭터 도감</span></button>
 <button id="text-view-toggle" type="button" aria-label="텍스트로 보기"><b>Aa</b><span>텍스트로 보기</span></button>
 <section id="text-view" class="hidden" aria-hidden="true"><div class="text-view-shell">
 <header class="text-view-header"><div class="text-view-brand"><small>VIRTUAL PARADISE · NEW RESIDENT GUIDE</small><strong>신규 시민 생활 가이드</strong></div><div class="text-view-controls"><button id="text-font-down" class="text-font-btn" type="button" aria-label="글자 작게">−</button><button id="text-font-up" class="text-font-btn" type="button" aria-label="글자 크게">＋</button><button id="text-view-close" class="text-view-close" type="button">닫기 ×</button></div></header>
@@ -591,9 +591,9 @@ starter:[
 ["starter-nabi.png","나비","스타터 룸 후보","느긋한 방송 분위기와 높은 잠재력으로 알려져 있습니다."]
 ],
 citizen:[
-[null,"하루","일반 시민 · 첫 방문 안내","교외 주거지역의 토끼귀 이웃입니다. 새로 입주한 시민에게 월드·축제·쇼핑 등 생활을 소개합니다."],
-[null,"리엘","퇴역 가디언 · 방송인","54년간 가디언으로 활동한 뒤 퇴역했습니다. 현재는 일반 시민으로 지내고 있습니다."],
-[null,"세나","독립 뉴스 기자","관리국 소속이 아닌 독립 기자입니다. 사건·행사·생활정보를 취재하며 확인된 사실을 중시합니다."]
+["citizen-haru.png","하루","일반 시민 · 첫 방문 안내","교외 주거지역의 토끼귀 이웃입니다. 새로 입주한 시민에게 월드·축제·쇼핑 등 생활을 소개합니다."],
+["citizen-riel.png","리엘","퇴역 가디언 · 방송인","54년간 가디언으로 활동한 뒤 퇴역했습니다. 현재는 일반 시민으로 지내고 있습니다."],
+["citizen-sena.png","세나","독립 뉴스 기자","관리국 소속이 아닌 독립 기자입니다. 사건·행사·생활정보를 취재하며 확인된 사실을 중시합니다."]
 ],
 null:[
 ["null-eve.png","이브","데이터 복구","한쪽 팔의 데이터가 손실된 널입니다. 오래된 기록과 손상된 데이터를 추적하며 잃어버린 신체 정보를 되찾으려 하고 있습니다."],
@@ -806,6 +806,7 @@ nullModal.addEventListener("click",e=>{if(e.target===nullModal)closeNullModal()}
 textViewToggle.addEventListener("click",()=>showTextView(true,textViewKey==="characters"?"overview":textViewKey));
 characterIndexToggle.addEventListener("click",()=>showTextView(true,"characters"));
 textViewBody.addEventListener("click",e=>{const btn=e.target.closest("[data-directory-target]");if(btn)document.getElementById(btn.dataset.directoryTarget)?.scrollIntoView({behavior:"smooth",block:"start"})});
+textViewBody.addEventListener("error",e=>{const img=e.target;if(img?.tagName!=="IMG"||!img.closest(".lore-character"))return;const avatar=document.createElement("div");avatar.className="lore-avatar-placeholder";avatar.setAttribute("aria-hidden","true");avatar.textContent=(img.alt||"?").slice(0,1);img.replaceWith(avatar)},true);
 textViewClose.addEventListener("click",closeTextView);
 textFontDown.addEventListener("click",()=>setTextScale(-.1));
 textFontUp.addEventListener("click",()=>setTextScale(.1));
